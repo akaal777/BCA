@@ -1,0 +1,56 @@
+﻿1. SQL Triggers:
+   - Triggers are special types of stored procedures in a database management system (DBMS) that are automatically executed when a specific event occurs, such as an INSERT, UPDATE, or DELETE operation on a table.
+   - Triggers are used to enforce business rules, maintain data integrity, and perform complex data manipulations.
+   - Triggers can be defined to execute before or after the triggering event, allowing you to perform actions before or after the data changes.
+
+2. Use of Database Triggers:
+   - Triggers can be used to enforce data integrity and business rules that cannot be easily expressed using constraints or other SQL statements.
+   - Triggers can be used to maintain audit trails or logs of data changes, which can be useful for security, compliance, or troubleshooting purposes.
+   - Triggers can be used to perform complex data transformations or calculations, such as updating denormalized data or generating derived values.
+   - Triggers can be used to implement complex business logic, such as cascading updates or deletes, or to enforce referential integrity across multiple tables.
+
+3. Database Triggers vs. SQL*Forms:
+   - SQL*Forms is a legacy Oracle tool for building graphical user interfaces (GUIs) for database applications.
+   - Triggers are a feature of the database itself, while SQL*Forms is a client-side tool for interacting with the database.
+   - Triggers are executed automatically when specific events occur, while SQL*Forms requires user interaction to trigger actions.
+   - Triggers can be used to enforce data integrity and business rules at the database level, while SQL*Forms is more focused on the user interface and application logic.
+
+4. Types of Triggers:
+   - BEFORE triggers: Executed before the triggering event (INSERT, UPDATE, or DELETE) occurs.
+   - AFTER triggers: Executed after the triggering event (INSERT, UPDATE, or DELETE) occurs.
+   - INSTEAD OF triggers: Executed instead of the triggering event, typically used with views.
+   - Row-level triggers: Executed for each row affected by the triggering event.
+   - Statement-level triggers: Executed once for the entire statement, regardless of the number of rows affected.
+
+5. Applying Database Triggers:
+   - Triggers are created using the CREATE TRIGGER statement, which specifies the table, event, and timing of the trigger.
+   - The trigger body contains the SQL statements that should be executed when the trigger is fired.
+   - Triggers can access the old and new values of the affected rows using special variables, such as `OLD` and `NEW` in Oracle, or `inserted` and `deleted` in SQL Server.
+
+6. BEFORE vs. AFTER Triggers:
+   - BEFORE triggers are executed before the triggering event occurs, allowing you to validate or modify the data before it is committed to the database.
+   - AFTER triggers are executed after the triggering event occurs, allowing you to perform additional actions or logging based on the changes made to the data.
+
+7. Combinations of Triggers:
+   - It is possible to create multiple triggers on the same table, with different timing (BEFORE or AFTER) and events (INSERT, UPDATE, or DELETE).
+   - The order of execution for multiple triggers on the same table is determined by the database management system and may not be guaranteed.
+
+8. Syntax for Creating and Dropping Triggers:
+   - The syntax for creating a trigger varies slightly between different DBMS, but generally follows the pattern:
+     ```sql
+     CREATE TRIGGER trigger_name
+     {BEFORE | AFTER | INSTEAD OF}
+     {INSERT | UPDATE | DELETE}
+     ON table_name
+     [FOR EACH ROW]
+     [WHEN condition]
+     BEGIN
+       -- Trigger body
+     END;
+     ```
+   - The syntax for dropping a trigger is typically:
+     ```sql
+     DROP TRIGGER trigger_name;
+     ```
+
+Remember, the specific syntax and implementation details may vary slightly between different DBMS, such as Oracle, SQL Server, MySQL, PostgreSQL, and others. It's important to consult the documentation for the DBMS you are using for the most accurate and up-to-date information.

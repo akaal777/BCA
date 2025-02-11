@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DBMS Learning Portal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: #0a0a2e;
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .main-heading {
+            text-align: center;
+            font-size: 3.5rem;
+            margin: 2rem 0;
+            animation: glow 2s ease-in-out infinite alternate;
+            transition: all 0.3s ease;
+        }
+
+        .main-heading:hover {
+            transform: scale(1.05);
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px #00fff2, 0 0 20px #00fff2, 0 0 30px #00fff2;
+            }
+            to {
+                text-shadow: 0 0 20px #00fff2, 0 0 30px #00fff2, 0 0 40px #00fff2;
+            }
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+            transform: translateY(20px);
+            opacity: 0;
+            animation: slideUp 0.5s ease forwards;
+        }
+
+        @keyframes slideUp {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .sub-section {
+            margin: 1.5rem 0;
+        }
+
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #00fff2, #0066ff);
+            border: none;
+            padding: 1rem 2rem;
+            color: #fff;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                120deg,
+                transparent,
+                rgba(255, 255, 255, 0.3),
+                transparent
+            );
+            transition: 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 255, 242, 0.4);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #00fff2;
+            border-left: 4px solid #00fff2;
+            padding-left: 1rem;
+        }
+
+        .text-section {
+            user-select: none;
+            pointer-events: none;
+        }
+
+        @media (max-width: 768px) {
+            .main-heading {
+                font-size: 2.5rem;
+            }
+
+            .section {
+                padding: 1rem;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-heading {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="main-heading">DATABASE MANAGEMENT SYSTEM</h1>
+        
+        <!-- Notes Section -->
+        <section class="section">
+            <h2 class="section-title">Study Materials</h2>
+            <div class="sub-section">
+                <h3>Online Notes</h3>
+                <div class="button-grid" id="online-notes"></div>
+            </div>
+            <div class="sub-section">
+                <h3>Offline Notes</h3>
+                <div class="button-grid" id="offline-notes"></div>
+            </div>
+        </section>
+
+        <!-- Theory Section -->
+        <section class="section">
+            <h2 class="section-title">Theory Resources</h2>
+            <div class="button-grid" id="theory"></div>
+        </section>
+
+        <!-- YouTube Section -->
+        <section class="section">
+            <h2 class="section-title">Video Lectures</h2>
+            <div class="button-grid" id="youtube"></div>
+        </section>
+ 
+    <script>
+        // Data storage
+        const resources = {
+            onlineNotes: [
+                { name: "DBMS NOTES", link: "https://drive.google.com/file/d/1vZKHyAqOk_jrYFgFo8mxTSNzPX62uayk/view?usp=drive_link" },
+                { name: "DBMS", link: "https://drive.google.com/file/d/1VDKhPXCvJzNWryuxoLGLfTP9jm0Wyv98/view?usp=drive_link" },
+            ],
+            offlineNotes: [
+                { name: "DBMS Notes", link: "RDBMS NOTES.pdf" },
+                { name: "DBMS", link: "RDBMS.pdf" },
+                { name : "Concurrency Control [TxT File]", link: "Concurrency Control.txt" },
+                { name : "Oracel [TxT File]", link: "Oracel.txt" },
+                { name : "SQL [TxT File]", link: "WorkingwithSQL.txt" },
+            ],
+            theory: [
+                { name: "Introduction to RDBMS", link: "https://www.geeksforgeeks.org/rdbms-full-form/" },
+                { name: "File Organization", link: "https://www.geeksforgeeks.org/file-organization-in-dbms-set-1/" },
+                { name: " Transaction Management", link: "https://www.geeksforgeeks.org/transaction-management/" },
+                { name: "Transaction Management [Github]", link: "https://www.geeksforgeeks.org/transaction-management/" },
+                { name: "Concurrency Control", link: "https://herovired.com/learning-hub/topics/concurrency-control-in-dbms/" },
+
+            ],
+            youtube: [
+                { name: "Complete DBMS in One Shot (5 Hours) in Hindi [5 Minutes Engineering ]", link: "https://youtu.be/jzuzxEFoiss?si=q9oCv8c_iQMfQSgz" },
+                { name: "DBMS (Database Management system) Complete Playlist [Gate Smashers]", link: "https://youtube.com/playlist?list=PLxCzCOWd7aiFAN6I8CuViBuCdJgiOkT2Y&si=mmuEp4bR2udjq74l" },
+                { name: "Database Management System (DBMS) [5 Minutes Engineering]", link: "https://youtube.com/playlist?list=PLYwpaL_SFmcBU4HS74xGTK1cAFbY0rdVY&si=CJ1YvowTK8Kxfmlu" },
+                { name: "DBMS One Shot [Knowledge Gate]", link: "https://youtu.be/FchQ6wZVqsA?si=GUfQ54T_nLXNMP0s" },
+                { name: "DBMS One Shot", link: "https://youtu.be/scxc0FXp2rg?si=Na8jvuGRaTDpGI9t" },
+                { name: "DBMS [GeeksforGeeks]", link: "https://youtube.com/playlist?list=PLEBuowGoCtr3WLkRIHmIA2yS0jvSs9Lpt&si=IfIPJPuKmq0i3UE5" },
+                { name: "Database Recovery", link: "https://youtu.be/1pSxXwy0qiE?si=pYViwv79sNFjs_qH" },
+                { name: "Database Recovery[ Types of Faiure]", link: "https://youtu.be/eq2EMu1Mh-w?si=f6ga1i660MLWO35h" },
+                { name: "Relational Query Language [SQL Commands]", link: "https://youtu.be/Ktri0Jmeh-c?si=pRed0rmSYNwMdXvq" },
+            ]
+        };
+
+        // Function to create buttons
+        function createButton(parentId, items) {
+            const container = document.getElementById(parentId);
+            items.forEach(item => {
+                const button = document.createElement('button');
+                button.className = 'btn';
+                button.textContent = item.name;
+                button.onclick = () => {
+                    window.open(item.link, '_blank');
+                };
+                container.appendChild(button);
+            });
+        }
+
+        // Initialize buttons
+        window.onload = () => {
+            createButton('online-notes', resources.onlineNotes);
+            createButton('offline-notes', resources.offlineNotes);
+            createButton('theory', resources.theory);
+            createButton('youtube', resources.youtube);
+
+            // Add staggered animation delays
+            document.querySelectorAll('.section').forEach((section, index) => {
+                section.style.animationDelay = `${index * 0.2}s`;
+            });
+        };
+
+        // Responsive adjustments
+        window.addEventListener('resize', () => {
+            document.querySelectorAll('.btn').forEach(btn => {
+                btn.style.width = window.innerWidth < 480 ? '100%' : 'auto';
+            });
+        });
+    </script>
+</body>
+</html>
