@@ -1,0 +1,73 @@
+﻿
+
+1. Introduction to Oracle:
+   - Oracle as a Client/Server Architecture:
+     - Oracle is a relational database management system (RDBMS) that follows a client/server architecture.
+     - The client is the application or user interface that interacts with the database, while the server is the Oracle database engine that manages the data.
+     - The client sends SQL statements to the server, and the server processes the requests and returns the results back to the client.
+   - Getting Started:
+     - To get started with Oracle, you need to install the Oracle software on your system and create a user account to access the database.
+     - Oracle provides various tools and interfaces, such as SQL*Plus, SQL Developer, and Oracle Enterprise Manager, to interact with the database.
+
+2. Creating, Modifying, and Dropping Databases:
+   - Creating a Database:
+     - In Oracle, you can create a new database using the CREATE DATABASE statement.
+     - This statement allows you to specify various parameters, such as the database name, file locations, and initialization parameters.
+   - Modifying a Database:
+     - To modify an existing database, you can use the ALTER DATABASE statement.
+     - This statement allows you to perform tasks like adding or resizing database files, changing the database's name, or modifying the database's configuration.
+   - Dropping a Database:
+     - To permanently remove a database, you can use the DROP DATABASE statement.
+     - This statement will delete the database and all its associated files from the system.
+
+3. Inserting, Updating, and Deleting Data:
+   - Inserting Data:
+     - You can insert new data into a table using the INSERT INTO statement.
+     - This statement allows you to specify the column names and the values to be inserted.
+   - Updating Data:
+     - To modify existing data in a table, you can use the UPDATE statement.
+     - This statement allows you to specify the table name, the columns to be updated, and the new values.
+   - Deleting Data:
+     - To remove data from a table, you can use the DELETE FROM statement.
+     - This statement allows you to specify the table name and the conditions for the rows to be deleted.
+
+4. The SELECT Statement:
+   - The SELECT statement is the primary SQL statement used to retrieve data from a database.
+   - It allows you to specify the columns to be retrieved, the table(s) to be queried, and various clauses to filter, sort, and group the data.
+
+5. Data Constraints:
+   - Null Values:
+     - Null values represent the absence of data in a column.
+     - You can use the IS NULL and IS NOT NULL clauses to check for null values.
+   - Default Values:
+     - You can define default values for a column, which will be used if no value is provided during data insertion.
+   - Primary Key:
+     - A primary key is a column or a set of columns that uniquely identifies each row in a table.
+     - Primary keys must have unique values and cannot contain null values.
+   - Unique Key:
+     - A unique key is a column or a set of columns that ensures the uniqueness of each row in a table.
+     - Unique keys can contain null values, but only one null value is allowed.
+   - Foreign Key:
+     - A foreign key is a column or a set of columns that refers to the primary key of another table.
+     - Foreign keys establish a relationship between two tables and help maintain data integrity.
+
+6. Computing Expressions:
+   - You can perform various mathematical and logical operations on data using expressions.
+   - Expressions can include arithmetic operators (e.g., +, -, *, /), functions, and other SQL constructs.
+   - Examples:
+     $$x+5=10$$
+     $$y*2-3=7$$
+
+7. Renaming Columns:
+   - You can rename columns in the SELECT statement using the AS keyword.
+   - This allows you to provide more descriptive column names in the output.
+
+8. Logical Operators:
+   - Logical operators, such as AND, OR, and NOT, can be used in the WHERE clause to combine multiple conditions.
+   - These operators allow you to create complex filtering criteria for your queries.
+
+9. Range Searching and Pattern Matching:
+   - Range Searching:
+     - You can use the BETWEEN clause to specify a range of values for a column.
+   - Pattern Matching:
+     - You can use the LIKE operator with wil
