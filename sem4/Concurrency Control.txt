@@ -1,0 +1,35 @@
+﻿* **Concurrency Control**: Concurrency control is a mechanism used in database systems to manage multiple transactions that access shared data simultaneously. The goal of concurrency control is to ensure that the database remains in a consistent state, even when multiple transactions are executed concurrently.
+
+* **Lock-Based Protocol**: A lock-based protocol is a type of concurrency control mechanism that uses locks to synchronize access to shared data. In this protocol, a transaction must acquire a lock on a data item before it can access or modify it. There are two types of locks: shared locks (also known as read locks) and exclusive locks (also known as write locks).
+
+* **Locks**: Locks are a mechanism used to synchronize access to shared data. A lock is a flag that indicates whether a data item is currently being accessed or modified by a transaction. There are two types of locks:
+  * **Shared Locks**: A shared lock allows multiple transactions to read a data item simultaneously, but no transaction can modify the data item until all shared locks are released.
+  * **Exclusive Locks**: An exclusive lock allows only one transaction to access or modify a data item, and no other transaction can access or modify the data item until the exclusive lock is released.
+
+* **Granting of Locks**: The granting of locks is the process by which a transaction is allowed to acquire a lock on a data item. The lock manager is responsible for granting locks to transactions. The lock manager uses a lock table to keep track of the locks that have been granted to each transaction.
+
+* **Two-Phase Locking Protocol**: The two-phase locking protocol is a type of lock-based protocol that ensures serializability by dividing a transaction into two phases: the growing phase and the shrinking phase.
+  * **Growing Phase**: During the growing phase, a transaction can acquire locks on data items, but it cannot release any locks.
+  * **Shrinking Phase**: During the shrinking phase, a transaction can release locks on data items, but it cannot acquire any new locks.
+
+* **Timestamp-Based Protocol**: A timestamp-based protocol is a type of concurrency control mechanism that uses timestamps to synchronize access to shared data. In this protocol, each transaction is assigned a unique timestamp, and the transaction with the earliest timestamp is allowed to access or modify the data item first.
+
+* **Timestamp**: A timestamp is a unique identifier assigned to each transaction. The timestamp is used to determine the order in which transactions access or modify shared data.
+
+* **Timestamp Ordering Protocol**: The timestamp ordering protocol is a type of timestamp-based protocol that ensures serializability by ordering transactions based on their timestamps. The transaction with the earliest timestamp is allowed to access or modify the data item first.
+
+* **Thomas's Write Rule**: Thomas's write rule is a protocol that allows a transaction to write a new value to a data item only if the transaction has the earliest timestamp among all transactions that have read or written the data item.
+
+* **Validation-Based Protocol**: A validation-based protocol is a type of concurrency control mechanism that uses validation to ensure serializability. In this protocol, each transaction is validated before it is allowed to commit. The validation process checks whether the transaction has accessed or modified any data items that have been modified by other transactions.
+
+* **Deadlock Handling**: Deadlock handling is a mechanism used to resolve deadlocks that occur when multiple transactions are blocked, waiting for each other to release resources.
+  * **Deadlock Prevention**: Deadlock prevention is a technique used to prevent deadlocks from occurring. One way to prevent deadlocks is to order transactions based on their timestamps.
+  * **Deadlock Detection**: Deadlock detection is a technique used to detect deadlocks that have occurred. One way to detect deadlocks is to use a wait-for graph, which shows the transactions that are waiting for each other to release resources.
+  * **Deadlock Recovery**: Deadlock recovery is a technique used to recover from deadlocks that have occurred. One way to recover from deadlocks is to roll back one or more transactions that are involved in the deadlock.
+
+Here are some examples of mathematical formulas and equations related to concurrency control:
+$$T1 \rightarrow T2$$ (transaction T1 is before transaction T2 in the serialization order)
+$$TS(T1) < TS(T2)$$ (the timestamp of transaction T1 is less than the timestamp of transaction T2)
+$$L(T1, x) \rightarrow L(T2, x)$$ (transaction T1 has a lock on data item x, and transaction T2 is waiting for the lock to be released)
+
+Note: These formulas and equations are used to illustrate the concepts of concurrency control and are not intended to be a comprehensive or formal treatment of the subject.

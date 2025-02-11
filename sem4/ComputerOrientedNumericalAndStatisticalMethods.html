@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Math Resources</title>
+  <style>
+    /* General Styles */
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #1a1a1a, #2c3e50);
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 4rem;
+      color: #00ffcc;
+      margin: 40px 0;
+      animation: glow 2s infinite alternate;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc, 0 0 30px #00ffcc;
+      }
+      to {
+        text-shadow: 0 0 20px #00ffcc, 0 0 40px #00ffcc, 0 0 60px #00ffcc;
+      }
+    }
+
+    h1:hover {
+      color: #ff6f61;
+      animation: none;
+    }
+
+    .section {
+      margin: 40px auto;
+      padding: 30px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+      max-width: 1200px;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .section h2 {
+      text-align: center;
+      color: #00ffcc;
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+    }
+
+    .buttons button {
+      padding: 20px 40px;
+      font-size: 1.5rem;
+      font-style: italic;
+      border: none;
+      border-radius: 15px;
+      background: linear-gradient(135deg, #00ffcc, #00b3b3);
+      color: #1a1a1a;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: button-float 3s infinite ease-in-out;
+    }
+
+    .buttons button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 20px rgba(0, 255, 204, 0.6);
+      animation: none;
+    }
+
+    @keyframes button-float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    /* Section-specific Styling */
+    #offline-pdf-buttons button {
+      background: linear-gradient(135deg, #ff6f61, #ff3b2f);
+    }
+
+    #online-pdf-buttons button {
+      background: linear-gradient(135deg, #00b3b3, #007f7f);
+    }
+
+    #youtube-buttons button {
+      background: linear-gradient(135deg, #ffcc00, #ff9900);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.5rem;
+      }
+
+      .section h2 {
+        font-size: 2rem;
+      }
+
+      .buttons button {
+        width: 100%;
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Math Resources</h1>
+
+  <!-- Offline PDF Section -->
+  <div class="section">
+    <h2>Offline PDFs</h2>
+    <div class="buttons" id="offline-pdf-buttons"></div>
+  </div>
+
+  <!-- Online PDF Section -->
+  <div class="section">
+    <h2>Online PDFs</h2>
+    <div class="buttons" id="online-pdf-buttons"></div>
+  </div>
+
+  <!-- YouTube Video/Playlist Section -->
+  <div class="section">
+    <h2>YouTube Videos/Playlists</h2>
+    <div class="buttons" id="youtube-buttons"></div>
+  </div>
+
+  <script>
+    // Offline PDF Data
+    const offlinePdfs = [
+      { name: "Chapter 2 [Solution Of Transcendental Equations]", path: "ch2.pdf" },
+      { name: "Chapter 4 [Interpolation]", path: "ch4.pdf" },
+      { name: "Chapter 7 [Measures Of Central Tendency]", path: "ch7.pdf" },
+      { name: "Chapter 8 [Measures Of Dispersion]", path: "ch8.pdf" },
+      { name: "Chapter 9 [Correlation Analysis]", path: "ch9.pdf" },
+      { name: "Chapter 10 [Regression Analysis]", path: "ch10.pdf" },
+      { name: "Math Program", path: "math program.pdf" },
+      { name: "Math Program With Output", path: "MathProgram.pdf" }
+    ];
+
+    // Online PDF Data
+    const onlinePdfs = [
+      { name: "Chapter 2 [Solution Of Transcendental Equations]", url: "https://drive.google.com/file/d/1oTTunyj1tR1rSEqxcYMJ4f6bWSMVDyBF/view?usp=drive_link" },
+      { name: "Chapter 4 [Interpolation]", url: "https://drive.google.com/file/d/1NnR1-6CYWQUQw1mNBTdxjrSGjQuoPPtL/view?usp=drive_link" },
+      { name: "Chapter 7 [Measures Of Central Tendency]", url: "https://drive.google.com/file/d/1NE9r302BbLJSV2cQlaPVhSgK82Ln6aGr/view?usp=drive_link" },
+      { name: "Chapter 8 [Measures of Dispersion]", url: "https://drive.google.com/file/d/1e9TTvkTIJVjGAOwVJ-2J-mwbjeLjNyLW/view?usp=drive_link" },
+      { name: "Chapter 9 [Correlation Analysis]", url: "https://drive.google.com/file/d/1m9Tu6DNHc-PywWtgLzRJd_d-6aksd_x3/view?usp=drive_link" },
+      { name: "Chapter 10 [Regression Analysis]", url: "https://drive.google.com/file/d/10L_0FuJWHhEjN4BdWXkJyNo0vay83qiU/view?usp=drive_link" },
+      { name: "Math program", url: "https://drive.google.com/file/d/1amkqkL2TbU7EqMM2txFW04Dzzp_YR1Ve/view?usp=drive_link" },
+      { name: "Math Program with output", url: "https://drive.google.com/file/d/1pxyK8k6bQfUEFp7hOTJhRaWYQ2zWwS50/view?usp=drive_link" }
+    ];
+
+    // YouTube Video/Playlist Data
+    const youtubeLinks = [
+      { name: "Correlation Analysis", url: "https://youtu.be/-hHEUp57DBE?si=ah_RCCT-E93mMkeU" },
+      { name: "Regression Analysis", url: "https://youtu.be/SJyhSU8PsTk?si=6N849Hu_fLc6Gpe5" },
+      { name: "Measures of Dispersion", url: "https://youtu.be/5sakfGibqVw?si=OanrbnBzENwGp_FJ" },
+      { name: "Measures of Central Tendency [Playlist]", url: "https://youtube.com/playlist?list=PLEHGYFbPuuMEhz_AU8iCrBTYb5eNtFpeg&si=OX14BamdC-zGBrVG" },
+      { name: "Solution of Transcendental Equations [Playlist]", url: "https://youtube.com/playlist?list=PLEHGYFbPuuMGfyIXGx8V-Xhi0HRSjT8Ak&si=lUsZgqqQxLN6ZQfc" },
+      { name: "Interpolation [Lagrange Interpolation]", url: "https://youtu.be/zdyUwzOm1zw?si=EVs-_PyFWziBY-98" },
+      { name: "Interpolation [Newton's Divided Difference]", url: "https://youtu.be/OVfTwFbevwE?si=kR-PimRIk6OVXhiA" },
+      { name: "Mean Median Mode", url: "https://youtu.be/MyPx7y2LQKA?si=q3oAhKP7KSAljX1C" },
+    ];
+
+    // Function to create buttons
+    function createButtons(data, containerId, isOffline = false) {
+      const container = document.getElementById(containerId);
+      data.forEach(item => {
+        const button = document.createElement("button");
+        button.textContent = item.name;
+        button.onclick = () => {
+          if (isOffline) {
+            window.open(item.path, "_blank");
+          } else {
+            window.open(item.url, "_blank");
+          }
+        };
+        container.appendChild(button);
+      });
+    }
+
+    // Create buttons for each section
+    createButtons(offlinePdfs, "offline-pdf-buttons", true);
+    createButtons(onlinePdfs, "online-pdf-buttons");
+    createButtons(youtubeLinks, "youtube-buttons");
+  </script>
+</body>
+</html>

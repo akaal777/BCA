@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All My Sons - Arthur Miller</title>
+    <style>
+        /* Previous CSS remains same */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Georgia', serif;
+        }
+        body {
+            background: linear-gradient(270deg, #ff9a9e, #fad0c4, #fbc2eb, #a6c1ee, #f6d365, #fda085);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite, fadeIn 1s ease-in-out;
+            padding: 20px;
+            opacity: 0;
+            animation-fill-mode: forwards;
+        }
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        .heading {
+            text-align: center;
+            margin: 30px 0;
+            transition: transform 0.3s ease, text-shadow 0.3s ease;
+            font-size: 2.5em;
+            color: #333;
+            animation: fadeIn 1s ease-in-out 0.5s;
+            animation-fill-mode: forwards;
+        }
+        @keyframes bounce {
+            0%   { transform: translateY(0); }
+            30%  { transform: translateY(-15px); }
+            50%  { transform: translateY(0); }
+            70%  { transform: translateY(-7px); }
+            100% { transform: translateY(0); }
+        }
+        .heading:hover {
+            transform: scale(1.05);
+            animation: bounce 0.6s;
+            text-shadow: 0 0 10px #4CAF50;
+        }
+        .section {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            animation: fadeIn 1s ease-in-out 1s;
+            animation-fill-mode: forwards;
+        }
+        .section-title {
+            margin-bottom: 15px;
+            color: #333;
+            font-size: 1.5em;
+        }
+        .button-container {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 22px; /* Increased from 18px */
+            font-weight: bold; /* Added bold */
+            font-style: italic; /* Added italic */
+            position: relative;
+            overflow: hidden;
+        }
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300%;
+            height: 300%;
+            background: radial-gradient(circle, rgba(255,255,255,0.4), rgba(255,255,255,0));
+            transform: translate(-50%, -50%) scale(0);
+            transition: transform 0.5s ease;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .btn:hover::before {
+            transform: translate(-50%, -50%) scale(1);
+        }
+        .btn:active {
+            transform: translateY(0);
+        }
+        @media (max-width: 768px) {
+            .btn {
+                width: 100%;
+                font-size: 24px; /* Increased from 20px */
+                padding: 20px 35px;
+            }
+            .heading {
+                font-size: 28px;
+            }
+        }
+        .footer-message {
+            font-size: 18px;
+            text-align: center;
+            margin-top: 20px;
+            animation: fadeIn 1s ease-in-out 1.5s;
+            animation-fill-mode: forwards;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="heading">All My Sons - Arthur Miller</h1>
+    
+    <!-- PDF Section -->
+    <section class="section">
+        <h2 class="section-title">PDF Section</h2>
+        <div class="button-container">
+            <button class="btn" id="storyBtn">Story</button>
+            <button class="btn" id="scriptBtn">Script</button>
+            <button class="btn" id="summaryBtn">Summary</button>
+        </div>
+    </section>
+
+    <!-- Character Sketch Section -->
+    <section class="section">
+        <h2 class="section-title">Character Sketch</h2>
+        <div class="button-container">
+            <button class="btn" id="character1Btn">Joe Keller</button>
+            <button class="btn" id="character2Btn">Kate Keller</button>
+            <button class="btn" id="character3Btn">Chris Keller</button>
+            <button class="btn" id="character4Btn">Ann Deever</button>
+            <button class="btn" id="character5Btn">George Deever</button>
+        </div>
+    </section>
+    
+    <!-- YouTube Section -->
+    <section class="section">
+        <h2 class="section-title">YouTube Section</h2>
+        <div class="button-container">
+            <button class="btn" id="video1Btn">All My Sons [ Summary in Hindi ]</button>
+            <button class="btn" id="video2Btn">All My Songs [ Summary in Punjabi ]</button>
+            <button class="btn" id="video3Btn">All My Sons [full Play in Hindi]</button>
+        </div>
+    </section>
+    
+    <!-- Footer Section -->
+    <footer class="section">
+        <p class="footer-message">If you can read English grammar, you can go to Semester 3.</p>
+    </footer>
+    
+    <script>
+        // PDF Paths
+        const pdfPaths = {
+            story: "englishstory.pdf",
+            script: "englishscript.pdf",
+            summary: "Englishsummary.pdf"
+        };
+
+        // Add this event listener with the other PDF handlers
+        document.getElementById('summaryBtn').addEventListener('click', () => {
+            window.open(pdfPaths.summary, '_blank');
+        });
+
+        // YouTube Links for Character Sketches
+        const characterLinks = {
+            char1: "https://youtu.be/APk_bXUSdC0?si=aeWV4490hIX7_HAw",
+            char2: "https://youtu.be/8tFDfb3I3A4?si=9PVqH3HEWNPtbcfd",
+            char3: "https://youtu.be/Sop5gaCxWs4?si=bwFUM3h-gqba7nbm",
+            char4: "https://youtu.be/TEFRgmRo4pc?si=P093zbGnjaQaUe2t",
+            char5: "https://youtu.be/Pqk3J_JPHJQ?si=sERgg4YH38E5WsuC"
+        };
+
+        // PDF Button Handlers
+        document.getElementById('storyBtn').addEventListener('click', () => {
+            window.open(pdfPaths.story, '_blank');
+        });
+        document.getElementById('scriptBtn').addEventListener('click', () => {
+            window.open(pdfPaths.script, '_blank');
+        });
+
+        // Character Sketch Handlers
+        document.getElementById('character1Btn').addEventListener('click', () => {
+            window.open(characterLinks.char1, '_blank');
+        });
+        document.getElementById('character2Btn').addEventListener('click', () => {
+            window.open(characterLinks.char2, '_blank');
+        });
+        document.getElementById('character3Btn').addEventListener('click', () => {
+            window.open(characterLinks.char3, '_blank');
+        });
+        document.getElementById('character4Btn').addEventListener('click', () => {
+            window.open(characterLinks.char4, '_blank');
+        });
+        document.getElementById('character5Btn').addEventListener('click', () => {
+            window.open(characterLinks.char5, '_blank');
+        });
+
+        // YouTube Button Handlers
+        document.getElementById('video1Btn').addEventListener('click', () => {
+            window.open('https://youtu.be/m0Pbjodj6mk?si=HNivmcJa3VLAWX0-', '_blank');
+        });
+        document.getElementById('video2Btn').addEventListener('click', () => {
+            window.open('https://youtu.be/B5pF4ffW2DI?si=xvWYdIKDSkTxnh9p', '_blank');
+        });
+        document.getElementById('video3Btn').addEventListener('click', () => {
+            window.open('https://youtu.be/Sh1IhIfTHFk?si=Nanrl8pby8Npef-l', '_blank');
+        });
+    </script>
+</body>
+</html>

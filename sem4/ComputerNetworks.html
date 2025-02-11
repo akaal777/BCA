@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Futuristic Classic Website</title>
+  <style>
+    /* General Styles */
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #1e1e2f, #2a2a40);
+      color: #fff;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    .section {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      padding: 20px;
+      margin: 20px;
+      width: 80%;
+      max-width: 800px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      animation: slideIn 1s ease-in-out;
+    }
+
+    .section h2 {
+      font-size: 2rem;
+      margin-bottom: 15px;
+      text-align: center;
+      text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .buttons button {
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      border: none;
+      border-radius: 10px;
+      color: #fff;
+      padding: 25px 30px;
+      font-size: 1.5rem; /* Increased font size */
+      font-weight: bold;
+      font-family: 'Brush Script MT', cursive; /* Added cursive font */
+      font-style: italic;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+      position: relative;
+      overflow: hidden;
+      min-width: 220px; /* Increased minimum width */
+      min-height: 100px; /* Increased minimum height */
+    }
+
+    .buttons button::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 300%;
+      height: 300%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0) 70%);
+      transform: translate(-50%, -50%) scale(0);
+      transition: transform 0.5s ease-in-out;
+      border-radius: 50%;
+    }
+
+    .buttons button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .buttons button:active {
+      transform: scale(0.95);
+    }
+
+    .buttons button:hover::before {
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    /* Section Specific Styles */
+    #online-pdf-buttons button {
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    }
+
+    #offline-pdf-buttons button {
+      background: linear-gradient(135deg, #a18cd1, #fbc2eb);
+    }
+
+    #theory-buttons button {
+      background: linear-gradient(135deg, #f6d365, #fda085);
+    }
+
+    #youtube-buttons button {
+      background: linear-gradient(135deg, #84fab0, #8fd3f4);
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateY(50px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.05);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .buttons {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      .section h2 {
+        font-size: 1.5rem;
+      }
+
+      .buttons button {
+        padding: 30px;
+        font-size: 1.6rem;
+        min-height: 110px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .buttons {
+        grid-template-columns: 1fr;
+      }
+
+      .buttons button {
+        padding: 35px;
+        font-size: 1.8rem;
+        min-height: 120px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Computer Network</h1>
+
+  <!-- Online PDF Section -->
+  <div class="section">
+    <h2>Online PDF Section</h2>
+    <div class="buttons" id="online-pdf-buttons"></div>
+  </div>
+
+  <!-- Offline PDF Section -->
+  <div class="section">
+    <h2>Offline PDF Section</h2>
+    <div class="buttons" id="offline-pdf-buttons"></div>
+  </div>
+
+  <!-- Theory Section -->
+  <div class="section">
+    <h2>Theory Section</h2>
+    <div class="buttons" id="theory-buttons"></div>
+  </div>
+
+  <!-- YouTube Section -->
+  <div class="section">
+    <h2>YouTube Section</h2>
+    <div class="buttons" id="youtube-buttons"></div>
+  </div>
+
+  <script>
+    // Online PDF Links
+    const onlinePDFLinks = [
+      "https://drive.google.com/file/d/12H3QcEUdQjqlHS2pC_Rw_nq_1UZmQIz-/view?usp=drive_link",
+      "https://drive.google.com/file/d/1TRYUEcWISaTldpyHEElKPZBT4I3cJZJ8/view?usp=drive_link",
+      "https://drive.google.com/file/d/1-T-ETVBJJAqjwK9-FKhuCVbv24NI7guX/view?usp=drive_link",
+      "https://drive.google.com/file/d/1wUhun1kmOEXta0RtImuf1YD0EK8Awup2/view?usp=drive_link",
+      "https://drive.google.com/file/d/1nKi1gxibLfnmuRT23Ph88HFGxVhJdOJd/view?usp=drive_link",
+      "https://drive.google.com/file/d/16_cccbggucBAktRI2P2kA7ZefnEHXMjN/view?usp=drive_link",
+      "https://drive.google.com/file/d/1bXr_KyW4Ke7y7wHxjxdEIIBoIXdaAWRO/view?usp=drive_link",
+      "https://drive.google.com/file/d/1qyROLrVMbjO6W7tvRnCCZLVFmWktBoFV/view?usp=drive_link",
+      "https://drive.google.com/file/d/19wb7ynUES-jvK1FtJDuMB2Mh5asePMdy/view?usp=drive_link"
+    ];
+
+    // Offline PDF Paths
+    const offlinePDFPaths = [
+      "ch 2 refrence model of network.pdf",
+      "ch 7 transport layer.pdf",
+      "ch 8 application layer.pdf",
+      "ch 3 TCP-IP protocol suite.pdf",
+      "ch 6 network layer.pdf",
+      "ch 5 data link layer.pdf",
+      "ch 4 internet protocol.pdf",
+      "ch 1 introduction to network.pdf",
+      "ch 9 network security.pdf"
+    ];
+
+    // Theory Links
+    const theoryLinks = [
+      "https://www.tutorialspoint.com/Reference-Models-in-Computer-Network",
+      "https://www.geeksforgeeks.org/transport-layer-in-osi-model/",
+      "https://www.geeksforgeeks.org/application-layer-in-osi-model/",
+      "https://www.geeksforgeeks.org/tcp-ip-model/",
+      "https://www.geeksforgeeks.org/network-layer-in-osi-model/",
+      "https://www.geeksforgeeks.org/data-link-layer/",
+      "https://www.geeksforgeeks.org/types-of-internet-protocols/",
+      "https://www.geeksforgeeks.org/what-is-computer-networking/",
+      "https://www.geeksforgeeks.org/network-security/"
+    ];
+
+    // YouTube Links
+    const youtubeLinks = [
+      "https://youtu.be/1msEo8PIcbw?si=vViE2qlEU04iTfBY",
+      "https://youtube.com/playlist?list=PLHQAlOcTuuT3HbVd9XG42a0WtC1MRKRvO&si=u9lKRrr_lgK6Pent",
+      "https://www.youtube.com/live/XJasQKX2fsY?si=hGjjSuI_10yAu4db",
+      "https://youtu.be/TVr0RZ1-74g?si=o80Jrrr21RcBEbgS",
+      "https://youtube.com/playlist?list=PL1KcDRI9303dr0YaWBF_ngoOrBwJjhWFI&si=ZG_UivAxnv2crus_",
+      "https://youtu.be/yY0NtpmVB_A?si=smPhQQ6NfLfh27JK",
+      "https://youtu.be/Hizdc4XVJ1E?si=NB4PsUkViWTtWD4m",
+      "https://youtu.be/BdDd_Ez4iZs?si=dE2fi_K6G6DSR_yr",
+      "https://youtube.com/playlist?list=PLxCzCOWd7aiGFBD2-2joCpWOLUrDLvVV_&si=tszBCKCiuj2qPbm0",
+      "https://youtu.be/1V9mhVgVH3A?si=d-y6hUfuXq_BuzAV",
+      "https://youtu.be/q3Z3Qa1UNBA?si=VcTygbcOS4uKkc61"
+    ];
+
+    // Button names for each section
+    const onlinePDFNames = [
+    "Reference Models Of Network",
+        "Transport Layer",
+        "Application Layer",
+        "TCP/IP Protocol Suite",
+        "Network Layer",
+        "Data Link Layer",
+        "Internet Protocol",
+        "Introduction To Network",
+        "Network Security"
+    ];
+
+    const offlinePDFNames = [
+        "Reference Models Of Network",
+        "Transport Layer",
+        "Application Layer",
+        "TCP/IP Protocol Suite",
+        "Network Layer",
+        "Data Link Layer",
+        "Internet Protocol",
+        "Introduction To Network",
+        "Network Security"
+    ];
+
+    const theoryNames = [
+    "Reference Models Of Network",
+        "Transport Layer",
+        "Application Layer",
+        "TCP/IP Protocol Suite",
+        "Network Layer",
+        "Data Link Layer",
+        "Internet Protocol",
+        "Introduction To Network",
+        "Network Security"
+    ];
+
+    const youtubeNames = [
+   "Reference Models Of Network",
+        "Transport Layer",
+        "Application Layer",
+        "TCP/IP Protocol Suite",
+        "Network Layer [Playlist]",
+        "Data Link Layer",
+        "Introduction To Network",
+        "Network Security",
+        "Computer Networks [Playlist]",
+        "Computer Networks [One Shot]",
+        "Computer Networks [One Shot by knowledge gate]",
+    ];
+
+    // Updated createButtons function
+    function createButtons(containerId, links, buttonNames, isPDF = false, isOffline = false) {
+        const container = document.getElementById(containerId);
+        links.forEach((link, index) => {
+            const button = document.createElement("button");
+            button.textContent = buttonNames[index];
+            button.addEventListener("click", () => {
+                if (isPDF) {
+                    if (isOffline) {
+                        window.open(link, "_blank");
+                    } else {
+                        window.open(link, "_blank");
+                    }
+                } else {
+                    window.open(link, "_blank");
+                }
+            });
+            container.appendChild(button);
+        });
+    }
+
+    // Update the function calls
+    createButtons("online-pdf-buttons", onlinePDFLinks, onlinePDFNames, true);
+    createButtons("offline-pdf-buttons", offlinePDFPaths, offlinePDFNames, true, true);
+    createButtons("theory-buttons", theoryLinks, theoryNames);
+    createButtons("youtube-buttons", youtubeLinks, youtubeNames);
+  </script>
+</body>
+</html>
