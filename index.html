@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>BCA - Home</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap">
+  <style>
+    :root {
+      --primary-color: #00f3ff;
+      --secondary-color: #7a04eb;
+      --accent-color: #00ff88;
+      --dark-bg: #0a0a1a;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: var(--dark-bg);
+      color: #ffffff;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Futuristic Background Animation */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, #0f0f23, #1e1e2f, #2c2c4a);
+      z-index: -1;
+      animation: gradientShift 15s ease infinite;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    header {
+      text-align: center;
+      padding: 2rem;
+      border-bottom: 2px solid var(--primary-color);
+      background: rgba(10, 10, 26, 0.9);
+      backdrop-filter: blur(10px);
+    }
+
+    h1, h2 {
+      font-family: 'Orbitron', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: titleGlow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes titleGlow {
+      from { text-shadow: 0 0 10px rgba(0, 243, 255, 0.5); }
+      to { text-shadow: 0 0 20px rgba(0, 243, 255, 0.8), 0 0 30px rgba(0, 243, 255, 0.6); }
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 1rem;
+    }
+
+    section {
+      margin: 3rem 0;
+      padding: 2rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transform: translateY(0);
+      transition: transform 0.3s ease;
+    }
+
+    section:hover {
+      transform: translateY(-5px);
+    }
+
+    .image-container {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 2rem 0;
+    }
+
+    img {
+      border-radius: 10px;
+      border: 2px solid var(--primary-color);
+      transition: transform 0.3s ease;
+    }
+
+    img:hover {
+      transform: scale(1.05);
+    }
+
+    ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    li {
+      flex: 1 1 200px;
+      padding: 1.5rem;
+      text-align: center;
+      background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    li:hover {
+      background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+      box-shadow: 0 0 15px var(--primary-color);
+    }
+
+    #nextButton {
+      background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
+      border: none;
+      padding: 1rem 2rem;
+      color: white;
+      border-radius: 25px;
+      font-family: 'Orbitron', sans-serif;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #nextButton:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px var(--primary-color);
+    }
+
+    @media (max-width: 768px) {
+      h1 { font-size: 2rem; }
+      section { padding: 1rem; }
+      li { flex: 1 1 100%; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Welcome to BCA</h1>
+  </header>
+
+  <main>
+    <section class="about-bca">
+      <h2>About BCA</h2>
+      <p>
+        The Bachelor of Computer Applications (BCA) is a 3-year undergraduate program that focuses on computer applications and software development. It covers subjects like programming, database management, web development, and more.
+      </p>
+      <div class="image-container">
+        <img src="image1.jpeg" alt="BCA Image 1" width="300">
+        <img src="image2.jpeg" alt="BCA Image 2" width="300">
+      </div>
+    </section>
+
+    <section class="subjects">
+      <h2>Inside Content</h2>
+      <ul>
+        <li>Semesters 3</li>
+        <li>Semesters 4</li>
+        <li>Syllabus</li>
+        <li>Datesheet</li>
+        <li>Result</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer style="text-align: center; padding: 2rem;">
+    <button id="nextButton">Next ➤</button>
+  </footer>
+
+  <script>
+    // Add hover effect to section cards
+    document.querySelectorAll('section').forEach(section => {
+      section.addEventListener('mouseover', () => {
+        section.style.transform = 'translateY(-5px)';
+      });
+      section.addEventListener('mouseout', () => {
+        section.style.transform = 'translateY(0)';
+      });
+    });
+
+    // Add button interaction
+    document.getElementById('nextButton').addEventListener('click', () => {
+      window.location.href = 'page2.html';
+    });
+  </script>
+</body>
+</html>

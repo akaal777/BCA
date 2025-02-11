@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>BCA</title>
+  <style>
+    /* Animated Background */
+    body {
+      background: linear-gradient(-45deg, #0f0f23, #1e1e2f, #2c2c4a, #3a3a5f);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      min-height: 100vh;
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      overflow-x: hidden;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Header */
+    header {
+      text-align: center;
+      padding: 50px 20px;
+    }
+
+    h1 {
+      position: relative;
+      color: #ffffff;
+      font-size: 3rem;
+      animation: glow 1.5s infinite alternate;
+      transition: transform 0.3s ease;
+    }
+
+    @keyframes glow {
+      0% {
+        text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 15px #ff00ff, 0 0 20px #ff00ff, 0 0 25px #ff00ff;
+      }
+      100% {
+        text-shadow: 0 0 10px #ffffff, 0 0 20px #ff00ff, 0 0 30px #ff00ff, 0 0 40px #ff00ff, 0 0 50px #ff00ff;
+      }
+    }
+
+    h1:hover {
+      color: #ff00ff;
+      transform: scale(1.05);
+      animation: glow-hover 1.5s infinite alternate;
+    }
+
+    @keyframes glow-hover {
+      0% {
+        text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 15px #ff00ff;
+      }
+      100% {
+        text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff;
+      }
+    }
+
+    /* Button Container */
+    .button-container {
+      display: flex;
+      justify-content: center;
+      gap: 40px; /* Increased from 20px to 40px */
+      padding: 30px;
+      margin-top: 50px;
+      flex-wrap: wrap;
+    }
+
+    /* Glowing Buttons */
+    .glow-btn {
+      position: relative;
+      padding: 25px 40px;
+      font-size: 2rem;
+      font-style: italic;
+      border: none;
+      border-radius: 15px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      min-width: 180px;
+      overflow: hidden;
+      color: #1e1e2f;
+      font-weight: bold;
+      flex-shrink: 0;
+      animation: text-glow 1.5s infinite alternate;
+    }
+
+    .glow-btn span {
+      position: relative;
+      z-index: 1;
+      animation: text-glow 1.5s infinite alternate;
+    }
+
+    .glow-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: inherit;
+      filter: brightness(1.2);
+      opacity: 0;
+      animation: glow 2s infinite;
+    }
+
+    .glow-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+    }
+
+    @keyframes glow {
+      0%, 100% { opacity: 0; }
+      50% { opacity: 1; }
+    }
+
+    @keyframes text-glow {
+      0% {
+        text-shadow: 0 0 5px #ffffff, 0 0 10px #ff69b4;
+      }
+      100% {
+        text-shadow: 0 0 10px #ff69b4, 0 0 20px #ff69b4;
+      }
+    }
+
+    /* Button Colors */
+    .glow-btn.blue { background: linear-gradient(45deg, #1e90ff, #a855f7); }
+    .glow-btn.yellow { background: linear-gradient(45deg, #ffd700, #ff8c42); }
+    .glow-btn.cyan { background: linear-gradient(45deg, #00bcd4, #009688); }
+    .glow-btn.pink { background: linear-gradient(45deg, #ff69b4, #ff1493); }
+    .glow-btn.gold { background: linear-gradient(45deg, #ffd700, #ffcc00); }
+
+    /* Home Button */
+    .home-btn {
+      background: linear-gradient(45deg, #00ffcc, #00ccaa);
+      padding: 15px 30px;
+      font-size: 1.2rem;
+      border-radius: 8px;
+      color: #1e1e2f;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .home-btn:hover {
+      filter: brightness(1.2);
+      transform: scale(1.1);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+    }
+
+    /* Mobile View */
+    @media (max-width: 768px) {
+      .button-container {
+        flex-direction: column;
+        gap: 10px;
+        padding: 0;
+        margin: 20px 0;
+        width: 100%;
+      }
+
+      .glow-btn {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 25px 15px !important;
+        margin: 0 !important;
+        border-radius: 15px !important;
+        font-size: 1.6rem !important;
+      }
+
+      h1 {
+        font-size: 2.2rem !important;
+        padding: 0 15px !important;
+      }
+
+      .home-btn {
+        width: 90% !important;
+        max-width: 400px !important;
+        margin: 20px auto !important;
+        font-size: 1.4rem !important;
+        padding: 20px !important;
+      }
+    }
+
+    /* Desktop View */
+    @media (min-width: 769px) {
+      .button-container {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        justify-content: flex-start;
+        padding: 30px 20px;
+      }
+
+      .glow-btn {
+        min-width: 200px;
+        padding: 25px 35px;
+        font-size: 1.3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>BCA All Semesters</h1>
+  </header>
+
+  <main>
+    <div class="button-container">
+      <button class="glow-btn blue" id="semester3"><span>Semester 3</span></button>
+      <button class="glow-btn yellow" id="semester4"><span>Semester 4</span></button>
+      <button class="glow-btn cyan" id="datesheet"><span>Datesheet</span></button>
+      <button class="glow-btn pink" id="result"><span>Result</span></button>
+      <button class="glow-btn gold" id="syllabus"><span>Syllabus</span></button>
+    </div>
+  </main>
+
+  <footer>
+    <button class="home-btn" onclick="window.location.href='index.html'">Back to Home</button>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      document.getElementById('semester3').addEventListener('click', function() {
+        window.location.href = "https://khushpree444.github.io/BCA/";
+      });
+
+      document.getElementById('semester4').addEventListener('click', function() {
+        window.location.href = "sem4/semester4.html";
+      });
+
+      document.getElementById('datesheet').addEventListener('click', function() {
+        window.location.href = "https://ds19.pupexamination.ac.in/uploaddatesheet/view-datesheet.php";
+      });
+
+      document.getElementById('result').addEventListener('click', function() {
+        window.location.href = "https://results.pupexamination.ac.in/t8/results/results.php";
+      });
+
+      document.getElementById('syllabus').addEventListener('click', function() {
+        window.location.href = "http://www.punjabiuniversity.ac.in/indexSyllabi.aspx";
+      });
+    });
+  </script>
+</body>
+</html>
