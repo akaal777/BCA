@@ -3,148 +3,121 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Futuristic Classic Website</title>
+  <title>Cartoon Network Learning</title>
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&family=Lilita+One&family=Patrick+Hand&display=swap" rel="stylesheet">
   <style>
-    /* General Styles */
+    /* Modern Cartoon Styles */
     body {
-      font-family: 'Arial', sans-serif;
-      background: linear-gradient(135deg, #1e1e2f, #2a2a40);
-      color: #fff;
+      font-family: 'Comic Neue', cursive;
+      background: linear-gradient(135deg, #ff9fa4, #ffd6d8);
+      color: #3a3a3a;
       margin: 0;
-      padding: 0;
+      padding: 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
       min-height: 100vh;
       overflow-x: hidden;
     }
 
     h1 {
-      font-size: 3rem;
-      margin-bottom: 20px;
-      text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
-      animation: fadeIn 2s ease-in-out;
+      font-family: 'Lilita One', cursive;
+      font-size: 4rem;
+      margin: 20px 0;
+      color: #ff5f6d;
+      text-shadow: 3px 3px 0 #fff, 5px 5px 0 #ff5f6d;
+      letter-spacing: 2px;
+      animation: bounce 1s ease infinite alternate;
     }
 
     .section {
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 15px;
-      padding: 20px;
+      background: white;
+      border-radius: 20px;
+      padding: 25px;
       margin: 20px;
-      width: 80%;
+      width: 85%;
       max-width: 800px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      animation: slideIn 1s ease-in-out;
+      box-shadow: 8px 8px 0 #ff5f6d;
+      border: 4px solid #ff5f6d;
+      position: relative;
+      transition: transform 0.3s ease;
+    }
+
+    .section:hover {
+      transform: translateY(-5px);
     }
 
     .section h2 {
-      font-size: 2rem;
-      margin-bottom: 15px;
-      text-align: center;
-      text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+      font-family: 'Patrick Hand', cursive;
+      font-size: 2.5rem;
+      margin: 0 0 20px 0;
+      color: #4a90e2;
+      text-decoration: underline wavy #ffd700;
     }
 
     .buttons {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
+      gap: 15px;
+      padding: 10px;
     }
 
     .buttons button {
-      background: linear-gradient(135deg, #6a11cb, #2575fc);
-      border: none;
-      border-radius: 10px;
-      color: #fff;
+      background: #fff;
+      border: 3px solid #4a90e2;
+      border-radius: 15px;
+      color: #3a3a3a;
       padding: 25px 30px;
-      font-size: 1.5rem; /* Increased font size */
-      font-weight: bold;
-      font-family: 'Brush Script MT', cursive; /* Added cursive font */
-      font-style: italic;
+      font-size: 1.6rem;
+      font-family: 'Patrick Hand', cursive;
       cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       position: relative;
-      overflow: hidden;
-      min-width: 220px; /* Increased minimum width */
-      min-height: 100px; /* Increased minimum height */
-    }
-
-    .buttons button::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 300%;
-      height: 300%;
-      background: radial-gradient(circle, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0) 70%);
-      transform: translate(-50%, -50%) scale(0);
-      transition: transform 0.5s ease-in-out;
-      border-radius: 50%;
+      min-width: 220px;
+      min-height: 100px;
+      box-shadow: 4px 4px 0 #4a90e2;
     }
 
     .buttons button:hover {
-      transform: scale(1.05);
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      transform: translateY(-3px) rotate(2deg);
+      box-shadow: 6px 6px 0 #4a90e2;
+      background: #f8f8f8;
     }
 
     .buttons button:active {
-      transform: scale(0.95);
+      transform: translateY(0) rotate(0);
+      box-shadow: 2px 2px 0 #4a90e2;
     }
 
-    .buttons button:hover::before {
-      transform: translate(-50%, -50%) scale(1);
-    }
-
-    /* Section Specific Styles */
+    /* Section Color Coding */
     #online-pdf-buttons button {
-      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      border-color: #ff5f6d;
+      box-shadow: 4px 4px 0 #ff5f6d;
     }
-
     #offline-pdf-buttons button {
-      background: linear-gradient(135deg, #a18cd1, #fbc2eb);
+      border-color: #6dbf73;
+      box-shadow: 4px 4px 0 #6dbf73;
     }
-
     #theory-buttons button {
-      background: linear-gradient(135deg, #f6d365, #fda085);
+      border-color: #ffd700;
+      box-shadow: 4px 4px 0 #ffd700;
     }
-
     #youtube-buttons button {
-      background: linear-gradient(135deg, #84fab0, #8fd3f4);
+      border-color: #4a90e2;
+      box-shadow: 4px 4px 0 #4a90e2;
     }
 
     /* Animations */
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
+    @keyframes bounce {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-10px); }
     }
 
-    @keyframes slideIn {
-      from {
-        transform: translateY(50px);
-        opacity: 0;
-      }
-      to {
-        transform: translateY(0);
-        opacity: 1;
-      }
-    }
-
-    @keyframes pulse {
-      0% {
-        transform: scale(1);
-      }
-      50% {
-        transform: scale(1.05);
-      }
-      100% {
-        transform: scale(1);
-      }
+    @keyframes wobble {
+      0% { transform: rotate(0deg); }
+      25% { transform: rotate(3deg); }
+      75% { transform: rotate(-3deg); }
+      100% { transform: rotate(0deg); }
     }
 
     /* Responsive Design */
@@ -152,19 +125,8 @@
       .buttons {
         grid-template-columns: repeat(2, 1fr);
       }
-
       h1 {
-        font-size: 2rem;
-      }
-
-      .section h2 {
-        font-size: 1.5rem;
-      }
-
-      .buttons button {
-        padding: 30px;
-        font-size: 1.6rem;
-        min-height: 110px;
+        font-size: 3rem;
       }
     }
 
@@ -172,44 +134,44 @@
       .buttons {
         grid-template-columns: 1fr;
       }
-
       .buttons button {
-        padding: 35px;
-        font-size: 1.8rem;
-        min-height: 120px;
+        font-size: 1.4rem;
+        padding: 20px;
+      }
+      h1 {
+        font-size: 2.5rem;
+        text-shadow: 2px 2px 0 #fff, 4px 4px 0 #ff5f6d;
       }
     }
   </style>
 </head>
 <body>
-  <h1>Computer Network</h1>
+  <!-- Keep the same HTML structure with sections and buttons -->
+  <h1>Computer Network Fun!</h1>
 
-  <!-- Online PDF Section -->
   <div class="section">
-    <h2>Online PDF Section</h2>
+    <h2>📚 Online PDF Section</h2>
     <div class="buttons" id="online-pdf-buttons"></div>
   </div>
 
-  <!-- Offline PDF Section -->
   <div class="section">
-    <h2>Offline PDF Section</h2>
+    <h2>📁 Offline PDF Section</h2>
     <div class="buttons" id="offline-pdf-buttons"></div>
   </div>
 
-  <!-- Theory Section -->
   <div class="section">
-    <h2>Theory Section</h2>
+    <h2>🎓 Theory Section</h2>
     <div class="buttons" id="theory-buttons"></div>
   </div>
 
-  <!-- YouTube Section -->
   <div class="section">
-    <h2>YouTube Section</h2>
+    <h2>🎥 YouTube Section</h2>
     <div class="buttons" id="youtube-buttons"></div>
   </div>
 
+  <!-- Keep the same JavaScript -->
   <script>
-    // Online PDF Links
+    // ... (Keep the original JavaScript code unchanged)
     const onlinePDFLinks = [
       "https://drive.google.com/file/d/12H3QcEUdQjqlHS2pC_Rw_nq_1UZmQIz-/view?usp=drive_link",
       "https://drive.google.com/file/d/1TRYUEcWISaTldpyHEElKPZBT4I3cJZJ8/view?usp=drive_link",
@@ -340,6 +302,7 @@
     createButtons("offline-pdf-buttons", offlinePDFPaths, offlinePDFNames, true, true);
     createButtons("theory-buttons", theoryLinks, theoryNames);
     createButtons("youtube-buttons", youtubeLinks, youtubeNames);
+
   </script>
 </body>
 </html>
