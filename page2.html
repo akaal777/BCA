@@ -3,16 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>BCA</title>
+  <title>BCA Cartoon Campus</title>
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
   <style>
     /* Animated Background */
     body {
-      background: linear-gradient(-45deg, #0f0f23, #1e1e2f, #2c2c4a, #3a3a5f);
+      background: linear-gradient(-45deg, #ffd6e5, #c4faf8, #fff9c4, #d1c4ff);
       background-size: 400% 400%;
       animation: gradientBG 15s ease infinite;
       min-height: 100vh;
       margin: 0;
-      font-family: 'Arial', sans-serif;
+      font-family: 'Comic Neue', cursive;
       overflow-x: hidden;
     }
 
@@ -26,200 +27,171 @@
     header {
       text-align: center;
       padding: 50px 20px;
+      position: relative;
     }
 
     h1 {
       position: relative;
-      color: #ffffff;
-      font-size: 3rem;
-      animation: glow 1.5s infinite alternate;
-      transition: transform 0.3s ease;
-    }
-
-    @keyframes glow {
-      0% {
-        text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 15px #ff00ff, 0 0 20px #ff00ff, 0 0 25px #ff00ff;
-      }
-      100% {
-        text-shadow: 0 0 10px #ffffff, 0 0 20px #ff00ff, 0 0 30px #ff00ff, 0 0 40px #ff00ff, 0 0 50px #ff00ff;
-      }
-    }
-
-    h1:hover {
-      color: #ff00ff;
-      transform: scale(1.05);
-      animation: glow-hover 1.5s infinite alternate;
-    }
-
-    @keyframes glow-hover {
-      0% {
-        text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 15px #ff00ff;
-      }
-      100% {
-        text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff;
-      }
+      color: #ff4b7d;
+      font-family: 'Dancing Script', cursive;
+      font-size: 4rem;
+      text-shadow: 3px 3px 0 #fff, 5px 5px 0 #ff4b7d;
+      margin: 20px 0;
+      transform: rotate(-3deg);
     }
 
     /* Button Container */
     .button-container {
       display: flex;
       justify-content: center;
-      gap: 40px; /* Increased from 20px to 40px */
+      gap: 30px;
       padding: 30px;
-      margin-top: 50px;
+      margin-top: 30px;
       flex-wrap: wrap;
     }
 
-    /* Glowing Buttons */
-    .glow-btn {
+    /* Cartoon Buttons */
+    .cartoon-btn {
       position: relative;
       padding: 25px 40px;
+      font-family: 'Comic Neue', cursive;
       font-size: 2rem;
-      font-style: italic;
       border: none;
-      border-radius: 15px;
+      border-radius: 20px;
       cursor: pointer;
       transition: all 0.3s ease;
-      min-width: 180px;
-      overflow: hidden;
-      color: #1e1e2f;
-      font-weight: bold;
-      flex-shrink: 0;
-      animation: text-glow 1.5s infinite alternate;
+      min-width: 200px;
+      color: #fff;
+      border: 4px solid #000;
+      box-shadow: 8px 8px 0 rgba(0,0,0,0.2);
+      text-shadow: 2px 2px 0 rgba(0,0,0,0.2);
     }
 
-    .glow-btn span {
-      position: relative;
-      z-index: 1;
-      animation: text-glow 1.5s infinite alternate;
-    }
-
-    .glow-btn::before {
+    .cartoon-btn::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: inherit;
-      filter: brightness(1.2);
-      opacity: 0;
-      animation: glow 2s infinite;
+      top: -15px;
+      left: -15px;
+      right: -15px;
+      bottom: -15px;
+      border: 3px dashed #fff;
+      border-radius: 30px;
+      opacity: 0.3;
+      pointer-events: none;
     }
 
-    .glow-btn:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-    }
-
-    @keyframes glow {
-      0%, 100% { opacity: 0; }
-      50% { opacity: 1; }
-    }
-
-    @keyframes text-glow {
-      0% {
-        text-shadow: 0 0 5px #ffffff, 0 0 10px #ff69b4;
-      }
-      100% {
-        text-shadow: 0 0 10px #ff69b4, 0 0 20px #ff69b4;
-      }
+    .cartoon-btn:hover {
+      transform: translateY(-5px) rotate(2deg);
+      box-shadow: 12px 12px 0 rgba(0,0,0,0.2);
     }
 
     /* Button Colors */
-    .glow-btn.blue { background: linear-gradient(45deg, #1e90ff, #a855f7); }
-    .glow-btn.yellow { background: linear-gradient(45deg, #ffd700, #ff8c42); }
-    .glow-btn.cyan { background: linear-gradient(45deg, #00bcd4, #009688); }
-    .glow-btn.pink { background: linear-gradient(45deg, #ff69b4, #ff1493); }
-    .glow-btn.gold { background: linear-gradient(45deg, #ffd700, #ffcc00); }
+    .cartoon-btn.blue { background: #4d8bff; }
+    .cartoon-btn.yellow { background: #ffd93d; }
+    .cartoon-btn.cyan { background: #6dd5ed; }
+    .cartoon-btn.pink { background: #ff85d3; }
+    .cartoon-btn.gold { background: #ffb347; }
 
     /* Home Button */
     .home-btn {
-      background: linear-gradient(45deg, #00ffcc, #00ccaa);
+      background: #a3ff8f;
       padding: 15px 30px;
-      font-size: 1.2rem;
-      border-radius: 8px;
+      font-size: 1.5rem;
+      border-radius: 15px;
       color: #1e1e2f;
       font-weight: bold;
       cursor: pointer;
       transition: all 0.3s ease;
+      border: 4px solid #000;
+      box-shadow: 6px 6px 0 rgba(0,0,0,0.2);
+      font-family: 'Comic Neue', cursive;
+      margin: 30px auto;
+      display: block;
     }
 
     .home-btn:hover {
-      filter: brightness(1.2);
-      transform: scale(1.1);
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+      transform: translateY(-3px) rotate(-2deg);
+      box-shadow: 8px 8px 0 rgba(0,0,0,0.2);
+    }
+
+    /* Decorative Elements */
+    .cloud {
+      position: absolute;
+      width: 150px;
+      height: 60px;
+      background: white;
+      border-radius: 50px;
+      box-shadow: 8px 8px 0 rgba(0,0,0,0.1);
+    }
+
+    .cloud::after {
+      content: '';
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      background: white;
+      border-radius: 50%;
+      top: -40px;
+      left: 20px;
+    }
+
+    .cloud.left {
+      left: 10%;
+      top: 20%;
+      transform: rotate(-10deg);
+    }
+
+    .cloud.right {
+      right: 10%;
+      top: 30%;
+      transform: rotate(10deg);
     }
 
     /* Mobile View */
     @media (max-width: 768px) {
-      .button-container {
-        flex-direction: column;
-        gap: 10px;
-        padding: 0;
-        margin: 20px 0;
-        width: 100%;
-      }
-
-      .glow-btn {
-        width: 100% !important;
-        max-width: 100% !important;
-        padding: 25px 15px !important;
-        margin: 0 !important;
-        border-radius: 15px !important;
-        font-size: 1.6rem !important;
-      }
-
       h1 {
-        font-size: 2.2rem !important;
-        padding: 0 15px !important;
+        font-size: 3rem !important;
       }
 
-      .home-btn {
-        width: 90% !important;
-        max-width: 400px !important;
-        margin: 20px auto !important;
-        font-size: 1.4rem !important;
-        padding: 20px !important;
-      }
-    }
-
-    /* Desktop View */
-    @media (min-width: 769px) {
       .button-container {
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        justify-content: flex-start;
-        padding: 30px 20px;
+        gap: 20px;
+        padding: 20px;
       }
 
-      .glow-btn {
-        min-width: 200px;
-        padding: 25px 35px;
-        font-size: 1.3rem;
+      .cartoon-btn {
+        font-size: 1.5rem !important;
+        padding: 20px 30px !important;
+      }
+
+      .cloud {
+        display: none;
       }
     }
   </style>
 </head>
 <body>
+  <div class="cloud left"></div>
+  <div class="cloud right"></div>
+  
   <header>
-    <h1>BCA All Semesters</h1>
+    <h1>BCA Wonderland 🎓</h1>
   </header>
 
   <main>
     <div class="button-container">
-      <button class="glow-btn blue" id="semester3"><span>Semester 3</span></button>
-      <button class="glow-btn yellow" id="semester4"><span>Semester 4</span></button>
-      <button class="glow-btn cyan" id="datesheet"><span>Datesheet</span></button>
-      <button class="glow-btn pink" id="result"><span>Result</span></button>
-      <button class="glow-btn gold" id="syllabus"><span>Syllabus</span></button>
+      <button class="cartoon-btn blue" id="semester3">Semester 3 📚</button>
+      <button class="cartoon-btn yellow" id="semester4">Semester 4 ✨</button>
+      <button class="cartoon-btn cyan" id="datesheet">Datesheet 📅</button>
+      <button class="cartoon-btn pink" id="result">Result 🎉</button>
+      <button class="cartoon-btn gold" id="syllabus">Syllabus 🗺️</button>
     </div>
   </main>
 
   <footer>
-    <button class="home-btn" onclick="window.location.href='index.html'">Back to Home</button>
+    <button class="home-btn" onclick="window.location.href='index.html'">🏡 Back to Home</button>
   </footer>
 
+  <!-- Script remains the same -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       document.getElementById('semester3').addEventListener('click', function() {
