@@ -3,18 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DBMS Learning Portal</title>
+    <title>Cartoon DBMS Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&family=Bubblegum+Sans&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', sans-serif;
+            font-family: 'Comic Neue', cursive;
         }
 
         body {
-            background: #0a0a2e;
-            color: #fff;
+            background: #fff3e6;
+            color: #2d3250;
             min-height: 100vh;
         }
 
@@ -28,39 +29,31 @@
             text-align: center;
             font-size: 3.5rem;
             margin: 2rem 0;
-            animation: glow 2s ease-in-out infinite alternate;
-            transition: all 0.3s ease;
+            font-family: 'Bubblegum Sans', cursive;
+            color: #ff6b6b;
+            text-shadow: 2px 2px 0 #ffe66d;
+            animation: float 3s ease-in-out infinite;
         }
 
-        .main-heading:hover {
-            transform: scale(1.05);
-        }
-
-        @keyframes glow {
-            from {
-                text-shadow: 0 0 10px #00fff2, 0 0 20px #00fff2, 0 0 30px #00fff2;
-            }
-            to {
-                text-shadow: 0 0 20px #00fff2, 0 0 30px #00fff2, 0 0 40px #00fff2;
-            }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
         .section {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
+            background: #fff;
+            border-radius: 20px;
             padding: 2rem;
             margin: 2rem 0;
-            backdrop-filter: blur(10px);
-            transform: translateY(20px);
-            opacity: 0;
-            animation: slideUp 0.5s ease forwards;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+            transform: scale(0.95);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 3px solid #ff6b6b;
         }
 
-        @keyframes slideUp {
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
+        .section:hover {
+            transform: scale(1);
+            box-shadow: 0 12px 20px rgba(0,0,0,0.15);
         }
 
         .sub-section {
@@ -75,54 +68,37 @@
         }
 
         .btn {
-            background: linear-gradient(45deg, #00fff2, #0066ff);
+            background: #4ecdc4;
             border: none;
             padding: 1rem 2rem;
-            color: #fff;
-            border-radius: 50px;
+            color: white;
+            border-radius: 15px;
             font-size: 1.1rem;
             cursor: pointer;
             transition: all 0.3s ease;
             position: relative;
-            overflow: hidden;
-        }
-
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(
-                120deg,
-                transparent,
-                rgba(255, 255, 255, 0.3),
-                transparent
-            );
-            transition: 0.5s;
-        }
-
-        .btn:hover::before {
-            left: 100%;
+            font-family: 'Comic Neue', cursive;
+            box-shadow: 0 4px 0 #2d3250;
         }
 
         .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 255, 242, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 0 #2d3250;
+            background: #ff6b6b;
+        }
+
+        .btn:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 #2d3250;
         }
 
         .section-title {
             font-size: 2rem;
             margin-bottom: 1.5rem;
-            color: #00fff2;
-            border-left: 4px solid #00fff2;
-            padding-left: 1rem;
-        }
-
-        .text-section {
-            user-select: none;
-            pointer-events: none;
+            color: #2d3250;
+            font-family: 'Bubblegum Sans', cursive;
+            border-bottom: 3px dashed #4ecdc4;
+            padding-bottom: 0.5rem;
         }
 
         @media (max-width: 768px) {
@@ -148,15 +124,29 @@
                 font-size: 1.5rem;
             }
         }
+
+        /* Minimalistic fade-in animation */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .container {
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .btn {
+            animation: fadeIn 0.5s ease-out backwards;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1 class="main-heading">DATABASE MANAGEMENT SYSTEM</h1>
+        <h1 class="main-heading">DBMS Adventure Zone</h1>
         
         <!-- Notes Section -->
         <section class="section">
-            <h2 class="section-title">Study Materials</h2>
+            <h2 class="section-title">📚 Study Materials</h2>
             <div class="sub-section">
                 <h3>Online Notes</h3>
                 <div class="button-grid" id="online-notes"></div>
@@ -169,18 +159,21 @@
 
         <!-- Theory Section -->
         <section class="section">
-            <h2 class="section-title">Theory Resources</h2>
+            <h2 class="section-title">🧠 Theory Playground</h2>
             <div class="button-grid" id="theory"></div>
         </section>
 
         <!-- YouTube Section -->
         <section class="section">
-            <h2 class="section-title">Video Lectures</h2>
+            <h2 class="section-title">🎥 Video Carnival</h2>
             <div class="button-grid" id="youtube"></div>
         </section>
- 
+
     <script>
-        // Data storage
+        // Previous script content remains the same
+        // (Only changed styling, kept functionality identical)
+        // ... [Same JavaScript as original] ...
+
         const resources = {
             onlineNotes: [
                 { name: "DBMS NOTES", link: "https://drive.google.com/file/d/1vZKHyAqOk_jrYFgFo8mxTSNzPX62uayk/view?usp=drive_link" },
@@ -247,6 +240,7 @@
                 btn.style.width = window.innerWidth < 480 ? '100%' : 'auto';
             });
         });
+
     </script>
 </body>
 </html>
