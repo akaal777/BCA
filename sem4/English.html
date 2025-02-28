@@ -4,132 +4,119 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All My Sons - Arthur Miller</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* Previous CSS remains same */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Georgia', serif;
+            font-family: 'Comic Neue', cursive;
         }
         body {
-            background: linear-gradient(270deg, #ff9a9e, #fad0c4, #fbc2eb, #a6c1ee, #f6d365, #fda085);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite, fadeIn 1s ease-in-out;
+            background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%);
+            min-height: 100vh;
             padding: 20px;
-            opacity: 0;
-            animation-fill-mode: forwards;
-        }
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        @keyframes fadeIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
+            border: 6px double #2c1810;
         }
         .heading {
             text-align: center;
             margin: 30px 0;
-            transition: transform 0.3s ease, text-shadow 0.3s ease;
-            font-size: 2.5em;
-            color: #333;
-            animation: fadeIn 1s ease-in-out 0.5s;
-            animation-fill-mode: forwards;
+            font-family: 'Lobster', cursive;
+            font-size: 3.5em;
+            color: #2c1810;
+            text-shadow: 2px 2px 0px #FFD700;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            transform: rotate(-2deg);
         }
-        @keyframes bounce {
-            0%   { transform: translateY(0); }
-            30%  { transform: translateY(-15px); }
-            50%  { transform: translateY(0); }
-            70%  { transform: translateY(-7px); }
-            100% { transform: translateY(0); }
-        }
-        .heading:hover {
-            transform: scale(1.05);
-            animation: bounce 0.6s;
-            text-shadow: 0 0 10px #4CAF50;
+        .heading::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 4px;
+            background: #2c1810;
+            border-radius: 2px;
         }
         .section {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 25px;
+            border-radius: 15px;
             margin-bottom: 30px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            animation: fadeIn 1s ease-in-out 1s;
-            animation-fill-mode: forwards;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border: 3px solid #2c1810;
+            position: relative;
         }
         .section-title {
-            margin-bottom: 15px;
-            color: #333;
-            font-size: 1.5em;
+            margin-bottom: 20px;
+            color: #2c1810;
+            font-family: 'Lobster', cursive;
+            font-size: 2em;
+            text-decoration: underline wavy #FFD700;
         }
         .button-container {
-            display: flex;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 15px;
-            flex-wrap: wrap;
         }
         .btn {
-            padding: 15px 30px;
+            padding: 18px 30px;
             border: none;
-            border-radius: 5px;
+            border-radius: 50px;
             cursor: pointer;
             transition: all 0.3s ease;
-            background-color: #4CAF50;
+            background: linear-gradient(45deg, #FF6B6B, #FF8E53);
             color: white;
-            font-size: 22px; /* Increased from 18px */
-            font-weight: bold; /* Added bold */
-            font-style: italic; /* Added italic */
+            font-family: 'Lobster', cursive;
+            font-size: 1.4em;
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             position: relative;
             overflow: hidden;
         }
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 300%;
-            height: 300%;
-            background: radial-gradient(circle, rgba(255,255,255,0.4), rgba(255,255,255,0));
-            transform: translate(-50%, -50%) scale(0);
-            transition: transform 0.5s ease;
-        }
         .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-        .btn:hover::before {
-            transform: translate(-50%, -50%) scale(1);
+            transform: translateY(-3px) rotate(2deg);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+            background: linear-gradient(45deg, #FF8E53, #FF6B6B);
         }
         .btn:active {
-            transform: translateY(0);
-        }
-        @media (max-width: 768px) {
-            .btn {
-                width: 100%;
-                font-size: 24px; /* Increased from 20px */
-                padding: 20px 35px;
-            }
-            .heading {
-                font-size: 28px;
-            }
+            transform: translateY(1px);
         }
         .footer-message {
-            font-size: 18px;
+            font-size: 1.2em;
             text-align: center;
-            margin-top: 20px;
-            animation: fadeIn 1s ease-in-out 1.5s;
-            animation-fill-mode: forwards;
+            margin-top: 40px;
+            font-family: 'Lobster', cursive;
+            color: #2c1810;
+            padding: 15px;
+            background: rgba(255, 215, 0, 0.2);
+            border-radius: 10px;
+            border: 2px dashed #2c1810;
+        }
+        @media (max-width: 768px) {
+            .heading {
+                font-size: 2.5em;
+            }
+            .btn {
+                font-size: 1.2em;
+                padding: 15px 25px;
+            }
         }
     </style>
 </head>
 <body>
-    <h1 class="heading">All My Sons - Arthur Miller</h1>
+    <h1 class="heading">All My Sons<br><span style="font-size: 0.6em">by Arthur Miller</span></h1>
     
+    <!-- Sections remain the same but styled with new classes -->
     <!-- PDF Section -->
     <section class="section">
-        <h2 class="section-title">PDF Section</h2>
+        <h2 class="section-title">PDF Collection</h2>
         <div class="button-container">
+            <!-- Buttons remain same with new styling -->
             <button class="btn" id="storyBtn">Story</button>
             <button class="btn" id="scriptBtn">Script</button>
             <button class="btn" id="summaryBtn">Summary</button>
@@ -138,8 +125,9 @@
 
     <!-- Character Sketch Section -->
     <section class="section">
-        <h2 class="section-title">Character Sketch</h2>
+        <h2 class="section-title">Character Sketches</h2>
         <div class="button-container">
+            <!-- Buttons remain same with new styling -->
             <button class="btn" id="character1Btn">Joe Keller</button>
             <button class="btn" id="character2Btn">Kate Keller</button>
             <button class="btn" id="character3Btn">Chris Keller</button>
@@ -150,8 +138,9 @@
     
     <!-- YouTube Section -->
     <section class="section">
-        <h2 class="section-title">YouTube Section</h2>
+        <h2 class="section-title">Video Guides</h2>
         <div class="button-container">
+            <!-- Buttons remain same with new styling -->
             <button class="btn" id="video1Btn">All My Sons [ Summary in Hindi ]</button>
             <button class="btn" id="video2Btn">All My Songs [ Summary in Punjabi ]</button>
             <button class="btn" id="video3Btn">All My Sons [full Play in Hindi]</button>
@@ -160,9 +149,8 @@
     
     <!-- Footer Section -->
     <footer class="section">
-        <p class="footer-message">If you can read English grammar, you can go to Semester 3.</p>
+        <p class="footer-message">Master the English Grammar - Unlock Semester 3!</p>
     </footer>
-    
     <script>
         // PDF Paths
         const pdfPaths = {
@@ -221,5 +209,7 @@
             window.open('https://youtu.be/Sh1IhIfTHFk?si=Nanrl8pby8Npef-l', '_blank');
         });
     </script>
+
+    <!-- Script remains same -->
 </body>
 </html>
