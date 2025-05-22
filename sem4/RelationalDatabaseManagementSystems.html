@@ -3,244 +3,475 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cartoon DBMS Portal</title>
-    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&family=Bubblegum+Sans&display=swap" rel="stylesheet">
+    <title>DBMS Nexus - Futuristic Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-bg: #0a0a1f; /* Deep space blue */
+            --secondary-bg: rgba(10, 25, 47, 0.8); /* Darker, slightly transparent for sections */
+            --text-color: #e0e0e0; /* Light grey for readability */
+            --accent-color: #00ffff; /* Cyan */
+            --accent-hover-color: #00e0e0;
+            --glow-color: rgba(0, 255, 255, 0.7);
+            --heading-color: #ffffff;
+            --border-color: rgba(0, 255, 255, 0.3);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Comic Neue', cursive;
         }
 
         body {
-            background: #fff3e6;
-            color: #2d3250;
+            background-color: var(--primary-bg);
+            color: var(--text-color);
+            font-family: 'Poppins', sans-serif;
             min-height: 100vh;
+            overflow-x: hidden; /* Prevent horizontal scroll from animations */
+            position: relative; /* For particle.js positioning */
+        }
+
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1; /* Behind all content */
+            background-color: var(--primary-bg);
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 40px 20px;
+            position: relative; /* To ensure content is above particles */
+            z-index: 1;
+            animation: fadeInContainer 1s ease-out forwards;
+        }
+
+        @keyframes fadeInContainer {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .main-heading {
             text-align: center;
-            font-size: 3.5rem;
-            margin: 2rem 0;
-            font-family: 'Bubblegum Sans', cursive;
-            color: #ff6b6b;
-            text-shadow: 2px 2px 0 #ffe66d;
-            animation: float 3s ease-in-out infinite;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.8rem;
+            margin-bottom: 3rem;
+            color: var(--heading-color);
+            text-shadow: 0 0 10px var(--glow-color), 0 0 20px var(--glow-color), 0 0 30px var(--accent-color);
+            animation: pulseHeading 2s infinite alternate, slideInDown 1s ease-out;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+        @keyframes pulseHeading {
+            from { text-shadow: 0 0 8px var(--glow-color), 0 0 15px var(--glow-color), 0 0 25px var(--accent-color); }
+            to { text-shadow: 0 0 12px var(--glow-color), 0 0 22px var(--glow-color), 0 0 35px var(--accent-color), 0 0 5px #fff; }
         }
+
+        @keyframes slideInDown {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
 
         .section {
-            background: #fff;
-            border-radius: 20px;
-            padding: 2rem;
-            margin: 2rem 0;
-            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
-            transform: scale(0.95);
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 3px solid #ff6b6b;
+            background: var(--secondary-bg);
+            backdrop-filter: blur(5px); /* Glassmorphism touch */
+            -webkit-backdrop-filter: blur(5px);
+            border-radius: 15px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 0 20px rgba(0, 200, 200, 0.1), 0 0 30px rgba(0,255,255,0.05) inset;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: slideUpFadeIn 0.8s ease-out forwards;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .section:hover {
-            transform: scale(1);
-            box-shadow: 0 12px 20px rgba(0,0,0,0.15);
+            transform: translateY(-5px) scale(1.01);
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.2), 0 0 40px rgba(0,255,255,0.1) inset;
+        }
+
+        @keyframes slideUpFadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .sub-section {
-            margin: 1.5rem 0;
+            margin: 2rem 0;
+        }
+
+        .sub-section h3 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--accent-color);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.5rem;
         }
 
         .button-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
             margin-top: 1.5rem;
         }
 
         .btn {
-            background: #4ecdc4;
-            border: none;
-            padding: 1rem 2rem;
-            color: white;
-            border-radius: 15px;
-            font-size: 1.1rem;
+            background: transparent;
+            border: 2px solid var(--accent-color);
+            padding: 0.8rem 1.5rem;
+            color: var(--accent-color);
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
             position: relative;
-            font-family: 'Comic Neue', cursive;
-            box-shadow: 0 4px 0 #2d3250;
+            overflow: hidden;
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            opacity: 0;
+            transform: scale(0.9);
+            animation: popIn 0.5s ease-out forwards;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, var(--accent-hover-color), transparent);
+            transition: left 0.4s ease;
+            z-index: 0;
+        }
+
+        .btn:hover::before {
+            left: 100%;
         }
 
         .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 0 #2d3250;
-            background: #ff6b6b;
+            background-color: var(--accent-color);
+            color: var(--primary-bg);
+            box-shadow: 0 0 15px var(--glow-color), 0 0 25px var(--glow-color);
+            transform: translateY(-3px) scale(1.02);
         }
 
         .btn:active {
-            transform: translateY(2px);
-            box-shadow: 0 2px 0 #2d3250;
+            transform: translateY(0px) scale(1);
+            box-shadow: 0 0 5px var(--glow-color);
+        }
+        
+        .btn span { /* To keep text above the ::before pseudo-element */
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes popIn {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
         }
 
         .section-title {
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-            color: #2d3250;
-            font-family: 'Bubblegum Sans', cursive;
-            border-bottom: 3px dashed #4ecdc4;
-            padding-bottom: 0.5rem;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            color: var(--heading-color);
+            text-shadow: 0 0 5px var(--glow-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 0.8rem;
+            position: relative;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -2px; /* align with border */
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: #fff;
+            animation: animateBorder 4s linear infinite;
+        }
+
+        @keyframes animateBorder {
+            0% { width: 0; left:0; }
+            50% { width: 100%; left: 0; }
+            100% { width: 0; left: 100%;}
+        }
+
+
+        @media (max-width: 992px) {
+            .button-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
         }
 
         @media (max-width: 768px) {
             .main-heading {
-                font-size: 2.5rem;
+                font-size: 2.8rem;
             }
-
             .section {
-                padding: 1rem;
+                padding: 2rem;
             }
-
-            .btn {
-                width: 100%;
+            .section-title {
+                font-size: 1.8rem;
+            }
+            .sub-section h3 {
+                font-size: 1.3rem;
+            }
+             .button-grid {
+                grid-template-columns: 1fr; /* Stack buttons on smaller screens */
             }
         }
 
         @media (max-width: 480px) {
             .main-heading {
-                font-size: 2rem;
+                font-size: 2.2rem;
             }
-
             .section-title {
-                font-size: 1.5rem;
+                font-size: 1.6rem;
+            }
+            .btn {
+                font-size: 0.9rem;
+                padding: 0.7rem 1.2rem;
+            }
+             .container {
+                padding: 20px 15px;
             }
         }
 
-        /* Minimalistic fade-in animation */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .container {
-            animation: fadeIn 0.8s ease-out;
-        }
-
-        .btn {
-            animation: fadeIn 0.5s ease-out backwards;
-        }
     </style>
 </head>
 <body>
+    <div id="particles-js"></div>
+
     <div class="container">
-        <h1 class="main-heading">DBMS Adventure Zone</h1>
+        <h1 class="main-heading">DBMS NEXUS</h1>
         
-        <!-- Notes Section -->
-        <section class="section">
-            <h2 class="section-title">📚 Study Materials</h2>
+        <section class="section" style="animation-delay: 0.2s;">
+            <h2 class="section-title">📚 Cyber Study Archives</h2>
             <div class="sub-section">
-                <h3>Online Notes</h3>
+                <h3>Online Databanks</h3>
                 <div class="button-grid" id="online-notes"></div>
             </div>
             <div class="sub-section">
-                <h3>Offline Notes</h3>
+                <h3>Local Data Caches</h3>
                 <div class="button-grid" id="offline-notes"></div>
             </div>
         </section>
 
-        <!-- Theory Section -->
-        <section class="section">
-            <h2 class="section-title">🧠 Theory Playground</h2>
+        <section class="section" style="animation-delay: 0.4s;">
+            <h2 class="section-title">🧠 Theory Synthesis Core</h2>
             <div class="button-grid" id="theory"></div>
         </section>
 
-        <!-- YouTube Section -->
-        <section class="section">
-            <h2 class="section-title">🎥 Video Carnival</h2>
+        <section class="section" style="animation-delay: 0.6s;">
+            <h2 class="section-title">🎥 Video-Stream Hub</h2>
             <div class="button-grid" id="youtube"></div>
         </section>
+    </div>
 
+    <!-- particles.js library -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
-        // Previous script content remains the same
-        // (Only changed styling, kept functionality identical)
-        // ... [Same JavaScript as original] ...
+        // Initialize Particles.js
+        particlesJS("particles-js", {
+            "particles": {
+                "number": {
+                    "value": 80, // Number of particles
+                    "density": {
+                        "enable": true,
+                        "value_area": 800
+                    }
+                },
+                "color": {
+                    "value": "#00ffff" // Particle color (cyan)
+                },
+                "shape": {
+                    "type": "circle", // "circle", "edge", "triangle", "polygon", "star", "image"
+                    "stroke": {
+                        "width": 0,
+                        "color": "#000000"
+                    },
+                },
+                "opacity": {
+                    "value": 0.6,
+                    "random": true,
+                    "anim": {
+                        "enable": true,
+                        "speed": 1,
+                        "opacity_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "size": {
+                    "value": 3,
+                    "random": true,
+                    "anim": {
+                        "enable": false,
+                        "speed": 40,
+                        "size_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#00ffff", // Line color
+                    "opacity": 0.3,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 3, // Movement speed
+                    "direction": "none",
+                    "random": false,
+                    "straight": false,
+                    "out_mode": "out", // "out", "bounce"
+                    "bounce": false,
+                    "attract": {
+                        "enable": false,
+                        "rotateX": 600,
+                        "rotateY": 1200
+                    }
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "grab" // "grab", "bubble", "repulse"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push" // "push", "remove", "bubble"
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": {
+                        "distance": 140,
+                        "line_opacity": 0.5
+                    },
+                    "bubble": {
+                        "distance": 400,
+                        "size": 40,
+                        "duration": 2,
+                        "opacity": 8,
+                        "speed": 3
+                    },
+                    "repulse": {
+                        "distance": 200,
+                        "duration": 0.4
+                    },
+                    "push": {
+                        "particles_nb": 4 // Number of particles to push on click
+                    },
+                    "remove": {
+                        "particles_nb": 2
+                    }
+                }
+            },
+            "retina_detect": true
+        });
 
         const resources = {
             onlineNotes: [
-                { name: "DBMS NOTES", link: "https://drive.google.com/file/d/1vZKHyAqOk_jrYFgFo8mxTSNzPX62uayk/view?usp=drive_link" },
-                { name: "DBMS", link: "https://drive.google.com/file/d/1VDKhPXCvJzNWryuxoLGLfTP9jm0Wyv98/view?usp=drive_link" },
+                { name: "DBMS Core Archives", link: "https://drive.google.com/file/d/1vZKHyAqOk_jrYFgFo8mxTSNzPX62uayk/view?usp=drive_link" },
+                { name: "RDBMS Datastream", link: "https://drive.google.com/file/d/1VDKhPXCvJzNWryuxoLGLfTP9jm0Wyv98/view?usp=drive_link" },
             ],
             offlineNotes: [
-                { name: "DBMS Notes", link: "RDBMS NOTES.pdf" },
-                { name: "DBMS", link: "RDBMS.pdf" },
-                { name : "Concurrency Control [TxT File]", link: "Concurrency Control.txt" },
-                { name : "Oracel [TxT File]", link: "Oracel.txt" },
-                { name : "SQL [TxT File]", link: "WorkingwithSQL.txt" },
+                { name: "DBMS Schematics [PDF]", link: "RDBMS NOTES.pdf" },
+                { name: "RDBMS Blueprints [PDF]", link: "RDBMS.pdf" },
+                { name : "Concurrency Protocols [TXT]", link: "Concurrency Control.txt" },
+                { name : "Oracle Interface Guide [TXT]", link: "Oracel.txt" },
+                { name : "SQL Command Matrix [TXT]", link: "WorkingwithSQL.txt" },
             ],
             theory: [
-                { name: "Introduction to DBMS", link: "https://www.geeksforgeeks.org/dbms/" },
-                { name: "File Organization", link: "https://www.geeksforgeeks.org/file-organization-in-dbms-set-1/" },
-                { name: " Transaction Management", link: "https://www.geeksforgeeks.org/transaction-management/" },
-                { name: "Transaction Management [Github]", link: "https://www.geeksforgeeks.org/transaction-management/" },
-                { name: "Concurrency Control", link: "https://herovired.com/learning-hub/topics/concurrency-control-in-dbms/" },
+                { name: "Intro to DBMS Structures", link: "https://www.geeksforgeeks.org/dbms/" },
+                { name: "File System Architecture", link: "https://www.geeksforgeeks.org/file-organization-in-dbms-set-1/" },
+                { name: "Transaction Processing", link: "https://www.geeksforgeeks.org/transaction-management/" },
+                { name: "Transaction Matrix [GitHub]", link: "https://www.geeksforgeeks.org/transaction-management/" }, // Note: Same link, maybe a typo in original?
+                { name: "Concurrency Control Systems", link: "https://herovired.com/learning-hub/topics/concurrency-control-in-dbms/" },
 
             ],
             youtube: [
-                { name: "Complete DBMS in One Shot (5 Hours) in Hindi [5 Minutes Engineering ]", link: "https://youtu.be/jzuzxEFoiss?si=q9oCv8c_iQMfQSgz" },
-                { name: "DBMS (Database Management system) Complete Playlist [Gate Smashers]", link: "https://youtube.com/playlist?list=PLxCzCOWd7aiFAN6I8CuViBuCdJgiOkT2Y&si=mmuEp4bR2udjq74l" },
-                { name: "Database Management System (DBMS) [5 Minutes Engineering]", link: "https://youtube.com/playlist?list=PLYwpaL_SFmcBU4HS74xGTK1cAFbY0rdVY&si=CJ1YvowTK8Kxfmlu" },
-                { name: "DBMS One Shot [Knowledge Gate]", link: "https://youtu.be/FchQ6wZVqsA?si=GUfQ54T_nLXNMP0s" },
+                { name: "DBMS (5hr) (5 min Engineering) [Oneshot]", link: "https://youtu.be/jzuzxEFoiss?si=q9oCv8c_iQMfQSgz" },
+                { name: "DBMS  [Gate Smashers] Playlist", link: "https://youtube.com/playlist?list=PLxCzCOWd7aiFAN6I8CuViBuCdJgiOkT2Y&si=mmuEp4bR2udjq74l" },
+                { name: "Database [5 Min Eng.]", link: "https://youtube.com/playlist?list=PLYwpaL_SFmcBU4HS74xGTK1cAFbY0rdVY&si=CJ1YvowTK8Kxfmlu" },
+                { name: "DBMS Oneshot [Knowledge Gate]", link: "https://youtu.be/FchQ6wZVqsA?si=GUfQ54T_nLXNMP0s" },
                 { name: "DBMS One Shot", link: "https://youtu.be/scxc0FXp2rg?si=Na8jvuGRaTDpGI9t" },
-                { name: "DBMS [GeeksforGeeks]", link: "https://youtube.com/playlist?list=PLEBuowGoCtr3WLkRIHmIA2yS0jvSs9Lpt&si=IfIPJPuKmq0i3UE5" },
-                { name: "Database Recovery", link: "https://youtu.be/1pSxXwy0qiE?si=pYViwv79sNFjs_qH" },
-                { name: "Database Recovery[ Types of Faiure]", link: "https://youtu.be/eq2EMu1Mh-w?si=f6ga1i660MLWO35h" },
-                { name: "Relational Query Language [SQL Commands]", link: "https://youtu.be/Ktri0Jmeh-c?si=pRed0rmSYNwMdXvq" },
+                { name: "DBMS  [GeeksforGeeks]", link: "https://youtube.com/playlist?list=PLEBuowGoCtr3WLkRIHmIA2yS0jvSs9Lpt&si=IfIPJPuKmq0i3UE5" },
+                { name: "Data Recovery Protocols", link: "https://youtu.be/1pSxXwy0qiE?si=pYViwv79sNFjs_qH" },
+                { name: "Database Recovery[Types of Failure]", link: "https://youtu.be/eq2EMu1Mh-w?si=f6ga1i660MLWO35h" },
+                { name: "Relational Query Language [SQL]", link: "https://youtu.be/Ktri0Jmeh-c?si=pRed0rmSYNwMdXvq" },
             ]
         };
 
         // Function to create buttons
-        function createButton(parentId, items) {
+        function createButton(parentId, items, delayStart = 0) {
             const container = document.getElementById(parentId);
-            items.forEach(item => {
+            if (!container) {
+                console.error(`Container with ID ${parentId} not found.`);
+                return;
+            }
+            items.forEach((item, index) => {
                 const button = document.createElement('button');
                 button.className = 'btn';
-                button.textContent = item.name;
+                
+                const span = document.createElement('span'); // Add span for text
+                span.textContent = item.name;
+                button.appendChild(span);
+
                 button.onclick = () => {
                     window.open(item.link, '_blank');
                 };
+                // Staggered animation for buttons within each section
+                button.style.animationDelay = `${delayStart + index * 0.1}s`;
                 container.appendChild(button);
             });
         }
 
         // Initialize buttons
         window.onload = () => {
-            createButton('online-notes', resources.onlineNotes);
-            createButton('offline-notes', resources.offlineNotes);
-            createButton('theory', resources.theory);
-            createButton('youtube', resources.youtube);
+            // Stagger animation delays for sections
+            const sections = document.querySelectorAll('.section');
+            sections.forEach((section, index) => {
+                section.style.animationDelay = `${0.2 + index * 0.3}s`; // Initial delay for sections
+                
+                // Calculate delay for buttons inside this section
+                const buttonDelayStart = 0.2 + index * 0.3 + 0.3; // Start after section animation
 
-            // Add staggered animation delays
-            document.querySelectorAll('.section').forEach((section, index) => {
-                section.style.animationDelay = `${index * 0.2}s`;
+                if (section.querySelector('#online-notes')) {
+                     createButton('online-notes', resources.onlineNotes, buttonDelayStart);
+                }
+                if (section.querySelector('#offline-notes')) {
+                     createButton('offline-notes', resources.offlineNotes, buttonDelayStart);
+                }
+                if (section.querySelector('#theory')) {
+                     createButton('theory', resources.theory, buttonDelayStart);
+                }
+                if (section.querySelector('#youtube')) {
+                     createButton('youtube', resources.youtube, buttonDelayStart);
+                }
             });
         };
 
-        // Responsive adjustments
-        window.addEventListener('resize', () => {
-            document.querySelectorAll('.btn').forEach(btn => {
-                btn.style.width = window.innerWidth < 480 ? '100%' : 'auto';
-            });
-        });
-
+        // No specific JS needed for responsive adjustments as CSS handles it.
+        // The original resize listener was for a specific button width adjustment,
+        // which is now handled by the grid and media queries.
     </script>
 </body>
 </html>
