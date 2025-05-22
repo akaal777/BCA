@@ -3,154 +3,289 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All My Sons - Arthur Miller</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+    <title>All My Sons - Arthur Miller | Modern Interface</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --bg-primary: #0a0f1e; /* Deep space blue */
+            --bg-secondary: #1a1f36; /* Slightly lighter dark blue */
+            --accent-primary: #00ffff; /* Cyan */
+            --accent-secondary: #ff00ff; /* Magenta */
+            --text-primary: #e0e0e0; /* Light grey for text */
+            --text-secondary: #a0a0a0; /* Medium grey for less important text */
+            --glass-bg: rgba(26, 31, 54, 0.5); /* Semi-transparent dark blue for glass effect */
+            --glass-border: rgba(0, 255, 255, 0.2);
+            --glow-color: var(--accent-primary);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Comic Neue', cursive;
         }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%);
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 70%, #050810 100%);
+            color: var(--text-primary);
             min-height: 100vh;
             padding: 20px;
-            border: 6px double #2c1810;
+            overflow-x: hidden; /* Prevent horizontal scroll from animations */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
+
+        .container {
+            width: 100%;
+            max-width: 1000px; /* Max width for content */
+            margin: 0 auto;
+        }
+
         .heading {
             text-align: center;
-            margin: 30px 0;
-            font-family: 'Lobster', cursive;
-            font-size: 3.5em;
-            color: #2c1810;
-            text-shadow: 2px 2px 0px #FFD700;
-            position: relative;
-            display: inline-block;
-            width: 100%;
-            transform: rotate(-2deg);
+            margin: 40px 0 60px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2.5em, 6vw, 4em); /* Responsive font size */
+            color: var(--text-primary);
+            text-shadow: 0 0 10px var(--glow-color), 0 0 20px var(--glow-color), 0 0 30px var(--accent-secondary), 0 0 5px #fff;
+            letter-spacing: 2px;
+            animation: fadeInDown 1s ease-out, flicker 3s infinite alternate;
+            line-height: 1.2;
         }
-        .heading::after {
+
+        .heading span {
+            font-size: 0.5em;
+            font-weight: 400;
+            color: var(--text-secondary);
+            text-shadow: 0 0 5px var(--accent-secondary);
+            display: block;
+            margin-top: 5px;
+        }
+
+        @keyframes flicker {
+            0%, 18%, 22%, 25%, 53%, 57%, 100% {
+                text-shadow:
+                0 0 7px var(--glow-color),
+                0 0 10px var(--glow-color),
+                0 0 21px var(--glow-color),
+                0 0 42px var(--accent-secondary),
+                0 0 82px var(--accent-secondary),
+                0 0 92px var(--accent-secondary),
+                0 0 102px var(--accent-primary),
+                0 0 151px var(--accent-primary);
+            }
+            20%, 24%, 55% {        
+                text-shadow: none;
+            }
+        }
+
+        .section {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px); /* For Safari */
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37), 0 0 15px var(--glow-color) inset;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease-out forwards;
+            /* Stagger animation for multiple sections */
+        }
+        .section:nth-of-type(1) { animation-delay: 0.2s; }
+        .section:nth-of-type(2) { animation-delay: 0.4s; }
+        .section:nth-of-type(3) { animation-delay: 0.6s; }
+        footer.section { animation-delay: 0.8s; }
+
+
+        .section-title {
+            margin-bottom: 25px;
+            color: var(--accent-primary);
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(1.5em, 4vw, 2.2em);
+            text-shadow: 0 0 5px var(--accent-primary);
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .section-title::after {
             content: '';
             position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80%;
-            height: 4px;
-            background: #2c1810;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
             border-radius: 2px;
+            box-shadow: 0 0 8px var(--accent-primary);
         }
-        .section {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 25px;
-            border-radius: 15px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            border: 3px solid #2c1810;
-            position: relative;
-        }
-        .section-title {
-            margin-bottom: 20px;
-            color: #2c1810;
-            font-family: 'Lobster', cursive;
-            font-size: 2em;
-            text-decoration: underline wavy #FFD700;
-        }
+
         .button-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
+            gap: 20px;
         }
+
         .btn {
-            padding: 18px 30px;
-            border: none;
-            border-radius: 50px;
+            padding: 15px 25px;
+            border: 2px solid var(--accent-primary);
+            border-radius: 8px;
             cursor: pointer;
             transition: all 0.3s ease;
-            background: linear-gradient(45deg, #FF6B6B, #FF8E53);
-            color: white;
-            font-family: 'Lobster', cursive;
-            font-size: 1.4em;
+            background: transparent;
+            color: var(--text-primary);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 1em;
             letter-spacing: 1px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
             position: relative;
             overflow: hidden;
+            text-shadow: 0 0 3px rgba(0,0,0,0.5);
         }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, var(--accent-primary), transparent);
+            transition: left 0.5s ease;
+            opacity: 0.6;
+        }
+
         .btn:hover {
-            transform: translateY(-3px) rotate(2deg);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
-            background: linear-gradient(45deg, #FF8E53, #FF6B6B);
+            color: var(--bg-primary);
+            background-color: var(--accent-primary);
+            box-shadow: 0 0 15px var(--accent-primary), 0 0 25px var(--accent-primary);
+            transform: translateY(-3px) scale(1.02);
         }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
         .btn:active {
-            transform: translateY(1px);
+            transform: translateY(0px) scale(0.98);
+            box-shadow: 0 0 5px var(--accent-primary);
         }
+
         .footer-message {
-            font-size: 1.2em;
+            font-size: clamp(1em, 2.5vw, 1.2em);
             text-align: center;
-            margin-top: 40px;
-            font-family: 'Lobster', cursive;
-            color: #2c1810;
-            padding: 15px;
-            background: rgba(255, 215, 0, 0.2);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 300;
+            color: var(--text-secondary);
+            padding: 20px;
+            background: var(--glass-bg);
             border-radius: 10px;
-            border: 2px dashed #2c1810;
+            border: 1px solid var(--glass-border);
+            text-shadow: 0 0 5px var(--accent-secondary);
         }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Responsive adjustments */
         @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
             .heading {
-                font-size: 2.5em;
+                margin: 30px 0 40px;
+            }
+            .section {
+                padding: 20px;
+                margin-bottom: 30px;
+            }
+            .button-container {
+                grid-template-columns: 1fr; /* Stack buttons on smaller screens */
+                gap: 15px;
             }
             .btn {
-                font-size: 1.2em;
-                padding: 15px 25px;
+                padding: 12px 20px;
+                font-size: 0.95em;
             }
         }
+
+        @media (max-width: 480px) {
+            .btn {
+                font-size: 0.9em;
+            }
+             .section-title::after {
+                width: 40px;
+                height: 2px;
+            }
+        }
+
     </style>
 </head>
 <body>
-    <h1 class="heading">All My Sons<br><span style="font-size: 0.6em">by Arthur Miller</span></h1>
-    
-    <!-- Sections remain the same but styled with new classes -->
-    <!-- PDF Section -->
-    <section class="section">
-        <h2 class="section-title">PDF Collection</h2>
-        <div class="button-container">
-            <!-- Buttons remain same with new styling -->
-            <button class="btn" id="storyBtn">Story</button>
-            <button class="btn" id="scriptBtn">Script</button>
-            <button class="btn" id="summaryBtn">Summary</button>
-        </div>
-    </section>
+    <div class="container">
+        <h1 class="heading">All My Sons<br><span>by Arthur Miller</span></h1>
+        
+        <section class="section">
+            <h2 class="section-title">PDF Collection</h2>
+            <div class="button-container">
+                <button class="btn" id="storyBtn">Story</button>
+                <button class="btn" id="scriptBtn">Script</button>
+                <button class="btn" id="summaryBtn">Summary</button>
+            </div>
+        </section>
 
-    <!-- Character Sketch Section -->
-    <section class="section">
-        <h2 class="section-title">Character Sketches</h2>
-        <div class="button-container">
-            <!-- Buttons remain same with new styling -->
-            <button class="btn" id="character1Btn">Joe Keller</button>
-            <button class="btn" id="character2Btn">Kate Keller</button>
-            <button class="btn" id="character3Btn">Chris Keller</button>
-            <button class="btn" id="character4Btn">Ann Deever</button>
-            <button class="btn" id="character5Btn">George Deever</button>
-        </div>
-    </section>
-    
-    <!-- YouTube Section -->
-    <section class="section">
-        <h2 class="section-title">Video Guides</h2>
-        <div class="button-container">
-            <!-- Buttons remain same with new styling -->
-            <button class="btn" id="video1Btn">All My Sons [ Summary in Hindi ]</button>
-            <button class="btn" id="video2Btn">All My Songs [ Summary in Punjabi ]</button>
-            <button class="btn" id="video3Btn">All My Sons [full Play in Hindi]</button>
-        </div>
-    </section>
-    
-    <!-- Footer Section -->
-    <footer class="section">
-        <p class="footer-message">Master the English Grammar - Unlock Semester 3!</p>
-    </footer>
+        <section class="section">
+            <h2 class="section-title">Character Sketches</h2>
+            <div class="button-container">
+                <button class="btn" id="character1Btn">Joe Keller</button>
+                <button class="btn" id="character2Btn">Kate Keller</button>
+                <button class="btn" id="character3Btn">Chris Keller</button>
+                <button class="btn" id="character4Btn">Ann Deever</button>
+                <button class="btn" id="character5Btn">George Deever</button>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title">Video Guides</h2>
+            <div class="button-container">
+                <button class="btn" id="video1Btn">All My Sons [ Summary in Hindi ]</button>
+                <button class="btn" id="video2Btn">All My Sons [ Summary in Punjabi ]</button>
+                <button class="btn" id="video3Btn">All My Sons [full Play in Hindi]</button>
+            </div>
+        </section>
+        
+        <footer class="section">
+            <p class="footer-message">Master the English Grammar - Unlock Semester 3!</p>
+        </footer>
+    </div>
+
     <script>
         // PDF Paths
         const pdfPaths = {
@@ -158,11 +293,6 @@
             script: "englishscript.pdf",
             summary: "Englishsummary.pdf"
         };
-
-        // Add this event listener with the other PDF handlers
-        document.getElementById('summaryBtn').addEventListener('click', () => {
-            window.open(pdfPaths.summary, '_blank');
-        });
 
         // YouTube Links for Character Sketches
         const characterLinks = {
@@ -173,43 +303,57 @@
             char5: "https://youtu.be/Pqk3J_JPHJQ?si=sERgg4YH38E5WsuC"
         };
 
-        // PDF Button Handlers
-        document.getElementById('storyBtn').addEventListener('click', () => {
-            window.open(pdfPaths.story, '_blank');
-        });
-        document.getElementById('scriptBtn').addEventListener('click', () => {
-            window.open(pdfPaths.script, '_blank');
-        });
+        // --- Event Listeners ---
 
-        // Character Sketch Handlers
-        document.getElementById('character1Btn').addEventListener('click', () => {
-            window.open(characterLinks.char1, '_blank');
-        });
-        document.getElementById('character2Btn').addEventListener('click', () => {
-            window.open(characterLinks.char2, '_blank');
-        });
-        document.getElementById('character3Btn').addEventListener('click', () => {
-            window.open(characterLinks.char3, '_blank');
-        });
-        document.getElementById('character4Btn').addEventListener('click', () => {
-            window.open(characterLinks.char4, '_blank');
-        });
-        document.getElementById('character5Btn').addEventListener('click', () => {
-            window.open(characterLinks.char5, '_blank');
-        });
+        // Helper to open links
+        const openLink = (url) => window.open(url, '_blank');
 
-        // YouTube Button Handlers
-        document.getElementById('video1Btn').addEventListener('click', () => {
-            window.open('https://youtu.be/m0Pbjodj6mk?si=HNivmcJa3VLAWX0-', '_blank');
-        });
-        document.getElementById('video2Btn').addEventListener('click', () => {
-            window.open('https://youtu.be/B5pF4ffW2DI?si=xvWYdIKDSkTxnh9p', '_blank');
-        });
-        document.getElementById('video3Btn').addEventListener('click', () => {
-            window.open('https://youtu.be/Sh1IhIfTHFk?si=Nanrl8pby8Npef-l', '_blank');
+        // PDF Buttons
+        document.getElementById('storyBtn').addEventListener('click', () => openLink(pdfPaths.story));
+        document.getElementById('scriptBtn').addEventListener('click', () => openLink(pdfPaths.script));
+        document.getElementById('summaryBtn').addEventListener('click', () => openLink(pdfPaths.summary));
+
+        // Character Sketch Buttons
+        document.getElementById('character1Btn').addEventListener('click', () => openLink(characterLinks.char1));
+        document.getElementById('character2Btn').addEventListener('click', () => openLink(characterLinks.char2));
+        document.getElementById('character3Btn').addEventListener('click', () => openLink(characterLinks.char3));
+        document.getElementById('character4Btn').addEventListener('click', () => openLink(characterLinks.char4));
+        document.getElementById('character5Btn').addEventListener('click', () => openLink(characterLinks.char5));
+
+        // YouTube Video Buttons
+        document.getElementById('video1Btn').addEventListener('click', () => openLink('https://youtu.be/m0Pbjodj6mk?si=HNivmcJa3VLAWX0-'));
+        document.getElementById('video2Btn').addEventListener('click', () => openLink('https://youtu.be/B5pF4ffW2DI?si=xvWYdIKDSkTxnh9p'));
+        document.getElementById('video3Btn').addEventListener('click', () => openLink('https://youtu.be/Sh1IhIfTHFk?si=Nanrl8pby8Npef-l'));
+
+        // --- Optional: Intersection Observer for more advanced scroll animations ---
+        // Commented out by default for simplicity, but you can uncomment to use it.
+        // This would replace the staggered CSS animation delays for sections if you prefer JS control.
+        
+        const sections = document.querySelectorAll('.section');
+        const observerOptions = {
+            root: null, // viewport
+            rootMargin: '0px',
+            threshold: 0.1 // 10% of the element is visible
+        };
+
+        const observerCallback = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    observer.unobserve(entry.target); // Stop observing once animated
+                }
+            });
+        };
+
+        const sectionObserver = new IntersectionObserver(observerCallback, observerOptions);
+        sections.forEach(section => {
+            // Reset styles for JS animation
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+            sectionObserver.observe(section);
         });
     </script>
-
-    <!-- Script remains same -->
 </body>
 </html>
