@@ -2,233 +2,243 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>BCA 4th Sem - Cartoon Edition</title>
-    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&family=Caveat:wght@600&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BCA 4th Sem - Nexus Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-color: #00ffff; /* Cyan */
+            --secondary-color: #ff00ff; /* Magenta */
+            --background-color-start: #0a0a23; /* Deep blue/purple */
+            --background-color-end: #1f1f3d;
+            --text-color: #e0e0e0;
+            --card-bg-color: rgba(20, 20, 50, 0.7);
+            --card-border-color: var(--primary-color);
+            --card-hover-bg-color: rgba(0, 255, 255, 0.1);
+        }
+
         body {
             margin: 0;
             padding: 0;
-            background: #b3e5fc;
+            background: linear-gradient(135deg, var(--background-color-start), var(--background-color-end));
+            background-attachment: fixed; /* Keeps gradient fixed during scroll */
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            font-family: 'Comic Neue', cursive;
+            font-family: 'Roboto', sans-serif;
+            color: var(--text-color);
             overflow-x: hidden;
+            position: relative; /* For pseudo-element background effects */
         }
 
-        header {
-            position: relative;
-            margin-bottom: 2rem;
-            text-align: center;
-        }
-
-        h1 {
-            color: #d32f2f;
-            font-size: 3.5em;
-            letter-spacing: 2px;
-            text-shadow: 3px 3px 0 #fff, 
-                        -1px -1px 0 #fff, 
-                        1px -1px 0 #fff, 
-                        -1px 1px 0 #fff;
-            animation: bounce 1.5s ease infinite;
-            position: relative;
-            display: inline-block;
-            padding: 10px 20px;
-            background: #fff;
-            border-radius: 15px;
-            border: 4px solid #212121;
-        }
-
-        .button-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 25px;
-            padding: 20px;
-            max-width: 1200px;
-        }
-
-        .button-container button {
-            background: #ffeb3b;
-            border: 4px solid #212121;
-            color: #212121;
-            padding: 25px 40px;
-            font-size: 2em;
-            font-family: 'Caveat', cursive;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border-radius: 20px;
-            box-shadow: 8px 8px 0 rgba(0,0,0,0.2);
-            position: relative;
-            text-transform: uppercase;
-            font-weight: bold; /* Make text bold */
-            font-style: italic;
-            line-height: 1.2;
-        }
-
-        .button-container button:hover {
-            transform: translateY(-5px) rotate(3deg);
-            box-shadow: 12px 12px 0 rgba(0,0,0,0.2);
-            background: #fff59d;
-        }
-
-        .button-container button:active {
-            transform: translateY(0) scale(0.95);
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
-
-        .clouds {
+        /* Animated Starfield Background */
+        body::before, body::after {
+            content: '';
             position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
             z-index: -1;
             pointer-events: none;
         }
 
-        .cloud {
-            position: absolute;
-            background: white;
-            border-radius: 50px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
-            animation: float 20s infinite linear;
+        body::before { /* Small stars */
+            background-image: radial-gradient(1px 1px at 20px 30px, #fff, transparent),
+                              radial-gradient(1px 1px at 40px 70px, #ddd, transparent),
+                              radial-gradient(1px 1px at 90px 40px, #eee, transparent),
+                              radial-gradient(1.5px 1.5px at 160px 120px, #fff, transparent),
+                              radial-gradient(1px 1px at 220px 180px, #ccc, transparent);
+            background-size: 250px 250px;
+            animation: moveStars 120s linear infinite;
         }
 
-        .cloud::before,
-        .cloud::after {
-            content: '';
-            position: absolute;
-            background: white;
-            border-radius: 50%;
+        body::after { /* Larger, slower stars */
+            background-image: radial-gradient(2px 2px at 50px 150px, #fff, transparent),
+                              radial-gradient(2px 2px at 100px 250px, #ddd, transparent),
+                              radial-gradient(3px 3px at 200px 80px, #eee, transparent);
+            background-size: 350px 350px;
+            animation: moveStars 180s linear infinite reverse; /* Different speed and direction */
         }
 
-        @keyframes float {
-            from { transform: translateX(-100%); }
-            to { transform: translateX(100vw); }
+        @keyframes moveStars {
+            from { background-position: 0 0; }
+            to { background-position: -10000px 5000px; }
         }
 
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 2em;
-                padding: 8px 16px;
-            }
 
-            .button-container {
-                grid-template-columns: 1fr;
-                width: 95%;
-                gap: 15px;
-            }
-
-            .button-container button {
-                padding: 12px 15px;
-                font-size: 1.8em;
-                min-height: 60px;
-                width: 100%;
-                box-sizing: border-box;
-            }
+        header {
+            position: relative;
+            margin-bottom: 3rem;
+            text-align: center;
+            animation: fadeInDown 1s ease-out;
         }
 
-        @media (max-width: 400px) {
-            .button-container button {
-                font-size: 1.6em;
-                padding: 10px 12px;
-            }
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--primary-color);
+            font-size: 3em; /* Responsive font size */
+            letter-spacing: 3px;
+            text-shadow: 0 0 10px var(--primary-color), 0 0 20px var(--primary-color), 0 0 5px #fff;
+            animation: pulseGlow 2s ease-in-out infinite;
+            position: relative;
+            display: inline-block;
+            padding: 15px 30px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 8px;
+            border: 1px solid rgba(0, 255, 255, 0.3);
         }
 
-        .sun {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            width: 80px;
-            height: 80px;
-            background: #fff59d;
-            border-radius: 50%;
-            box-shadow: 0 0 40px #ffeb3b;
-            z-index: -1;
+        .button-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            padding: 20px;
+            max-width: 1200px;
+            width: 90%;
+            animation: fadeInUp 1s ease-out 0.5s backwards; /* Staggered animation */
         }
 
         .button-container button {
-            border-radius: 15px 30px 15px 30px;
+            background: var(--card-bg-color);
+            border: 2px solid var(--card-border-color);
+            color: var(--text-color);
+            padding: 20px 25px; /* Adjusted padding for better text fit */
+            font-size: 1.5em; /* Responsive font size */
+            font-family: 'Roboto', sans-serif;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden; /* For pseudo-element hover effect */
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            min-height: 80px; /* Ensure buttons have a decent height */
+            display: flex; /* For vertical alignment if needed */
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .button-container button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.3), transparent);
+            transition: left 0.4s ease;
+        }
+
+        .button-container button:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 0 25px var(--primary-color), 0 0 10px var(--secondary-color);
+            background: var(--card-hover-bg-color);
+            color: var(--primary-color);
+        }
+
+        .button-container button:hover::before {
+            left: 100%;
+        }
+
+        .button-container button:active {
+            transform: translateY(0) scale(0.98);
+            box-shadow: 0 0 10px var(--primary-color);
+        }
+
+        /* Keyframe animations */
+        @keyframes pulseGlow {
+            0%, 100% { text-shadow: 0 0 10px var(--primary-color), 0 0 20px var(--primary-color), 0 0 5px #fff; }
+            50% { text-shadow: 0 0 15px var(--primary-color), 0 0 30px var(--primary-color), 0 0 10px var(--secondary-color), 0 0 5px #fff; }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5em;
+                padding: 10px 20px;
+            }
+            .button-container {
+                grid-template-columns: 1fr; /* Stack buttons on smaller screens */
+                gap: 20px;
+                width: 95%;
+            }
+            .button-container button {
+                font-size: 1.3em;
+                padding: 18px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2em;
+                letter-spacing: 2px;
+            }
+            .button-container button {
+                font-size: 1.1em;
+                padding: 15px;
+                min-height: 70px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="sun"></div>
-    <div class="clouds"></div>
     <header>
-        <h1>📚 BCA 4th Semester 🎒</h1>
+        <h1><span style="color: var(--secondary-color);">BCA</span> 4th Sem <span style="color: var(--secondary-color);"></span></h1>
     </header>
     <main>
         <div class="button-container">
-            <button>English</button>
-            <button>Computer Networks</button>
-            <button>Computer Oriented Numerical and Statistical Methods</button>
-            <button>Relational Database Management Systems</button>
-            <button>Punjabi</button>
+            <button data-link="English">English</button>
+            <button data-link="ComputerNetworks">Computer Networks</button>
+            <button data-link="ComputerOrientedNumericalAndStatisticalMethods">Computer Oriented Numerical & Statistical Methods</button>
+            <button data-link="RelationalDatabaseManagementSystems">Relational Database Management Systems</button>
+            <button data-link="Punjabi">Punjabi</button>
         </div>
     </main>
 
     <script>
-        const clouds = document.querySelector('.clouds');
-        function createCloud() {
-            const cloud = document.createElement('div');
-            cloud.className = 'cloud';
-            const size = Math.random() * 100 + 50;
-            const top = Math.random() * 80;
-            const delay = Math.random() * 20;
-            
-            cloud.style.width = `${size}px`;
-            cloud.style.height = `${size/2}px`;
-            cloud.style.top = `${top}%`;
-            cloud.style.animationDelay = `${-delay}s`;
-            
-            cloud.innerHTML = `
-                <div style="position:absolute; width:60%; height:80%; background:white; border-radius:50%; left:20%; top:-40%"></div>
-                <div style="position:absolute; width:40%; height:60%; background:white; border-radius:50%; right:10%; top:-30%"></div>
-            `;
-            
-            clouds.appendChild(cloud);
-            setTimeout(() => cloud.remove(), 20000);
-        }
-
-        setInterval(createCloud, 3000);
-        
-        document.querySelectorAll('button').forEach(button => {
+        // Button click feedback and navigation
+        document.querySelectorAll('.button-container button').forEach(button => {
             button.addEventListener('click', () => {
-                button.style.animation = 'squish 0.3s ease';
+                // Modern click animation
+                button.style.transform = 'scale(0.97)';
+                button.style.transition = 'transform 0.1s ease-out';
                 setTimeout(() => {
-                    button.style.animation = '';
-                }, 300);
+                    button.style.transform = 'scale(1.02)'; // Reset to hover state
+                }, 100);
+
+                // Navigate to page
+                const pageName = button.dataset.link;
+                if (pageName) {
+                    // Simulate navigation after a short delay for animation
+                    setTimeout(() => {
+                         window.location.href = `${pageName}.html`;
+                    }, 200);
+                }
             });
         });
 
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes squish {
-                50% { transform: scale(0.9) rotate(-3deg); }
-            }
-        `;
-        document.head.appendChild(style);
-
-        const fileMapping = {
-            "English": "English",
-            "Computer Networks": "ComputerNetworks",
-            "Computer Oriented Numerical and Statistical Methods": "ComputerOrientedNumericalAndStatisticalMethods",
-            "Relational Database Management Systems": "RelationalDatabaseManagementSystems",
-            "Punjabi": "Punjabi"
-        };
-
-        document.querySelectorAll('button').forEach(button => {
-            button.addEventListener('click', () => {
-                const buttonText = button.textContent;
-                window.location.href = `${fileMapping[buttonText]}.html`;
-            });
+        // Small script to add unique animation delays for buttons if desired for a staggered entry
+        const buttons = document.querySelectorAll('.button-container button');
+        buttons.forEach((button, index) => {
+            button.style.animation = `fadeInUp 0.5s ease-out ${0.5 + index * 0.1}s backwards`;
         });
+
     </script>
 </body>
 </html>
