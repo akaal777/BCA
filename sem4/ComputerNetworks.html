@@ -3,16 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cartoon Network Learning</title>
-  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&family=Lilita+One&family=Patrick+Hand&display=swap" rel="stylesheet">
+  <title>Cyber Network Nexus | Learning Hub</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Exo+2:wght@400;700&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
   <style>
-    /* Modern Cartoon Styles */
+    :root {
+      --bg-dark-primary: #0f0c29;
+      --bg-dark-secondary: #302b63;
+      --bg-dark-tertiary: #24243e;
+      --accent-cyan: #00c6ff;
+      --accent-magenta: #ff00e6;
+      --accent-green: #39ff14;
+      --accent-yellow: #f8f32b;
+      --text-light: #e0e0e0;
+      --text-dark: #1a1a1a;
+      --card-bg: rgba(20, 20, 40, 0.75);
+      --card-border: rgba(0, 198, 255, 0.3);
+      --card-shadow: rgba(0, 198, 255, 0.2);
+    }
+
     body {
-      font-family: 'Comic Neue', cursive;
-      background: linear-gradient(135deg, #ff9fa4, #ffd6d8);
-      color: #3a3a3a;
+      font-family: 'Exo 2', sans-serif;
+      background: linear-gradient(-45deg, var(--bg-dark-primary), var(--bg-dark-secondary), var(--bg-dark-tertiary), #0f0c29);
+      background-size: 400% 400%;
+      animation: gradientBG 20s ease infinite;
+      color: var(--text-light);
       margin: 0;
-      padding: 20px;
+      padding: 30px 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -20,158 +36,276 @@
       overflow-x: hidden;
     }
 
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
     h1 {
-      font-family: 'Lilita One', cursive;
-      font-size: 4rem;
-      margin: 20px 0;
-      color: #ff5f6d;
-      text-shadow: 3px 3px 0 #fff, 5px 5px 0 #ff5f6d;
-      letter-spacing: 2px;
-      animation: bounce 1s ease infinite alternate;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 3.5rem;
+      margin: 30px 0 50px;
+      color: var(--accent-cyan);
+      text-shadow:
+        0 0 5px var(--accent-cyan),
+        0 0 10px var(--accent-cyan),
+        0 0 20px var(--accent-cyan),
+        0 0 40px var(--accent-magenta),
+        0 0 70px var(--accent-magenta);
+      letter-spacing: 3px;
+      animation: titleGlow 2s ease-in-out infinite alternate, fadeInDown 1s ease-out;
+      text-align: center;
+    }
+
+    @keyframes titleGlow {
+      from {
+        text-shadow:
+          0 0 5px var(--accent-cyan),
+          0 0 10px var(--accent-cyan),
+          0 0 15px var(--accent-magenta),
+          0 0 20px var(--accent-magenta);
+      }
+      to {
+        text-shadow:
+          0 0 10px var(--accent-cyan),
+          0 0 20px var(--accent-cyan),
+          0 0 30px var(--accent-magenta),
+          0 0 40px var(--accent-magenta);
+      }
     }
 
     .section {
-      background: white;
-      border-radius: 20px;
-      padding: 25px;
-      margin: 20px;
-      width: 85%;
-      max-width: 800px;
-      box-shadow: 8px 8px 0 #ff5f6d;
-      border: 4px solid #ff5f6d;
+      background: var(--card-bg);
+      border-radius: 15px;
+      padding: 30px;
+      margin: 25px;
+      width: 90%;
+      max-width: 900px;
+      box-shadow: 0 8px 32px 0 var(--card-shadow);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid var(--card-border);
       position: relative;
-      transition: transform 0.3s ease;
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 0.6s ease-out forwards;
     }
 
+    /* Staggered animation for sections */
+    .section:nth-child(1) { animation-delay: 0.2s; }
+    .section:nth-child(2) { animation-delay: 0.4s; }
+    .section:nth-child(3) { animation-delay: 0.6s; }
+    .section:nth-child(4) { animation-delay: 0.8s; }
+    .section:nth-child(5) { animation-delay: 1.0s; } /* For h1 */
+
+
+    @keyframes fadeInDown {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+
     .section:hover {
-      transform: translateY(-5px);
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 12px 45px 0 rgba(0, 198, 255, 0.35);
     }
 
     .section h2 {
-      font-family: 'Patrick Hand', cursive;
-      font-size: 2.5rem;
-      margin: 0 0 20px 0;
-      color: #4a90e2;
-      text-decoration: underline wavy #ffd700;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin: 0 0 25px 0;
+      color: var(--text-light);
+      position: relative;
+      padding-bottom: 10px;
     }
+
+    .section h2::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 50px;
+      height: 3px;
+      background: var(--accent-cyan);
+      border-radius: 2px;
+      animation: extendLine 0.5s ease-out forwards;
+    }
+    .section:hover h2::before {
+        animation: extendLineHover 0.5s ease-out forwards;
+    }
+
+    @keyframes extendLine {
+        from { width: 0; }
+        to { width: 50px; }
+    }
+    @keyframes extendLineHover {
+        from { width: 50px; }
+        to { width: 80px; background: var(--accent-magenta); }
+    }
+
 
     .buttons {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 15px;
-      padding: 10px;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 20px;
+      padding: 10px 0;
     }
 
     .buttons button {
-      background: #fff;
-      border: 3px solid #4a90e2;
-      border-radius: 15px;
-      color: #3a3a3a;
-      padding: 25px 30px;
-      font-size: 1.6rem;
-      font-family: 'Patrick Hand', cursive;
+      background: transparent;
+      border: 2px solid; /* Initial border color set by JS */
+      border-radius: 10px;
+      color: var(--text-light);
+      padding: 20px 25px;
+      font-size: 1.1rem; /* Adjusted for better fit */
+      font-family: 'Exo 2', sans-serif;
+      font-weight: 500;
       cursor: pointer;
       transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       position: relative;
-      min-width: 220px;
-      min-height: 100px;
-      box-shadow: 4px 4px 0 #4a90e2;
+      min-height: 80px; /* Adjusted */
+      overflow: hidden;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    .buttons button::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .buttons button:hover::before {
+      left: 100%;
     }
 
     .buttons button:hover {
-      transform: translateY(-3px) rotate(2deg);
-      box-shadow: 6px 6px 0 #4a90e2;
-      background: #f8f8f8;
+      transform: translateY(-5px) scale(1.03);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      color: var(--text-dark); /* Change text color on hover for better contrast with bg */
     }
 
     .buttons button:active {
-      transform: translateY(0) rotate(0);
-      box-shadow: 2px 2px 0 #4a90e2;
+      transform: translateY(0) scale(1);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     }
 
-    /* Section Color Coding */
+    /* Section Color Coding - using CSS variables for cleaner JS */
     #online-pdf-buttons button {
-      border-color: #ff5f6d;
-      box-shadow: 4px 4px 0 #ff5f6d;
+      border-color: var(--accent-cyan);
     }
+    #online-pdf-buttons button:hover {
+      background-color: var(--accent-cyan);
+      border-color: var(--accent-cyan);
+    }
+
     #offline-pdf-buttons button {
-      border-color: #6dbf73;
-      box-shadow: 4px 4px 0 #6dbf73;
+      border-color: var(--accent-green);
     }
+    #offline-pdf-buttons button:hover {
+      background-color: var(--accent-green);
+      border-color: var(--accent-green);
+    }
+
     #theory-buttons button {
-      border-color: #ffd700;
-      box-shadow: 4px 4px 0 #ffd700;
+      border-color: var(--accent-yellow);
     }
+    #theory-buttons button:hover {
+      background-color: var(--accent-yellow);
+      border-color: var(--accent-yellow);
+      color: var(--bg-dark-primary); /* Dark text on yellow bg */
+    }
+
     #youtube-buttons button {
-      border-color: #4a90e2;
-      box-shadow: 4px 4px 0 #4a90e2;
+      border-color: var(--accent-magenta);
     }
-
-    /* Animations */
-    @keyframes bounce {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(-10px); }
-    }
-
-    @keyframes wobble {
-      0% { transform: rotate(0deg); }
-      25% { transform: rotate(3deg); }
-      75% { transform: rotate(-3deg); }
-      100% { transform: rotate(0deg); }
+    #youtube-buttons button:hover {
+      background-color: var(--accent-magenta);
+      border-color: var(--accent-magenta);
     }
 
     /* Responsive Design */
-    @media (max-width: 768px) {
+    @media (max-width: 960px) {
       .buttons {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       }
-      h1 {
-        font-size: 3rem;
+       h1 {
+        font-size: 2.8rem;
+      }
+      .section h2 {
+        font-size: 2rem;
       }
     }
 
-    @media (max-width: 480px) {
-      .buttons {
-        grid-template-columns: 1fr;
-      }
-      .buttons button {
-        font-size: 1.4rem;
-        padding: 20px;
+    @media (max-width: 600px) {
+      body {
+        padding: 20px 10px;
       }
       h1 {
-        font-size: 2.5rem;
-        text-shadow: 2px 2px 0 #fff, 4px 4px 0 #ff5f6d;
+        font-size: 2.2rem;
+        margin: 20px 0 30px;
+        text-shadow:
+          0 0 3px var(--accent-cyan),
+          0 0 7px var(--accent-cyan),
+          0 0 10px var(--accent-magenta);
+      }
+      .section {
+        padding: 20px;
+        margin: 20px 10px;
+      }
+      .section h2 {
+        font-size: 1.8rem;
+      }
+      .buttons button {
+        font-size: 1rem;
+        padding: 15px 20px;
+        min-height: 70px;
       }
     }
+    @media (max-width: 400px) {
+        .buttons {
+            grid-template-columns: 1fr; /* Single column on very small screens */
+        }
+    }
+
   </style>
 </head>
 <body>
-  <!-- Keep the same HTML structure with sections and buttons -->
-  <h1>Computer Network Fun!</h1>
+  <h1>Cyber Network Nexus</h1>
 
-  <div class="section">
-    <h2>📚 Online PDF Section</h2>
+  <div class="section" id="online-pdf-section">
+    <h2><span class="icon">🌐</span> Online Datastreams (PDFs)</h2>
     <div class="buttons" id="online-pdf-buttons"></div>
   </div>
 
-  <div class="section">
-    <h2>📁 Offline PDF Section</h2>
+  <div class="section" id="offline-pdf-section">
+    <h2><span class="icon">💾</span> Local Archives (PDFs)</h2>
     <div class="buttons" id="offline-pdf-buttons"></div>
   </div>
 
-  <div class="section">
-    <h2>🎓 Theory Section</h2>
+  <div class="section" id="theory-section">
+    <h2><span class="icon">🧠</span> Core Knowledge Matrix</h2>
     <div class="buttons" id="theory-buttons"></div>
   </div>
 
-  <div class="section">
-    <h2>🎥 YouTube Section</h2>
+  <div class="section" id="youtube-section">
+    <h2><span class="icon">📺</span> Video Transmissions (YT)</h2>
     <div class="buttons" id="youtube-buttons"></div>
   </div>
 
-  <!-- Keep the same JavaScript -->
   <script>
-    // ... (Keep the original JavaScript code unchanged)
+    // JavaScript remains largely the same for functionality
     const onlinePDFLinks = [
       "https://drive.google.com/file/d/12H3QcEUdQjqlHS2pC_Rw_nq_1UZmQIz-/view?usp=drive_link",
       "https://drive.google.com/file/d/1TRYUEcWISaTldpyHEElKPZBT4I3cJZJ8/view?usp=drive_link",
@@ -184,7 +318,6 @@
       "https://drive.google.com/file/d/19wb7ynUES-jvK1FtJDuMB2Mh5asePMdy/view?usp=drive_link"
     ];
 
-    // Offline PDF Paths
     const offlinePDFPaths = [
       "ch 2 refrence model of network.pdf",
       "ch 7 transport layer.pdf",
@@ -197,7 +330,6 @@
       "ch 9 network security.pdf"
     ];
 
-    // Theory Links
     const theoryLinks = [
       "https://www.tutorialspoint.com/Reference-Models-in-Computer-Network",
       "https://www.geeksforgeeks.org/transport-layer-in-osi-model/",
@@ -210,7 +342,6 @@
       "https://www.geeksforgeeks.org/network-security/"
     ];
 
-    // YouTube Links
     const youtubeLinks = [
       "https://youtu.be/1msEo8PIcbw?si=vViE2qlEU04iTfBY",
       "https://youtube.com/playlist?list=PLHQAlOcTuuT3HbVd9XG42a0WtC1MRKRvO&si=u9lKRrr_lgK6Pent",
@@ -225,79 +356,89 @@
       "https://youtu.be/q3Z3Qa1UNBA?si=VcTygbcOS4uKkc61"
     ];
 
-    // Button names for each section
     const onlinePDFNames = [
-    "Reference Models Of Network",
-        "Transport Layer",
-        "Application Layer",
-        "TCP/IP Protocol Suite",
-        "Network Layer",
-        "Data Link Layer",
-        "Internet Protocol",
-        "Introduction To Network",
-        "Network Security"
+      "Reference Models", "Transport Layer", "Application Layer", "TCP/IP Suite",
+      "Network Layer", "Data Link Layer", "Internet Protocol", "Intro to Network", "Network Security"
     ];
-
     const offlinePDFNames = [
-        "Reference Models Of Network",
-        "Transport Layer",
-        "Application Layer",
-        "TCP/IP Protocol Suite",
-        "Network Layer",
-        "Data Link Layer",
-        "Internet Protocol",
-        "Introduction To Network",
-        "Network Security"
+      "Reference Models", "Transport Layer", "Application Layer", "TCP/IP Suite",
+      "Network Layer", "Data Link Layer", "Internet Protocol", "Intro to Network", "Network Security"
     ];
-
     const theoryNames = [
-    "Reference Models Of Network",
-        "Transport Layer",
-        "Application Layer",
-        "TCP/IP Protocol Suite",
-        "Network Layer",
-        "Data Link Layer",
-        "Internet Protocol",
-        "Introduction To Network",
-        "Network Security"
+      "Reference Models", "Transport Layer", "Application Layer", "TCP/IP Suite",
+      "Network Layer", "Data Link Layer", "Internet Protocol", "Intro to Network", "Network Security"
     ];
-
     const youtubeNames = [
-   "Reference Models Of Network",
-        "Transport Layer",
-        "Application Layer",
-        "TCP/IP Protocol Suite",
-        "Network Layer [Playlist]",
-        "Data Link Layer",
-        "Introduction To Network",
-        "Network Security",
-        "Computer Networks [Playlist]",
-        "Computer Networks [One Shot]",
-        "Computer Networks [One Shot by knowledge gate]",
+      "Reference Models", "Transport Layer [PL]", "Application Layer", "TCP/IP Suite",
+      "Network Layer [PL]", "Data Link Layer", "Intro to Network", "Network Security",
+      "Comp. Networks [PL]", "Comp. Networks [OS]", "CN [OS GATE]"
     ];
 
-    // Updated createButtons function
     function createButtons(containerId, links, buttonNames, isPDF = false, isOffline = false) {
         const container = document.getElementById(containerId);
+        if (!container) {
+            console.error(`Container with id "${containerId}" not found.`);
+            return;
+        }
         links.forEach((link, index) => {
             const button = document.createElement("button");
-            button.textContent = buttonNames[index];
+            button.textContent = buttonNames[index] || `Link ${index + 1}`; // Fallback name
+            button.setAttribute('title', `Open: ${buttonNames[index] || link}`); // Tooltip for accessibility
+
+            // Add a subtle animation to each button as it's created
+            button.style.opacity = '0';
+            button.style.transform = 'translateY(10px)';
+            button.style.animation = `fadeInUpItem 0.5s ease-out ${index * 0.05}s forwards`;
+
+
             button.addEventListener("click", () => {
-                if (isPDF) {
-                    if (isOffline) {
-                        window.open(link, "_blank");
-                    } else {
-                        window.open(link, "_blank");
-                    }
-                } else {
-                    window.open(link, "_blank");
-                }
+                // Simple ripple effect
+                const ripple = document.createElement("span");
+                ripple.classList.add("ripple");
+                button.appendChild(ripple);
+                const rect = button.getBoundingClientRect();
+                ripple.style.left = `${event.clientX - rect.left - ripple.offsetWidth / 2}px`;
+                ripple.style.top = `${event.clientY - rect.top - ripple.offsetHeight / 2}px`;
+                setTimeout(() => ripple.remove(), 600);
+
+
+                // Open link
+                window.open(link, "_blank");
             });
             container.appendChild(button);
         });
     }
+    // Add this keyframe to your CSS if you use the button.style.animation
+    // Or ensure it's in a <style> tag in the head or an external CSS file
+    const styleSheet = document.createElement("style");
+    styleSheet.type = "text/css";
+    styleSheet.innerText = `
+        @keyframes fadeInUpItem {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.3);
+            transform: scale(0);
+            animation: ripple-animation 0.6s linear;
+            pointer-events: none; /* Important */
+            width: 100px; /* Adjust size as needed */
+            height: 100px; /* Adjust size as needed */
+        }
+        @keyframes ripple-animation {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+    `;
+    document.head.appendChild(styleSheet);
 
-    // Update the function calls
+
     createButtons("online-pdf-buttons", onlinePDFLinks, onlinePDFNames, true);
     createButtons("offline-pdf-buttons", offlinePDFPaths, offlinePDFNames, true, true);
     createButtons("theory-buttons", theoryLinks, theoryNames);
