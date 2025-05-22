@@ -7,22 +7,25 @@
   <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Exo+2:wght@400;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-color-start: #0f0c29;
-      --bg-color-mid: #302b63;
-      --bg-color-end: #24243e;
+      --bg-color-start: #0a071a; /* Slightly darker base */
+      --bg-color-mid: #1c163c;
+      --bg-color-end: #100f22;
       --primary-glow: #00e5ff;
       --secondary-glow: #ff00ff;
       --text-color: #e0e0e0;
       --button-bg: rgba(20, 20, 40, 0.7);
       --button-border-default: var(--primary-glow);
       --button-hover-bg: rgba(30, 30, 60, 0.9);
-      --grid-line-color: rgba(0, 229, 255, 0.15);
+      /* --grid-line-color: rgba(0, 229, 255, 0.15); -- No longer used for grid */
+      --dot-color-1: rgba(0, 229, 255, 0.7); /* Primary glow for dots */
+      --dot-color-2: rgba(255, 0, 255, 0.6); /* Secondary glow for dots */
+      --dot-color-3: rgba(220, 220, 255, 0.5); /* Fainter white/blue dots */
     }
 
     body {
       background: linear-gradient(-45deg, var(--bg-color-start), var(--bg-color-mid), var(--bg-color-end), var(--bg-color-start));
       background-size: 400% 400%;
-      animation: futuristicGradientBG 20s ease infinite;
+      animation: futuristicGradientBG 25s ease infinite; /* Slightly slower gradient animation */
       min-height: 100vh;
       margin: 0;
       padding-bottom: 40px;
@@ -38,67 +41,138 @@
       100% { background-position: 0% 50%; }
     }
 
+    /* Moving Glowing Dots Background */
     body::before {
       content: '';
       position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      background-image:
-        radial-gradient(white, rgba(255,255,255,0) 1.5px, transparent 30px),
-        radial-gradient(white, rgba(255,255,255,0) 2px, transparent 40px),
-        radial-gradient(rgba(255,255,255,.4), rgba(255,255,255,0) 2.5px, transparent 50px);
-      background-size: 550px 550px, 350px 350px, 250px 250px;
-      background-position: 0 0, 40px 60px, 130px 270px;
-      animation: starsAnim 70s linear infinite;
-      z-index: -2;
-      opacity: 0.25;
-    }
-
-    @keyframes starsAnim {
-      from { transform: translateY(0px); }
-      to { transform: translateY(-550px); }
-    }
-
-    .grid-overlay {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
       pointer-events: none;
-      z-index: -1; 
+      z-index: -2; /* Behind spaceship, above main gradient */
+      background-image:
+        /* Layer 1: Small, faster, primary glow dots */
+        radial-gradient(circle, var(--dot-color-1) 0.8px, transparent 1.2px),
+        /* Layer 2: Medium, medium speed, secondary glow dots */
+        radial-gradient(circle, var(--dot-color-2) 1.2px, transparent 1.8px),
+        /* Layer 3: Larger, slower, faint white/blue dots */
+        radial-gradient(circle, var(--dot-color-3) 1.5px, transparent 2.5px);
+      background-size:
+        100px 100px, /* Density for layer 1 */
+        150px 150px, /* Density for layer 2 */
+        200px 200px; /* Density for layer 3 */
+      background-repeat: repeat;
+      animation:
+        moveDots1 20s linear infinite,
+        moveDots2 35s linear infinite,
+        moveDots3 50s linear infinite;
+      opacity: 0.8;
     }
 
-    .grid-overlay::before {
-      content: '';
-      position: absolute;
-      width: 100%; height: 100%; top: 0; left: 0;
-      background: linear-gradient(var(--grid-line-color) 1px, transparent 1px);
-      background-size: 100% 50px; 
-      animation: moveGridHorizontal 25s linear infinite;
+    @keyframes moveDots1 {
+      0% { background-position: 0 0; }
+      100% { background-position: 200px 400px; } /* Moves diagonally */
+    }
+    @keyframes moveDots2 {
+      0% { background-position: 0 0; }
+      100% { background-position: -300px 300px; } /* Different direction */
+    }
+    @keyframes moveDots3 {
+      0% { background-position: 0 0; }
+      100% { background-position: 400px -200px; } /* Yet another direction */
     }
 
-    .grid-overlay::after {
-      content: '';
-      position: absolute;
-      width: 100%; height: 100%; top: 0; left: 0;
-      background: linear-gradient(90deg, var(--grid-line-color) 1px, transparent 1px);
-      background-size: 50px 100%; 
-      animation: moveGridVertical 28s linear infinite; 
+    /* Spaceship Element */
+    .spaceship-container {
+      position: fixed;
+      top: 20%; /* Initial vertical position */
+      left: -100px; /* Start off-screen */
+      width: 80px; /* Adjust size as needed */
+      height: auto;
+      z-index: -1; /* Above dots, below content */
+      pointer-events: none;
+      animation: flySpaceship 25s linear infinite;
+      animation-delay: 2s; /* Start a bit later */
     }
 
-    @keyframes moveGridHorizontal {
-      from { background-position-y: 0; }
-      to { background-position-y: 50px; }
+    .spaceship-svg {
+      width: 100%;
+      height: auto;
+      filter: drop-shadow(0 0 5px var(--primary-glow)) drop-shadow(0 0 10px var(--primary-glow));
     }
-    @keyframes moveGridVertical {
-      from { background-position-x: 0; }
-      to { background-position-x: 50px; }
+    
+    /* A different spaceship animation path */
+    .spaceship-container-alt {
+      position: fixed;
+      top: 60%; /* Initial vertical position */
+      right: -120px; /* Start off-screen from the right */
+      width: 100px; /* A slightly larger one */
+      height: auto;
+      z-index: -1;
+      pointer-events: none;
+      animation: flySpaceshipAlt 35s linear infinite;
+      animation-delay: 10s; /* Start much later */
     }
+    .spaceship-svg-alt {
+      width: 100%;
+      height: auto;
+      transform: scaleX(-1); /* Make it face the other way */
+      filter: drop-shadow(0 0 6px var(--secondary-glow)) drop-shadow(0 0 12px var(--secondary-glow));
+    }
+
+
+    @keyframes flySpaceship {
+      0% {
+        transform: translateX(0) translateY(0) rotate(-10deg) scale(0.8);
+        opacity: 0.7;
+      }
+      25% {
+        transform: translateX(calc(50vw - 40px)) translateY(-5vh) rotate(5deg) scale(1);
+        opacity: 1;
+      }
+      50% {
+        transform: translateX(calc(100vw + 100px)) translateY(5vh) rotate(-5deg) scale(0.9);
+        opacity: 0.8;
+      }
+      50.01% { /* Disappear and reset */
+        transform: translateX(-100px) translateY(10vh) rotate(-10deg) scale(0.8); /* Reset off-screen left, different Y */
+        opacity: 0;
+      }
+      60% { /* Reappear */
+         opacity: 0.7;
+         top: 30%; /* Change starting Y for next loop */
+      }
+      100% {
+        transform: translateX(calc(100vw + 100px)) translateY(15vh) rotate(10deg) scale(0.85);
+        opacity: 0.7;
+        top: 30%;
+      }
+    }
+    
+    @keyframes flySpaceshipAlt {
+      0% {
+        transform: translateX(0) translateY(0) rotate(8deg) scale(0.9);
+        opacity: 0.6;
+      }
+      50% {
+        transform: translateX(calc(-100vw - 120px)) translateY(-8vh) rotate(-5deg) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateX(0) translateY(0) rotate(8deg) scale(0.9); /* Loop back to start */
+        opacity: 0.6;
+      }
+    }
+
+
+    /* Removed .grid-overlay and original body::after (diagonal lines) */
+    /* Removed original body::before (stars) */
 
     header {
       text-align: center;
       padding: 60px 20px 30px;
-      position: relative;
+      position: relative; /* Keep for h1 positioning */
       animation: fadeInDown 1s ease-out 0.2s backwards;
+      z-index: 1; /* Ensure header is above background elements */
     }
 
     @keyframes fadeInDown {
@@ -109,11 +183,9 @@
     h1 {
       color: #fff;
       font-family: 'Audiowide', cursive;
-      /* Responsive font size: min 2rem, preferred 1.3rem + 3.3vw, max 3.8rem */
       font-size: clamp(2rem, 1.3rem + 3.3vw, 3.8rem); 
       margin: 20px 0;
       text-transform: uppercase;
-      /* Responsive letter spacing: min 1.5px, preferred 0.5px + 0.25vw, max 3px */
       letter-spacing: clamp(1.5px, 0.5px + 0.25vw, 3px);
       animation: textGlow 3s ease-in-out infinite alternate;
       position: relative;
@@ -136,6 +208,11 @@
           0 0 38px var(--secondary-glow),
           0 0 48px var(--secondary-glow);
       }
+    }
+    
+    main {
+        position: relative; /* Ensure main content is above background elements */
+        z-index: 1;
     }
 
     .button-container {
@@ -243,78 +320,28 @@
       box-shadow: 0 0 20px #ffb347, 0 0 35px #ffb347, inset 0 0 10px rgba(255,179,71,0.3);
     }
 
-    .data-arc {
-        position: absolute;
-        width: 250px;
-        height: 250px;
-        border-radius: 50%;
-        border: 2px dashed var(--primary-glow);
-        opacity: 0.2;
-        pointer-events: none;
-        animation: rotateArc 25s linear infinite;
-        filter: blur(0.5px);
-    }
-
-    .data-arc.left {
-        left: -80px;
-        top: 15%;
-        border-style: solid;
-        border-color: transparent transparent var(--primary-glow) var(--primary-glow);
-        transform: rotate(30deg);
-        animation-duration: 30s;
-    }
-
-    .data-arc.right {
-        right: -80px;
-        top: 50%;
-        border-color: var(--secondary-glow) transparent transparent var(--secondary-glow);
-        transform: rotate(-45deg);
-        animation-duration: 35s;
-        animation-direction: reverse;
-    }
-
-    @keyframes rotateArc {
-        0% { transform: rotate(var(--initial-rotate, 0deg)) scale(0.95); opacity: 0.15; }
-        50% { transform: rotate(calc(var(--initial-rotate, 0deg) + 180deg)) scale(1.05); opacity: 0.25; }
-        100% { transform: rotate(calc(var(--initial-rotate, 0deg) + 360deg)) scale(0.95); opacity: 0.15; }
-    }
-    .data-arc.left { --initial-rotate: 30deg; }
-    .data-arc.right { --initial-rotate: -45deg; }
+    /* Removed .data-arc styles */
 
     @media (max-width: 768px) {
-      /* h1 font-size and letter-spacing are now handled by clamp() in the base style */
-
-      .button-container {
-        gap: 25px;
-        padding: 30px 15px;
-      }
-
       .cartoon-btn {
         font-size: 1.15rem !important;
         padding: 18px 25px !important;
         min-width: 200px;
       }
-
-      .data-arc {
-        width: 180px;
-        height: 180px;
-        opacity: 0.15;
-      }
-      .data-arc.left { left: -60px; }
-      .data-arc.right { right: -60px; }
+      .spaceship-container { width: 60px; }
+      .spaceship-container-alt { width: 75px; animation-duration: 40s; }
 
 
-      .grid-overlay::before { background-size: 100% 40px; }
-      .grid-overlay::after { background-size: 40px 100%; }
-      body::before {
-        background-size: 450px 450px, 300px 300px;
-        opacity: 0.2;
+      body::before { /* Dots on smaller screens */
+        background-size:
+          80px 80px,
+          120px 120px,
+          180px 180px;
+        opacity: 0.7;
       }
     }
 
     @media (max-width: 480px) {
-      /* h1 font-size and letter-spacing are now handled by clamp() in the base style */
-      
       .cartoon-btn {
         font-size: 1rem !important;
         padding: 16px 20px !important;
@@ -326,15 +353,45 @@
         flex-direction: column;
         align-items: center;
       }
-       .data-arc { display: none; }
+      .spaceship-container { display: none; } /* Hide spaceship on very small screens for performance/clarity */
+      .spaceship-container-alt { display: none; }
+
+
+      body::before { /* Dots on very small screens */
+        background-size:
+          60px 60px,
+          100px 100px,
+          150px 150px;
+        opacity: 0.6;
+         animation:
+          moveDots1 25s linear infinite, /* Slightly adjust speed */
+          moveDots2 40s linear infinite,
+          moveDots3 55s linear infinite;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="grid-overlay"></div>
-  <div class="data-arc left"></div>
-  <div class="data-arc right"></div>
-  
+  <!-- Spaceship Element -->
+  <div class="spaceship-container">
+    <svg class="spaceship-svg" viewBox="0 0 60 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M30 0 L5 15 L12 15 L12 20 L5 30 L30 35 L55 30 L48 20 L48 15 L55 15 L30 0Z" fill="rgba(180, 190, 220, 0.6)"/>
+        <path d="M30 5 L15 15 L15 20 L30 30 L45 20 L45 15 L30 5Z" fill="rgba(150,160,190,0.8)"/>
+        <ellipse cx="30" cy="8" rx="3" ry="1.5" fill="var(--primary-glow)"/> <!-- Cockpit glow -->
+        <rect x="26" y="32" width="8" height="3" fill="rgba(255,100,80,0.9)"/> <!-- Engine Glow -->
+        <ellipse cx="8" cy="28" rx="2" ry="1" fill="rgba(255,180,80,0.7)"/> <!-- Wingtip light -->
+        <ellipse cx="52" cy="28" rx="2" ry="1" fill="rgba(255,180,80,0.7)"/> <!-- Wingtip light -->
+    </svg>
+  </div>
+  <div class="spaceship-container-alt"> <!-- A second, different spaceship -->
+    <svg class="spaceship-svg-alt" viewBox="0 0 50 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 12.5 L10 5 L45 5 L50 12.5 L45 20 L10 20 L0 12.5Z" fill="rgba(160, 170, 200, 0.5)"/>
+        <path d="M5 12.5 L12 8 L40 8 L45 12.5 L40 17 L12 17 L5 12.5Z" fill="rgba(130,140,170,0.7)"/>
+        <circle cx="42" cy="12.5" r="3" fill="rgba(80,255,100,0.9)"/> <!-- Engine Glow -->
+        <rect x="10" y="10.5" width="10" height="4" rx="1" fill="var(--secondary-glow)"/> <!-- Window -->
+    </svg>
+  </div>
+
   <header>
     <h1>BCA Wonderland 🎓</h1>
   </header>
