@@ -222,11 +222,16 @@
       box-shadow: 0 0 10px rgba(var(--primary-glow-rgb), 0.25), 0 0 20px rgba(var(--primary-glow-rgb), 0.1);
       min-width: 220px; animation: fadeInUp 0.6s ease-out backwards;
     }
-    .button-container .cartoon-btn:nth-child(1) { animation-delay: 0.4s; }
-    .button-container .cartoon-btn:nth-child(2) { animation-delay: 0.6s; }
-    .button-container .cartoon-btn:nth-child(3) { animation-delay: 0.8s; }
-    .button-container .cartoon-btn:nth-child(4) { animation-delay: 1.0s; }
-    .button-container .cartoon-btn:nth-child(5) { animation-delay: 1.2s; }
+
+    /* UPDATED Animation Delays for buttons */
+    .button-container .cartoon-btn:nth-child(1) { animation-delay: 0.4s; } /* Semester 3 */
+    .button-container .cartoon-btn:nth-child(2) { animation-delay: 0.6s; } /* Semester 4 */
+    .button-container .cartoon-btn:nth-child(3) { animation-delay: 0.8s; } /* Semester 5 (New) */
+    .button-container .cartoon-btn:nth-child(4) { animation-delay: 1.0s; } /* Semester 6 (New) */
+    .button-container .cartoon-btn:nth-child(5) { animation-delay: 1.2s; } /* Datesheet */
+    .button-container .cartoon-btn:nth-child(6) { animation-delay: 1.4s; } /* Result */
+    .button-container .cartoon-btn:nth-child(7) { animation-delay: 1.6s; } /* Syllabus */
+
 
     @keyframes fadeInUp {
       from { opacity: 0; transform: translateY(30px) scale(0.95); }
@@ -258,6 +263,18 @@
       border-color: #FF8800;
       box-shadow: 0 0 15px #FF8800, 0 0 30px #FF8800, inset 0 0 10px rgba(255,136,0,0.2);
     }
+    /* NEW Button Colors */
+    .cartoon-btn.lime { border-color: #76ff03; /* Bright Lime Green */ }
+    .cartoon-btn.lime:hover {
+      border-color: #64dd17; /* Darker Lime Green */
+      box-shadow: 0 0 15px #64dd17, 0 0 30px #64dd17, inset 0 0 10px rgba(100,221,23,0.2);
+    }
+    .cartoon-btn.deep-orange { border-color: #ff6d00; /* Bright Deep Orange */ }
+    .cartoon-btn.deep-orange:hover {
+      border-color: #dd2c00; /* Darker Red-Orange */
+      box-shadow: 0 0 15px #dd2c00, 0 0 30px #dd2c00, inset 0 0 10px rgba(221,44,0,0.2);
+    }
+    /* End NEW Button Colors */
     .cartoon-btn.cyan { border-color: #44ddbb; /* Brighter Cyan/Teal */ }
     .cartoon-btn.cyan:hover {
       border-color: #11cbaa;
@@ -273,6 +290,7 @@
       border-color: #ff8c00;
       box-shadow: 0 0 15px #ff8c00, 0 0 30px #ff8c00, inset 0 0 10px rgba(255,140,0,0.2);
     }
+
 
     @media (max-width: 768px) {
       .cartoon-btn { font-size: 1.1rem !important; padding: 16px 22px !important; min-width: 190px; }
@@ -332,6 +350,10 @@
     <div class="button-container">
       <button class="cartoon-btn blue" id="semester3">Semester 3 📚</button>
       <button class="cartoon-btn yellow" id="semester4">Semester 4 ✨</button>
+      <!-- NEW BUTTONS START -->
+      <button class="cartoon-btn lime" id="semester5">Semester 5 🧑‍💻</button>
+      <button class="cartoon-btn deep-orange" id="semester6">Semester 6 🚀</button>
+      <!-- NEW BUTTONS END -->
       <button class="cartoon-btn cyan" id="datesheet">Datesheet 📅</button>
       <button class="cartoon-btn pink" id="result">Result 🎉</button>
       <button class="cartoon-btn gold" id="syllabus">Syllabus 🗺️</button>
@@ -342,6 +364,10 @@
     document.addEventListener('DOMContentLoaded', function() {
       document.getElementById('semester3').addEventListener('click', function() { window.location.href = "https://akaal777.github.io/B-C-A/"; });
       document.getElementById('semester4').addEventListener('click', function() { window.location.href = "sem4/semester4.html"; });
+      // NEW Event Listeners
+      document.getElementById('semester5').addEventListener('click', function() { window.location.href = "sem5/semester5.html"; }); // Placeholder link
+      document.getElementById('semester6').addEventListener('click', function() { window.location.href = "sem6/semester6.html"; }); // Placeholder link
+      // END NEW Event Listeners
       document.getElementById('datesheet').addEventListener('click', function() { window.location.href = "https://ds19.pupexamination.ac.in/uploaddatesheet/view-datesheet.php"; });
       document.getElementById('result').addEventListener('click', function() { window.location.href = "https://results.pupexamination.ac.in/t8/results/results.php"; });
       document.getElementById('syllabus').addEventListener('click', function() { window.location.href = "http://www.punjabiuniversity.ac.in/indexSyllabi.aspx"; });
