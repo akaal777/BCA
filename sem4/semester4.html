@@ -19,18 +19,18 @@
 
         body {
             margin: 0;
-            padding: 0;
+            padding: 0; /* Default padding, will be overridden in media queries if needed */
             background: linear-gradient(135deg, var(--background-color-start), var(--background-color-end));
-            background-attachment: fixed; /* Keeps gradient fixed during scroll */
+            background-attachment: fixed;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            justify-content: center; /* Default: center content vertically */
+            align-items: center; /* Center content horizontally */
             min-height: 100vh;
             font-family: 'Roboto', sans-serif;
             color: var(--text-color);
             overflow-x: hidden;
-            position: relative; /* For pseudo-element background effects */
+            position: relative;
         }
 
         /* Animated Starfield Background */
@@ -45,7 +45,7 @@
             pointer-events: none;
         }
 
-        body::before { /* Small stars */
+        body::before {
             background-image: radial-gradient(1px 1px at 20px 30px, #fff, transparent),
                               radial-gradient(1px 1px at 40px 70px, #ddd, transparent),
                               radial-gradient(1px 1px at 90px 40px, #eee, transparent),
@@ -55,12 +55,12 @@
             animation: moveStars 120s linear infinite;
         }
 
-        body::after { /* Larger, slower stars */
+        body::after {
             background-image: radial-gradient(2px 2px at 50px 150px, #fff, transparent),
                               radial-gradient(2px 2px at 100px 250px, #ddd, transparent),
                               radial-gradient(3px 3px at 200px 80px, #eee, transparent);
             background-size: 350px 350px;
-            animation: moveStars 180s linear infinite reverse; /* Different speed and direction */
+            animation: moveStars 180s linear infinite reverse;
         }
 
         @keyframes moveStars {
@@ -68,10 +68,9 @@
             to { background-position: -10000px 5000px; }
         }
 
-
         header {
             position: relative;
-            margin-bottom: 3rem;
+            margin-bottom: 3rem; /* Default margin for larger screens */
             text-align: center;
             animation: fadeInDown 1s ease-out;
         }
@@ -79,16 +78,24 @@
         h1 {
             font-family: 'Orbitron', sans-serif;
             color: var(--primary-color);
-            font-size: 3em; /* Responsive font size */
-            letter-spacing: 3px;
+            font-size: 2.8em;
+            letter-spacing: 2.5px;
             text-shadow: 0 0 10px var(--primary-color), 0 0 20px var(--primary-color), 0 0 5px #fff;
             animation: pulseGlow 2s ease-in-out infinite;
             position: relative;
             display: inline-block;
-            padding: 15px 30px;
+            padding: 12px 25px;
             background: rgba(0,0,0,0.3);
             border-radius: 8px;
             border: 1px solid rgba(0, 255, 255, 0.3);
+            word-wrap: break-word;
+        }
+
+        main {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .button-container {
@@ -98,15 +105,15 @@
             padding: 20px;
             max-width: 1200px;
             width: 90%;
-            animation: fadeInUp 1s ease-out 0.5s backwards; /* Staggered animation */
+            animation: fadeInUp 1s ease-out 0.5s backwards;
         }
 
         .button-container button {
             background: var(--card-bg-color);
             border: 2px solid var(--card-border-color);
             color: var(--text-color);
-            padding: 20px 25px; /* Adjusted padding for better text fit */
-            font-size: 1.5em; /* Responsive font size */
+            padding: 20px 25px;
+            font-size: 1.5em;
             font-family: 'Roboto', sans-serif;
             font-weight: 700;
             cursor: pointer;
@@ -114,11 +121,11 @@
             border-radius: 8px;
             box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
             position: relative;
-            overflow: hidden; /* For pseudo-element hover effect */
+            overflow: hidden;
             text-transform: uppercase;
             letter-spacing: 1px;
-            min-height: 80px; /* Ensure buttons have a decent height */
-            display: flex; /* For vertical alignment if needed */
+            min-height: 80px;
+            display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
@@ -151,7 +158,6 @@
             box-shadow: 0 0 10px var(--primary-color);
         }
 
-        /* Keyframe animations */
         @keyframes pulseGlow {
             0%, 100% { text-shadow: 0 0 10px var(--primary-color), 0 0 20px var(--primary-color), 0 0 5px #fff; }
             50% { text-shadow: 0 0 15px var(--primary-color), 0 0 30px var(--primary-color), 0 0 10px var(--secondary-color), 0 0 5px #fff; }
@@ -168,13 +174,22 @@
         }
 
         /* Responsive adjustments */
-        @media (max-width: 768px) {
+        @media (max-width: 768px) { /* Tablets and large phones */
+            body {
+                justify-content: flex-start; /* Align content to the top */
+                padding-top: 2rem;          /* Space from viewport top to header */
+                padding-bottom: 2rem;       /* Space at the bottom if content is scrollable */
+            }
+            header {
+                margin-bottom: 2rem; /* Space between header and main content for tablets */
+            }
             h1 {
-                font-size: 2.5em;
-                padding: 10px 20px;
+                font-size: 2.2em;
+                letter-spacing: 2px;
+                padding: 10px 15px;
             }
             .button-container {
-                grid-template-columns: 1fr; /* Stack buttons on smaller screens */
+                grid-template-columns: 1fr;
                 gap: 20px;
                 width: 95%;
             }
@@ -184,10 +199,15 @@
             }
         }
 
-        @media (max-width: 480px) {
+        @media (max-width: 480px) { /* Smartphones */
+            /* Body padding and justify-content inherited from 768px media query */
+            header {
+                margin-bottom: 1.5rem; /* "Tiny space" for phones */
+            }
             h1 {
-                font-size: 2em;
-                letter-spacing: 2px;
+                font-size: 1.8em;
+                letter-spacing: 1.5px;
+                padding: 8px 12px;
             }
             .button-container button {
                 font-size: 1.1em;
@@ -199,7 +219,7 @@
 </head>
 <body>
     <header>
-        <h1><span style="color: var(--secondary-color);">BCA</span> 4th Sem <span style="color: var(--secondary-color);"></span></h1>
+        <h1><span style="color: var(--secondary-color);">BCA</span> 4th Sem <span style="color: var(--secondary-color);">Nexus Hub</span></h1>
     </header>
     <main>
         <div class="button-container">
@@ -212,20 +232,16 @@
     </main>
 
     <script>
-        // Button click feedback and navigation
         document.querySelectorAll('.button-container button').forEach(button => {
             button.addEventListener('click', () => {
-                // Modern click animation
                 button.style.transform = 'scale(0.97)';
                 button.style.transition = 'transform 0.1s ease-out';
                 setTimeout(() => {
-                    button.style.transform = 'scale(1.02)'; // Reset to hover state
+                    button.style.transform = 'scale(1.02)';
                 }, 100);
 
-                // Navigate to page
                 const pageName = button.dataset.link;
                 if (pageName) {
-                    // Simulate navigation after a short delay for animation
                     setTimeout(() => {
                          window.location.href = `${pageName}.html`;
                     }, 200);
@@ -233,12 +249,10 @@
             });
         });
 
-        // Small script to add unique animation delays for buttons if desired for a staggered entry
         const buttons = document.querySelectorAll('.button-container button');
         buttons.forEach((button, index) => {
             button.style.animation = `fadeInUp 0.5s ease-out ${0.5 + index * 0.1}s backwards`;
         });
-
     </script>
 </body>
 </html>
