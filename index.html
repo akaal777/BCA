@@ -3,50 +3,160 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>BCA Nova Core</title> <!-- New Title for Dark Theme -->
+  <title>BCA Nova Core</title>
   <link rel="icon" type="image/jpeg" href="bca_logo.jpg">
   <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Exo+2:wght@400;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      /* Dark Theme Background Gradient */
-      --bg-d1: #23293f; /* Dark Slate Blue/Gray */
-      --bg-d2: #1a1f33; /* Darker Indigo/Blue */
-      --bg-d3: #0f121f; /* Very Dark Navy/Almost Black */
+      /* --- Dark Theme Variables (Defaults) --- */
+      --bg-d1-val: #23293f;
+      --bg-d2-val: #1a1f33;
+      --bg-d3-val: #0f121f;
 
-      /* Vibrant Glows for Dark Theme */
-      --primary-glow: #00e5ff; /* Bright Cyan */
-      --primary-glow-rgb: 0, 229, 255;
-      --secondary-glow: #c500ff; /* Bright Purple/Magenta */
-      --secondary-glow-rgb: 197, 0, 255;
+      --primary-glow-d-val: #00e5ff;
+      --primary-glow-rgb-d-val: 0, 229, 255;
+      --secondary-glow-d-val: #c500ff;
+      --secondary-glow-rgb-d-val: 197, 0, 255;
 
-      /* Text and Headings for Dark Theme */
-      --text-color: #c8d0e0;     /* Light Gray/Blue */
-      --heading-color: #ffffff; /* White */
+      --text-color-d-val: #c8d0e0;
+      --heading-color-d-val: #ffffff;
 
-      /* Buttons for Dark Theme */
-      --button-bg: rgba(30, 35, 55, 0.7);
-      --button-border-default: var(--primary-glow);
-      --button-hover-bg: rgba(45, 50, 75, 0.9);
-      --button-text-color: #e0eaff;
+      --button-bg-d-val: rgba(30, 35, 55, 0.7);
+      --button-border-default-d-val: var(--primary-glow-d-val);
+      --button-hover-bg-d-val: rgba(45, 50, 75, 0.9);
+      --button-text-color-d-val: #e0eaff;
 
       /* Dots for Dark Theme */
-      --dot-color-1: rgba(var(--primary-glow-rgb), 0.5);
-      --dot-color-2: rgba(var(--secondary-glow-rgb), 0.4);
-      --dot-color-3: rgba(180, 190, 220, 0.35); /* Fainter whitish */
+      --dot-color-1-d-val: rgba(var(--primary-glow-rgb-d-val), 0.5);
+      --dot-color-2-d-val: rgba(var(--secondary-glow-rgb-d-val), 0.4);
+      --dot-color-3-d-val: rgba(180, 190, 220, 0.35);
 
       /* Sparkles for Dark Theme */
-      --sparkle-color-1: rgba(var(--primary-glow-rgb), 0.7);
-      --sparkle-color-1-soft: rgba(var(--primary-glow-rgb), 0.25);
-      --sparkle-color-2: rgba(var(--secondary-glow-rgb), 0.6);
-      --sparkle-color-2-soft: rgba(var(--secondary-glow-rgb), 0.2);
+      --sparkle-color-1-d-val: rgba(var(--primary-glow-rgb-d-val), 0.7);
+      --sparkle-color-1-soft-d-val: rgba(var(--primary-glow-rgb-d-val), 0.25);
+      --sparkle-color-2-d-val: rgba(var(--secondary-glow-rgb-d-val), 0.6);
+      --sparkle-color-2-soft-d-val: rgba(var(--secondary-glow-rgb-d-val), 0.2);
+
+      --spaceship-body-d-val: rgba(170, 180, 210, 0.5);
+      --spaceship-inner-d-val: rgba(150, 160, 190, 0.7);
+      --spaceship-alt-body-d-val: rgba(160, 170, 200, 0.45);
+      --spaceship-alt-inner-d-val: rgba(140, 150, 180, 0.65);
+
+      /* --- Light Theme Variables --- */
+      --bg-l1-val: #f8f9fa; /* Classic Light Gray/Off-white */
+      --bg-l2-val: #f8f9fa;
+      --bg-l3-val: #f8f9fa;
+
+      --primary-glow-l-val: #007bff;
+      --primary-glow-rgb-l-val: 0, 123, 255;
+      --secondary-glow-l-val: #6f42c1;
+      --secondary-glow-rgb-l-val: 111, 66, 193;
+
+      --text-color-l-val: #212529;
+      --heading-color-l-val: #000000;
+
+      --button-bg-l-val: rgba(230, 235, 245, 0.85);
+      --button-border-default-l-val: var(--primary-glow-l-val);
+      --button-hover-bg-l-val: rgba(210, 215, 230, 0.95);
+      --button-text-color-l-val: #1a1f33;
+
+      /* Scientific Futuristic BG for Light Theme */
+      --sci-grid-line-color-l-val: rgba(var(--primary-glow-rgb-l-val), 0.08);
+      --sci-grid-line-alt-color-l-val: rgba(var(--secondary-glow-rgb-l-val), 0.06);
+      --sci-particle-color-1-l-val: rgba(var(--primary-glow-rgb-l-val), 0.2);
+      --sci-particle-color-2-l-val: rgba(var(--secondary-glow-rgb-l-val), 0.15);
+
+      --spaceship-body-l-val: rgba(70, 80, 110, 0.7);
+      --spaceship-inner-l-val: rgba(90, 100, 130, 0.85);
+      --spaceship-alt-body-l-val: rgba(60, 70, 100, 0.65);
+      --spaceship-alt-inner-l-val: rgba(80, 90, 120, 0.8);
+
+      /* --- Current Theme Aliases (Default to Dark) --- */
+      --bg1: var(--bg-d1-val);
+      --bg2: var(--bg-d2-val);
+      --bg3: var(--bg-d3-val);
+      --primary-glow: var(--primary-glow-d-val);
+      --primary-glow-rgb: var(--primary-glow-rgb-d-val);
+      --secondary-glow: var(--secondary-glow-d-val);
+      --secondary-glow-rgb: var(--secondary-glow-rgb-d-val);
+      --text-color: var(--text-color-d-val);
+      --heading-color: var(--heading-color-d-val);
+      --button-bg: var(--button-bg-d-val);
+      --button-border-default: var(--button-border-default-d-val);
+      --button-hover-bg: var(--button-hover-bg-d-val);
+      --button-text-color: var(--button-text-color-d-val);
+
+      /* Particle Aliases (default to dark theme particles) */
+      --particle-pseudo-before-bg-image:
+        radial-gradient(circle, var(--dot-color-1-d-val) 0.8px, transparent 1.3px),
+        radial-gradient(circle, var(--dot-color-2-d-val) 1.1px, transparent 1.7px),
+        radial-gradient(circle, var(--dot-color-3-d-val) 1.3px, transparent 2.2px);
+      --particle-pseudo-before-bg-size: 80px 80px, 130px 130px, 180px 180px;
+      --particle-pseudo-before-animation: moveDots1 20s linear infinite, moveDots2 30s linear infinite, moveDots3 45s linear infinite;
+      --particle-pseudo-before-opacity: 0.8;
+
+      --particle-pseudo-after-bg-image:
+        radial-gradient(circle, var(--sparkle-color-1-d-val) 0.6px, var(--sparkle-color-1-soft-d-val) 1.8px, transparent 3.5px),
+        radial-gradient(circle, var(--sparkle-color-1-d-val) 0.8px, var(--sparkle-color-1-soft-d-val) 2px, transparent 4px),
+        radial-gradient(circle, var(--sparkle-color-2-d-val) 0.9px, var(--sparkle-color-2-soft-d-val) 2.2px, transparent 4.5px),
+        radial-gradient(circle, var(--sparkle-color-2-d-val) 1.1px, var(--sparkle-color-2-soft-d-val) 2.8px, transparent 5px);
+      --particle-pseudo-after-bg-size: 180px 180px, 280px 280px, 230px 230px, 330px 330px;
+      --particle-pseudo-after-bg-position: 0px 0px, 50px 80px, 100px 20px, -30px 150px;
+      --particle-pseudo-after-animation: animateAllSparkles 40s linear infinite, twinkleSparkleField 8s ease-in-out infinite alternate 0.5s;
+      --particle-pseudo-after-opacity: 1; /* Dark theme sparkles are more prominent initially */
+
+      --spaceship-body: var(--spaceship-body-d-val);
+      --spaceship-inner: var(--spaceship-inner-d-val);
+      --spaceship-alt-body: var(--spaceship-alt-body-d-val);
+      --spaceship-alt-inner: var(--spaceship-alt-inner-d-val);
+    }
+
+    body.light-theme {
+      --bg1: var(--bg-l1-val);
+      --bg2: var(--bg-l2-val);
+      --bg3: var(--bg-l3-val);
+      --primary-glow: var(--primary-glow-l-val);
+      --primary-glow-rgb: var(--primary-glow-rgb-l-val);
+      --secondary-glow: var(--secondary-glow-l-val);
+      --secondary-glow-rgb: var(--secondary-glow-rgb-l-val);
+      --text-color: var(--text-color-l-val);
+      --heading-color: var(--heading-color-l-val);
+      --button-bg: var(--button-bg-l-val);
+      --button-border-default: var(--button-border-default-l-val);
+      --button-hover-bg: var(--button-hover-bg-l-val);
+      --button-text-color: var(--button-text-color-l-val);
+
+      /* Override particle aliases for light theme - NEW SCIENTIFIC ANIMATION */
+      --particle-pseudo-before-bg-image:
+        linear-gradient(var(--sci-grid-line-color-l-val) 1px, transparent 1px),
+        linear-gradient(90deg, var(--sci-grid-line-color-l-val) 1px, transparent 1px),
+        linear-gradient(45deg, var(--sci-grid-line-alt-color-l-val) 0.5px, transparent 0.5px),
+        linear-gradient(-45deg, var(--sci-grid-line-alt-color-l-val) 0.5px, transparent 0.5px);
+      --particle-pseudo-before-bg-size: 50px 50px, 50px 50px, 70px 70px, 70px 70px;
+      --particle-pseudo-before-animation: animateGridLight 60s linear infinite;
+      --particle-pseudo-before-opacity: 0.7;
+
+      --particle-pseudo-after-bg-image:
+        radial-gradient(circle, var(--sci-particle-color-1-l-val) 1px, transparent 2px),
+        radial-gradient(circle, var(--sci-particle-color-2-l-val) 1.5px, transparent 3px);
+      --particle-pseudo-after-bg-size: 100px 100px, 150px 150px;
+      --particle-pseudo-after-bg-position: 0px 0px, 25px 50px;
+      --particle-pseudo-after-animation: animateSciParticlesLight 50s linear infinite, pulseSciParticlesLight 10s ease-in-out infinite alternate;
+      --particle-pseudo-after-opacity: 0.8;
+
+
+      --spaceship-body: var(--spaceship-body-l-val);
+      --spaceship-inner: var(--spaceship-inner-l-val);
+      --spaceship-alt-body: var(--spaceship-alt-body-l-val);
+      --spaceship-alt-inner: var(--spaceship-alt-inner-l-val);
     }
 
     body {
       background: linear-gradient(-45deg,
-        var(--bg-d1),
-        var(--bg-d2),
-        var(--bg-d3),
-        var(--bg-d1) /* Loop back to start color */
+        var(--bg1),
+        var(--bg2),
+        var(--bg3),
+        var(--bg1)
       );
       background-size: 400% 400%;
       animation: futuristicGradientBG 35s ease-in-out infinite;
@@ -57,6 +167,7 @@
       color: var(--text-color);
       overflow-x: hidden;
       position: relative;
+      transition: background 0.5s ease, color 0.5s ease;
     }
 
     @keyframes futuristicGradientBG {
@@ -64,30 +175,38 @@
       100% { background-position: 100% 50%; }
     }
 
-    /* Moving Glowing Dots Background */
-    body::before {
+    body::before { /* Generic pseudo-element for particles */
       content: '';
       position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100%;
       pointer-events: none;
       z-index: -2;
-      background-image:
-        radial-gradient(circle, var(--dot-color-1) 0.8px, transparent 1.3px),
-        radial-gradient(circle, var(--dot-color-2) 1.1px, transparent 1.7px),
-        radial-gradient(circle, var(--dot-color-3) 1.3px, transparent 2.2px);
-      background-size:
-        80px 80px,  /* Denser dots */
-        130px 130px,
-        180px 180px;
+      background-image: var(--particle-pseudo-before-bg-image);
+      background-size: var(--particle-pseudo-before-bg-size);
       background-repeat: repeat;
-      animation:
-        moveDots1 20s linear infinite, /* Slightly faster movement */
-        moveDots2 30s linear infinite,
-        moveDots3 45s linear infinite;
-      opacity: 0.8; /* Brighter against dark */
+      animation: var(--particle-pseudo-before-animation);
+      opacity: var(--particle-pseudo-before-opacity);
+      transition: background-image 0.3s ease, background-size 0.3s ease, opacity 0.5s ease;
     }
 
+    body::after { /* Generic pseudo-element for particles */
+      content: '';
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: -3; /* Behind ::before */
+      background-image: var(--particle-pseudo-after-bg-image);
+      background-size: var(--particle-pseudo-after-bg-size);
+      background-position: var(--particle-pseudo-after-bg-position);
+      background-repeat: repeat;
+      animation: var(--particle-pseudo-after-animation);
+      opacity: var(--particle-pseudo-after-opacity);
+      transition: background-image 0.3s ease, background-size 0.3s ease, background-position 0.3s ease, opacity 0.5s ease;
+    }
+
+    /* --- Dark Theme Particle Animations (Dots & Sparkles) --- */
     @keyframes moveDots1 {
       0% { background-position: 0 0; }
       100% { background-position: 240px 480px; }
@@ -100,44 +219,35 @@
       0% { background-position: 0 0; }
       100% { background-position: 540px -270px; }
     }
-
-    /* Blurry Sparkles Background */
-    body::after {
-      content: '';
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      pointer-events: none;
-      z-index: -3;
-      background-image:
-        radial-gradient(circle, var(--sparkle-color-1) 0.6px, var(--sparkle-color-1-soft) 1.8px, transparent 3.5px),
-        radial-gradient(circle, var(--sparkle-color-1) 0.8px, var(--sparkle-color-1-soft) 2px, transparent 4px),
-        radial-gradient(circle, var(--sparkle-color-2) 0.9px, var(--sparkle-color-2-soft) 2.2px, transparent 4.5px),
-        radial-gradient(circle, var(--sparkle-color-2) 1.1px, var(--sparkle-color-2-soft) 2.8px, transparent 5px);
-      background-size:
-        180px 180px,
-        280px 280px,
-        230px 230px,
-        330px 330px;
-      background-repeat: repeat;
-      background-position:
-        0px 0px, 50px 80px, 100px 20px, -30px 150px;
-      animation:
-        animateAllSparkles 40s linear infinite, /* Slightly faster */
-        twinkleSparkleField 8s ease-in-out infinite alternate 0.5s; /* Quicker twinkle */
-    }
-
     @keyframes animateAllSparkles {
       0% { background-position: 0px 0px, 50px 80px, 100px 20px, -30px 150px; }
       100% { background-position: -500px 700px, 800px -650px, -650px -800px, 700px 900px; }
     }
-
-    @keyframes twinkleSparkleField {
-      0% { opacity: 0.3; } /* Start a bit brighter */
-      40% { opacity: 0.9; } /* More visible peak */
+    @keyframes twinkleSparkleField { /* For Dark Theme Sparkles */
+      0% { opacity: 0.3; }
+      40% { opacity: 1; } /* Full opacity for dark theme sparkles at peak */
       60% { opacity: 0.7; }
       100% { opacity: 0.3; }
     }
+
+    /* --- Light Theme Scientific Futuristic Animations --- */
+    @keyframes animateGridLight {
+      0% { background-position: 0 0, 0 0, 0 0, 0 0; }
+      100% { background-position: 100px 100px, -100px -100px, 140px 0, 0 140px; }
+    }
+    @keyframes animateSciParticlesLight {
+      0% { background-position: 0px 0px, 25px 50px; }
+      100% { background-position: 200px -150px, -150px 250px; }
+    }
+    @keyframes pulseSciParticlesLight { /* Gentle pulse for light theme particles */
+      0% { opacity: var(--particle-pseudo-after-opacity); transform: scale(1); }
+      50% { opacity: calc(var(--particle-pseudo-after-opacity) * 0.7); transform: scale(0.95); }
+      100% { opacity: var(--particle-pseudo-after-opacity); transform: scale(1); }
+    }
+    /* If body.light-theme @keyframes twinkleSparkleField is defined, it will conflict.
+       The new animation `pulseSciParticlesLight` is used for the ::after element in light theme.
+       The twinkleSparkleField is only part of the dark theme's ::after animation set. */
+
 
     .spaceship-container {
       position: fixed;
@@ -148,7 +258,12 @@
     .spaceship-svg {
       width: 100%; height: auto;
       filter: drop-shadow(0 0 6px var(--primary-glow)) drop-shadow(0 0 12px var(--primary-glow));
+      transition: filter 0.5s ease;
     }
+    .spaceship-svg .s1-body { fill: var(--spaceship-body); transition: fill 0.5s ease;}
+    .spaceship-svg .s1-inner { fill: var(--spaceship-inner); transition: fill 0.5s ease;}
+
+
     .spaceship-container-alt {
       position: fixed;
       top: 65%; right: -120px; width: 90px; height: auto;
@@ -158,7 +273,11 @@
     .spaceship-svg-alt {
       width: 100%; height: auto; transform: scaleX(-1);
       filter: drop-shadow(0 0 7px var(--secondary-glow)) drop-shadow(0 0 15px var(--secondary-glow));
+      transition: filter 0.5s ease;
     }
+    .spaceship-svg-alt .s2-body { fill: var(--spaceship-alt-body); transition: fill 0.5s ease;}
+    .spaceship-svg-alt .s2-inner { fill: var(--spaceship-alt-inner); transition: fill 0.5s ease;}
+
 
     @keyframes flySpaceship {
       0% { transform: translateX(0) translateY(0) rotate(-10deg) scale(0.75); opacity: 0.7; }
@@ -185,12 +304,14 @@
 
     h1 {
       color: var(--heading-color); font-family: 'Audiowide', cursive;
-      font-size: clamp(2rem, 1.3rem + 3.3vw, 3.8rem); /* Slightly larger for impact */
+      font-size: clamp(2rem, 1.3rem + 3.3vw, 3.8rem);
       margin: 15px 0; text-transform: uppercase;
       letter-spacing: clamp(1.5px, 0.5px + 0.25vw, 3px);
       animation: textGlowDark 3s ease-in-out infinite alternate; position: relative;
+      transition: color 0.5s ease, text-shadow 0.5s ease;
     }
-    @keyframes textGlowDark { /* More vibrant glow for dark theme */
+
+    @keyframes textGlowDark {
       from {
         text-shadow:
           0 0 7px #fff,
@@ -204,6 +325,24 @@
           0 0 35px var(--secondary-glow);
       }
     }
+    body.light-theme h1 {
+      animation-name: textGlowLight;
+    }
+    @keyframes textGlowLight {
+      from {
+        text-shadow:
+          1px 1px 2px rgba(0,0,0,0.15),
+          0 0 3px var(--primary-glow),
+          0 0 6px var(--primary-glow);
+      }
+      to {
+        text-shadow:
+          1px 1px 2px rgba(0,0,0,0.15),
+          0 0 5px var(--secondary-glow),
+          0 0 10px var(--secondary-glow);
+      }
+    }
+
 
     main { position: relative; z-index: 1; }
 
@@ -216,21 +355,25 @@
       font-family: 'Exo 2', sans-serif; font-size: 1.3rem; font-weight: 700;
       padding: 18px 30px; border: 2px solid var(--button-border-default);
       border-radius: 8px; cursor: pointer;
-      transition: all 0.3s ease, transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      transition: all 0.3s ease, transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+                  background 0.5s ease, color 0.5s ease, border-color 0.5s ease;
       text-transform: uppercase; letter-spacing: 1.2px;
       position: relative; overflow: hidden;
       box-shadow: 0 0 10px rgba(var(--primary-glow-rgb), 0.25), 0 0 20px rgba(var(--primary-glow-rgb), 0.1);
       min-width: 220px; animation: fadeInUp 0.6s ease-out backwards;
     }
+    body.light-theme .cartoon-btn {
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1), 0 0 5px rgba(var(--primary-glow-rgb), 0.15);
+    }
 
-    /* UPDATED Animation Delays for buttons */
-    .button-container .cartoon-btn:nth-child(1) { animation-delay: 0.4s; } /* Semester 3 */
-    .button-container .cartoon-btn:nth-child(2) { animation-delay: 0.6s; } /* Semester 4 */
-    .button-container .cartoon-btn:nth-child(3) { animation-delay: 0.8s; } /* Semester 5 (New) */
-    .button-container .cartoon-btn:nth-child(4) { animation-delay: 1.0s; } /* Semester 6 (New) */
-    .button-container .cartoon-btn:nth-child(5) { animation-delay: 1.2s; } /* Datesheet */
-    .button-container .cartoon-btn:nth-child(6) { animation-delay: 1.4s; } /* Result */
-    .button-container .cartoon-btn:nth-child(7) { animation-delay: 1.6s; } /* Syllabus */
+
+    .button-container .cartoon-btn:nth-child(1) { animation-delay: 0.4s; }
+    .button-container .cartoon-btn:nth-child(2) { animation-delay: 0.6s; }
+    .button-container .cartoon-btn:nth-child(3) { animation-delay: 0.8s; }
+    .button-container .cartoon-btn:nth-child(4) { animation-delay: 1.0s; }
+    .button-container .cartoon-btn:nth-child(5) { animation-delay: 1.2s; }
+    .button-container .cartoon-btn:nth-child(6) { animation-delay: 1.4s; }
+    .button-container .cartoon-btn:nth-child(7) { animation-delay: 1.6s; }
 
 
     @keyframes fadeInUp {
@@ -238,11 +381,14 @@
       to { opacity: 1; transform: translateY(0) scale(1); }
     }
 
-    .cartoon-btn::before { /* Sheen effect */
+    .cartoon-btn::before {
       content: ''; position: absolute; top: 0; left: -100%;
       width: 100%; height: 100%;
       background: linear-gradient(90deg, transparent, rgba(var(--primary-glow-rgb),0.15), transparent);
       transition: none;
+    }
+    body.light-theme .cartoon-btn::before {
+        background: linear-gradient(90deg, transparent, rgba(var(--primary-glow-rgb),0.08), transparent);
     }
     .cartoon-btn:hover::before { left: 100%; transition: left 0.6s ease-in-out; }
 
@@ -251,94 +397,129 @@
       border-color: var(--secondary-glow);
       box-shadow: 0 0 15px var(--secondary-glow), 0 0 30px var(--secondary-glow), inset 0 0 10px rgba(var(--secondary-glow-rgb), 0.15);
     }
+    body.light-theme .cartoon-btn:hover {
+        box-shadow: 0 4px 8px rgba(0,0,0,0.15), 0 0 10px var(--secondary-glow), inset 0 0 6px rgba(var(--secondary-glow-rgb), 0.1);
+    }
+    /* Accent color button hovers can be further customized for light theme if needed */
+    .cartoon-btn.blue { border-color: #33b5e5; }
+    .cartoon-btn.blue:hover { border-color: #0099cc; /* Shadow set by generic hover */}
+    .cartoon-btn.yellow { border-color: #ffbb33; }
+    .cartoon-btn.yellow:hover { border-color: #FF8800; }
+    .cartoon-btn.lime { border-color: #76ff03; }
+    .cartoon-btn.lime:hover { border-color: #64dd17; }
+    .cartoon-btn.deep-orange { border-color: #ff6d00; }
+    .cartoon-btn.deep-orange:hover { border-color: #dd2c00; }
+    .cartoon-btn.cyan { border-color: #44ddbb; }
+    .cartoon-btn.cyan:hover { border-color: #11cbaa; }
+    .cartoon-btn.pink { border-color: #ff44cc; }
+    .cartoon-btn.pink:hover { border-color: #d900a3; }
+    .cartoon-btn.gold { border-color: #ffaa3b; }
+    .cartoon-btn.gold:hover { border-color: #ff8c00; }
 
-    /* Button Accent Colors for Dark Theme */
-    .cartoon-btn.blue { border-color: #33b5e5; /* Brighter Blue */ }
-    .cartoon-btn.blue:hover {
-      border-color: #0099cc;
-      box-shadow: 0 0 15px #0099cc, 0 0 30px #0099cc, inset 0 0 10px rgba(0,153,204,0.2);
+    .theme-switcher {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1000;
+      background-color: var(--button-bg);
+      color: var(--button-text-color);
+      border: 2px solid var(--button-border-default);
+      padding: 8px 15px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-family: 'Exo 2', sans-serif;
+      font-size: 0.9rem;
+      transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     }
-    .cartoon-btn.yellow { border-color: #ffbb33; /* Brighter Yellow/Orange */ }
-    .cartoon-btn.yellow:hover {
-      border-color: #FF8800;
-      box-shadow: 0 0 15px #FF8800, 0 0 30px #FF8800, inset 0 0 10px rgba(255,136,0,0.2);
+    .theme-switcher:hover {
+      background-color: var(--button-hover-bg);
+      border-color: var(--secondary-glow);
     }
-    /* NEW Button Colors */
-    .cartoon-btn.lime { border-color: #76ff03; /* Bright Lime Green */ }
-    .cartoon-btn.lime:hover {
-      border-color: #64dd17; /* Darker Lime Green */
-      box-shadow: 0 0 15px #64dd17, 0 0 30px #64dd17, inset 0 0 10px rgba(100,221,23,0.2);
+    body.light-theme .theme-switcher {
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
-    .cartoon-btn.deep-orange { border-color: #ff6d00; /* Bright Deep Orange */ }
-    .cartoon-btn.deep-orange:hover {
-      border-color: #dd2c00; /* Darker Red-Orange */
-      box-shadow: 0 0 15px #dd2c00, 0 0 30px #dd2c00, inset 0 0 10px rgba(221,44,0,0.2);
-    }
-    /* End NEW Button Colors */
-    .cartoon-btn.cyan { border-color: #44ddbb; /* Brighter Cyan/Teal */ }
-    .cartoon-btn.cyan:hover {
-      border-color: #11cbaa;
-      box-shadow: 0 0 15px #11cbaa, 0 0 30px #11cbaa, inset 0 0 10px rgba(17,203,170,0.2);
-    }
-    .cartoon-btn.pink { border-color: #ff44cc; /* Brighter Pink/Magenta */ }
-    .cartoon-btn.pink:hover {
-      border-color: #d900a3;
-      box-shadow: 0 0 15px #d900a3, 0 0 30px #d900a3, inset 0 0 10px rgba(217,0,163,0.2);
-    }
-    .cartoon-btn.gold { border-color: #ffaa3b; /* Brighter Gold/Orange */ }
-    .cartoon-btn.gold:hover {
-      border-color: #ff8c00;
-      box-shadow: 0 0 15px #ff8c00, 0 0 30px #ff8c00, inset 0 0 10px rgba(255,140,0,0.2);
-    }
-
 
     @media (max-width: 768px) {
       .cartoon-btn { font-size: 1.1rem !important; padding: 16px 22px !important; min-width: 190px; }
       .spaceship-container { width: 55px; }
       .spaceship-container-alt { width: 70px; animation-duration: 42s; }
-      body::before { /* Dots */ background-size: 70px 70px, 110px 110px, 160px 160px; opacity: 0.7; }
-      body::after { /* Sparkles */
+      .theme-switcher { top: 15px; right: 15px; padding: 6px 12px; font-size: 0.8rem; }
+
+      /* Responsive Particle Adjustments */
+      body.light-theme {
+        --particle-pseudo-before-bg-size: 40px 40px, 40px 40px, 60px 60px, 60px 60px;
+        --particle-pseudo-before-opacity: 0.6;
+        --particle-pseudo-after-bg-size: 80px 80px, 120px 120px;
+        --particle-pseudo-after-opacity: 0.7;
+      }
+      /* Dark theme particles (dots/sparkles) also need responsive adjustments if not already present */
+      :not(.light-theme) body::before { /* Specific to dark theme dots */
+        background-size: 70px 70px, 110px 110px, 160px 160px;
+        opacity: 0.7;
+      }
+      :not(.light-theme) body::after { /* Specific to dark theme sparkles */
         background-size: 160px 160px, 260px 260px, 210px 210px, 310px 310px;
         animation: animateAllSparkles 45s linear infinite, twinkleSparkleField 9s ease-in-out infinite alternate 0.5s;
       }
     }
+
     @media (max-width: 480px) {
       h1 { font-size: clamp(1.8rem, 1.1rem + 2.8vw, 2.8rem); }
       .cartoon-btn { font-size: 0.95rem !important; padding: 14px 18px !important; min-width: calc(100% - 40px); margin-bottom: 12px; }
       .button-container { gap: 0; flex-direction: column; align-items: center; }
       .spaceship-container, .spaceship-container-alt { display: none; }
       body { animation-duration: 40s; }
-      body::before { /* Dots */
-        background-size: 60px 60px, 100px 100px, 140px 140px; opacity: 0.6;
+      .theme-switcher { top: 10px; right: 10px; padding: 5px 10px; font-size: 0.75rem; }
+
+      /* Responsive Particle Adjustments for Small Screens */
+      body.light-theme {
+        --particle-pseudo-before-bg-size: 30px 30px, 30px 30px, 50px 50px, 50px 50px;
+        --particle-pseudo-before-opacity: 0.5;
+        --particle-pseudo-after-bg-size: 70px 70px, 100px 100px;
+        --particle-pseudo-after-opacity: 0.6;
+      }
+       :not(.light-theme) body::before { /* Dark theme dots on small screens */
+        background-size: 60px 60px, 100px 100px, 140px 140px;
+        opacity: 0.6;
         animation: moveDots1 25s linear infinite, moveDots2 35s linear infinite, moveDots3 50s linear infinite;
       }
-      body::after { /* Sparkles */
+      :not(.light-theme) body::after { /* Dark theme sparkles on small screens */
         background-size: 140px 140px, 230px 230px, 180px 180px, 280px 280px;
         animation: animateAllSparkles 50s linear infinite, twinkleSparkleField 10s ease-in-out infinite alternate 1s;
       }
-      @keyframes twinkleSparkleField { /* Adjusted for smaller screens on dark theme */
-        0% { opacity: 0.2; } 40% { opacity: 0.7; } 60% { opacity: 0.6; } 100% { opacity: 0.2; }
+      /* Adjust twinkle for dark theme on small screens if needed */
+      @media (max-width: 480px) {
+        :not(.light-theme) body::after {
+          @keyframes twinkleSparkleField {
+            0% { opacity: 0.2; } 40% { opacity: 0.7; } 60% { opacity: 0.6; } 100% { opacity: 0.2; }
+          }
+        }
       }
     }
   </style>
 </head>
 <body>
+  <button class="theme-switcher" id="themeSwitcher" aria-label="Toggle theme">
+    ☀️ Light / 🌙 Dark
+  </button>
+
   <div class="spaceship-container">
     <svg class="spaceship-svg" viewBox="0 0 60 35" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M30 0 L5 15 L12 15 L12 20 L5 30 L30 35 L55 30 L48 20 L48 15 L55 15 L30 0Z" fill="rgba(170, 180, 210, 0.5)"/> <!-- Slightly less opaque body for dark -->
-        <path d="M30 5 L15 15 L15 20 L30 30 L45 20 L45 15 L30 5Z" fill="rgba(150, 160, 190, 0.7)"/> <!-- Slightly less opaque inner -->
+        <path class="s1-body" d="M30 0 L5 15 L12 15 L12 20 L5 30 L30 35 L55 30 L48 20 L48 15 L55 15 L30 0Z" fill="var(--spaceship-body)"/>
+        <path class="s1-inner" d="M30 5 L15 15 L15 20 L30 30 L45 20 L45 15 L30 5Z" fill="var(--spaceship-inner)"/>
         <ellipse cx="30" cy="8" rx="3" ry="1.5" fill="var(--primary-glow)"/>
-        <rect x="26" y="32" width="8" height="3" fill="rgba(var(--primary-glow-rgb),0.7)"/> <!-- Engine uses primary glow -->
-        <ellipse cx="8" cy="28" rx="2" ry="1" fill="rgba(var(--secondary-glow-rgb),0.6)"/> <!-- Wingtip secondary glow -->
+        <rect x="26" y="32" width="8" height="3" fill="rgba(var(--primary-glow-rgb),0.7)"/>
+        <ellipse cx="8" cy="28" rx="2" ry="1" fill="rgba(var(--secondary-glow-rgb),0.6)"/>
         <ellipse cx="52" cy="28" rx="2" ry="1" fill="rgba(var(--secondary-glow-rgb),0.6)"/>
     </svg>
   </div>
   <div class="spaceship-container-alt">
     <svg class="spaceship-svg-alt" viewBox="0 0 50 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0 12.5 L10 5 L45 5 L50 12.5 L45 20 L10 20 L0 12.5Z" fill="rgba(160, 170, 200, 0.45)"/>
-        <path d="M5 12.5 L12 8 L40 8 L45 12.5 L40 17 L12 17 L5 12.5Z" fill="rgba(140, 150, 180, 0.65)"/>
-        <circle cx="42" cy="12.5" r="3" fill="rgba(var(--secondary-glow-rgb),0.7)"/> <!-- Engine secondary glow -->
-        <rect x="10" y="10.5" width="10" height="4" rx="1" fill="var(--primary-glow)"/> <!-- Window primary glow -->
+        <path class="s2-body" d="M0 12.5 L10 5 L45 5 L50 12.5 L45 20 L10 20 L0 12.5Z" fill="var(--spaceship-alt-body)"/>
+        <path class="s2-inner" d="M5 12.5 L12 8 L40 8 L45 12.5 L40 17 L12 17 L5 12.5Z" fill="var(--spaceship-alt-inner)"/>
+        <circle cx="42" cy="12.5" r="3" fill="rgba(var(--secondary-glow-rgb),0.7)"/>
+        <rect x="10" y="10.5" width="10" height="4" rx="1" fill="var(--primary-glow)"/>
     </svg>
   </div>
 
@@ -350,10 +531,8 @@
     <div class="button-container">
       <button class="cartoon-btn blue" id="semester3">Semester 3 📚</button>
       <button class="cartoon-btn yellow" id="semester4">Semester 4 ✨</button>
-      <!-- NEW BUTTONS START -->
       <button class="cartoon-btn lime" id="semester5">Semester 5 🧑‍💻</button>
       <button class="cartoon-btn deep-orange" id="semester6">Semester 6 🚀</button>
-      <!-- NEW BUTTONS END -->
       <button class="cartoon-btn cyan" id="datesheet">Datesheet 📅</button>
       <button class="cartoon-btn pink" id="result">Result 🎉</button>
       <button class="cartoon-btn gold" id="syllabus">Syllabus 🗺️</button>
@@ -362,15 +541,52 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
+      // Button navigation
       document.getElementById('semester3').addEventListener('click', function() { window.location.href = "https://akaal777.github.io/B-C-A/"; });
       document.getElementById('semester4').addEventListener('click', function() { window.location.href = "sem4/semester4.html"; });
-      // NEW Event Listeners
-      document.getElementById('semester5').addEventListener('click', function() { window.location.href = "sem5/semester5.html"; }); // Placeholder link
-      document.getElementById('semester6').addEventListener('click', function() { window.location.href = "sem6/semester6.html"; }); // Placeholder link
-      // END NEW Event Listeners
+      document.getElementById('semester5').addEventListener('click', function() { window.location.href = "sem5/semester5.html"; });
+      document.getElementById('semester6').addEventListener('click', function() { window.location.href = "sem6/semester6.html"; });
       document.getElementById('datesheet').addEventListener('click', function() { window.location.href = "https://ds19.pupexamination.ac.in/uploaddatesheet/view-datesheet.php"; });
       document.getElementById('result').addEventListener('click', function() { window.location.href = "https://results.pupexamination.ac.in/t8/results/results.php"; });
       document.getElementById('syllabus').addEventListener('click', function() { window.location.href = "http://www.punjabiuniversity.ac.in/indexSyllabi.aspx"; });
+
+      // Theme Switcher Logic
+      const themeSwitcher = document.getElementById('themeSwitcher');
+      const body = document.body;
+      const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
+
+      function applyTheme(theme) {
+        if (theme === 'light') {
+          body.classList.add('light-theme');
+          themeSwitcher.textContent = '🌙 Dark';
+        } else {
+          body.classList.remove('light-theme');
+          themeSwitcher.textContent = '☀️ Light';
+        }
+      }
+
+      let currentTheme = localStorage.getItem('theme');
+      if (currentTheme) {
+        applyTheme(currentTheme);
+      } else {
+        applyTheme(prefersDarkScheme.matches ? 'dark' : 'light');
+      }
+
+      themeSwitcher.addEventListener('click', () => {
+        if (body.classList.contains('light-theme')) {
+          currentTheme = 'dark';
+        } else {
+          currentTheme = 'light';
+        }
+        localStorage.setItem('theme', currentTheme);
+        applyTheme(currentTheme);
+      });
+
+      prefersDarkScheme.addEventListener('change', (e) => {
+        if (!localStorage.getItem('theme')) {
+            applyTheme(e.matches ? 'dark' : 'light');
+        }
+      });
     });
   </script>
 </body>
