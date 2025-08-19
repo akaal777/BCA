@@ -11,13 +11,14 @@
         margin: 0;
         padding: 0;
         line-height: 1.7;
+        overflow-x: hidden; /* Prevent horizontal scrollbar */
     }
 
     .container {
-        width: 85%;
-        margin: 30px auto;
+        width: 90%; /* Adjust container width for better smartphone fit */
+        margin: 20px auto; /* Reduce margin for smaller screens */
         background-color: #111;
-        padding: 40px;
+        padding: 30px;
         box-shadow: 0 0 30px rgba(0, 150, 255, 0.3);
         border-radius: 15px;
         border: 1px solid #222;
@@ -26,15 +27,15 @@
     h1 {
         text-align: center;
         color: #0096ff;
-        margin-bottom: 40px;
+        margin-bottom: 30px; /* Reduce margin for smaller screens */
         text-shadow: 0 0 10px #0096ff;
-        font-size: 2.5em;
-        letter-spacing: 1.2px;
+        font-size: 2.2em; /* Adjust font size for smaller screens */
+        letter-spacing: 1.1px;
     }
 
     section {
-        margin-bottom: 40px;
-        padding: 30px;
+        margin-bottom: 30px; /* Reduce margin for smaller screens */
+        padding: 25px; /* Reduce padding for smaller screens */
         border: 1px solid #333;
         border-radius: 12px;
         background-color: #222;
@@ -51,8 +52,8 @@
         margin-top: 0;
         color: #0096ff;
         border-bottom: 2px solid #0096ff;
-        padding-bottom: 12px;
-        font-size: 1.8em;
+        padding-bottom: 10px;
+        font-size: 1.6em; /* Adjust font size for smaller screens */
         text-shadow: 0 0 5px #0096ff;
     }
 
@@ -68,6 +69,7 @@
         font-size: 1.1em;
         letter-spacing: 1px;
         outline: none;
+        margin: 5px;
     }
 
     button:hover {
@@ -80,16 +82,16 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        gap: 25px;
+        gap: 20px; /* Adjust gap for smaller screens */
     }
 
     iframe {
-        margin: 15px;
+        margin: 10px; /* Adjust margin for smaller screens */
         border: none;
         box-shadow: 0 0 20px rgba(0, 150, 255, 0.3);
         border-radius: 12px;
-        width: 560px;
-        height: 315px;
+        width: 100%; /* Make iframes responsive */
+        height: 250px; /* Adjust height for smaller screens */
         max-width: 100%;
         transition: all 0.4s ease;
     }
@@ -103,12 +105,83 @@
     @media (max-width: 768px) {
         .container {
             width: 95%;
-            padding: 30px;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 2em;
+        }
+
+        section {
+            padding: 15px;
         }
 
         iframe {
-            width: 100%;
-            height: auto;
+            height: 200px;
+        }
+
+        button {
+            font-size: 1.2em;
+            padding: 12px 24px;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .container {
+            width: 98%;
+            margin: 10px auto;
+            padding: 15px;
+        }
+
+        h1 {
+            font-size: 1.8em;
+        }
+
+        section {
+            padding: 10px;
+        }
+
+        button {
+            font-size: 1.3em;
+            padding: 10px 20px;
+        }
+
+        #video-container {
+            gap: 10px;
+        }
+
+        iframe {
+            height: 150px;
+        }
+    }
+
+    /* Targeting specific screen size */
+    @media (width: 400px) and (height: 900px) {
+        button {
+            font-size: 1.4em; /* Adjust font size */
+            padding: 18px 36px; /* Adjust padding */
+        }
+    }
+
+    /* General styles for a professional look on smartphones */
+    @media (max-width: 576px) {
+        body {
+            font-size: 16px; /* Base font size for better readability */
+        }
+
+        h1 {
+            font-size: 2.0em;
+            margin-bottom: 25px;
+        }
+
+        section h2 {
+            font-size: 1.7em;
+            padding-bottom: 8px;
+        }
+
+        button {
+            font-size: 1.2em; /* Medium button size */
+            padding: 14px 28px;
         }
     }
 </style>
@@ -159,6 +232,5 @@
     };
     videoContainer.appendChild(websiteButton);
 </script>
-
 </body>
 </html>
