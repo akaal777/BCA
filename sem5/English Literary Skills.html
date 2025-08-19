@@ -1,1 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Arms and the Man</title>
+<style>
+    /* Futuristic Theme */
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #000;
+        color: #fff;
+        margin: 0;
+        padding: 0;
+        line-height: 1.7;
+    }
 
+    .container {
+        width: 85%;
+        margin: 30px auto;
+        background-color: #111;
+        padding: 40px;
+        box-shadow: 0 0 30px rgba(0, 150, 255, 0.3);
+        border-radius: 15px;
+        border: 1px solid #222;
+    }
+
+    h1 {
+        text-align: center;
+        color: #0096ff;
+        margin-bottom: 40px;
+        text-shadow: 0 0 10px #0096ff;
+        font-size: 2.5em;
+        letter-spacing: 1.2px;
+    }
+
+    section {
+        margin-bottom: 40px;
+        padding: 30px;
+        border: 1px solid #333;
+        border-radius: 12px;
+        background-color: #222;
+        transition: all 0.4s ease;
+        box-shadow: 0 0 15px rgba(0, 150, 255, 0.1);
+    }
+
+    section:hover {
+        box-shadow: 0 0 20px rgba(0, 150, 255, 0.5);
+        transform: translateY(-5px);
+    }
+
+    section h2 {
+        margin-top: 0;
+        color: #0096ff;
+        border-bottom: 2px solid #0096ff;
+        padding-bottom: 12px;
+        font-size: 1.8em;
+        text-shadow: 0 0 5px #0096ff;
+    }
+
+    button {
+        background-color: #0096ff;
+        color: #fff;
+        padding: 14px 28px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all 0.4s ease;
+        box-shadow: 0 2px 10px rgba(0, 150, 255, 0.4);
+        font-size: 1.1em;
+        letter-spacing: 1px;
+        outline: none;
+    }
+
+    button:hover {
+        background-color: #0056b3;
+        transform: translateY(-3px);
+        box-shadow: 0 4px 12px rgba(0, 150, 255, 0.6);
+    }
+
+    #video-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 25px;
+    }
+
+    iframe {
+        margin: 15px;
+        border: none;
+        box-shadow: 0 0 20px rgba(0, 150, 255, 0.3);
+        border-radius: 12px;
+        width: 560px;
+        height: 315px;
+        max-width: 100%;
+        transition: all 0.4s ease;
+    }
+
+    iframe:hover {
+        box-shadow: 0 0 30px rgba(0, 150, 255, 0.5);
+        transform: scale(1.05);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .container {
+            width: 95%;
+            padding: 30px;
+        }
+
+        iframe {
+            width: 100%;
+            height: auto;
+        }
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Arms and the Man</h1>
+
+  <section id="pdf-section">
+    <h2>PDF Section</h2>
+    <button onclick="openPdf()">View PDF</button>
+  </section>
+
+  <section id="video-section">
+    <h2>Video Section</h2>
+    <div id="video-container"></div>
+  </section>
+</div>
+
+<script>
+    function openPdf() {
+        window.open("http://182.160.97.198:8080/xmlui/bitstream/handle/123456789/102/Arms%20and%20the%20Man-%20%20George%20Bernard%20Shaw.pdf", "_blank");
+    }
+
+    const videoLinks = [
+        "https://youtu.be/Nn8tj0XGsMg?si=ZcL60i3HSldY6Nkx",
+        "https://youtu.be/HRiH5d7dtiw?si=j-fVFj2oP3BKTjH9",
+        "https://youtube.com/playlist?list=PLzs_CEeiwWn_UxJ_oFOTQAmBxqZd6gkzf&si=HhDhl7csJPeMZO5a"
+    ];
+
+    const videoContainer = document.getElementById("video-container");
+
+    videoLinks.forEach(link => {
+        const button = document.createElement("button");
+        button.textContent = "Watch Video";
+        button.onclick = function() {
+            window.open(link, "_blank");
+        };
+        videoContainer.appendChild(button);
+    });
+
+    // Add website button
+    const websiteButton = document.createElement("button");
+    websiteButton.textContent = "Read on Arms and man";
+    websiteButton.onclick = function() {
+        window.open("https://www.gutenberg.org/files/3618/3618-h/3618-h.htm", "_blank");
+    };
+    videoContainer.appendChild(websiteButton);
+</script>
+
+</body>
+</html>
