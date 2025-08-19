@@ -1,1 +1,230 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Futuristic Learning Platform</title>
+    <style>
+        /* Futuristic CSS */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: url('https://images.unsplash.com/photo-1505740420928-5e0e3b1e7532?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8bXVzaWN8ZW58MHx8MHx8MA%3D%3D&w=1000&q=80') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            line-height: 1.7;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+
+        /* Add a dark overlay for better readability */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: -1;
+        }
+
+        .container {
+            width: 85%;
+            margin: 30px auto;
+            background-color: rgba(34, 34, 34, 0.8);
+            padding: 40px;
+            box-shadow: 0 0 30px rgba(0, 150, 255, 0.3);
+            border-radius: 15px;
+            border: 1px solid #222;
+            backdrop-filter: blur(10px); /* Glassmorphism effect */
+        }
+
+        h1 {
+            text-align: center;
+            color: #0096ff;
+            margin-bottom: 40px;
+            text-shadow: 0 0 10px #0096ff;
+            font-size: 2.5em;
+            letter-spacing: 1.2px;
+        }
+
+        section {
+            margin-bottom: 40px;
+            padding: 30px;
+            border: 1px solid #333;
+            border-radius: 12px;
+            background-color: rgba(51, 51, 51, 0.7);
+            transition: all 0.4s ease;
+            box-shadow: 0 0 15px rgba(0, 150, 255, 0.1);
+            backdrop-filter: blur(5px);
+        }
+
+        section:hover {
+            box-shadow: 0 0 20px rgba(0, 150, 255, 0.5);
+            transform: translateY(-5px);
+        }
+
+        section h2 {
+            margin-top: 0;
+            color: #0096ff;
+            border-bottom: 2px solid #0096ff;
+            padding-bottom: 12px;
+            font-size: 1.8em;
+            text-shadow: 0 0 5px #0096ff;
+        }
+
+        button {
+            background-color: #0096ff;
+            color: #fff;
+            padding: 14px 28px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 2px 10px rgba(0, 150, 255, 0.4);
+            font-size: 1.1em;
+            letter-spacing: 1px;
+            outline: none;
+            margin: 5px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(0, 150, 255, 0.6);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+                padding: 30px;
+            }
+
+            button {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+        }
+
+        /* Enhanced Mobile Styles */
+        @media (max-width: 576px) {
+            .container {
+                width: 98%;
+                padding: 20px;
+                margin: 15px auto;
+            }
+
+            h1 {
+                font-size: 2em;
+                margin-bottom: 30px;
+            }
+
+            section {
+                padding: 20px;
+                margin-bottom: 30px;
+            }
+
+            section h2 {
+                font-size: 1.5em;
+                padding-bottom: 8px;
+            }
+
+            button {
+                padding: 12px 20px;
+                font-size: 1em;
+            }
+        }
+
+        /* Center content on smaller screens */
+        @media (max-width: 576px) {
+            .container {
+                text-align: center;
+            }
+
+            #theory-links, #pdf-links, #video-links {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            button {
+                width: 90%; /* Adjust button width for smaller screens */
+                margin: 5px auto;
+                display: block; /* Ensure buttons take full width */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 style="text-align: center;">System Analysis and Design</h1>
+
+        <section id="theory-section">
+            <h2>Theory</h2>
+            <div id="theory-links"></div>
+        </section>
+
+        <section id="pdf-section">
+            <h2>PDF Documents</h2>
+            <div id="pdf-links"></div>
+        </section>
+
+        <section id="video-section">
+            <h2>Video Lectures</h2>
+            <div id="video-links"></div>
+        </section>
+    </div>
+
+    <script>
+        // Data
+        const theoryLinks = [
+            { text: "Basics Of SAD", url: "https://www.codershelpline.com/courses/theorypapers/system-analysis-design/basics-of-sad/" },
+            { text: "geeksforgeeks", url: "https://www.geeksforgeeks.org/system-design/system-analysis-system-design/" },
+            { text:"tutorialspoint",url:"https://www.tutorialspoint.com/system_analysis_and_design/system_analysis_and_design_overview.htm"}
+        ];
+
+        const pdfLinks = [
+            { text: "SAD 9th Edition", url: "https://ia600408.us.archive.org/31/items/system-analysis-and-design-9th-edition/System_Analysis_and_Design_9e_Shelly_Cas.pdf" },
+            { text: "sad Notes", url: "https://www.nielit.gov.in/shimla/sites/default/files/Shimla/UNIT1.pdf" },
+            {  text :"System analysis and Design",url:"https://drive.google.com/file/d/1PccnshAn1CFpi-PQPSDT4rE_vC32xGfk/view"},
+            { text :"SAD pdf",url:"https://www.bcanotes.com/Download/sad/System%20Analysis%20And%20Design/System%20Analysis%20and%20Design.pdf"}
+        ];
+
+        const videoLinks = [
+            { text: "System analysis and Design in Hindi", url: "https://youtube.com/playlist?list=PLi81x6d2Os_8Sa8HifiFruWK6wmgG3Wrg&si=rI-aVsuqSpZOk7OE" },
+            { text: "System analysis and Design One Shot ", url: "https://www.youtube.com/live/aZ33oo0l6xU?si=R-ClHe1G9NmCBrb_" }
+        ];
+
+        // Functions to create buttons
+        function createButton(text, url) {
+            const button = document.createElement("button");
+            button.textContent = text;
+            button.onclick = function() {
+                window.open(url, "_blank");
+            };
+            return button;
+        }
+
+        // Add links to Theory section
+        const theorySection = document.getElementById("theory-links");
+        theoryLinks.forEach(link => {
+            theorySection.appendChild(createButton(link.text, link.url));
+        });
+
+        // Add links to PDF section
+        const pdfSection = document.getElementById("pdf-links");
+        pdfLinks.forEach(link => {
+            pdfSection.appendChild(createButton(link.text, link.url));
+        });
+
+        // Add links to Video section
+        const videoSection = document.getElementById("video-links");
+        videoLinks.forEach(link => {
+            videoSection.appendChild(createButton(link.text, link.url));
+        });
+    </script>
+</body>
+</html>
