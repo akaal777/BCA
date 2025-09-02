@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>One Piece Adventure Hub</title>
+<title>Arms And the Man Adventure Hub</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <style>
     /* One Piece Anime Theme */
     @import url('https://fonts.googleapis.com/css2?family=Pirata+One&display=swap');
@@ -184,12 +185,13 @@
         }
 
         button {
-            font-size: 1.2em;
-            padding: 14px 28px;
+            font-size: 1.1em;
+            padding: 12px 20px;
             width: 100%; /* Full width buttons for better touch targets */
         }
 
         #video-container {
+            flex-direction: column;
             gap: 10px;
         }
 
@@ -198,11 +200,17 @@
         }
     }
 
-    /* Targeting specific screen size */
-    @media (width: 400px) and (height: 900px) {
+    /* Targeting specific screen size for very small devices */
+    @media (max-width: 320px) {
+        h1 {
+            font-size: 1.8em;
+        }
+        section h2 {
+            font-size: 1.5em;
+        }
         button {
-            font-size: 1.4em;
-            padding: 18px 36px;
+            font-size: 1em;
+            padding: 10px 18px;
         }
     }
 
