@@ -3,20 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Java Programming Essentials</title>
+    <title>The Grand Code: A Java Adventure</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pirata+One&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
-        /* --- Global Reset & Classic Theme Variables --- */
+        /* --- One Piece Theme Variables --- */
         :root {
-            --primary-bg: #f4f7f6;      /* Light grey, almost off-white */
-            --container-bg: #ffffff;    /* White for the main content area */
-            --card-bg: #fdfdfd;         /* Very light grey for cards, subtle difference */
-            --text-color: #333333;      /* Dark grey for text */
-            --heading-color: #2c3e50;   /* A muted, sophisticated dark blue/grey */
-            --accent-color: #3498db;    /* A classic, clear blue */
-            --subtle-accent: #7f8c8d;   /* A calm grey for secondary elements */
-            --border-color: #dcdcdc;    /* Light grey border */
-            --font-primary: 'Helvetica Neue', Arial, sans-serif;
-            --font-headings: 'Georgia', serif; /* Classic serif for headings */
+            --primary-bg: #f5eeda;      /* Old Parchment */
+            --container-bg: rgba(255, 255, 255, 0.85); /* Semi-transparent white for readability */
+            --card-bg: rgba(253, 250, 243, 0.9);         /* Lighter Parchment for cards */
+            --text-color: #3a3a3a;      /* Dark, almost-black for text */
+            --heading-color: #8B4513;   /* Saddle Brown, like a ship's wood */
+            --accent-color: #d4a24a;    /* Treasure Gold */
+            --link-hover-color: #b8860b;/* Darker Gold */
+            --border-color: rgba(139, 69, 19, 0.4); /* Brown border */
+            --font-primary: 'Roboto', sans-serif;
+            --font-headings: 'Pirata One', cursive; /* A fitting pirate font */
         }
 
         * {
@@ -28,20 +31,23 @@
         body {
             font-family: var(--font-primary);
             background-color: var(--primary-bg);
+            background-image: url('https://www.transparenttextures.com/patterns/old-map.png'); /* Subtle map texture */
             color: var(--text-color);
             line-height: 1.6;
             padding-top: 20px;
+            overflow-x: hidden; /* Prevent scrollbars during animations */
         }
 
         .container {
             width: 90%;
-            max-width: 1100px; /* Slightly less wide for a classic feel */
+            max-width: 1100px;
             margin: 20px auto;
             padding: 25px;
             background-color: var(--container-bg);
-            border: 1px solid var(--border-color);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-            border-radius: 5px;
+            border: 2px solid var(--border-color);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            border-radius: 8px;
+            backdrop-filter: blur(3px);
         }
 
         /* --- Typography & Headings --- */
@@ -52,27 +58,28 @@
 
         h1.main-heading {
             font-family: var(--font-headings);
-            font-size: 2.5em;
+            font-size: 3.5em;
             text-align: center;
             color: var(--heading-color);
             margin-bottom: 30px;
             padding-bottom: 15px;
-            border-bottom: 2px solid var(--accent-color);
-            animation: fadeIn 1s ease-out 0.2s forwards;
+            border-bottom: 3px solid var(--accent-color);
+            animation: dramaticEntrance 1s ease-out 0.2s forwards;
             opacity: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
         }
 
-        section > h2 { /* Section main titles */
+        section > h2 {
             font-family: var(--font-headings);
-            font-size: 1.8em;
+            font-size: 2.5em;
             color: var(--heading-color);
             border-bottom: 1px solid var(--border-color);
             padding-bottom: 10px;
             margin-bottom: 25px;
         }
         section > h2::before {
-            content: '§ '; /* Section symbol */
-            color: var(--accent-color);
+            content: '☠️ '; /* Jolly Roger icon */
+            color: #c0392b; /* A pirate red */
             font-weight: bold;
         }
 
@@ -84,11 +91,12 @@
         a {
             color: var(--accent-color);
             text-decoration: none;
-            transition: color 0.2s ease, text-decoration 0.2s ease;
+            transition: color 0.2s ease, transform 0.2s ease;
         }
         a:hover {
-            color: #2980b9; /* Darker shade of accent */
-            text-decoration: underline;
+            color: var(--link-hover-color);
+            text-decoration: none;
+            transform: translateY(-2px);
         }
 
         /* --- Section Styling --- */
@@ -99,7 +107,7 @@
             border: 1px solid var(--border-color);
             border-radius: 4px;
             opacity: 0;
-            animation: fadeIn 0.8s ease-out forwards;
+            animation: slideInFromRight 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
         }
         /* Staggered animation for sections */
         #section-a { animation-delay: 0.5s; }
@@ -112,103 +120,81 @@
         /* --- Sub-Sections (Theory) --- */
         .sub-sections-container {
             display: flex;
-            flex-direction: column; /* Ensure sub-sections stack vertically if needed */
+            flex-direction: column;
             margin-top: 20px;
         }
 
-        #section-a .sub-section,
-        #section-b .sub-section {
-            flex: 1; /* Theory sub-section will take full width */
-        }
-
-        .sub-section { /* This class now primarily applies to the "Theory" sections */
+        .sub-section {
             background-color: var(--container-bg);
             padding: 15px;
             border-radius: 3px;
-            border: 1px solid #e0e0e0;
+            border-left: 4px solid var(--accent-color);
             box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-            transition: box-shadow 0.3s ease;
-            margin-bottom: 20px; /* Add some space between stacked sub-sections */
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+            margin-bottom: 20px;
         }
          .sub-section:last-child {
             margin-bottom: 0;
         }
 
         .sub-section:hover {
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transform: scale(1.02);
         }
 
-        .sub-section h3 { /* Heading for "Core Theory", "Intermediate Concepts" etc. */
-            font-family: var(--font-primary);
-            font-size: 1.3em;
-            color: var(--accent-color);
-            border-bottom: 1px solid #eee;
-            padding-bottom: 8px;
-            margin-bottom: 12px;
-        }
-
-        /* Styling for the theory detail sections (Introduction, Operators, etc.) */
         .theory-detail-section {
             margin-bottom: 20px;
             padding-bottom: 15px;
-            border-bottom: 1px dashed #eaeaea;
+            border-bottom: 1px dashed var(--border-color);
         }
         .theory-detail-section:last-child {
-            margin-bottom: 0;
-            padding-bottom: 0;
             border-bottom: none;
         }
         .theory-detail-section h4 {
-            font-size: 1.1em;
+            font-size: 1.2em;
             color: var(--heading-color);
-            margin-bottom: 8px; /* Space below the h4 */
-            font-weight: 600;
+            margin-bottom: 8px;
+            font-weight: 700;
         }
         .theory-detail-section h4::before {
             content: "» ";
-            color: var(--subtle-accent);
+            color: var(--accent-color);
+            font-weight: bold;
         }
 
-        /* General list styling for Notes section */
-        #global-notes-section .resource-links-container { /* Specific to notes buttons for now */
-             margin-top: 0; /* Adjust if p is removed */
-        }
-
-
-        /* --- Resource & Video Links (Buttons) --- */
+        /* --- Resource Links (Buttons) --- */
         .resource-links-container {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px; /* Slightly increased gap for larger buttons */
+            gap: 12px;
             margin-top: 10px;
         }
 
-        .video-link { /* Style for buttons/links */
+        .video-link {
             display: inline-block;
-            padding: 10px 18px; /* Increased padding */
-            background-color: #e9f5ff;
-            border-radius: 4px; /* Slightly more rounded for larger buttons */
-            border: 1px solid var(--accent-color);
-            color: var(--accent-color);
+            padding: 10px 18px;
+            background-color: var(--accent-color);
+            border-radius: 20px;
+            border: 1px solid var(--link-hover-color);
+            color: #fff;
             font-weight: 500;
             text-decoration: none;
-            font-size: 1em; /* Increased font size */
+            font-size: 1em;
             text-align: center;
-            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.15);
         }
         .video-link:hover {
-            background-color: var(--accent-color);
+            background-color: var(--link-hover-color);
             color: white;
-            border-color: #2980b9;
+            border-color: var(--heading-color);
             text-decoration: none;
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
 
 
         /* --- Book Section --- */
-        #book-section h2 {
-            color: var(--heading-color);
-        }
-
         #book-container {
             display: flex;
             flex-direction: column;
@@ -226,28 +212,45 @@
         }
 
         .book-item:hover {
-            background-color: #eef5f9;
+            background-color: #fffaf0; /* Floral White */
         }
 
         .book-item h3 {
             font-family: var(--font-headings);
-            font-size: 1.4em;
-            margin: 0 0 5px 0;
+            font-size: 1.6em;
             color: var(--heading-color);
         }
 
         .book-item p.author {
             font-size: 1em;
-            color: var(--subtle-accent);
+            color: #555;
             font-style: italic;
             margin-bottom: 10px;
         }
-        .book-item .pdf-link {
-            margin-top: 8px;
+
+        /* --- ANIME ANIMATIONS --- */
+        @keyframes dramaticEntrance {
+            from {
+                opacity: 0;
+                transform: scale(0.5) rotate(-10deg) translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) rotate(0deg) translateY(0);
+            }
         }
 
-
-        /* --- Minimalistic Animations --- */
+        @keyframes slideInFromRight {
+             from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -259,6 +262,7 @@
             }
         }
 
+
         /* --- Responsive Design --- */
         @media (max-width: 768px) {
             .container {
@@ -266,23 +270,10 @@
                 padding: 20px;
             }
             h1.main-heading {
-                font-size: 2em;
+                font-size: 2.8em;
             }
             section > h2 {
-                font-size: 1.6em;
-            }
-
-            #section-a .sub-section,
-            #section-b .sub-section {
-                min-width: 100%;
-            }
-
-            .video-link { /* Adjust button size for tablets */
-                padding: 8px 15px;
-                font-size: 0.95em;
-            }
-            .resource-links-container {
-                gap: 8px;
+                font-size: 2em;
             }
         }
 
@@ -290,58 +281,36 @@
             body {
                 padding-top: 10px;
             }
-            .container {
-                padding: 15px;
-                margin: 10px auto;
-            }
-            h1.main-heading {
-                font-size: 1.8em;
+             h1.main-heading {
+                font-size: 2.2em;
             }
              section > h2 {
-                font-size: 1.4em;
+                font-size: 1.8em;
             }
-            p {
-                font-size: 0.95em;
-            }
-            .sub-section h3 {
-                font-size: 1.2em;
-            }
-            .theory-detail-section h4 {
-                font-size: 1.05em;
-            }
-            .video-link { /* Adjust button size for mobile */
-                padding: 8px 12px;
-                font-size: 0.9em;
-                 /* Optionally, make buttons take more width if still too crowded */
-                /* width: calc(50% - 4px); /* Two buttons per row, accounting for gap */
-                /* Or: width: 100%; for one button per row */
-            }
-            .resource-links-container {
-                gap: 8px; /* Maintain a decent gap */
+            .video-link {
+                 width: 100%;
             }
         }
-
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h1 class="main-heading">Java Programming </h1>
+        <h1 class="main-heading">Java Adventure</h1>
 
         <section id="section-a">
-            <h2>Section A: </h2>
-
+            <h2>Section A:-</h2>
             <div class="sub-sections-container">
                 <div class="sub-section theory">
                     <div class="theory-detail-section">
-                        <h4>Introduction to Java</h4>
+                        <h4> Introduction to Java</h4>
                         <div class="resource-links-container">
                             <a href="https://www.geeksforgeeks.org/introduction-to-java/" target="_blank" class="video-link">Intro to Java</a>
                             <a href="https://www.geeksforgeeks.org/the-complete-history-of-java-programming-language/" target="_blank" class="video-link">History of Java</a>
                             <a href="https://www.geeksforgeeks.org/java-features/" target="_blank" class="video-link">Java Features</a>
                             <a href="https://www.geeksforgeeks.org/similarities-and-difference-between-java-and-c/" target="_blank" class="video-link">Java vs C/C++</a>
                             <a href="https://www.geeksforgeeks.org/structure-and-members-of-the-java-program/" target="_blank" class="video-link">Program Structure</a>
-                            <a href="https://www.geeksforgeeks.org/java-tokens/" target="_blank" class="video-link">Java Tokens, Keywords, Constants</a>
+                            <a href="https://www.geeksforgeeks.org/java-tokens/" target="_blank" class="video-link">Java Tokens</a>
                             <a href="https://www.geeksforgeeks.org/variables-in-java/" target="_blank" class="video-link">Variables</a>
                             <a href="https://www.geeksforgeeks.org/java-data-types/" target="_blank" class="video-link">Data Types</a>
                             <a href="https://www.geeksforgeeks.org/typecasting-in-java/" target="_blank" class="video-link">Type Casting</a>
@@ -349,20 +318,20 @@
                         </div>
                     </div>
                     <div class="theory-detail-section">
-                        <h4>Operators and Expressions</h4>
+                        <h4> Operators and Expressions</h4>
                         <div class="resource-links-container">
                             <a href="https://www.geeksforgeeks.org/java-arithmetic-operators-with-examples/" target="_blank" class="video-link">Arithmetic Operators</a>
                             <a href="https://www.geeksforgeeks.org/java-relational-operators-with-examples/" target="_blank" class="video-link">Relational Operators</a>
                             <a href="https://www.geeksforgeeks.org/java-logical-operators-with-examples/" target="_blank" class="video-link">Logical Operators</a>
                             <a href="https://www.geeksforgeeks.org/java-assignment-operator-with-examples/" target="_blank" class="video-link">Assignment Operator</a>
-                            <a href="https://www.geeksforgeeks.org/increment-and-decrement-operators-in-programming/#increment-operators-in-java" target="_blank" class="video-link">Increment/Decrement Operators</a>
+                            <a href="https://www.geeksforgeeks.org/increment-and-decrement-operators-in-programming/#increment-operators-in-java" target="_blank" class="video-link">Increment/Decrement</a>
                             <a href="https://www.geeksforgeeks.org/java-ternary-operator/" target="_blank" class="video-link">Conditional Operator</a>
                             <a href="https://www.geeksforgeeks.org/bitwise-operators-in-java/" target="_blank" class="video-link">Bitwise Operator</a>
-                            <a href="https://www.geeksforgeeks.org/operator-precedence-and-associativity-in-programming/" target="_blank" class="video-link">Operator Precedence & Associativity</a>
+                            <a href="https://www.geeksforgeeks.org/operator-precedence-and-associativity-in-programming/" target="_blank" class="video-link">Operator Precedence</a>
                         </div>
                     </div>
                     <div class="theory-detail-section">
-                        <h4>Control Statements</h4>
+                        <h4> Control Statements</h4>
                         <div class="resource-links-container">
                             <a href="https://www.geeksforgeeks.org/java-if-else-statement-with-examples/" target="_blank" class="video-link">If-Else Statement</a>
                             <a href="https://www.geeksforgeeks.org/switch-statement-in-java/" target="_blank" class="video-link">Switch Statement</a>
@@ -381,40 +350,39 @@
         </section>
 
         <section id="section-b">
-            <h2>Section B:</h2>
+            <h2>Section B:-</h2>
             <div class="sub-sections-container">
                 <div class="sub-section theory">
                     <div class="theory-detail-section">
-                        <h4>Inheritance</h4>
+                        <h4> Inheritance & Polymorphism</h4>
                         <div class="resource-links-container">
-                            <a href="https://www.geeksforgeeks.org/inheritance-in-java/" target="_blank" class="video-link">Inheritance in Java</a>
+                            <a href="https://www.geeksforgeeks.org/inheritance-in-java/" target="_blank" class="video-link">Inheritance</a>
                             <a href="https://www.geeksforgeeks.org/super-keyword/" target="_blank" class="video-link">Super Keyword</a>
                             <a href="https://www.geeksforgeeks.org/overriding-in-java/" target="_blank" class="video-link">Overriding</a>
                             <a href="https://www.geeksforgeeks.org/final-keyword-in-java/" target="_blank" class="video-link">Final Keyword</a>
                             <a href="https://www.geeksforgeeks.org/abstract-classes-in-java/" target="_blank" class="video-link">Abstract Class</a>
                             <a href="https://www.geeksforgeeks.org/wrapper-classes-java/" target="_blank" class="video-link">Wrappers</a>
-                            <a href="https://www.geeksforgeeks.org/arrays-in-java/" target="_blank" class="video-link">Arrays in java</a>
-                            <a href="https://www.geeksforgeeks.org/strings-in-java/" target="_blank" class="video-link">Strings in java</a>
+                            <a href="https://www.geeksforgeeks.org/arrays-in-java/" target="_blank" class="video-link">Arrays</a>
+                            <a href="https://www.geeksforgeeks.org/strings-in-java/" target="_blank" class="video-link">Strings</a>
                             <a href="https://www.geeksforgeeks.org/java-util-vector-class-java/" target="_blank" class="video-link">Vector</a>
-                            <a href="https://www.geeksforgeeks.org/difference-between-package-and-interface-in-java/" target="_blank" class="video-link">Packages and Interfaces</a>
+                            <a href="https://www.geeksforgeeks.org/difference-between-package-and-interface-in-java/" target="_blank" class="video-link">Packages & Interfaces</a>
                             <a href="https://www.geeksforgeeks.org/controlling-the-visibility-of-class-and-interface-in-java/" target="_blank" class="video-link">Visibility Control</a>
-
                         </div>
                     </div>
                     <div class="theory-detail-section">
-                        <h4>Errors and Exceptions</h4>
+                        <h4> Errors and Exceptions</h4>
                         <div class="resource-links-container">
                             <a href="https://www.geeksforgeeks.org/techtips/types-of-errors-in-java-with-examples/" target="_blank" class="video-link">Types of Errors</a>
-                            <a href="https://www.geeksforgeeks.org/exceptions-in-java/" target="_blank" class="video-link">Java Exceptions Handling</a>
-                            <a href="https://www.geeksforgeeks.org/java-try-catch-block/" target="_blank" class="video-link">Java Try-Catch Block</a>
+                            <a href="https://www.geeksforgeeks.org/exceptions-in-java/" target="_blank" class="video-link">Exceptions Handling</a>
+                            <a href="https://www.geeksforgeeks.org/java-try-catch-block/" target="_blank" class="video-link">Try-Catch Block</a>
                             <a href="https://www.w3schools.com/java/java_try_catch.asp" target="_blank" class="video-link">Types of Exceptions</a>
-                            <a href="https://www.geeksforgeeks.org/throw-throws-java/" target="_blank" class="video-link">Throw and Throws in Java</a>
-                            <a href="https://www.geeksforgeeks.org/java-user-input-scanner-class/" target="_blank" class="video-link">User Input - Scanner Class</a>
+                            <a href="https://www.geeksforgeeks.org/throw-throws-java/" target="_blank" class="video-link">Throw and Throws</a>
+                            <a href="https://www.geeksforgeeks.org/java-user-input-scanner-class/" target="_blank" class="video-link">User Input - Scanner</a>
                             <a href="https://www.geeksforgeeks.org/command-line-arguments-in-java/" target="_blank" class="video-link">Command Line Arguments</a>
                         </div>
                     </div>
                      <div class="theory-detail-section">
-                        <h4>Multithreaded Programming</h4>
+                        <h4> Multithreaded Programming</h4>
                         <div class="resource-links-container">
                             <a href="https://www.geeksforgeeks.org/java-program-to-create-a-thread/" target="_blank" class="video-link">Creating Threads</a>
                             <a href="https://www.geeksforgeeks.org/lifecycle-and-states-of-a-thread-in-java/" target="_blank" class="video-link">Life Cycle of Threads</a>
@@ -423,24 +391,23 @@
                             <a href="https://www.geeksforgeeks.org/java-thread-priority-multithreading/" target="_blank" class="video-link">Thread Priorities</a>
                         </div>
                     </div>
-                    
                 </div>
             </div>
         </section>
 
         <section id="global-notes-section">
-            <h2>Notes Section</h2>
+            <h2> Notes Section</h2>
             <p>
-                Downloadable PDF notes consolidating key concepts from the units.
+                Downloadable PDF scrolls consolidating key knowledge from your voyage.
             </p>
             <div class="resource-links-container" id="notes-pdf-container">
-                <!-- PDF Note buttons will be inserted here by JavaScript -->
+                <!-- PDF Note buttons will be inserted here -->
             </div>
         </section>
 
         <section id="global-video-section">
-            <h2>Video Section</h2>
-            <p>A collection of useful video tutorials and demonstrations for learning Java.</p>
+            <h2> Video Section</h2>
+            <p>A collection of useful video transmissions and demonstrations for learning Java.</p>
             <div class="resource-links-container">
                 <a href="https://youtu.be/32DLasxoOiM?si=X1-9AREz2nsOAaVR" class="video-link" target="_blank">Java One shot [Coding Seekho]</a>
                 <a href="https://youtu.be/xTtL8E4LzTQ?si=p8Ah0nOD0bsA81Ns" class="video-link" target="_blank">Java One Shot [Bro Code]</a>
@@ -456,12 +423,11 @@
         </section>
 
         <section id="book-section">
-            <h2>Recommended Books</h2>
+            <h2>Poneglyphs: Recommended Tomes</h2>
             <div id="book-container">
-                <!-- Books with PDF links will be inserted here by JavaScript -->
+                <!-- Books with PDF links will be inserted here -->
             </div>
         </section>
-
     </div>
 
     <script>
@@ -481,50 +447,42 @@
         const notePDFs = [
             {
                 title: "Java Programming Notes",
-                pdfPath: "java 1.pdf" // Replace with actual path
+                pdfPath: "java 1.pdf"
             },
             {
-                title: " Java Handwritten Notes [Topper World]",
-                pdfPath: "java 2.pdf" // Replace with actual path
+                title: "Java Handwritten Notes",
+                pdfPath: "java 2.pdf"
             },
             {
                 title: "Java Notes [Code With Harry]",
-                pdfPath: "java 3.pdf"   // Replace with actual path
+                pdfPath: "java 3.pdf"
             }
         ];
 
         function displayNotePDFs() {
             const notesContainer = document.getElementById('notes-pdf-container');
-            if (!notesContainer) {
-                console.error("Notes PDF container not found!");
-                return;
-            }
+            if (!notesContainer) return;
              notePDFs.forEach(note => {
                 const pdfLink = document.createElement('a');
                 pdfLink.href = note.pdfPath;
                 pdfLink.textContent = note.title;
-                pdfLink.className = 'video-link pdf-link'; // Using similar styling as video links
+                pdfLink.className = 'video-link pdf-link';
                 pdfLink.setAttribute('download', '');
                 pdfLink.setAttribute('target', '_blank');
                 notesContainer.appendChild(pdfLink);
             });
         }
 
-
         function displayBooks() {
             const bookContainer = document.getElementById('book-container');
-            if (!bookContainer) {
-                console.error("Book container not found!");
-                return;
-            }
+            if (!bookContainer) return;
 
             books.forEach((book, index) => {
                 const bookItemDiv = document.createElement('div');
                 bookItemDiv.className = 'book-item';
 
-                const animationDelayBase = 1.7; // Base delay for the book section
+                const animationDelayBase = 1.7;
                 bookItemDiv.style.animationDelay = `${index * 0.2 + animationDelayBase}s`;
-
 
                 const titleH3 = document.createElement('h3');
                 titleH3.textContent = book.title;
@@ -539,7 +497,7 @@
                 if (book.pdfPath) {
                     const pdfLink = document.createElement('a');
                     pdfLink.href = book.pdfPath;
-                    pdfLink.textContent = "Download PDF";
+                    pdfLink.textContent = "Download Scroll";
                     pdfLink.className = 'video-link pdf-link';
                     pdfLink.setAttribute('download', '');
                     pdfLink.setAttribute('target', '_blank');
@@ -557,8 +515,4 @@
     </script>
 
 </body>
-
 </html>
-
-
-
