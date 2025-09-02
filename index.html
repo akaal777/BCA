@@ -135,18 +135,32 @@ body {
   transition: background 0.5s ease, color 0.5s ease;
 }
 
+.background-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -3;
+}
+
 .background-image {
-  background-image: url('Onepiece.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -3;
-  animation: zoom-in-out 20s ease-in-out infinite;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transform: scale(1.2);
+    transition: opacity 1.5s ease-in-out;
+}
+
+.background-image.active {
+    opacity: 1;
+    animation: zoom-in-out 10s ease-in-out infinite;
 }
 
 @keyframes zoom-in-out {
@@ -163,7 +177,8 @@ body {
 
 @keyframes oceanGradientBG {
   0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }\n  100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 body::before, body::after {
@@ -237,7 +252,8 @@ body::after {
   25% { transform: translateX(calc(50vw - 60px)) translateY(-15px) rotate(3deg); }
   50% { transform: translateX(calc(100vw + 150px)) translateY(5px) rotate(-1deg); }
   50.01% { transform: translateX(-150px) translateY(10px) rotate(-2deg); opacity: 0; }
-  55% { opacity: 1; top: 62%; }\n  100% { transform: translateX(calc(100vw + 150px)) translateY(0px) rotate(2deg); top: 62%;}
+  55% { opacity: 1; top: 62%; }
+  100% { transform: translateX(calc(100vw + 150px)) translateY(0px) rotate(2deg); top: 62%;}
 }
 @keyframes sailShipAlt {
   0% { transform: translateX(0) translateY(0) rotate(2deg); }
@@ -393,36 +409,12 @@ body.night-theme .cartoon-btn:hover {
   .theme-switcher { top: 10px; right: 10px; padding: 5px 10px; font-size: 0.75rem; }
 }
   </style>
-  <style>
-    .background-image {
-      background-image: url('Onepiece.jpg');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -3;
-      animation: zoom-in-out 20s ease-in-out infinite;
-    }
-
-    @keyframes zoom-in-out {
-      0% {
-        transform: scale(1);
-      }
-      50% {
-        transform: scale(1.2);
-      }
-      100% {
-        transform: scale(1);
-      }
-    }
-  </style>
 </head>
 <body>
-  <div class="background-image"></div>
+    <div class="background-container">
+        <div class="background-image"></div>
+        <div class="background-image"></div>
+    </div>
   <button class="theme-switcher" id="themeSwitcher" aria-label="Toggle theme">
     ☀️ Day / 🌙 Night
   </button>
@@ -486,6 +478,43 @@ body.night-theme .cartoon-btn:hover {
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
+        const images = [
+            "Onepiece.jpg",
+            "Onepiece2.jpg",
+            "Onepiece3.jpg",
+            "Allcharacter.jpg",
+            "Zoro.jpg",
+            "Onepiece1.jpg"
+        ];
+
+        let currentImageIndex = 0;
+        const backgroundElements = document.querySelectorAll('.background-image');
+        let activeElement = 0;
+
+        function changeBackgroundImage() {
+            // Set the next image on the inactive element
+            const inactiveElement = 1 - activeElement;
+            backgroundElements[inactiveElement].style.backgroundImage = `url('${images[currentImageIndex]}')`;
+
+            // Swap active class
+            backgroundElements[activeElement].classList.remove('active');
+            backgroundElements[inactiveElement].classList.add('active');
+
+            activeElement = inactiveElement;
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+        }
+
+
+        // Preload images
+        images.forEach(src => {
+            const img = new Image();
+            img.src = src;
+        });
+
+        setInterval(changeBackgroundImage, 5000);
+        changeBackgroundImage();
+
+
       // Button navigation
       document.getElementById('semester3').addEventListener('click', function() { window.location.href = "https://akaal777.github.io/B-C-A/"; });
       document.getElementById('semester4').addEventListener('click', function() { window.location.href = "sem4/semester4.html"; });
