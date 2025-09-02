@@ -3,152 +3,118 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>BCA Nova Core</title>
+  <title>BCA Grand Line</title>
   <link rel="icon" type="image/jpeg" href="bca_logo.jpg">
-  <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Exo+2:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Pirata+One&family=IM+Fell+English+SC&display=swap" rel="stylesheet">
   <style>
     :root {
-      /* --- Dark Theme Variables (Defaults) --- */
-      --bg-d1-val: #23293f;
-      --bg-d2-val: #1a1f33;
-      --bg-d3-val: #0f121f;
+      /* --- One Piece Theme Variables (Defaults to Day Sea) --- */
+      --bg-day-1: #6bb6ff; /* Sky Blue */
+      --bg-day-2: #3d92ff; /* Ocean Blue */
+      --bg-day-3: #2d7ce8; /* Deeper Ocean */
 
-      --primary-glow-d-val: #00e5ff;
-      --primary-glow-rgb-d-val: 0, 229, 255;
-      --secondary-glow-d-val: #c500ff;
-      --secondary-glow-rgb-d-val: 197, 0, 255;
+      --primary-glow-day: #ffc107; /* Sunny Gold */
+      --primary-glow-rgb-day: 255, 193, 7;
+      --secondary-glow-day: #e65100; /* Treasure Orange */
+      --secondary-glow-rgb-day: 230, 81, 0;
 
-      --text-color-d-val: #c8d0e0;
-      --heading-color-d-val: #ffffff;
+      --text-color-day: #3a2e1d; /* Dark Wood Brown */
+      --heading-color-day: #ffffff;
 
-      --button-bg-d-val: rgba(30, 35, 55, 0.7);
-      --button-border-default-d-val: var(--primary-glow-d-val);
-      --button-hover-bg-d-val: rgba(45, 50, 75, 0.9);
-      --button-text-color-d-val: #e0eaff;
+      --button-bg-day: rgba(245, 222, 179, 0.85); /* Parchment */
+      --button-border-default-day: #8B4513; /* Saddle Brown */
+      --button-hover-bg-day: rgba(255, 235, 205, 0.95); /* Lighter Parchment */
+      --button-text-color-day: #5d4037; /* Dark Brown Text */
 
-      /* Dots for Dark Theme */
-      --dot-color-1-d-val: rgba(var(--primary-glow-rgb-d-val), 0.5);
-      --dot-color-2-d-val: rgba(var(--secondary-glow-rgb-d-val), 0.4);
-      --dot-color-3-d-val: rgba(180, 190, 220, 0.35);
+      /* Waves for Day Theme */
+      --wave-color-1-day: rgba(255, 255, 255, 0.3);
+      --wave-color-2-day: rgba(255, 255, 255, 0.2);
+      --footer-wave-color-day: rgba(61, 146, 255, 0.6);
 
-      /* Sparkles for Dark Theme */
-      --sparkle-color-1-d-val: rgba(var(--primary-glow-rgb-d-val), 0.7);
-      --sparkle-color-1-soft-d-val: rgba(var(--primary-glow-rgb-d-val), 0.25);
-      --sparkle-color-2-d-val: rgba(var(--secondary-glow-rgb-d-val), 0.6);
-      --sparkle-color-2-soft-d-val: rgba(var(--secondary-glow-rgb-d-val), 0.2);
+      /* Ship Colors Day */
+      --ship-body-day: #A0522D; /* Sienna */
+      --ship-inner-day: #D2691E; /* Chocolate */
+      --ship-alt-body-day: #8B4513; /* Saddle Brown */
+      --ship-alt-inner-day: #CD853F; /* Peru */
 
-      --spaceship-body-d-val: rgba(170, 180, 210, 0.5);
-      --spaceship-inner-d-val: rgba(150, 160, 190, 0.7);
-      --spaceship-alt-body-d-val: rgba(160, 170, 200, 0.45);
-      --spaceship-alt-inner-d-val: rgba(140, 150, 180, 0.65);
+      /* --- Night Sea Theme Variables --- */
+      --bg-night-1: #0a192f; /* Deep Navy */
+      --bg-night-2: #172a46; /* Midnight Blue */
+      --bg-night-3: #031021; /* Near Black */
 
-      /* --- Light Theme Variables --- */
-      --bg-l1-val: #f8f9fa; /* Classic Light Gray/Off-white */
-      --bg-l2-val: #f8f9fa;
-      --bg-l3-val: #f8f9fa;
+      --primary-glow-night: #89cff0; /* Baby Blue (Moonlight) */
+      --primary-glow-rgb-night: 137, 207, 240;
+      --secondary-glow-night: #f0e68c; /* Khaki (Star Glow) */
+      --secondary-glow-rgb-night: 240, 230, 140;
 
-      --primary-glow-l-val: #007bff;
-      --primary-glow-rgb-l-val: 0, 123, 255;
-      --secondary-glow-l-val: #6f42c1;
-      --secondary-glow-rgb-l-val: 111, 66, 193;
+      --text-color-night: #c8d0e0;
+      --heading-color-night: #ffffff;
 
-      --text-color-l-val: #212529;
-      --heading-color-l-val: #000000;
+      --button-bg-night: rgba(30, 45, 70, 0.7);
+      --button-border-default-night: var(--primary-glow-night);
+      --button-hover-bg-night: rgba(45, 60, 90, 0.9);
+      --button-text-color-night: #e0eaff;
 
-      --button-bg-l-val: rgba(230, 235, 245, 0.85);
-      --button-border-default-l-val: var(--primary-glow-l-val);
-      --button-hover-bg-l-val: rgba(210, 215, 230, 0.95);
-      --button-text-color-l-val: #1a1f33;
+       /* Waves for Night Theme */
+      --wave-color-1-night: rgba(137, 207, 240, 0.15);
+      --wave-color-2-night: rgba(137, 207, 240, 0.1);
+      --footer-wave-color-night: rgba(23, 42, 70, 0.7);
 
-      /* Scientific Futuristic BG for Light Theme */
-      --sci-grid-line-color-l-val: rgba(var(--primary-glow-rgb-l-val), 0.08);
-      --sci-grid-line-alt-color-l-val: rgba(var(--secondary-glow-rgb-l-val), 0.06);
-      --sci-particle-color-1-l-val: rgba(var(--primary-glow-rgb-l-val), 0.2);
-      --sci-particle-color-2-l-val: rgba(var(--secondary-glow-rgb-l-val), 0.15);
 
-      --spaceship-body-l-val: rgba(70, 80, 110, 0.7);
-      --spaceship-inner-l-val: rgba(90, 100, 130, 0.85);
-      --spaceship-alt-body-l-val: rgba(60, 70, 100, 0.65);
-      --spaceship-alt-inner-l-val: rgba(80, 90, 120, 0.8);
+      /* Ship Colors Night */
+      --ship-body-night: rgba(100, 80, 70, 0.7);
+      --ship-inner-night: rgba(120, 100, 90, 0.85);
+      --ship-alt-body-night: rgba(90, 70, 60, 0.65);
+      --ship-alt-inner-night: rgba(110, 90, 80, 0.8);
 
-      /* --- Current Theme Aliases (Default to Dark) --- */
-      --bg1: var(--bg-d1-val);
-      --bg2: var(--bg-d2-val);
-      --bg3: var(--bg-d3-val);
-      --primary-glow: var(--primary-glow-d-val);
-      --primary-glow-rgb: var(--primary-glow-rgb-d-val);
-      --secondary-glow: var(--secondary-glow-d-val);
-      --secondary-glow-rgb: var(--secondary-glow-rgb-d-val);
-      --text-color: var(--text-color-d-val);
-      --heading-color: var(--heading-color-d-val);
-      --button-bg: var(--button-bg-d-val);
-      --button-border-default: var(--button-border-default-d-val);
-      --button-hover-bg: var(--button-hover-bg-d-val);
-      --button-text-color: var(--button-text-color-d-val);
+      /* --- Current Theme Aliases (Default to Day) --- */
+      --bg1: var(--bg-day-1);
+      --bg2: var(--bg-day-2);
+      --bg3: var(--bg-day-3);
+      --primary-glow: var(--primary-glow-day);
+      --primary-glow-rgb: var(--primary-glow-rgb-day);
+      --secondary-glow: var(--secondary-glow-day);
+      --secondary-glow-rgb: var(--secondary-glow-rgb-day);
+      --text-color: var(--text-color-day);
+      --heading-color: var(--heading-color-day);
+      --button-bg: var(--button-bg-day);
+      --button-border-default: var(--button-border-default-day);
+      --button-hover-bg: var(--button-hover-bg-day);
+      --button-text-color: var(--button-text-color-day);
 
-      /* Particle Aliases (default to dark theme particles) */
-      --particle-pseudo-before-bg-image:
-        radial-gradient(circle, var(--dot-color-1-d-val) 0.8px, transparent 1.3px),
-        radial-gradient(circle, var(--dot-color-2-d-val) 1.1px, transparent 1.7px),
-        radial-gradient(circle, var(--dot-color-3-d-val) 1.3px, transparent 2.2px);
-      --particle-pseudo-before-bg-size: 80px 80px, 130px 130px, 180px 180px;
-      --particle-pseudo-before-animation: moveDots1 20s linear infinite, moveDots2 30s linear infinite, moveDots3 45s linear infinite;
-      --particle-pseudo-before-opacity: 0.8;
+      --wave-1: var(--wave-color-1-day);
+      --wave-2: var(--wave-color-2-day);
+      --footer-wave-color: var(--footer-wave-color-day);
 
-      --particle-pseudo-after-bg-image:
-        radial-gradient(circle, var(--sparkle-color-1-d-val) 0.6px, var(--sparkle-color-1-soft-d-val) 1.8px, transparent 3.5px),
-        radial-gradient(circle, var(--sparkle-color-1-d-val) 0.8px, var(--sparkle-color-1-soft-d-val) 2px, transparent 4px),
-        radial-gradient(circle, var(--sparkle-color-2-d-val) 0.9px, var(--sparkle-color-2-soft-d-val) 2.2px, transparent 4.5px),
-        radial-gradient(circle, var(--sparkle-color-2-d-val) 1.1px, var(--sparkle-color-2-soft-d-val) 2.8px, transparent 5px);
-      --particle-pseudo-after-bg-size: 180px 180px, 280px 280px, 230px 230px, 330px 330px;
-      --particle-pseudo-after-bg-position: 0px 0px, 50px 80px, 100px 20px, -30px 150px;
-      --particle-pseudo-after-animation: animateAllSparkles 40s linear infinite, twinkleSparkleField 8s ease-in-out infinite alternate 0.5s;
-      --particle-pseudo-after-opacity: 1; /* Dark theme sparkles are more prominent initially */
-
-      --spaceship-body: var(--spaceship-body-d-val);
-      --spaceship-inner: var(--spaceship-inner-d-val);
-      --spaceship-alt-body: var(--spaceship-alt-body-d-val);
-      --spaceship-alt-inner: var(--spaceship-alt-inner-d-val);
+      --ship-body: var(--ship-body-day);
+      --ship-inner: var(--ship-inner-day);
+      --ship-alt-body: var(--ship-alt-body-day);
+      --ship-alt-inner: var(--ship-alt-inner-day);
     }
 
-    body.light-theme {
-      --bg1: var(--bg-l1-val);
-      --bg2: var(--bg-l2-val);
-      --bg3: var(--bg-l3-val);
-      --primary-glow: var(--primary-glow-l-val);
-      --primary-glow-rgb: var(--primary-glow-rgb-l-val);
-      --secondary-glow: var(--secondary-glow-l-val);
-      --secondary-glow-rgb: var(--secondary-glow-rgb-l-val);
-      --text-color: var(--text-color-l-val);
-      --heading-color: var(--heading-color-l-val);
-      --button-bg: var(--button-bg-l-val);
-      --button-border-default: var(--button-border-default-l-val);
-      --button-hover-bg: var(--button-hover-bg-l-val);
-      --button-text-color: var(--button-text-color-l-val);
+    body.night-theme {
+      --bg1: var(--bg-night-1);
+      --bg2: var(--bg-night-2);
+      --bg3: var(--bg-night-3);
+      --primary-glow: var(--primary-glow-night);
+      --primary-glow-rgb: var(--primary-glow-rgb-night);
+      --secondary-glow: var(--secondary-glow-night);
+      --secondary-glow-rgb: var(--secondary-glow-rgb-night);
+      --text-color: var(--text-color-night);
+      --heading-color: var(--heading-color-night);
+      --button-bg: var(--button-bg-night);
+      --button-border-default: var(--button-border-default-night);
+      --button-hover-bg: var(--button-hover-bg-night);
+      --button-text-color: var(--button-text-color-night);
 
-      /* Override particle aliases for light theme - NEW SCIENTIFIC ANIMATION */
-      --particle-pseudo-before-bg-image:
-        linear-gradient(var(--sci-grid-line-color-l-val) 1px, transparent 1px),
-        linear-gradient(90deg, var(--sci-grid-line-color-l-val) 1px, transparent 1px),
-        linear-gradient(45deg, var(--sci-grid-line-alt-color-l-val) 0.5px, transparent 0.5px),
-        linear-gradient(-45deg, var(--sci-grid-line-alt-color-l-val) 0.5px, transparent 0.5px);
-      --particle-pseudo-before-bg-size: 50px 50px, 50px 50px, 70px 70px, 70px 70px;
-      --particle-pseudo-before-animation: animateGridLight 60s linear infinite;
-      --particle-pseudo-before-opacity: 0.7;
+      --wave-1: var(--wave-color-1-night);
+      --wave-2: var(--wave-color-2-night);
+      --footer-wave-color: var(--footer-wave-color-night);
 
-      --particle-pseudo-after-bg-image:
-        radial-gradient(circle, var(--sci-particle-color-1-l-val) 1px, transparent 2px),
-        radial-gradient(circle, var(--sci-particle-color-2-l-val) 1.5px, transparent 3px);
-      --particle-pseudo-after-bg-size: 100px 100px, 150px 150px;
-      --particle-pseudo-after-bg-position: 0px 0px, 25px 50px;
-      --particle-pseudo-after-animation: animateSciParticlesLight 50s linear infinite, pulseSciParticlesLight 10s ease-in-out infinite alternate;
-      --particle-pseudo-after-opacity: 0.8;
-
-
-      --spaceship-body: var(--spaceship-body-l-val);
-      --spaceship-inner: var(--spaceship-inner-l-val);
-      --spaceship-alt-body: var(--spaceship-alt-body-l-val);
-      --spaceship-alt-inner: var(--spaceship-alt-inner-l-val);
+      --ship-body: var(--ship-body-night);
+      --ship-inner: var(--ship-inner-night);
+      --ship-alt-body: var(--ship-alt-body-night);
+      --ship-alt-inner: var(--ship-alt-inner-night);
     }
 
     body {
@@ -159,143 +125,106 @@
         var(--bg1)
       );
       background-size: 400% 400%;
-      animation: futuristicGradientBG 35s ease-in-out infinite;
+      animation: oceanGradientBG 45s ease-in-out infinite;
       min-height: 100vh;
       margin: 0;
-      padding-bottom: 40px;
-      font-family: 'Exo 2', sans-serif;
+      padding-bottom: 150px; /* Increased padding to make space for footer */
+      font-family: 'IM Fell English SC', serif;
       color: var(--text-color);
       overflow-x: hidden;
       position: relative;
       transition: background 0.5s ease, color 0.5s ease;
     }
 
-    @keyframes futuristicGradientBG {
+    @keyframes oceanGradientBG {
       0% { background-position: 0% 50%; }
-      100% { background-position: 100% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
-    body::before { /* Generic pseudo-element for particles */
-      content: '';
+    body::before, body::after {
+        content: "";
+        position: fixed;
+        left: 0;
+        width: 200%;
+        height: 100%;
+        z-index: -2;
+    }
+
+    body::before {
+        bottom: 15%; /* Position waves lower */
+        background: radial-gradient(ellipse at center, var(--wave-1) 0%, transparent 70%);
+        background-size: 600px 150px;
+        animation: wave-animation-1 15s linear infinite;
+        opacity: 0.8;
+    }
+
+    body::after {
+        bottom: 12%;
+        background: radial-gradient(ellipse at center, var(--wave-2) 0%, transparent 65%);
+        background-size: 500px 120px;
+        animation: wave-animation-2 12s linear infinite;
+        z-index: -1;
+        opacity: 0.9;
+    }
+
+    @keyframes wave-animation-1 {
+        0% { transform: translateX(0) translateY(0) rotate(0deg); }
+        50% { transform: translateX(-25%) translateY(10px) rotate(-2deg); }
+        100% { transform: translateX(0) translateY(0) rotate(0deg); }
+    }
+
+    @keyframes wave-animation-2 {
+        0% { transform: translateX(0) translateY(0) rotate(0deg); }
+        50% { transform: translateX(-15%) translateY(-8px) rotate(2deg); }
+        100% { transform: translateX(0) translateY(0) rotate(0deg); }
+    }
+
+    .ship-container {
       position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      pointer-events: none;
-      z-index: -2;
-      background-image: var(--particle-pseudo-before-bg-image);
-      background-size: var(--particle-pseudo-before-bg-size);
-      background-repeat: repeat;
-      animation: var(--particle-pseudo-before-animation);
-      opacity: var(--particle-pseudo-before-opacity);
-      transition: background-image 0.3s ease, background-size 0.3s ease, opacity 0.5s ease;
+      top: 60%; left: -150px; width: 120px; height: auto;
+      z-index: 1; pointer-events: none;
+      animation: sailShip 30s linear infinite 2s;
     }
-
-    body::after { /* Generic pseudo-element for particles */
-      content: '';
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      pointer-events: none;
-      z-index: -3; /* Behind ::before */
-      background-image: var(--particle-pseudo-after-bg-image);
-      background-size: var(--particle-pseudo-after-bg-size);
-      background-position: var(--particle-pseudo-after-bg-position);
-      background-repeat: repeat;
-      animation: var(--particle-pseudo-after-animation);
-      opacity: var(--particle-pseudo-after-opacity);
-      transition: background-image 0.3s ease, background-size 0.3s ease, background-position 0.3s ease, opacity 0.5s ease;
-    }
-
-    /* --- Dark Theme Particle Animations (Dots & Sparkles) --- */
-    @keyframes moveDots1 {
-      0% { background-position: 0 0; }
-      100% { background-position: 240px 480px; }
-    }
-    @keyframes moveDots2 {
-      0% { background-position: 0 0; }
-      100% { background-position: -390px 390px; }
-    }
-    @keyframes moveDots3 {
-      0% { background-position: 0 0; }
-      100% { background-position: 540px -270px; }
-    }
-    @keyframes animateAllSparkles {
-      0% { background-position: 0px 0px, 50px 80px, 100px 20px, -30px 150px; }
-      100% { background-position: -500px 700px, 800px -650px, -650px -800px, 700px 900px; }
-    }
-    @keyframes twinkleSparkleField { /* For Dark Theme Sparkles */
-      0% { opacity: 0.3; }
-      40% { opacity: 1; } /* Full opacity for dark theme sparkles at peak */
-      60% { opacity: 0.7; }
-      100% { opacity: 0.3; }
-    }
-
-    /* --- Light Theme Scientific Futuristic Animations --- */
-    @keyframes animateGridLight {
-      0% { background-position: 0 0, 0 0, 0 0, 0 0; }
-      100% { background-position: 100px 100px, -100px -100px, 140px 0, 0 140px; }
-    }
-    @keyframes animateSciParticlesLight {
-      0% { background-position: 0px 0px, 25px 50px; }
-      100% { background-position: 200px -150px, -150px 250px; }
-    }
-    @keyframes pulseSciParticlesLight { /* Gentle pulse for light theme particles */
-      0% { opacity: var(--particle-pseudo-after-opacity); transform: scale(1); }
-      50% { opacity: calc(var(--particle-pseudo-after-opacity) * 0.7); transform: scale(0.95); }
-      100% { opacity: var(--particle-pseudo-after-opacity); transform: scale(1); }
-    }
-    /* If body.light-theme @keyframes twinkleSparkleField is defined, it will conflict.
-       The new animation `pulseSciParticlesLight` is used for the ::after element in light theme.
-       The twinkleSparkleField is only part of the dark theme's ::after animation set. */
-
-
-    .spaceship-container {
-      position: fixed;
-      top: 20%; left: -100px; width: 70px; height: auto;
-      z-index: -1; pointer-events: none;
-      animation: flySpaceship 28s linear infinite 2s;
-    }
-    .spaceship-svg {
+    .ship-svg {
       width: 100%; height: auto;
-      filter: drop-shadow(0 0 6px var(--primary-glow)) drop-shadow(0 0 12px var(--primary-glow));
-      transition: filter 0.5s ease;
+      filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
     }
-    .spaceship-svg .s1-body { fill: var(--spaceship-body); transition: fill 0.5s ease;}
-    .spaceship-svg .s1-inner { fill: var(--spaceship-inner); transition: fill 0.5s ease;}
+    .ship-svg .s1-body { fill: var(--ship-body); transition: fill 0.5s ease;}
+    .ship-svg .s1-inner { fill: var(--ship-inner); transition: fill 0.5s ease;}
 
 
-    .spaceship-container-alt {
+    .ship-container-alt {
       position: fixed;
-      top: 65%; right: -120px; width: 90px; height: auto;
-      z-index: -1; pointer-events: none;
-      animation: flySpaceshipAlt 38s linear infinite 10s;
+      top: 25%; right: -180px; width: 150px; height: auto;
+      z-index: 1; pointer-events: none;
+      animation: sailShipAlt 45s linear infinite 10s;
     }
-    .spaceship-svg-alt {
+    .ship-svg-alt {
       width: 100%; height: auto; transform: scaleX(-1);
-      filter: drop-shadow(0 0 7px var(--secondary-glow)) drop-shadow(0 0 15px var(--secondary-glow));
-      transition: filter 0.5s ease;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4));
     }
-    .spaceship-svg-alt .s2-body { fill: var(--spaceship-alt-body); transition: fill 0.5s ease;}
-    .spaceship-svg-alt .s2-inner { fill: var(--spaceship-alt-inner); transition: fill 0.5s ease;}
+    .ship-svg-alt .s2-body { fill: var(--ship-alt-body); transition: fill 0.5s ease;}
+    .ship-svg-alt .s2-inner { fill: var(--ship-alt-inner); transition: fill 0.5s ease;}
 
 
-    @keyframes flySpaceship {
-      0% { transform: translateX(0) translateY(0) rotate(-10deg) scale(0.75); opacity: 0.7; }
-      25% { transform: translateX(calc(50vw - 35px)) translateY(-5vh) rotate(5deg) scale(0.9); opacity: 1; }
-      50% { transform: translateX(calc(100vw + 100px)) translateY(5vh) rotate(-5deg) scale(0.8); opacity: 0.8; }
-      50.01% { transform: translateX(-100px) translateY(10vh) rotate(-10deg) scale(0.75); opacity: 0; }
-      60% { opacity: 0.7; top: 25%; }
-      100% { transform: translateX(calc(100vw + 100px)) translateY(15vh) rotate(10deg) scale(0.8); opacity: 0.7; top: 25%; }
+    @keyframes sailShip {
+      0% { transform: translateX(0) translateY(0) rotate(-2deg); }
+      25% { transform: translateX(calc(50vw - 60px)) translateY(-15px) rotate(3deg); }
+      50% { transform: translateX(calc(100vw + 150px)) translateY(5px) rotate(-1deg); }
+      50.01% { transform: translateX(-150px) translateY(10px) rotate(-2deg); opacity: 0; }
+      55% { opacity: 1; top: 62%; }
+      100% { transform: translateX(calc(100vw + 150px)) translateY(0px) rotate(2deg); top: 62%;}
     }
-    @keyframes flySpaceshipAlt {
-      0% { transform: translateX(0) translateY(0) rotate(8deg) scale(0.85); opacity: 0.6; }
-      50% { transform: translateX(calc(-100vw - 120px)) translateY(-8vh) rotate(-5deg) scale(1); opacity: 1; }
-      100% { transform: translateX(0) translateY(0) rotate(8deg) scale(0.85); opacity: 0.6; }
+    @keyframes sailShipAlt {
+      0% { transform: translateX(0) translateY(0) rotate(2deg); }
+      50% { transform: translateX(calc(-100vw - 180px)) translateY(-20px) rotate(-3deg); }
+      100% { transform: translateX(0) translateY(0) rotate(2deg); }
     }
 
     header {
       text-align: center; padding: 50px 20px 25px; position: relative;
-      animation: fadeInDown 1s ease-out 0.2s backwards; z-index: 1;
+      animation: fadeInDown 1s ease-out 0.2s backwards; z-index: 2;
     }
     @keyframes fadeInDown {
       from { opacity: 0; transform: translateY(-30px); }
@@ -303,48 +232,15 @@
     }
 
     h1 {
-      color: var(--heading-color); font-family: 'Audiowide', cursive;
-      font-size: clamp(2rem, 1.3rem + 3.3vw, 3.8rem);
+      color: var(--heading-color); font-family: 'Pirata One', cursive;
+      font-size: clamp(3rem, 1.5rem + 5vw, 6rem);
       margin: 15px 0; text-transform: uppercase;
-      letter-spacing: clamp(1.5px, 0.5px + 0.25vw, 3px);
-      animation: textGlowDark 3s ease-in-out infinite alternate; position: relative;
+      letter-spacing: clamp(2px, 1px + 0.5vw, 5px);
+      text-shadow: 3px 3px 0px var(--secondary-glow), 6px 6px 0px rgba(0,0,0,0.2);
       transition: color 0.5s ease, text-shadow 0.5s ease;
     }
 
-    @keyframes textGlowDark {
-      from {
-        text-shadow:
-          0 0 7px #fff,
-          0 0 15px var(--primary-glow),
-          0 0 25px var(--primary-glow);
-      }
-      to {
-        text-shadow:
-          0 0 10px #fff,
-          0 0 20px var(--secondary-glow),
-          0 0 35px var(--secondary-glow);
-      }
-    }
-    body.light-theme h1 {
-      animation-name: textGlowLight;
-    }
-    @keyframes textGlowLight {
-      from {
-        text-shadow:
-          1px 1px 2px rgba(0,0,0,0.15),
-          0 0 3px var(--primary-glow),
-          0 0 6px var(--primary-glow);
-      }
-      to {
-        text-shadow:
-          1px 1px 2px rgba(0,0,0,0.15),
-          0 0 5px var(--secondary-glow),
-          0 0 10px var(--secondary-glow);
-      }
-    }
-
-
-    main { position: relative; z-index: 1; }
+    main { position: relative; z-index: 2; }
 
     .button-container {
       display: flex; justify-content: center; gap: 30px;
@@ -352,18 +248,18 @@
     }
     .cartoon-btn {
       background: var(--button-bg); color: var(--button-text-color);
-      font-family: 'Exo 2', sans-serif; font-size: 1.3rem; font-weight: 700;
-      padding: 18px 30px; border: 2px solid var(--button-border-default);
+      font-family: 'IM Fell English SC', serif; font-size: 1.3rem; font-weight: 700;
+      padding: 18px 30px; border: 3px solid var(--button-border-default);
       border-radius: 8px; cursor: pointer;
       transition: all 0.3s ease, transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275),
                   background 0.5s ease, color 0.5s ease, border-color 0.5s ease;
       text-transform: uppercase; letter-spacing: 1.2px;
       position: relative; overflow: hidden;
-      box-shadow: 0 0 10px rgba(var(--primary-glow-rgb), 0.25), 0 0 20px rgba(var(--primary-glow-rgb), 0.1);
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2), inset 0 -4px 5px rgba(0,0,0,0.1);
       min-width: 220px; animation: fadeInUp 0.6s ease-out backwards;
     }
-    body.light-theme .cartoon-btn {
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1), 0 0 5px rgba(var(--primary-glow-rgb), 0.15);
+    body.night-theme .cartoon-btn {
+      box-shadow: 0 0 10px rgba(var(--primary-glow-rgb), 0.25), 0 0 20px rgba(var(--primary-glow-rgb), 0.1);
     }
 
 
@@ -380,42 +276,16 @@
       from { opacity: 0; transform: translateY(30px) scale(0.95); }
       to { opacity: 1; transform: translateY(0) scale(1); }
     }
-
-    .cartoon-btn::before {
-      content: ''; position: absolute; top: 0; left: -100%;
-      width: 100%; height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(var(--primary-glow-rgb),0.15), transparent);
-      transition: none;
-    }
-    body.light-theme .cartoon-btn::before {
-        background: linear-gradient(90deg, transparent, rgba(var(--primary-glow-rgb),0.08), transparent);
-    }
-    .cartoon-btn:hover::before { left: 100%; transition: left 0.6s ease-in-out; }
-
+    
     .cartoon-btn:hover {
       transform: translateY(-5px) scale(1.03); background: var(--button-hover-bg);
       border-color: var(--secondary-glow);
-      box-shadow: 0 0 15px var(--secondary-glow), 0 0 30px var(--secondary-glow), inset 0 0 10px rgba(var(--secondary-glow-rgb), 0.15);
+      box-shadow: 0 6px 10px rgba(0,0,0,0.3), 0 0 15px var(--secondary-glow);
     }
-    body.light-theme .cartoon-btn:hover {
-        box-shadow: 0 4px 8px rgba(0,0,0,0.15), 0 0 10px var(--secondary-glow), inset 0 0 6px rgba(var(--secondary-glow-rgb), 0.1);
+    body.night-theme .cartoon-btn:hover {
+       box-shadow: 0 0 15px var(--secondary-glow), 0 0 30px var(--secondary-glow), inset 0 0 10px rgba(var(--secondary-glow-rgb), 0.15);
     }
-    /* Accent color button hovers can be further customized for light theme if needed */
-    .cartoon-btn.blue { border-color: #33b5e5; }
-    .cartoon-btn.blue:hover { border-color: #0099cc; /* Shadow set by generic hover */}
-    .cartoon-btn.yellow { border-color: #ffbb33; }
-    .cartoon-btn.yellow:hover { border-color: #FF8800; }
-    .cartoon-btn.lime { border-color: #76ff03; }
-    .cartoon-btn.lime:hover { border-color: #64dd17; }
-    .cartoon-btn.deep-orange { border-color: #ff6d00; }
-    .cartoon-btn.deep-orange:hover { border-color: #dd2c00; }
-    .cartoon-btn.cyan { border-color: #44ddbb; }
-    .cartoon-btn.cyan:hover { border-color: #11cbaa; }
-    .cartoon-btn.pink { border-color: #ff44cc; }
-    .cartoon-btn.pink:hover { border-color: #d900a3; }
-    .cartoon-btn.gold { border-color: #ffaa3b; }
-    .cartoon-btn.gold:hover { border-color: #ff8c00; }
-
+   
     .theme-switcher {
       position: fixed;
       top: 20px;
@@ -427,7 +297,7 @@
       padding: 8px 15px;
       border-radius: 20px;
       cursor: pointer;
-      font-family: 'Exo 2', sans-serif;
+      font-family: 'IM Fell English SC', serif;
       font-size: 0.9rem;
       transition: background-color 0.3s, color 0.3s, border-color 0.3s;
       box-shadow: 0 2px 5px rgba(0,0,0,0.2);
@@ -436,90 +306,98 @@
       background-color: var(--button-hover-bg);
       border-color: var(--secondary-glow);
     }
-    body.light-theme .theme-switcher {
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    
+    /* --- NEW: Footer Wave Animation --- */
+    .footer {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 120px; /* Adjust height as needed */
+        overflow: hidden;
+        z-index: 0;
     }
+    .waves {
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+    .wave-path {
+        fill: var(--footer-wave-color);
+        transition: fill 0.5s ease;
+    }
+    .parallax > use {
+        animation: move-forever 25s cubic-bezier(.55,.5,.45,.5) infinite;
+    }
+    .parallax > use:nth-child(1) {
+        animation-delay: -2s;
+        animation-duration: 7s;
+    }
+    .parallax > use:nth-child(2) {
+        animation-delay: -3s;
+        animation-duration: 10s;
+    }
+    .parallax > use:nth-child(3) {
+        animation-delay: -4s;
+        animation-duration: 13s;
+    }
+    @keyframes move-forever {
+        0% { transform: translate3d(-90px,0,0); }
+        100% { transform: translate3d(85px,0,0); }
+    }
+    /* --- End of Footer Wave Animation --- */
+
 
     @media (max-width: 768px) {
       .cartoon-btn { font-size: 1.1rem !important; padding: 16px 22px !important; min-width: 190px; }
-      .spaceship-container { width: 55px; }
-      .spaceship-container-alt { width: 70px; animation-duration: 42s; }
+      .ship-container { width: 90px; }
+      .ship-container-alt { width: 110px; animation-duration: 48s; }
       .theme-switcher { top: 15px; right: 15px; padding: 6px 12px; font-size: 0.8rem; }
-
-      /* Responsive Particle Adjustments */
-      body.light-theme {
-        --particle-pseudo-before-bg-size: 40px 40px, 40px 40px, 60px 60px, 60px 60px;
-        --particle-pseudo-before-opacity: 0.6;
-        --particle-pseudo-after-bg-size: 80px 80px, 120px 120px;
-        --particle-pseudo-after-opacity: 0.7;
-      }
-      /* Dark theme particles (dots/sparkles) also need responsive adjustments if not already present */
-      :not(.light-theme) body::before { /* Specific to dark theme dots */
-        background-size: 70px 70px, 110px 110px, 160px 160px;
-        opacity: 0.7;
-      }
-      :not(.light-theme) body::after { /* Specific to dark theme sparkles */
-        background-size: 160px 160px, 260px 260px, 210px 210px, 310px 310px;
-        animation: animateAllSparkles 45s linear infinite, twinkleSparkleField 9s ease-in-out infinite alternate 0.5s;
-      }
     }
 
     @media (max-width: 480px) {
-      h1 { font-size: clamp(1.8rem, 1.1rem + 2.8vw, 2.8rem); }
-      .cartoon-btn { font-size: 0.95rem !important; padding: 14px 18px !important; min-width: calc(100% - 40px); margin-bottom: 12px; }
+      h1 { font-size: clamp(2.5rem, 1.1rem + 4vw, 4rem); }
+      /* --- MODIFIED: Bigger buttons and text for smartphones --- */
+      .cartoon-btn { 
+        font-size: 1.25rem !important; /* Increased text size */
+        padding: 20px 25px !important; /* Increased padding for a larger button */
+        min-width: calc(100% - 60px); 
+        margin-bottom: 15px; 
+      }
       .button-container { gap: 0; flex-direction: column; align-items: center; }
-      .spaceship-container, .spaceship-container-alt { display: none; }
-      body { animation-duration: 40s; }
+      .ship-container, .ship-container-alt { display: none; }
+      body { animation-duration: 50s; }
       .theme-switcher { top: 10px; right: 10px; padding: 5px 10px; font-size: 0.75rem; }
-
-      /* Responsive Particle Adjustments for Small Screens */
-      body.light-theme {
-        --particle-pseudo-before-bg-size: 30px 30px, 30px 30px, 50px 50px, 50px 50px;
-        --particle-pseudo-before-opacity: 0.5;
-        --particle-pseudo-after-bg-size: 70px 70px, 100px 100px;
-        --particle-pseudo-after-opacity: 0.6;
-      }
-       :not(.light-theme) body::before { /* Dark theme dots on small screens */
-        background-size: 60px 60px, 100px 100px, 140px 140px;
-        opacity: 0.6;
-        animation: moveDots1 25s linear infinite, moveDots2 35s linear infinite, moveDots3 50s linear infinite;
-      }
-      :not(.light-theme) body::after { /* Dark theme sparkles on small screens */
-        background-size: 140px 140px, 230px 230px, 180px 180px, 280px 280px;
-        animation: animateAllSparkles 50s linear infinite, twinkleSparkleField 10s ease-in-out infinite alternate 1s;
-      }
-      /* Adjust twinkle for dark theme on small screens if needed */
-      @media (max-width: 480px) {
-        :not(.light-theme) body::after {
-          @keyframes twinkleSparkleField {
-            0% { opacity: 0.2; } 40% { opacity: 0.7; } 60% { opacity: 0.6; } 100% { opacity: 0.2; }
-          }
-        }
-      }
     }
   </style>
 </head>
 <body>
   <button class="theme-switcher" id="themeSwitcher" aria-label="Toggle theme">
-    ☀️ Light / 🌙 Dark
+    ☀️ Day / 🌙 Night
   </button>
 
-  <div class="spaceship-container">
-    <svg class="spaceship-svg" viewBox="0 0 60 35" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path class="s1-body" d="M30 0 L5 15 L12 15 L12 20 L5 30 L30 35 L55 30 L48 20 L48 15 L55 15 L30 0Z" fill="var(--spaceship-body)"/>
-        <path class="s1-inner" d="M30 5 L15 15 L15 20 L30 30 L45 20 L45 15 L30 5Z" fill="var(--spaceship-inner)"/>
-        <ellipse cx="30" cy="8" rx="3" ry="1.5" fill="var(--primary-glow)"/>
-        <rect x="26" y="32" width="8" height="3" fill="rgba(var(--primary-glow-rgb),0.7)"/>
-        <ellipse cx="8" cy="28" rx="2" ry="1" fill="rgba(var(--secondary-glow-rgb),0.6)"/>
-        <ellipse cx="52" cy="28" rx="2" ry="1" fill="rgba(var(--secondary-glow-rgb),0.6)"/>
+  <!-- Going Merry -->
+  <div class="ship-container">
+    <svg class="ship-svg" viewBox="0 0 100 80" xmlns="http://www.w3.org/2000/svg">
+      <path class="s1-body" d="M10 50 C 20 75, 80 75, 90 50 L 85 40 L 15 40 Z" fill="var(--ship-body)"/>
+      <path d="M48 5 L 52 5 L 52 40 L 48 40 Z" fill="#654321"/> <!-- Mast -->
+      <path class="s1-inner" d="M52 10 L 75 20 L 52 30 Z" fill="var(--ship-inner)"/> <!-- Sail -->
+      <circle cx="20" cy="45" r="3" fill="#ffffff" stroke="#000000" stroke-width="1"/> <!-- Porthole -->
+      <circle cx="75" cy="45" r="3" fill="#ffffff" stroke="#000000" stroke-width="1"/> <!-- Porthole -->
+      <path d="M10 50 Q 5 45, 10 40" fill="none" stroke="#5d4037" stroke-width="2"/>
     </svg>
   </div>
-  <div class="spaceship-container-alt">
-    <svg class="spaceship-svg-alt" viewBox="0 0 50 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path class="s2-body" d="M0 12.5 L10 5 L45 5 L50 12.5 L45 20 L10 20 L0 12.5Z" fill="var(--spaceship-alt-body)"/>
-        <path class="s2-inner" d="M5 12.5 L12 8 L40 8 L45 12.5 L40 17 L12 17 L5 12.5Z" fill="var(--spaceship-alt-inner)"/>
-        <circle cx="42" cy="12.5" r="3" fill="rgba(var(--secondary-glow-rgb),0.7)"/>
-        <rect x="10" y="10.5" width="10" height="4" rx="1" fill="var(--primary-glow)"/>
+  <!-- Thousand Sunny -->
+  <div class="ship-container-alt">
+    <svg class="ship-svg-alt" viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg">
+        <path class="s2-body" d="M10 70 C 20 100, 100 100, 110 70 L 115 50 L 5 50 Z" fill="var(--ship-alt-body)"/>
+        <path d="M58 10 L 62 10 L 62 55 L 58 55 Z" fill="#5C4033"/> <!-- Main Mast -->
+        <path class="s2-inner" d="M62 15 L 95 30 L 62 45 Z" fill="var(--ship-alt-inner)"/> <!-- Main Sail -->
+        <path d="M100 50 L 110 60 L 105 70 L 95 60 Z" fill="#D2B48C"/> <!-- Upper Deck -->
+        <circle cx="20" cy="55" r="4" fill="#ffffff" stroke="#000000" stroke-width="1"/>
+        <circle cx="85" cy="55" r="4" fill="#ffffff" stroke="#000000" stroke-width="1"/>
+        <path d="M 50, 50 m -10, 0 a 10,10 0 1,0 20,0 a 10,10 0 1,0 -20,0" fill="#ffc107"/> <!-- Sunny Head -->
+        <path d="M45 48 L 55 48 M 48 52 L 52 52" stroke="#000" stroke-width="1"/>
     </svg>
   </div>
 
@@ -538,6 +416,22 @@
       <button class="cartoon-btn gold" id="syllabus">Syllabus 🗺️</button>
     </div>
   </main>
+  
+  <!-- NEW: Added Footer with Wave SVG -->
+  <footer class="footer">
+    <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+    viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+      <defs>
+        <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+      </defs>
+      <g class="parallax">
+        <use xlink:href="#gentle-wave" x="48" y="0" class="wave-path" opacity="0.7" />
+        <use xlink:href="#gentle-wave" x="48" y="3" class="wave-path" opacity="0.5" />
+        <use xlink:href="#gentle-wave" x="48" y="5" class="wave-path" opacity="0.3" />
+      </g>
+    </svg>
+  </footer>
+
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -556,12 +450,12 @@
       const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
 
       function applyTheme(theme) {
-        if (theme === 'light') {
-          body.classList.add('light-theme');
-          themeSwitcher.textContent = '🌙 Dark';
+        if (theme === 'night') {
+          body.classList.add('night-theme');
+          themeSwitcher.textContent = '☀️ Day';
         } else {
-          body.classList.remove('light-theme');
-          themeSwitcher.textContent = '☀️ Light';
+          body.classList.remove('night-theme');
+          themeSwitcher.textContent = '🌙 Night';
         }
       }
 
@@ -569,22 +463,24 @@
       if (currentTheme) {
         applyTheme(currentTheme);
       } else {
-        applyTheme(prefersDarkScheme.matches ? 'dark' : 'light');
+        // Default to night theme if user's system prefers dark, otherwise day
+        applyTheme(prefersDarkScheme.matches ? 'night' : 'day');
       }
 
       themeSwitcher.addEventListener('click', () => {
-        if (body.classList.contains('light-theme')) {
-          currentTheme = 'dark';
+        if (body.classList.contains('night-theme')) {
+          currentTheme = 'day';
         } else {
-          currentTheme = 'light';
+          currentTheme = 'night';
         }
         localStorage.setItem('theme', currentTheme);
         applyTheme(currentTheme);
       });
 
       prefersDarkScheme.addEventListener('change', (e) => {
+        // Only change if no theme is manually set
         if (!localStorage.getItem('theme')) {
-            applyTheme(e.matches ? 'dark' : 'light');
+            applyTheme(e.matches ? 'night' : 'light');
         }
       });
     });
