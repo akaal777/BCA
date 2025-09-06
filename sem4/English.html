@@ -3,19 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All My Sons - Arthur Miller | Modern Interface</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>All My Sons - Arthur Miller | Grand Line Archives</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-primary: #0a0f1e; /* Deep space blue */
-            --bg-secondary: #1a1f36; /* Slightly lighter dark blue */
-            --accent-primary: #00ffff; /* Cyan */
-            --accent-secondary: #ff00ff; /* Magenta */
-            --text-primary: #e0e0e0; /* Light grey for text */
-            --text-secondary: #a0a0a0; /* Medium grey for less important text */
-            --glass-bg: rgba(26, 31, 54, 0.5); /* Semi-transparent dark blue for glass effect */
-            --glass-border: rgba(0, 255, 255, 0.2);
-            --glow-color: var(--accent-primary);
+            --parchment-bg: #f5e8c8; /* Aged paper background */
+            --wood-plank: #8B4513; /* SaddleBrown for buttons */
+            --wood-dark: #5a2d0c; /* Darker wood for borders/shadows */
+            --text-dark: #3b2f2f; /* Dark brown for text */
+            --pirate-red: #c0392b; /* A deep red accent */
+            --pirate-gold: #f1c40f; /* Accent gold */
         }
 
         * {
@@ -29,89 +26,78 @@
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 70%, #050810 100%);
-            color: var(--text-primary);
+            font-family: 'Open Sans', sans-serif;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><g fill="%23d2b48c" fill-opacity="0.1"><rect x="50" width="50" height="50"/><rect y="50" width="50" height="50"/></g></svg>'), linear-gradient(to bottom, #e6b88a, #d2a67d);
+            background-color: #d2b48c; /* Tan color similar to a map */
+            color: var(--text-dark);
             min-height: 100vh;
             padding: 20px;
-            overflow-x: hidden; /* Prevent horizontal scroll from animations */
+            overflow-x: hidden;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
-
+        
         .container {
             width: 100%;
-            max-width: 1000px; /* Max width for content */
+            max-width: 1000px;
             margin: 0 auto;
         }
 
         .heading {
             text-align: center;
             margin: 40px 0 60px;
-            font-family: 'Orbitron', sans-serif;
-            font-size: clamp(2.5em, 6vw, 4em); /* Responsive font size */
-            color: var(--text-primary);
-            text-shadow: 0 0 10px var(--glow-color), 0 0 20px var(--glow-color), 0 0 30px var(--accent-secondary), 0 0 5px #fff;
-            letter-spacing: 2px;
-            animation: fadeInDown 1s ease-out, flicker 3s infinite alternate;
-            line-height: 1.2;
+            font-family: 'Bangers', cursive;
+            font-size: clamp(3em, 8vw, 6em);
+            color: var(--text-dark);
+            text-shadow: 3px 3px 0px rgba(245, 232, 200, 0.7);
+            letter-spacing: 3px;
+            animation: stampIn 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            line-height: 1.1;
         }
 
         .heading span {
-            font-size: 0.5em;
+            font-size: 0.4em;
             font-weight: 400;
-            color: var(--text-secondary);
-            text-shadow: 0 0 5px var(--accent-secondary);
+            color: var(--text-dark);
+            text-shadow: 1px 1px 0px rgba(245, 232, 200, 0.7);
             display: block;
             margin-top: 5px;
+            letter-spacing: 2px;
         }
 
-        @keyframes flicker {
-            0%, 18%, 22%, 25%, 53%, 57%, 100% {
-                text-shadow:
-                0 0 7px var(--glow-color),
-                0 0 10px var(--glow-color),
-                0 0 21px var(--glow-color),
-                0 0 42px var(--accent-secondary),
-                0 0 82px var(--accent-secondary),
-                0 0 92px var(--accent-secondary),
-                0 0 102px var(--accent-primary),
-                0 0 151px var(--accent-primary);
+        @keyframes stampIn {
+            from {
+                opacity: 0;
+                transform: scale(1.5);
             }
-            20%, 24%, 55% {        
-                text-shadow: none;
+            to {
+                opacity: 1;
+                transform: scale(1);
             }
         }
 
         .section {
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px); /* For Safari */
+            background: var(--parchment-bg);
             padding: 30px;
-            border-radius: 15px;
+            border-radius: 5px;
             margin-bottom: 40px;
-            border: 1px solid var(--glass-border);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37), 0 0 15px var(--glow-color) inset;
+            border: 2px solid #c8b796;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), inset 0 0 25px rgba(0,0,0,0.1);
             opacity: 0;
             transform: translateY(30px);
-            animation: fadeInUp 0.8s ease-out forwards;
-            /* Stagger animation for multiple sections */
+            /* JS will handle the animation */
         }
-        .section:nth-of-type(1) { animation-delay: 0.2s; }
-        .section:nth-of-type(2) { animation-delay: 0.4s; }
-        .section:nth-of-type(3) { animation-delay: 0.6s; }
-        footer.section { animation-delay: 0.8s; }
-
 
         .section-title {
             margin-bottom: 25px;
-            color: var(--accent-primary);
-            font-family: 'Orbitron', sans-serif;
-            font-size: clamp(1.5em, 4vw, 2.2em);
-            text-shadow: 0 0 5px var(--accent-primary);
+            color: var(--pirate-red);
+            font-family: 'Bangers', cursive;
+            font-size: clamp(1.8em, 4vw, 2.5em);
+            text-shadow: 1px 1px 0 var(--parchment-bg);
             position: relative;
             padding-bottom: 10px;
+            letter-spacing: 1.5px;
         }
 
         .section-title::after {
@@ -119,11 +105,10 @@
             position: absolute;
             bottom: 0;
             left: 0;
-            width: 50px;
-            height: 3px;
-            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            width: 60px;
+            height: 4px;
+            background: var(--pirate-red);
             border-radius: 2px;
-            box-shadow: 0 0 8px var(--accent-primary);
         }
 
         .button-container {
@@ -134,84 +119,42 @@
 
         .btn {
             padding: 15px 25px;
-            border: 2px solid var(--accent-primary);
+            border: 2px solid var(--wood-dark);
             border-radius: 8px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            background: transparent;
-            color: var(--text-primary);
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            font-size: 1em;
-            letter-spacing: 1px;
+            transition: all 0.2s ease-out;
+            background: var(--wood-plank);
+            color: #fff;
+            font-family: 'Bangers', cursive;
+            font-weight: 400;
+            font-size: 1.2em;
+            letter-spacing: 1.5px;
             text-align: center;
-            position: relative;
-            overflow: hidden;
-            text-shadow: 0 0 3px rgba(0,0,0,0.5);
+            text-shadow: 1px 1px 1px rgba(0,0,0,0.4);
+            box-shadow: inset 0 -4px 0 var(--wood-dark), 0 4px 5px rgba(0,0,0,0.3);
         }
-
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, var(--accent-primary), transparent);
-            transition: left 0.5s ease;
-            opacity: 0.6;
-        }
-
+        
         .btn:hover {
-            color: var(--bg-primary);
-            background-color: var(--accent-primary);
-            box-shadow: 0 0 15px var(--accent-primary), 0 0 25px var(--accent-primary);
-            transform: translateY(-3px) scale(1.02);
-        }
-
-        .btn:hover::before {
-            left: 100%;
+            background: #a0522d; /* Lighter wood */
+            transform: translateY(-2px);
+            box-shadow: inset 0 -3px 0 var(--wood-dark), 0 6px 8px rgba(0,0,0,0.3);
         }
 
         .btn:active {
-            transform: translateY(0px) scale(0.98);
-            box-shadow: 0 0 5px var(--accent-primary);
+            transform: translateY(2px);
+            box-shadow: inset 0 -2px 0 var(--wood-dark), 0 2px 2px rgba(0,0,0,0.3);
         }
 
         .footer-message {
             font-size: clamp(1em, 2.5vw, 1.2em);
             text-align: center;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 300;
-            color: var(--text-secondary);
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 600;
+            color: var(--text-dark);
             padding: 20px;
-            background: var(--glass-bg);
+            background: rgba(245, 232, 200, 0.8); /* Slightly transparent parchment */
             border-radius: 10px;
-            border: 1px solid var(--glass-border);
-            text-shadow: 0 0 5px var(--accent-secondary);
-        }
-
-        /* Animations */
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            border: 2px solid #c8b796;
         }
         
         /* Responsive adjustments */
@@ -227,22 +170,22 @@
                 margin-bottom: 30px;
             }
             .button-container {
-                grid-template-columns: 1fr; /* Stack buttons on smaller screens */
+                grid-template-columns: 1fr;
                 gap: 15px;
             }
             .btn {
                 padding: 12px 20px;
-                font-size: 0.95em;
+                font-size: 1.1em;
             }
         }
 
         @media (max-width: 480px) {
             .btn {
-                font-size: 0.9em;
+                font-size: 1em;
             }
              .section-title::after {
-                width: 40px;
-                height: 2px;
+                width: 50px;
+                height: 3px;
             }
         }
 
@@ -253,16 +196,16 @@
         <h1 class="heading">All My Sons<br><span>by Arthur Miller</span></h1>
         
         <section class="section">
-            <h2 class="section-title">PDF Collection</h2>
+            <h2 class="section-title">The Treasure Logs { PDFs }</h2>
             <div class="button-container">
-                <button class="btn" id="storyBtn">Story</button>
-                <button class="btn" id="scriptBtn">Script</button>
-                <button class="btn" id="summaryBtn">Summary</button>
+                <button class="btn" id="storyBtn">The Full Tale</button>
+                <button class="btn" id="scriptBtn">The Script Scroll</button>
+                <button class="btn" id="summaryBtn">The Captain's Summary</button>
             </div>
         </section>
 
         <section class="section">
-            <h2 class="section-title">Character Sketches</h2>
+            <h2 class="section-title">The Crew's Bounties { Character Sketches }</h2>
             <div class="button-container">
                 <button class="btn" id="character1Btn">Joe Keller</button>
                 <button class="btn" id="character2Btn">Kate Keller</button>
@@ -273,16 +216,16 @@
         </section>
         
         <section class="section">
-            <h2 class="section-title">Video Guides</h2>
+            <h2 class="section-title">Video Sea Chanteys</h2>
             <div class="button-container">
-                <button class="btn" id="video1Btn">All My Sons [ Summary in Hindi ]</button>
-                <button class="btn" id="video2Btn">All My Sons [ Summary in Punjabi ]</button>
-                <button class="btn" id="video3Btn">All My Sons [full Play in Hindi]</button>
+                <button class="btn" id="video1Btn">Summary [in Hindi]</button>
+                <button class="btn" id="video2Btn">Summary [in Punjabi]</button>
+                <button class="btn" id="video3Btn">Full Play [in Hindi]</button>
             </div>
         </section>
         
         <footer class="section">
-            <p class="footer-message">Master the English Grammar - Unlock Semester 3!</p>
+            <p class="footer-message">Get ready to level up your grammar skills for our next literary adventure in Semester 3!</p>
         </footer>
     </div>
 
@@ -300,58 +243,51 @@
             char2: "https://youtu.be/8tFDfb3I3A4?si=9PVqH3HEWNPtbcfd",
             char3: "https://youtu.be/Sop5gaCxWs4?si=bwFUM3h-gqba7nbm",
             char4: "https://youtu.be/TEFRgmRo4pc?si=P093zbGnjaQaUe2t",
-            char5: "https://youtu.be/Pqk3J_JPHJQ?si=sERgg4YH38E5WsuC"
+            char5: "https://youtu.be/Pqk3_J_JPHJQ?si=sERgg4YH38E5WsuC"
         };
 
-        // --- Event Listeners ---
+        // --- Event Listeners (Functionality remains the same) ---
 
-        // Helper to open links
         const openLink = (url) => window.open(url, '_blank');
 
-        // PDF Buttons
         document.getElementById('storyBtn').addEventListener('click', () => openLink(pdfPaths.story));
         document.getElementById('scriptBtn').addEventListener('click', () => openLink(pdfPaths.script));
         document.getElementById('summaryBtn').addEventListener('click', () => openLink(pdfPaths.summary));
 
-        // Character Sketch Buttons
         document.getElementById('character1Btn').addEventListener('click', () => openLink(characterLinks.char1));
         document.getElementById('character2Btn').addEventListener('click', () => openLink(characterLinks.char2));
         document.getElementById('character3Btn').addEventListener('click', () => openLink(characterLinks.char3));
         document.getElementById('character4Btn').addEventListener('click', () => openLink(characterLinks.char4));
         document.getElementById('character5Btn').addEventListener('click', () => openLink(characterLinks.char5));
 
-        // YouTube Video Buttons
         document.getElementById('video1Btn').addEventListener('click', () => openLink('https://youtu.be/m0Pbjodj6mk?si=HNivmcJa3VLAWX0-'));
         document.getElementById('video2Btn').addEventListener('click', () => openLink('https://youtu.be/B5pF4ffW2DI?si=xvWYdIKDSkTxnh9p'));
         document.getElementById('video3Btn').addEventListener('click', () => openLink('https://youtu.be/Sh1IhIfTHFk?si=Nanrl8pby8Npef-l'));
 
-        // --- Optional: Intersection Observer for more advanced scroll animations ---
-        // Commented out by default for simplicity, but you can uncomment to use it.
-        // This would replace the staggered CSS animation delays for sections if you prefer JS control.
-        
+        // --- Intersection Observer for scroll animations ---
         const sections = document.querySelectorAll('.section');
         const observerOptions = {
-            root: null, // viewport
+            root: null,
             rootMargin: '0px',
-            threshold: 0.1 // 10% of the element is visible
+            threshold: 0.1
         };
 
         const observerCallback = (entries, observer) => {
-            entries.forEach(entry => {
+            entries.forEach((entry, index) => {
                 if (entry.isIntersecting) {
+                    entry.target.style.transitionDelay = `${index * 0.15}s`; // Stagger animation
                     entry.target.style.opacity = '1';
                     entry.target.style.transform = 'translateY(0)';
-                    observer.unobserve(entry.target); // Stop observing once animated
+                    observer.unobserve(entry.target);
                 }
             });
         };
 
         const sectionObserver = new IntersectionObserver(observerCallback, observerOptions);
         sections.forEach(section => {
-            // Reset styles for JS animation
             section.style.opacity = '0';
             section.style.transform = 'translateY(30px)';
-            section.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+            section.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
             sectionObserver.observe(section);
         });
     </script>
