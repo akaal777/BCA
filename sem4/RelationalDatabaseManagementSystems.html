@@ -3,18 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DBMS Nexus - Futuristic Portal</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Loguetown Archives - DBMS Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-bg: #0a0a1f; /* Deep space blue */
-            --secondary-bg: rgba(10, 25, 47, 0.8); /* Darker, slightly transparent for sections */
-            --text-color: #e0e0e0; /* Light grey for readability */
-            --accent-color: #00ffff; /* Cyan */
-            --accent-hover-color: #00e0e0;
-            --glow-color: rgba(0, 255, 255, 0.7);
-            --heading-color: #ffffff;
-            --border-color: rgba(0, 255, 255, 0.3);
+            --parchment-bg: #f5e8c8;
+            --wood-bg: #4a2c2a;
+            --text-dark: #3a2d2d;
+            --accent-red: #c0392b;
+            --border-color: #c8b796;
         }
 
         * {
@@ -24,68 +21,51 @@
         }
 
         body {
-            background-color: var(--primary-bg);
-            color: var(--text-color);
-            font-family: 'Poppins', sans-serif;
+            background-color: var(--wood-bg);
+            background-image: linear-gradient(rgba(74, 44, 42, 0.8), rgba(74, 44, 42, 0.95)), 
+                              url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><g fill="%233a2d2d" fill-opacity="0.1"><rect x="50" width="50" height="50"/><rect y="50" width="50" height="50"/></g></svg>');
+            background-attachment: fixed;
+            color: var(--text-dark);
+            font-family: 'Open Sans', sans-serif;
             min-height: 100vh;
-            overflow-x: hidden; /* Prevent horizontal scroll from animations */
-            position: relative; /* For particle.js positioning */
-        }
-
-        #particles-js {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            z-index: -1; /* Behind all content */
-            background-color: var(--primary-bg);
+            overflow-x: hidden;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 40px 20px;
-            position: relative; /* To ensure content is above particles */
-            z-index: 1;
             animation: fadeInContainer 1s ease-out forwards;
         }
 
         @keyframes fadeInContainer {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         .main-heading {
             text-align: center;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 3.8rem;
+            font-family: 'Bangers', cursive;
+            font-size: 4.5rem;
             margin-bottom: 3rem;
-            color: var(--heading-color);
-            text-shadow: 0 0 10px var(--glow-color), 0 0 20px var(--glow-color), 0 0 30px var(--accent-color);
-            animation: pulseHeading 2s infinite alternate, slideInDown 1s ease-out;
-        }
-
-        @keyframes pulseHeading {
-            from { text-shadow: 0 0 8px var(--glow-color), 0 0 15px var(--glow-color), 0 0 25px var(--accent-color); }
-            to { text-shadow: 0 0 12px var(--glow-color), 0 0 22px var(--glow-color), 0 0 35px var(--accent-color), 0 0 5px #fff; }
+            color: var(--parchment-bg);
+            text-shadow: 4px 4px 0px var(--text-dark), 0 0 10px rgba(0,0,0,0.5);
+            letter-spacing: 2px;
+            animation: slideInDown 1s ease-out;
         }
 
         @keyframes slideInDown {
-            from { opacity: 0; transform: translateY(-50px); }
+            from { opacity: 0; transform: translateY(-30px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-
         .section {
-            background: var(--secondary-bg);
-            backdrop-filter: blur(5px); /* Glassmorphism touch */
-            -webkit-backdrop-filter: blur(5px);
-            border-radius: 15px;
+            background: var(--parchment-bg);
+            border-radius: 10px;
             padding: 2.5rem;
             margin-bottom: 3rem;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 0 20px rgba(0, 200, 200, 0.1), 0 0 30px rgba(0,255,255,0.05) inset;
+            border: 3px solid var(--border-color);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
             opacity: 0;
             transform: translateY(30px);
             animation: slideUpFadeIn 0.8s ease-out forwards;
@@ -93,8 +73,8 @@
         }
 
         .section:hover {
-            transform: translateY(-5px) scale(1.01);
-            box-shadow: 0 0 30px rgba(0, 255, 255, 0.2), 0 0 40px rgba(0,255,255,0.1) inset;
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
         }
 
         @keyframes slideUpFadeIn {
@@ -109,11 +89,12 @@
         }
 
         .sub-section h3 {
-            font-family: 'Orbitron', sans-serif;
-            color: var(--accent-color);
-            font-size: 1.5rem;
+            font-family: 'Bangers', cursive;
+            color: var(--accent-red);
+            font-size: 1.8rem;
+            letter-spacing: 1px;
             margin-bottom: 1rem;
-            border-bottom: 1px solid var(--border-color);
+            border-bottom: 2px solid var(--border-color);
             padding-bottom: 0.5rem;
         }
 
@@ -125,268 +106,95 @@
         }
 
         .btn {
-            background: transparent;
-            border: 2px solid var(--accent-color);
+            background: #a0522d; /* Lighter wood */
+            border: 2px solid var(--wood-bg);
             padding: 0.8rem 1.5rem;
-            color: var(--accent-color);
+            color: var(--parchment-bg);
             border-radius: 8px;
             font-size: 1rem;
             font-weight: 600;
+            font-family: 'Open Sans', sans-serif;
             cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            font-family: 'Poppins', sans-serif;
+            transition: all 0.2s ease-out;
             text-align: center;
+            box-shadow: inset 0 -3px 0 rgba(0,0,0,0.3), 0 3px 5px rgba(0,0,0,0.3);
             opacity: 0;
-            transform: scale(0.9);
+            transform: translateY(10px);
             animation: popIn 0.5s ease-out forwards;
         }
 
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, var(--accent-hover-color), transparent);
-            transition: left 0.4s ease;
-            z-index: 0;
-        }
-
-        .btn:hover::before {
-            left: 100%;
-        }
-
         .btn:hover {
-            background-color: var(--accent-color);
-            color: var(--primary-bg);
-            box-shadow: 0 0 15px var(--glow-color), 0 0 25px var(--glow-color);
-            transform: translateY(-3px) scale(1.02);
+            background-color: #8B4513; /* Darker wood on hover */
+            transform: translateY(-2px);
+            box-shadow: inset 0 -2px 0 rgba(0,0,0,0.3), 0 5px 8px rgba(0,0,0,0.4);
         }
 
         .btn:active {
-            transform: translateY(0px) scale(1);
-            box-shadow: 0 0 5px var(--glow-color);
-        }
-        
-        .btn span { /* To keep text above the ::before pseudo-element */
-            position: relative;
-            z-index: 1;
+            transform: translateY(1px);
+            box-shadow: inset 0 -1px 0 rgba(0,0,0,0.3), 0 1px 2px rgba(0,0,0,0.4);
         }
 
         @keyframes popIn {
             to {
                 opacity: 1;
-                transform: scale(1);
+                transform: translateY(0);
             }
         }
 
         .section-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2.2rem;
+            font-family: 'Bangers', cursive;
+            font-size: 2.5rem;
             margin-bottom: 2rem;
-            color: var(--heading-color);
-            text-shadow: 0 0 5px var(--glow-color);
-            border-bottom: 2px solid var(--accent-color);
+            color: var(--text-dark);
+            border-bottom: 3px solid var(--accent-red);
             padding-bottom: 0.8rem;
-            position: relative;
-        }
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -2px; /* align with border */
-            left: 0;
-            width: 50px;
-            height: 2px;
-            background: #fff;
-            animation: animateBorder 4s linear infinite;
-        }
-
-        @keyframes animateBorder {
-            0% { width: 0; left:0; }
-            50% { width: 100%; left: 0; }
-            100% { width: 0; left: 100%;}
-        }
-
-
-        @media (max-width: 992px) {
-            .button-grid {
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            }
         }
 
         @media (max-width: 768px) {
-            .main-heading {
-                font-size: 2.8rem;
-            }
-            .section {
-                padding: 2rem;
-            }
-            .section-title {
-                font-size: 1.8rem;
-            }
-            .sub-section h3 {
-                font-size: 1.3rem;
-            }
-             .button-grid {
-                grid-template-columns: 1fr; /* Stack buttons on smaller screens */
-            }
+            .main-heading { font-size: 3.5rem; }
+            .section { padding: 2rem; }
+            .section-title { font-size: 2rem; }
+            .sub-section h3 { font-size: 1.5rem; }
+            .button-grid { grid-template-columns: 1fr; }
         }
 
         @media (max-width: 480px) {
-            .main-heading {
-                font-size: 2.2rem;
-            }
-            .section-title {
-                font-size: 1.6rem;
-            }
-            .btn {
-                font-size: 0.9rem;
-                padding: 0.7rem 1.2rem;
-            }
-             .container {
-                padding: 20px 15px;
-            }
+            .main-heading { font-size: 2.8rem; }
+            .section-title { font-size: 1.8rem; }
+            .container { padding: 20px 15px; }
         }
 
     </style>
 </head>
 <body>
-    <div id="particles-js"></div>
 
     <div class="container">
-        <h1 class="main-heading">DBMS NEXUS</h1>
+        <h1 class="main-heading">Loguetown Archives {DBMS}</h1>
         
         <section class="section" style="animation-delay: 0.2s;">
-            <h2 class="section-title">📚 Cyber Study Archives</h2>
+            <h2 class="section-title">East Blue Scrolls</h2>
             <div class="sub-section">
-                <h3>Online Databanks</h3>
+                <h3>Online Sea Charts</h3>
                 <div class="button-grid" id="online-notes"></div>
             </div>
             <div class="sub-section">
-                <h3>Local Data Caches</h3>
+                <h3>Local Captain's Logs</h3>
                 <div class="button-grid" id="offline-notes"></div>
             </div>
         </section>
 
         <section class="section" style="animation-delay: 0.4s;">
-            <h2 class="section-title">🧠 Theory Synthesis Core</h2>
+            <h2 class="section-title">Swordsman's Wisdom {Theory}</h2>
             <div class="button-grid" id="theory"></div>
         </section>
 
         <section class="section" style="animation-delay: 0.6s;">
-            <h2 class="section-title">🎥 Video-Stream Hub</h2>
+            <h2 class="section-title">Tavern Tales (Videos)</h2>
             <div class="button-grid" id="youtube"></div>
         </section>
     </div>
 
-    <!-- particles.js library -->
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
-        // Initialize Particles.js
-        particlesJS("particles-js", {
-            "particles": {
-                "number": {
-                    "value": 80, // Number of particles
-                    "density": {
-                        "enable": true,
-                        "value_area": 800
-                    }
-                },
-                "color": {
-                    "value": "#00ffff" // Particle color (cyan)
-                },
-                "shape": {
-                    "type": "circle", // "circle", "edge", "triangle", "polygon", "star", "image"
-                    "stroke": {
-                        "width": 0,
-                        "color": "#000000"
-                    },
-                },
-                "opacity": {
-                    "value": 0.6,
-                    "random": true,
-                    "anim": {
-                        "enable": true,
-                        "speed": 1,
-                        "opacity_min": 0.1,
-                        "sync": false
-                    }
-                },
-                "size": {
-                    "value": 3,
-                    "random": true,
-                    "anim": {
-                        "enable": false,
-                        "speed": 40,
-                        "size_min": 0.1,
-                        "sync": false
-                    }
-                },
-                "line_linked": {
-                    "enable": true,
-                    "distance": 150,
-                    "color": "#00ffff", // Line color
-                    "opacity": 0.3,
-                    "width": 1
-                },
-                "move": {
-                    "enable": true,
-                    "speed": 3, // Movement speed
-                    "direction": "none",
-                    "random": false,
-                    "straight": false,
-                    "out_mode": "out", // "out", "bounce"
-                    "bounce": false,
-                    "attract": {
-                        "enable": false,
-                        "rotateX": 600,
-                        "rotateY": 1200
-                    }
-                }
-            },
-            "interactivity": {
-                "detect_on": "canvas",
-                "events": {
-                    "onhover": {
-                        "enable": true,
-                        "mode": "grab" // "grab", "bubble", "repulse"
-                    },
-                    "onclick": {
-                        "enable": true,
-                        "mode": "push" // "push", "remove", "bubble"
-                    },
-                    "resize": true
-                },
-                "modes": {
-                    "grab": {
-                        "distance": 140,
-                        "line_opacity": 0.5
-                    },
-                    "bubble": {
-                        "distance": 400,
-                        "size": 40,
-                        "duration": 2,
-                        "opacity": 8,
-                        "speed": 3
-                    },
-                    "repulse": {
-                        "distance": 200,
-                        "duration": 0.4
-                    },
-                    "push": {
-                        "particles_nb": 4 // Number of particles to push on click
-                    },
-                    "remove": {
-                        "particles_nb": 2
-                    }
-                }
-            },
-            "retina_detect": true
-        });
-
         const resources = {
             onlineNotes: [
                 { name: "DBMS Core Archives", link: "https://drive.google.com/file/d/1vZKHyAqOk_jrYFgFo8mxTSNzPX62uayk/view?usp=drive_link" },
@@ -403,9 +211,8 @@
                 { name: "Intro to DBMS Structures", link: "https://www.geeksforgeeks.org/dbms/" },
                 { name: "File System Architecture", link: "https://www.geeksforgeeks.org/file-organization-in-dbms-set-1/" },
                 { name: "Transaction Processing", link: "https://www.geeksforgeeks.org/transaction-management/" },
-                { name: "Transaction Matrix [GitHub]", link: "https://www.geeksforgeeks.org/transaction-management/" }, // Note: Same link, maybe a typo in original?
+                { name: "Transaction Matrix [GitHub]", link: "https://www.geeksforgeeks.org/transaction-management/" },
                 { name: "Concurrency Control Systems", link: "https://herovired.com/learning-hub/topics/concurrency-control-in-dbms/" },
-
             ],
             youtube: [
                 { name: "DBMS (5hr) (5 min Engineering) [Oneshot]", link: "https://youtu.be/jzuzxEFoiss?si=q9oCv8c_iQMfQSgz" },
@@ -420,39 +227,24 @@
             ]
         };
 
-        // Function to create buttons
         function createButton(parentId, items, delayStart = 0) {
             const container = document.getElementById(parentId);
-            if (!container) {
-                console.error(`Container with ID ${parentId} not found.`);
-                return;
-            }
+            if (!container) return;
             items.forEach((item, index) => {
                 const button = document.createElement('button');
                 button.className = 'btn';
-                
-                const span = document.createElement('span'); // Add span for text
-                span.textContent = item.name;
-                button.appendChild(span);
-
-                button.onclick = () => {
-                    window.open(item.link, '_blank');
-                };
-                // Staggered animation for buttons within each section
-                button.style.animationDelay = `${delayStart + index * 0.1}s`;
+                button.textContent = item.name;
+                button.onclick = () => window.open(item.link, '_blank');
+                button.style.animationDelay = `${delayStart + index * 0.08}s`;
                 container.appendChild(button);
             });
         }
 
-        // Initialize buttons
         window.onload = () => {
-            // Stagger animation delays for sections
             const sections = document.querySelectorAll('.section');
             sections.forEach((section, index) => {
-                section.style.animationDelay = `${0.2 + index * 0.3}s`; // Initial delay for sections
-                
-                // Calculate delay for buttons inside this section
-                const buttonDelayStart = 0.2 + index * 0.3 + 0.3; // Start after section animation
+                section.style.animationDelay = `${0.2 + index * 0.3}s`;
+                const buttonDelayStart = 0.2 + index * 0.3 + 0.4;
 
                 if (section.querySelector('#online-notes')) {
                      createButton('online-notes', resources.onlineNotes, buttonDelayStart);
@@ -468,10 +260,6 @@
                 }
             });
         };
-
-        // No specific JS needed for responsive adjustments as CSS handles it.
-        // The original resize listener was for a specific button width adjustment,
-        // which is now handled by the grid and media queries.
     </script>
 </body>
 </html>
