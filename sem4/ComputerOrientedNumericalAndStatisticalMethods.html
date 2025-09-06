@@ -3,18 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Math Nexus | Future Learning</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@400;600&display=swap" rel="stylesheet">
+  <title>The Wano Archives | Math Scrolls</title>
+  <link href="https://fonts.googleapis.com/css2?family=Yuji+Syuku&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <style>
     :root {
-      --primary-glow-color: #00ffff; /* Cyan */
-      --secondary-glow-color: #ff00ff; /* Magenta */
-      --accent-color: #7d26cd; /* Purple for accents */
-      --background-dark: #0a0f1f; /* Deep space blue */
-      --text-color: #e0e0e0;
-      --glass-bg: rgba(20, 30, 60, 0.65); /* Increased opacity slightly */
-      --glass-border: rgba(0, 255, 255, 0.25);
+      --wano-night: #1a182f; /* Deep indigo for night sky */
+      --wano-paper: #f3e9d2; /* Washi paper texture */
+      --wano-wood: #4a2c2a; /* Dark wood for frames */
+      --wano-text: #3a2d2d; /* Dark, earthy text color */
+      --wano-red: #ac1e23; /* Accent red for seals/titles */
+      --cherry-blossom: #ffb7c5; /* Sakura pink */
     }
 
     *, *::before, *::after {
@@ -24,70 +23,57 @@
     }
 
     body {
-      font-family: 'Rajdhani', sans-serif;
-      background-color: var(--background-dark);
-      background-image:
-        linear-gradient(rgba(10, 15, 31, 0.85), rgba(10, 15, 31, 0.98)),
-        /* A subtle futuristic pattern or image */
-        url('https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80');
-      background-size: cover;
-      background-position: center;
+      font-family: 'Noto Sans JP', sans-serif;
+      background-color: var(--wano-night);
+      background-image: linear-gradient(to top, #1a182f, #312244);
       background-attachment: fixed;
-      color: var(--text-color);
+      color: var(--wano-text);
       min-height: 100vh;
       overflow-x: hidden;
       padding: 20px;
-      position: relative; /* For particle container */
+      position: relative;
     }
 
-    /* Animated Particles Background */
-    .particles-bg {
+    /* Animated Sakura Petals Background */
+    .sakura-container {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      pointer-events: none;
+      top: 0; left: 0; width: 100%; height: 100%;
+      z-index: 0; pointer-events: none;
     }
 
-    .particle {
+    .sakura {
       position: absolute;
-      background-color: var(--primary-glow-color);
-      border-radius: 50%;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23ffb7c5" d="M50 0 C 80 10, 90 40, 50 50 C 10 40, 20 10, 50 0 Z" transform="rotate(45 50 50)"/></svg>');
+      background-size: contain;
+      background-repeat: no-repeat;
+      width: 25px; height: 25px;
       opacity: 0;
-      animation: drift 15s infinite linear;
+      animation: fall linear infinite;
     }
 
-    .particle:nth-child(1) { width: 3px; height: 3px; left: 10%; animation-duration: 12s; animation-delay: -2s; }
-    .particle:nth-child(2) { width: 2px; height: 2px; left: 30%; animation-duration: 18s; animation-delay: -5s; }
-    .particle:nth-child(3) { width: 4px; height: 4px; left: 50%; animation-duration: 10s; animation-delay: -1s; }
-    .particle:nth-child(4) { width: 2px; height: 2px; left: 70%; animation-duration: 20s; animation-delay: -7s; }
-    .particle:nth-child(5) { width: 3px; height: 3px; left: 90%; animation-duration: 14s; animation-delay: -3s; }
-    .particle:nth-child(6) { width: 2px; height: 2px; left: 20%; animation-duration: 16s; animation-delay: -9s; opacity: 0.6;}
-    .particle:nth-child(7) { width: 3px; height: 3px; left: 80%; animation-duration: 13s; animation-delay: -4s; background-color: var(--secondary-glow-color);}
-    .particle:nth-child(8) { width: 4px; height: 4px; left: 40%; animation-duration: 17s; animation-delay: -6s;}
-    .particle:nth-child(9) { width: 2px; height: 2px; left: 60%; animation-duration: 11s; animation-delay: 0s; background-color: var(--secondary-glow-color); }
-    .particle:nth-child(10) { width: 3px; height: 3px; left: 5%; animation-duration: 19s; animation-delay: -8s;}
-
-
-    @keyframes drift {
-      0% {
-        transform: translateY(105vh) scale(0.5);
-        opacity: 0;
-      }
-      10% {
-        opacity: 0.7;
-      }
-      90% {
-        opacity: 0.7;
-      }
-      100% {
-        transform: translateY(-5vh) scale(1.2);
-        opacity: 0;
-      }
+    @keyframes fall {
+      0% { transform: translateY(-10vh) translateX(0) rotate(0deg); opacity: 0; }
+      10% { opacity: 0.9; }
+      90% { opacity: 0.9; }
+      100% { transform: translateY(110vh) translateX(15vw) rotate(720deg); opacity: 0; }
     }
+    .sakura:nth-child(1) { left: 5%; animation-duration: 15s; animation-delay: -2s; }
+    .sakura:nth-child(2) { left: 15%; animation-duration: 12s; animation-delay: -8s; animation-name: fall2; }
+    .sakura:nth-child(3) { left: 25%; animation-duration: 18s; animation-delay: -5s; }
+    .sakura:nth-child(4) { left: 35%; animation-duration: 20s; animation-delay: -1s; animation-name: fall2; }
+    .sakura:nth-child(5) { left: 45%; animation-duration: 14s; animation-delay: -12s; }
+    .sakura:nth-child(6) { left: 55%; animation-duration: 16s; animation-delay: -4s; animation-name: fall2; }
+    .sakura:nth-child(7) { left: 65%; animation-duration: 11s; animation-delay: -9s; }
+    .sakura:nth-child(8) { left: 75%; animation-duration: 22s; animation-delay: -3s; animation-name: fall2; }
+    .sakura:nth-child(9) { left: 85%; animation-duration: 13s; animation-delay: -6s; }
+    .sakura:nth-child(10) { left: 95%; animation-duration: 17s; animation-delay: 0s; animation-name: fall2; }
 
+    @keyframes fall2 {
+        0% { transform: translateY(-10vh) translateX(0) rotate(0deg); opacity: 0; }
+        10% { opacity: 0.9; }
+        90% { opacity: 0.9; }
+        100% { transform: translateY(110vh) translateX(-15vw) rotate(720deg); opacity: 0; }
+    }
 
     .container {
       max-width: 1200px;
@@ -98,40 +84,16 @@
 
     h1 {
       text-align: center;
-      font-family: 'Orbitron', sans-serif;
-      font-size: 3.2rem;
-      font-weight: 900;
-      color: #fff;
+      font-family: 'Yuji Syuku', serif;
+      font-size: 3.8rem;
+      color: var(--wano-paper);
       margin: 50px 0 70px;
-      text-transform: uppercase;
-      letter-spacing: 3px;
-      animation: titleGlow 2.5s ease-in-out infinite alternate, fadeInDown 1s ease-out 0.2s forwards;
+      letter-spacing: 2px;
+      animation: fadeInDown 1.5s ease-out forwards;
       opacity: 0;
-      text-shadow:
-        0 0 7px var(--primary-glow-color),
-        0 0 12px var(--primary-glow-color),
-        0 0 18px var(--primary-glow-color),
-        0 0 25px var(--secondary-glow-color);
+      text-shadow: 2px 2px 5px var(--wano-night), 0 0 10px var(--cherry-blossom);
     }
-
-    @keyframes titleGlow {
-      from {
-        text-shadow:
-          0 0 7px var(--primary-glow-color),
-          0 0 12px var(--primary-glow-color),
-          0 0 18px var(--primary-glow-color),
-          0 0 25px var(--secondary-glow-color);
-      }
-      to {
-        text-shadow:
-          0 0 10px var(--primary-glow-color),
-          0 0 20px var(--primary-glow-color),
-          0 0 30px var(--secondary-glow-color),
-          0 0 40px var(--secondary-glow-color),
-          0 0 50px var(--accent-color);
-      }
-    }
-
+    
     @keyframes fadeInDown {
       from { opacity: 0; transform: translateY(-40px); }
       to { opacity: 1; transform: translateY(0); }
@@ -144,35 +106,32 @@
     .section {
       margin: 60px auto;
       padding: 35px;
-      background: var(--glass-bg);
-      border-radius: 20px;
-      border: 1px solid var(--glass-border);
-      box-shadow: 0 0 30px rgba(0, 255, 255, 0.15), 0 0 15px rgba(0,0,0,0.6) inset;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+      background: var(--wano-paper);
+      border-radius: 10px;
+      border: 4px solid var(--wano-wood);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
       animation: fadeInUp 0.8s ease-out forwards;
-      opacity: 0; /* Start hidden for animation */
+      opacity: 0;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-    .section:nth-of-type(1) { animation-delay: 0.5s; }
-    .section:nth-of-type(2) { animation-delay: 0.7s; }
-    .section:nth-of-type(3) { animation-delay: 0.9s; }
+    .section:nth-of-type(1) { animation-delay: 0.4s; }
+    .section:nth-of-type(2) { animation-delay: 0.6s; }
+    .section:nth-of-type(3) { animation-delay: 0.8s; }
 
     .section:hover {
-      transform: translateY(-12px) scale(1.03);
-      box-shadow: 0 0 40px var(--primary-glow-color), 0 0 20px rgba(0,0,0,0.4) inset;
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
     }
 
     .section h2 {
-      font-family: 'Orbitron', sans-serif;
+      font-family: 'Yuji Syuku', serif;
       text-align: center;
-      color: var(--primary-glow-color);
-      font-size: 2rem;
+      color: var(--wano-red);
+      font-size: 2.5rem;
       margin: 0 0 35px 0;
-      text-shadow: 0 0 10px var(--primary-glow-color);
       font-weight: 700;
-      letter-spacing: 1.5px;
-      border-bottom: 2px solid var(--glass-border);
+      letter-spacing: 1px;
+      border-bottom: 2px solid #d3c8aa;
       padding-bottom: 15px;
     }
 
@@ -183,229 +142,145 @@
     }
 
     .buttons button {
-      padding: 18px 22px;
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 1.15rem;
-      font-weight: 600;
-      border: 1px solid var(--primary-glow-color);
-      border-radius: 10px;
-      background: transparent;
-      color: var(--text-color);
+      padding: 15px 20px;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      border: 2px solid var(--wano-wood);
+      border-radius: 8px;
+      background: #d3c8aa; /* Darker paper tone */
+      color: var(--wano-text);
       cursor: pointer;
       transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
       display: flex;
       align-items: center;
       gap: 12px;
-      box-shadow: 0 0 8px rgba(0, 255, 255, 0.4);
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
       text-align: left;
     }
 
     .buttons button i {
       font-size: 1.4rem;
-      width: 25px; /* Ensure consistent icon alignment */
+      color: var(--wano-wood);
+      width: 25px;
       text-align: center;
-      transition: transform 0.3s ease, color 0.3s ease;
+      transition: transform 0.3s ease;
     }
-    /* Specific Icon Colors */
-    #offline-pdf-buttons button i { color: #76d7c4; } /* Tealish */
-    #online-pdf-buttons button i { color: #85c1e9; } /* Sky Blue */
-    #youtube-buttons button i { color: #f1948a; }    /* Salmon Pink */
-
 
     .buttons button:hover {
-      background: var(--primary-glow-color);
-      color: var(--background-dark);
-      box-shadow: 0 0 20px var(--primary-glow-color), 0 0 30px var(--primary-glow-color);
-      transform: translateY(-6px);
+      background: var(--wano-wood);
+      color: var(--wano-paper);
+      border-color: var(--wano-text);
+      transform: translateY(-5px);
+      box-shadow: 0 8px 15px rgba(0,0,0,0.3);
     }
     .buttons button:hover i {
-      color: var(--background-dark);
+      color: var(--wano-paper);
       transform: scale(1.1);
     }
 
-    .buttons button::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-      transition: left 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
-
-    .buttons button:hover::before {
-      left: 100%;
-    }
-
     /* Responsive Adjustments */
-    @media (max-width: 992px) {
-      .buttons {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      }
-      h1 {
-        font-size: 2.8rem;
-      }
-      .section h2 {
-        font-size: 1.8rem;
-      }
-    }
-
     @media (max-width: 768px) {
-      h1 {
-        font-size: 2.2rem;
-        margin: 40px 0 50px;
-        letter-spacing: 2px;
-      }
-      .section {
-        margin: 40px 15px; /* Add horizontal margin for smaller screens */
-        padding: 25px;
-      }
-      .section h2 {
-        font-size: 1.6rem;
-      }
-      .buttons button {
-        font-size: 1.1rem;
-        padding: 15px 18px;
-      }
-      .buttons button i {
-        font-size: 1.3rem;
-      }
+      h1 { font-size: 2.8rem; margin: 40px 0 50px; }
+      .section { margin: 40px 15px; padding: 25px; }
+      .section h2 { font-size: 2rem; }
+      .buttons button { font-size: 1rem; padding: 12px 18px; }
     }
 
     @media (max-width: 480px) {
-      body {
-        padding: 10px;
-      }
-      h1 {
-        font-size: 1.8rem;
-      }
-      .section {
-        margin: 30px 10px;
-        padding: 20px;
-        border-radius: 15px;
-      }
-      .section h2 {
-        font-size: 1.4rem;
-        padding-bottom: 10px;
-        margin-bottom: 25px;
-      }
-      .buttons {
-        grid-template-columns: 1fr; /* Single column for very small screens */
-        gap: 15px;
-      }
-      .buttons button {
-        font-size: 1rem;
-        gap: 8px;
-      }
-      .buttons button i {
-        font-size: 1.2rem;
-      }
+      body { padding: 10px; }
+      h1 { font-size: 2.2rem; }
+      .section { margin: 30px 10px; padding: 20px; border-width: 3px; }
+      .section h2 { font-size: 1.8rem; }
+      .buttons { grid-template-columns: 1fr; gap: 15px; }
     }
 
   </style>
 </head>
 <body>
 
-  <div class="particles-bg">
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
+  <div class="sakura-container">
+    <div class="sakura"></div> <div class="sakura"></div>
+    <div class="sakura"></div> <div class="sakura"></div>
+    <div class="sakura"></div> <div class="sakura"></div>
+    <div class="sakura"></div> <div class="sakura"></div>
+    <div class="sakura"></div> <div class="sakura"></div>
   </div>
 
   <div class="container">
-    <h1>Math <i class="fas fa-atom" style="font-size: 0.8em; color: var(--secondary-glow-color);"></i> Future Learning</h1>
+    <h1>Wano Math Archives</h1>
 
     <div class="section">
-      <h2><i class="fas fa-download"></i> Offline PDFs</h2>
+      <h2><i class="fas fa-scroll"></i> Kuri Scrolls (Offline PDFs)</h2>
       <div class="buttons" id="offline-pdf-buttons"></div>
     </div>
 
     <div class="section">
-      <h2><i class="fas fa-globe"></i> Online PDFs</h2>
+      <h2><i class="fas fa-torii-gate"></i> Ringo Texts (Online PDFs)</h2>
       <div class="buttons" id="online-pdf-buttons"></div>
     </div>
 
     <div class="section">
-      <h2><i class="fab fa-youtube"></i> YouTube Videos</h2>
+      <h2><i class="fas fa-video"></i> Flower Capital Katas (YouTube)</h2>
       <div class="buttons" id="youtube-buttons"></div>
     </div>
   </div>
 
   <script>
     const offlinePdfs = [
-      { name: "Chapter 2 [Solution Of Transcendental Equations]", path: "ch2.pdf" },
-      { name: "Chapter 4 [Interpolation]", path: "ch4.pdf" },
-      { name: "Chapter 7 [Measures Of Central Tendency]", path: "ch7.pdf" },
-      { name: "Chapter 8 [Measures Of Dispersion]", path: "ch8.pdf" },
-      { name: "Chapter 9 [Correlation Analysis]", path: "ch9.pdf" },
-      { name: "Chapter 10 [Regression Analysis]", path: "ch10.pdf" },
-      { name: "Math Program", path: "math program.pdf" },
-      { name: "Math Program With Output", path: "MathProgram.pdf" }
+      { name: "Ch 2: Transcendental Equations", path: "ch2.pdf" },
+      { name: "Ch 4: Interpolation", path: "ch4.pdf" },
+      { name: "Ch 7: Central Tendency", path: "ch7.pdf" },
+      { name: "Ch 8: Measures Of Dispersion", path: "ch8.pdf" },
+      { name: "Ch 9: Correlation Analysis", path: "ch9.pdf" },
+      { name: "Ch 10: Regression Analysis", path: "ch10.pdf" },
+      { name: "Math Program Scrolls", path: "math program.pdf" },
+      { name: "Math Program (w/ Output)", path: "MathProgram.pdf" }
     ];
 
     const onlinePdfs = [
-      { name: "Ch 1 Basic Number System", url: "https://drive.google.com/file/d/1g976Xekx2uq0qlcr2qLU0HFBqMO3ZKXA/view?usp=drive_link" },
-      { name: "Ch 5 Curve Fitting", url: "https://drive.google.com/file/d/1lGh5-9WRq6OF726_tGgAaHjQlauFhEoZ/view?usp=drive_link" },
-      { name: "Ch 3 Solution of Simultaneous Algebraic Equations", url: "https://drive.google.com/file/d/18Ba3mJNd6HvXIbyNsJbwx_MFE-CKppde/view?usp=drive_link" },
-      { name: "Chapter 2 [Solution Of Transcendental Equations]", url: "https://drive.google.com/file/d/1oTTunyj1tR1rSEqxcYMJ4f6bWSMVDyBF/view?usp=drive_link" },
-      { name: "Chapter 4 [Interpolation]", url: "https://drive.google.com/file/d/1NnR1-6CYWQUQw1mNBTdxjrSGjQuoPPtL/view?usp=drive_link" },
-      { name: "Chapter 7 [Measures Of Central Tendency]", url: "https://drive.google.com/file/d/1NE9r302BbLJSV2cQlaPVhSgK82Ln6aGr/view?usp=drive_link" },
-      { name: "Chapter 8 [Measures of Dispersion]", url: "https://drive.google.com/file/d/1e9TTvkTIJVjGAOwVJ-2J-mwbjeLjNyLW/view?usp=drive_link" },
-      { name: "Chapter 9 [Correlation Analysis]", url: "https://drive.google.com/file/d/1m9Tu6DNHc-PywWtgLzRJd_d-6aksd_x3/view?usp=drive_link" },
-      { name: "Chapter 10 [Regression Analysis]", url: "https://drive.google.com/file/d/10L_0FuJWHhEjN4BdWXkJyNo0vay83qiU/view?usp=drive_link" },
-      { name: "Math program", url: "https://drive.google.com/file/d/1amkqkL2TbU7EqMM2txFW04Dzzp_YR1Ve/view?usp=drive_link" },
-      { name: "Math Program with output", url: "https://drive.google.com/file/d/1tf18mmJ935bqtq1hGBa5S9XQmybq77gl/view?usp=drive_link" }
+      { name: "Ch 1: Basic Number System", url: "https://drive.google.com/file/d/1g976Xekx2uq0qlcr2qLU0HFBqMO3ZKXA/view?usp=drive_link" },
+      { name: "Ch 5: Curve Fitting", url: "https://drive.google.com/file/d/1lGh5-9WRq6OF726_tGgAaHjQlauFhEoZ/view?usp=drive_link" },
+      { name: "Ch 3: Algebraic Equations", url: "https://drive.google.com/file/d/18Ba3mJNd6HvXIbyNsJbwx_MFE-CKppde/view?usp=drive_link" },
+      { name: "Ch 2: Transcendental Equations", url: "https://drive.google.com/file/d/1oTTunyj1tR1rSEqxcYMJ4f6bWSMVDyBF/view?usp=drive_link" },
+      { name: "Ch 4: Interpolation", url: "https://drive.google.com/file/d/1NnR1-6CYWQUQw1mNBTdxjrSGjQuoPPtL/view?usp=drive_link" },
+      { name: "Ch 7: Central Tendency", url: "https://drive.google.com/file/d/1NE9r302BbLJSV2cQlaPVhSgK82Ln6aGr/view?usp=drive_link" },
+      { name: "Ch 8: Measures of Dispersion", url: "https://drive.google.com/file/d/1e9TTvkTIJVjGAOwVJ-2J-mwbjeLjNyLW/view?usp=drive_link" },
+      { name: "Ch 9: Correlation Analysis", url: "https://drive.google.com/file/d/1m9Tu6DNHc-PywWtgLzRJd_d-6aksd_x3/view?usp=drive_link" },
+      { name: "Ch 10: Regression Analysis", url: "https://drive.google.com/file/d/10L_0FuJWHhEjN4BdWXkJyNo0vay83qiU/view?usp=drive_link" },
+      { name: "Math Program Scrolls", url: "https://drive.google.com/file/d/1amkqkL2TbU7EqMM2txFW04Dzzp_YR1Ve/view?usp=drive_link" },
+      { name: "Math Program (w/ Output)", url: "https://drive.google.com/file/d/1tf18mmJ935bqtq1hGBa5S9XQmybq77gl/view?usp=drive_link" }
     ];
 
     const youtubeLinks = [
       { name: "Correlation Analysis", url: "https://youtu.be/-hHEUp57DBE?si=ah_RCCT-E93mMkeU" },
       { name: "Regression Analysis", url: "https://youtu.be/SJyhSU8PsTk?si=6N849Hu_fLc6Gpe5" },
       { name: "Measures of Dispersion", url: "https://youtu.be/5sakfGibqVw?si=OanrbnBzENwGp_FJ" },
-      { name: "Measures of Central Tendency [Playlist]", url: "https://youtube.com/playlist?list=PLEHGYFbPuuMEhz_AU8iCrBTYb5eNtFpeg&si=OX14BamdC-zGBrVG" },
-      { name: "Solution of Transcendental Equations [Playlist]", url: "https://youtube.com/playlist?list=PLEHGYFbPuuMGfyIXGx8V-Xhi0HRSjT8Ak&si=lUsZgqqQxLN6ZQfc" },
-      { name: "Interpolation [Lagrange Interpolation]", url: "https://youtu.be/zdyUwzOm1zw?si=EVs-_PyFWziBY-98" },
-      { name: "Interpolation [Newton's Divided Difference]", url: "https://youtu.be/OVfTwFbevwE?si=kR-PimRIk6OVXhiA" },
-      { name: "Mean Median Mode", url: "https://youtu.be/MyPx7y2LQKA?si=q3oAhKP7KSAljX1C" },
-      { name: "All In One", url: "https://youtube.com/playlist?list=PLEHGYFbPuuMG6pzcxcjbMJ6ORODnEC8T9&feature=shared"},
+      { name: "Central Tendency [PL]", url: "https://youtube.com/playlist?list=PLEHGYFbPuuMEhz_AU8iCrBTYb5eNtFpeg&si=OX14BamdC-zGBrVG" },
+      { name: "Transcendental Equations [PL]", url: "https://youtube.com/playlist?list=PLEHGYFbPuuMGfyIXGx8V-Xhi0HRSjT8Ak&si=lUsZgqqQxLN6ZQfc" },
+      { name: "Lagrange Interpolation", url: "https://youtu.be/zdyUwzOm1zw?si=EVs-_PyFWziBY-98" },
+      { name: "Newton's Divided Difference", url: "https://youtu.be/OVfTwFbevwE?si=kR-PimRIk6OVXhiA" },
+      { name: "Mean, Median, Mode", url: "https://youtu.be/MyPx7y2LQKA?si=q3oAhKP7KSAljX1C" },
+      { name: "All In One [PL]", url: "https://youtube.com/playlist?list=PLEHGYFbPuuMG6pzcxcjbMJ6ORODnEC8T9&feature=shared"},
     ];
 
     function createButtons(data, containerId, defaultIconClass, isOffline = false) {
       const container = document.getElementById(containerId);
       data.forEach(item => {
         const button = document.createElement("button");
-
         const icon = document.createElement("i");
-        defaultIconClass.split(' ').forEach(cls => icon.classList.add(cls)); // Add multiple classes if needed
-
-        const buttonText = document.createTextNode(` ${item.name}`); // Add space for separation
-
+        defaultIconClass.split(' ').forEach(cls => icon.classList.add(cls));
+        const buttonText = document.createTextNode(` ${item.name}`);
         button.appendChild(icon);
         button.appendChild(buttonText);
-
         button.onclick = () => window.open(isOffline ? item.path : item.url, "_blank");
         container.appendChild(button);
       });
     }
 
-    // Initialize buttons
-    // Using more specific icons
-    createButtons(offlinePdfs, "offline-pdf-buttons", "fas fa-file-pdf", true);
-    createButtons(onlinePdfs, "online-pdf-buttons", "fas fa-link");
+    createButtons(offlinePdfs, "offline-pdf-buttons", "fas fa-book-open", true);
+    createButtons(onlinePdfs, "online-pdf-buttons", "fas fa-cloud");
     createButtons(youtubeLinks, "youtube-buttons", "fab fa-youtube");
-
-    // Trigger particle animation start for those generated by CSS
-    // No JS needed for this if particles are hardcoded in HTML and animated by CSS
-    // If generating particles with JS, this would be the place.
 
   </script>
 </body>
