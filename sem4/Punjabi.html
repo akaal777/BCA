@@ -1,20 +1,18 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Punjabi Learning Nexus</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+    <title>Baratie Learning Galley</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #0a0f2c; /* Deep space blue */
-            --secondary-color: #141b4d; /* Darker accent */
-            --accent-color-1: #00f2ff; /* Cyan glow */
-            --accent-color-2: #f800ff; /* Magenta glow */
-            --text-color: #e0e0e0;
-            --text-color-dark: #333;
-            --glow-shadow: 0 0 5px var(--accent-color-1), 0 0 10px var(--accent-color-1), 0 0 15px var(--accent-color-1);
-            --glow-shadow-hover: 0 0 8px var(--accent-color-2), 0 0 15px var(--accent-color-2), 0 0 25px var(--accent-color-2);
+            --ocean-blue: #1b263b;
+            --wood-dark: #4a2c2a;
+            --menu-cream: #f3e9d2;
+            --text-dark: #3a2d2d;
+            --gold-accent: #daa520;
         }
 
         * {
@@ -24,37 +22,34 @@
         }
 
         body {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            background: linear-gradient(to top, var(--ocean-blue) 0%, #304352 100%);
             min-height: 100vh;
             padding: 20px;
-            font-family: 'Rajdhani', sans-serif;
-            color: var(--text-color);
-            overflow-x: hidden; /* Prevent horizontal scroll from animations */
-            position: relative; /* For pseudo-element background */
+            font-family: 'Open Sans', sans-serif;
+            color: var(--menu-cream);
+            overflow-x: hidden;
+            position: relative;
         }
 
-        /* Subtle animated background lines */
-        body::before {
-            content: '';
+        .ocean-waves {
             position: fixed;
-            top: 0;
+            bottom: 0;
             left: 0;
             width: 100%;
-            height: 100%;
-            background-image:
-                linear-gradient(45deg, rgba(0, 242, 255, 0.05) 25%, transparent 25%, transparent 75%, rgba(0, 242, 255, 0.05) 75%),
-                linear-gradient(45deg, rgba(0, 242, 255, 0.05) 25%, transparent 25%, transparent 75%, rgba(0, 242, 255, 0.05) 75%);
-            background-size: 60px 60px;
-            background-position: 0 0, 30px 30px;
+            height: 100px;
             z-index: -1;
-            animation: moveGrid 20s linear infinite;
-            opacity: 0.5;
+            pointer-events: none;
+            overflow: hidden;
         }
+        .wave {
+            position: absolute; bottom: 0; left: 0; width: 200%; height: 100%;
+            background-size: 50% 100%; background-repeat: repeat-x;
+            animation: moveWaves 25s linear infinite;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100"><path d="M0 50 C 250 100, 250 0, 500 50 S 750 100, 1000 50 L 1000 100 L 0 100 Z" fill="rgba(27,38,59,0.5)"></path></svg>');
+        }
+        .wave.w2 { animation-duration: 35s; animation-direction: reverse; opacity: 0.7; }
 
-        @keyframes moveGrid {
-            0% { background-position: 0 0, 30px 30px; }
-            100% { background-position: 60px 60px, 90px 90px; }
-        }
+        @keyframes moveWaves { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
         .container {
             max-width: 1000px;
@@ -70,12 +65,11 @@
         }
 
         h1 {
-            font-family: 'Orbitron', sans-serif;
-            color: var(--accent-color-1);
-            font-size: 3em; /* Responsive font size */
-            text-shadow: var(--glow-shadow);
-            letter-spacing: 2px;
-            text-transform: uppercase;
+            font-family: 'Cinzel', serif;
+            color: var(--menu-cream);
+            font-size: 3.5em;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+            letter-spacing: 1px;
         }
 
         .main-buttons {
@@ -86,71 +80,44 @@
         }
 
         .category-btn {
-            background: transparent;
-            color: var(--accent-color-1);
+            background: var(--wood-dark);
+            color: var(--menu-cream);
             padding: 20px 25px;
-            border: 2px solid var(--accent-color-1);
-            border-radius: 5px; /* Sharper edges */
+            border: 2px solid #3a2d2d;
+            border-radius: 8px;
             font-size: 1.3em;
-            font-weight: 700;
-            font-family: 'Rajdhani', sans-serif;
+            font-weight: 600;
+            font-family: 'Open Sans', sans-serif;
             cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smooth transition */
-            box-shadow: 0 0 5px transparent; /* Initial transparent shadow */
-            position: relative;
-            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
             text-transform: uppercase;
             letter-spacing: 1px;
             animation: fadeInUp 0.5s ease-out forwards;
-            opacity: 0; /* Start hidden for animation */
+            opacity: 0;
         }
 
-        /* Staggered animation for buttons */
         .category-btn:nth-child(1) { animation-delay: 0.2s; }
         .category-btn:nth-child(2) { animation-delay: 0.4s; }
         .category-btn:nth-child(3) { animation-delay: 0.6s; }
 
-
-        .category-btn::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: var(--accent-color-1);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: width 0.4s ease, height 0.4s ease;
-            z-index: -1;
-            opacity: 0.2;
-        }
-
-        .category-btn:hover::before {
-            width: 250%; /* Cover the button */
-            height: 250%;
-        }
-
         .category-btn:hover {
-            color: var(--primary-color);
-            border-color: var(--accent-color-2);
-            box-shadow: var(--glow-shadow-hover);
-            transform: translateY(-5px) scale(1.02);
+            background-color: #61413f;
+            border-color: var(--gold-accent);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
         }
          .category-btn:active {
-            transform: translateY(-2px) scale(0.98);
-            box-shadow: 0 0 3px var(--accent-color-2), 0 0 8px var(--accent-color-2);
+            transform: translateY(0);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.4);
         }
 
         .modal {
-            display: none; /* Hidden by default, controlled by JS */
+            display: none;
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(10, 15, 44, 0.85); /* Dark semi-transparent overlay */
-            backdrop-filter: blur(5px); /* Frosted glass effect */
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(10, 15, 20, 0.7);
+            backdrop-filter: blur(5px);
             justify-content: center;
             align-items: center;
             z-index: 1000;
@@ -158,32 +125,27 @@
             transition: opacity 0.3s ease-in-out;
         }
 
-        .modal.active { /* Class to show modal */
-            display: flex;
-            opacity: 1;
-        }
+        .modal.active { display: flex; opacity: 1; }
 
         .modal-content {
-            background: var(--secondary-color);
+            background: var(--menu-cream);
+            color: var(--text-dark);
             padding: 35px;
             border-radius: 8px;
-            border: 1px solid var(--accent-color-1);
+            border: 4px solid var(--wood-dark);
             text-align: center;
             width: 90%;
             max-width: 450px;
-            box-shadow: 0 0 20px rgba(0, 242, 255, 0.3), 0 0 40px rgba(0, 242, 255, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             transform: scale(0.95);
             transition: transform 0.3s ease-in-out;
         }
 
-        .modal.active .modal-content {
-            transform: scale(1);
-        }
-
+        .modal.active .modal-content { transform: scale(1); }
 
         .modal-content h2 {
-            color: var(--accent-color-2);
-            font-family: 'Orbitron', sans-serif;
+            color: var(--wood-dark);
+            font-family: 'Cinzel', serif;
             margin-bottom: 25px;
             font-size: 1.8em;
         }
@@ -191,12 +153,11 @@
         .option-btn {
             padding: 12px 25px;
             margin: 10px 5px;
-            border: 1px solid;
             border-radius: 5px;
             cursor: pointer;
             font-size: 1.1em;
-            font-weight: 500;
-            font-family: 'Rajdhani', sans-serif;
+            font-weight: 600;
+            font-family: 'Open Sans', sans-serif;
             transition: all 0.3s ease;
             text-transform: uppercase;
             min-width: 120px;
@@ -204,104 +165,67 @@
 
         .online-btn {
             background: transparent;
-            border-color: var(--accent-color-1);
-            color: var(--accent-color-1);
+            border: 2px solid var(--ocean-blue);
+            color: var(--ocean-blue);
         }
         .online-btn:hover {
-            background: var(--accent-color-1);
-            color: var(--primary-color);
-            box-shadow: var(--glow-shadow);
+            background: var(--ocean-blue);
+            color: var(--menu-cream);
         }
 
         .offline-btn {
             background: transparent;
-            border-color: #ffae00; /* Amber/Orange for offline */
-            color: #ffae00;
+            border: 2px solid var(--wood-dark);
+            color: var(--wood-dark);
         }
         .offline-btn:hover {
-            background: #ffae00;
-            color: var(--primary-color);
-            box-shadow: 0 0 5px #ffae00, 0 0 10px #ffae00;
+            background: var(--wood-dark);
+            color: var(--menu-cream);
         }
 
         .close-btn {
-            background: #e74c3c; /* Keep similar for close */
-            border-color: #e74c3c;
+            background: #a9a9a9;
+            border: 2px solid #a9a9a9;
             color: white;
             padding: 10px 20px;
             margin-top: 25px;
         }
         .close-btn:hover {
-            background: #c0392b;
-            border-color: #c0392b;
-            box-shadow: 0 0 5px #e74c3c, 0 0 10px #e74c3c;
+            background: #808080;
+            border-color: #808080;
         }
 
-        /* Animations */
         @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-
-        /* Responsive Design */
         @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5em;
-            }
-            .main-buttons {
-                gap: 20px;
-            }
-            .category-btn {
-                padding: 18px;
-                font-size: 1.1em;
-            }
-            .modal-content {
-                padding: 25px;
-            }
-            .modal-content h2 {
-                font-size: 1.5em;
-            }
-            .option-btn {
-                font-size: 1em;
-                padding: 10px 20px;
-                display: block; /* Stack buttons in modal on small screens */
-                width: 100%;
-                margin: 10px 0;
-            }
+            h1 { font-size: 2.8em; }
+            .main-buttons { gap: 20px; }
+            .category-btn { padding: 18px; font-size: 1.1em; }
+            .modal-content { padding: 25px; }
+            .modal-content h2 { font-size: 1.5em; }
+            .option-btn { font-size: 1em; padding: 10px 20px; display: block; width: 100%; margin: 10px 0; }
         }
-
         @media (max-width: 480px) {
-            h1 {
-                font-size: 2em;
-            }
-             .category-btn {
-                font-size: 1em;
-            }
+            h1 { font-size: 2.2em; }
         }
     </style>
 </head>
 <body>
+    <div class="ocean-waves">
+        <div class="wave w1"></div>
+        <div class="wave w2"></div>
+    </div>
     <div class="container">
         <header>
-            <h1>Punjabi Learning <span style="color: var(--accent-color-2);">🤘🏼</span></h1>
+            <h1>Baratie's Galley {Punjabi}</h1>
         </header>
 
         <div class="main-buttons">
@@ -310,32 +234,31 @@
             <button class="category-btn" onclick="showOptions('grammar')">Punjabi Grammar</button>
         </div>
 
-        <!-- Modals -->
+        <!-- Modal -->
         <div id="optionsModal" class="modal">
             <div class="modal-content">
                 <h2 id="modalTitle"></h2>
-                <button class="option-btn online-btn" onclick="handleOption('online')">Access Online</button>
-                <button class="option-btn offline-btn" onclick="handleOption('offline')">Download PDF</button>
+                <button class="option-btn online-btn" onclick="handleOption('online')">Read from Sea Chart {Online}</button>
+                <button class="option-btn offline-btn" onclick="handleOption('offline')">Store in Logbook {Offline}</button>
                 <br>
-                <button class="option-btn close-btn" onclick="closeModal()">Close</button>
+                <button class="option-btn close-btn" onclick="closeModal()">Cancel Order</button>
             </div>
         </div>
     </div>
 
     <script>
-        // PDF paths configuration
         const pdfPaths = {
             poems: {
                 online: 'https://drive.google.com/file/d/1qBQ48x0yNMBaXi7PgdCNQh_gfsWgbTKq/view?usp=drive_link',
-                offline: 'punjabi_poem.pdf' // Make sure this file exists in the same directory or provide correct path
+                offline: 'punjabi_poem.pdf'
             },
             sample: {
                 online: 'https://drive.google.com/file/d/1XMkxDESdz2B2AUfKadR6E_3y5UnfpVTW/view?usp=drive_link',
-                offline: 'punjabi_sample_paper.pdf' // Make sure this file exists
+                offline: 'punjabi_sample_paper.pdf'
             },
             grammar: {
                 online: 'https://drive.google.com/file/d/1HEoPcmsmINWeHx89npPst_xE7jhV1Pc3/view?usp=drive_link',
-                offline: 'punjabi_grammar.pdf' // Make sure this file exists
+                offline: 'punjabi_grammar.pdf'
             }
         };
 
@@ -345,12 +268,11 @@
         function showOptions(category) {
             currentCategory = category;
             const title = document.getElementById('modalTitle');
-            // More descriptive titles
-            let friendlyCategoryName = category.charAt(0).toUpperCase() + category.slice(1);
-            if (category === 'sample') friendlyCategoryName = "Sample Papers";
-            else if (category === 'grammar') friendlyCategoryName = "Punjabi Grammar";
             
-            title.textContent = `${friendlyCategoryName} - Choose Access`;
+            let friendlyCategoryName = category.charAt(0).toUpperCase() + category.slice(1);
+            if (category === 'sample') friendlyCategoryName = "Sample Paper";
+            
+            title.textContent = `${friendlyCategoryName}`;
             modal.classList.add('active');
         }
 
@@ -367,27 +289,24 @@
                 } else {
                     const link = document.createElement('a');
                     link.href = pdfPath;
-                    link.download = pdfPath.split('/').pop(); // Extract filename for download
+                    link.download = pdfPath.split('/').pop();
                     document.body.appendChild(link);
                     link.click();
                     document.body.removeChild(link);
-                    // alert(`Downloading ${pdfPath.split('/').pop()}... \nNote: For this demo, ensure the PDF files are in the same directory as the HTML or update paths.`);
                 }
             } else {
-                alert('File not available for this selection. Please try again later.');
+                alert('This item is currently off the menu. Please try again later.');
             }
             
             closeModal();
         }
 
-        // Close modal when clicking outside its content
         modal.addEventListener('click', function(event) {
-            if (event.target === modal) { // Check if the click is on the modal backdrop itself
+            if (event.target === modal) {
                 closeModal();
             }
         });
 
-        // Optional: Close modal with Escape key
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape' && modal.classList.contains('active')) {
                 closeModal();
