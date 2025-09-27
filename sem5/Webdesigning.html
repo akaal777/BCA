@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- MODIFIED VIEWPORT TAG TO PREVENT ZOOMING -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ASP.NET Learning Portal</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        :root {
+            --primary-color: #007bff;
+            --primary-hover-color: #0056b3;
+            --background-color: #f0f2f5;
+            --text-color: #333;
+            --card-background: #ffffff;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --border-radius: 12px;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            margin-bottom: 40px;
+            font-size: 3em;
+            text-align: center;
+            letter-spacing: 1px;
+            font-weight: 600;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .button-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            width: 100%;
+            max-width: 1200px;
+            animation: fadeInUp 1s ease-out 0.5s;
+            animation-fill-mode: backwards;
+        }
+
+        .modern-button {
+            background-color: var(--card-background);
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            padding: 20px 30px;
+            font-size: 1.1em;
+            font-weight: 400;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px var(--shadow-color);
+            text-align: center;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modern-button:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 123, 255, 0.3);
+        }
+
+        .modern-button:active {
+            transform: translateY(0);
+            box-shadow: 0 4px 15px var(--shadow-color);
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5em;
+                margin-bottom: 30px;
+            }
+            .button-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            .modern-button {
+                padding: 15px 20px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>ASP.NET Learning Portal</h1>
+
+    <div class="button-container">
+        <button class="modern-button" id="btnIndex">Index</button>
+        <button class="modern-button" id="btnChapter1">Chapter 1: Introduction to .NET Framework</button>
+        <button class="modern-button" id="btnChapter2">Chapter 2: C# Basics</button>
+        <button class="modern-button" id="btnOOP">OOPs in C#</button>
+        <button class="modern-button" id="btnIntroNet">Introduction to .NET Framework</button>
+        <button class="modern-button" id="btnAdvancedASP">Advanced ASP.NET</button>
+        <button class="modern-button" id="btnWebServices">Building Web Services</button>
+        <button class="modern-button" id="btnADONET">ADO.NET</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const pdfLinks = {
+                btnIndex: 'https://drive.google.com/file/d/1KkewEv_kQBagFUuc9qWfUsvQPiMdN6rM/view?usp=drive_link', // Replace with actual PDF links
+                btnChapter1: '/pdfs/chapter1_intro_dotnet.pdf',
+                btnChapter2: '/pdfs/chapter2_csharp_basics.pdf',
+                btnOOP: '/pdfs/oops_csharp.pdf',
+                btnIntroNet: '/pdfs/introduction_to_dotnet.pdf',
+                btnAdvancedASP: '/pdfs/advanced_aspnet.pdf',
+                btnWebServices: '/pdfs/building_web_services.pdf',
+                btnADONET: '/pdfs/ado_net.pdf'
+            };
+
+            document.querySelectorAll('.modern-button').forEach(button => {
+                button.addEventListener('click', (event) => {
+                    const buttonId = event.currentTarget.id;
+                    const pdfUrl = pdfLinks[buttonId];
+
+                    if (pdfUrl && !pdfUrl.includes('example.com')) { // A simple check if the link has been updated
+                        window.open(pdfUrl, '_blank');
+                    } else {
+                        alert('PDF link not available for this chapter yet. Please check back later!');
+                        console.warn(`PDF link missing or placeholder for button: ${buttonId}`);
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
