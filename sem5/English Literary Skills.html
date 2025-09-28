@@ -1,266 +1,240 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Arms And the Man Adventure Hub</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<style>
-    /* One Piece Anime Theme */
-    @import url('https://fonts.googleapis.com/css2?family=Pirata+One&display=swap');
-
-    body {
-        font-family: 'Pirata One', cursive;
-        background-color: #000;
-        color: #fff;
-        margin: 0;
-        padding: 0;
-        line-height: 1.7;
-        overflow-x: hidden; /* Prevent horizontal scrollbar */
-        background-image: url('https://i.pinimg.com/originals/e7/52/50/e75250ff6d7a8d2987a840e788975a5e.gif');
-        background-size: cover;
-        background-position: center;
-        background-attachment: fixed;
-    }
-
-    .container {
-        width: 90%;
-        margin: 20px auto;
-        background-color: rgba(0, 0, 0, 0.7);
-        padding: 30px;
-        box-shadow: 0 0 30px rgba(255, 223, 0, 0.5);
-        border-radius: 15px;
-        border: 3px solid #ffdf00;
-    }
-
-    h1 {
-        text-align: center;
-        color: #ffdf00;
-        margin-bottom: 30px;
-        text-shadow: 0 0 10px #ffdf00, 0 0 20px #ff4500;
-        font-size: 3em;
-        letter-spacing: 2px;
-        animation: fire-text 2s infinite alternate;
-    }
-
-    @keyframes fire-text {
-        from {
-            text-shadow: 0 0 10px #ffdf00, 0 0 20px #ff4500;
-        }
-        to {
-            text-shadow: 0 0 20px #ffdf00, 0 0 30px #ff4500, 0 0 40px #ff6347;
-        }
-    }
-
-    section {
-        margin-bottom: 30px;
-        padding: 25px;
-        border: 2px solid #8b4513;
-        border-radius: 12px;
-        background-color: rgba(139, 69, 19, 0.3);
-        transition: all 0.4s ease;
-        box-shadow: 0 0 15px rgba(255, 223, 0, 0.2);
-    }
-
-    section:hover {
-        box-shadow: 0 0 25px rgba(255, 223, 0, 0.7);
-        transform: translateY(-5px);
-    }
-
-    section h2 {
-        margin-top: 0;
-        color: #ffdf00;
-        border-bottom: 2px solid #ffdf00;
-        padding-bottom: 10px;
-        font-size: 2em;
-        text-shadow: 0 0 5px #ff4500;
-    }
-
-    button {
-        background-color: #d2691e;
-        color: #fff;
-        padding: 14px 28px;
-        border: 2px solid #8b4513;
-        border-radius: 10px;
-        cursor: pointer;
-        transition: all 0.4s ease;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-        font-size: 1.3em;
-        letter-spacing: 1.5px;
-        outline: none;
-        margin: 5px;
-        font-family: 'Pirata One', cursive;
-    }
-
-    button:hover {
-        background-color: #8b4513;
-        transform: scale(1.1);
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7);
-        animation: stretch-and-rebound 0.5s ease;
-    }
-
-    @keyframes stretch-and-rebound {
-        0% {
-            transform: scale(1.1) translateX(0);
-        }
-        25% {
-            transform: scale(1.2) translateX(-5px);
-        }
-        50% {
-            transform: scale(1.1) translateX(5px);
-        }
-        75% {
-            transform: scale(1.2) translateX(-5px);
-        }
-        100% {
-            transform: scale(1.1) translateX(0);
-        }
-    }
-
-    #video-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 20px;
-    }
-
-    iframe {
-        margin: 10px;
-        border: 3px solid #ffdf00;
-        box-shadow: 0 0 20px rgba(255, 223, 0, 0.5);
-        border-radius: 12px;
-        width: 100%;
-        height: 250px;
-        max-width: 100%;
-        transition: all 0.4s ease;
-    }
-
-    iframe:hover {
-        box-shadow: 0 0 35px rgba(255, 223, 0, 0.8);
-        transform: scale(1.05);
-    }
-
-    /* Responsive Design */
-    @media (max-width: 768px) {
-        .container {
-            width: 95%;
-            padding: 20px;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arms And the Man | A Modern Study Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* --- Modern Classy Theme --- */
+            --bg-color: #1a1a1a;
+            --card-color: #2b2b2b;
+            --accent-gold: #c5a47e;
+            --text-primary: #f5f5f5;
+            --text-secondary: #a0a0a0;
+            --border-color: rgba(197, 164, 126, 0.2);
+            --font-primary: 'Poppins', sans-serif;
         }
 
-        h1 {
-            font-size: 2.5em;
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        section {
-            padding: 15px;
+        html {
+            scroll-behavior: smooth;
         }
 
-        iframe {
-            height: 200px;
-        }
-
-        button {
-            font-size: 1.2em;
-            padding: 12px 24px;
-        }
-    }
-
-    @media (max-width: 576px) {
         body {
-            font-size: 16px;
+            font-family: var(--font-primary);
+            background-color: var(--bg-color);
+            background-image: url('https://www.transparenttextures.com/patterns/subtle-carbon.png');
+            color: var(--text-primary);
+            line-height: 1.7;
+            padding: 2rem;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.4s ease;
+            margin-bottom: 3rem;
+        }
+        .back-button:hover {
+            transform: translateY(-3px);
+            color: var(--bg-color);
+            background-color: var(--accent-gold);
+            border-color: var(--accent-gold);
+            box-shadow: 0 10px 25px rgba(197, 164, 126, 0.2);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 5rem;
+            opacity: 0;
+            animation: fadeInDown 1s 0.2s ease-out forwards;
+        }
+
+        .main-heading {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -1px;
+        }
+        .main-heading span {
+            color: var(--accent-gold);
+        }
+
+        /* --- Section Styling with Scroll Animation --- */
+        .content-section {
+            margin-bottom: 3.5rem;
+            background: var(--card-color);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: clamp(2rem, 5vw, 3rem);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            /* Initial state for animation */
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .content-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
         }
         
-        .container {
-            width: 98%;
-            margin: 10px auto;
-            padding: 15px;
+        .section-heading {
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: 2.5rem;
+            padding-bottom: 1rem;
+            position: relative;
+            color: var(--text-primary);
+        }
+        .section-heading::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            border-radius: 2px;
+            background: var(--accent-gold);
         }
 
-        h1 {
-            font-size: 2em;
-            margin-bottom: 25px;
+        .links-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+        }
+        
+        .resource-link {
+            background-color: transparent;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 1rem;
+            padding: 12px 24px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            font-family: var(--font-primary);
         }
 
-        section h2 {
-            font-size: 1.7em;
-            padding-bottom: 8px;
+        .resource-link:hover {
+            background-color: var(--accent-gold);
+            border-color: var(--accent-gold);
+            color: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(197, 164, 126, 0.2);
         }
 
-        button {
-            font-size: 1.1em;
-            padding: 12px 20px;
-            width: 100%; /* Full width buttons for better touch targets */
+        .resource-link.primary {
+            background-color: var(--accent-gold);
+            border-color: var(--accent-gold);
+            color: #fff;
+        }
+        .resource-link.primary:hover {
+            background-color: transparent;
+            color: var(--text-secondary);
         }
 
-        #video-container {
-            flex-direction: column;
-            gap: 10px;
-        }
 
-        iframe {
-            height: 150px;
-        }
-    }
-
-    /* Targeting specific screen size for very small devices */
-    @media (max-width: 320px) {
-        h1 {
-            font-size: 1.8em;
-        }
-        section h2 {
-            font-size: 1.5em;
-        }
-        button {
-            font-size: 1em;
-            padding: 10px 18px;
-        }
-    }
-
-</style>
+        /* --- Animations --- */
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
+        
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) { body { padding: 1.5rem; } }
+        @media (max-width: 480px) { body { padding: 1rem; } .links-container { grid-template-columns: 1fr; } }
+    </style>
 </head>
 <body>
+    <div class="container">
+        <a href="../English Literary Skills.html" class="back-button"><span>&larr;</span> Back to English Skills</a>
 
-<div class="container">
-  <h1>Arms And the Man</h1>
+        <header class="header">
+            <h1 class="main-heading">Arms And the <span>Man</span></h1>
+        </header>
 
-  <section id="pdf-section">
-    <h2>Pdf Section</h2>
-    <button onclick="openPdf()">Read the PDF</button>
-  </section>
+        <section class="content-section">
+            <h2 class="section-heading">Reading Materials</h2>
+            <div class="links-container" id="reading-links"></div>
+        </section>
 
-  <section id="video-section">
-    <h2>Video Section</h2>
-    <div id="video-container"></div>
-  </section>
-</div>
+        <section class="content-section">
+            <h2 class="section-heading">Video Guides</h2>
+            <div class="links-container" id="video-links"></div>
+        </section>
+    </div>
 
-<script>
-    function openPdf() {
-        window.open("http://182.160.97.198:8080/xmlui/bitstream/handle/123456789/102/Arms%20and%20the%20Man-%20%20George%20Bernard%20Shaw.pdf", "_blank");
-    }
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const readingLinks = [
+                { text: "Read the PDF", url: "http://182.160.97.198:8080/xmlui/bitstream/handle/123456789/102/Arms%20and%20the%20Man-%20%20George%20Bernard%20Shaw.pdf", type: 'primary' },
+                { text: "Read on Gutenberg", url: "https://www.gutenberg.org/files/3618/3618-h/3618-h.htm", type: 'secondary' }
+            ];
 
-    const videoLinks = [
-        "https://youtu.be/Nn8tj0XGsMg?si=ZcL60i3HSldY6Nkx",
-        "https://youtu.be/HRiH5d7dtiw?si=j-fVFj2oP3BKTjH9",
-        "https://youtube.com/playlist?list=PLzs_CEeiwWn_UxJ_oFOTQAmBxqZd6gkzf&si=HhDhl7csJPeMZO5a"
-    ];
+            const videoLinks = [
+                { text: "Watch Full Play", url: "https://youtu.be/Nn8tj0XGsMg?si=ZcL60i3HSldY6Nkx", type: 'secondary' },
+                { text: "Summary & Analysis", url: "https://youtu.be/HRiH5d7dtiw?si=j-fVFj2oP3BKTjH9", type: 'secondary' },
+                { text: "In-Depth Playlist", url: "https://youtube.com/playlist?list=PLzs_CEeiwWn_UxJ_oFOTQAmBxqZd6gkzf&si=HhDhl7csJPeMZO5a", type: 'secondary' }
+            ];
 
-    const videoContainer = document.getElementById("video-container");
+            function populateLinks(containerId, links) {
+                const container = document.getElementById(containerId);
+                if (!container) return;
+                
+                links.forEach(link => {
+                    const button = document.createElement("button");
+                    button.textContent = link.text;
+                    button.className = 'resource-link';
+                    if (link.type === 'primary') {
+                        button.classList.add('primary');
+                    }
+                    button.onclick = () => window.open(link.url, "_blank");
+                    container.appendChild(button);
+                });
+            }
 
-    videoLinks.forEach(link => {
-        const button = document.createElement("button");
-        button.textContent = "Watch video";
-        button.onclick = function() {
-            window.open(link, "_blank");
-        };
-        videoContainer.appendChild(button);
-    });
+            populateLinks("reading-links", readingLinks);
+            populateLinks("video-links", videoLinks);
 
-    // Add website button
-    const websiteButton = document.createElement("button");
-    websiteButton.textContent = "Read Arms and the Man";
-    websiteButton.onclick = function() {
-        window.open("https://www.gutenberg.org/files/3618/3618-h/3618-h.htm", "_blank");
-    };
-    videoContainer.appendChild(websiteButton);
-</script>
+            // --- Scroll Animation Logic ---
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target); // Animate only once
+                    }
+                });
+            }, {
+                threshold: 0.1 // Trigger when 10% of the element is visible
+            });
+
+            document.querySelectorAll('.content-section').forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
 </body>
 </html>
