@@ -3,265 +3,172 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BCA 6th Semester - One Piece Edition</title>
+    <title>BCA 6th Semester | Curriculum Overview</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&family=Noto+Sans:wght@400;700&display=swap');
-
         :root {
-            /* --- Light Theme (Dawn Island) --- */
-            --bg-image: url('https://i.imgur.com/example-light-bg.png'); /* Replace with a suitable light theme image */
-            --bg-overlay: rgba(240, 230, 210, 0.85);
-            --text-color: #4a4a4a;
-            --header-bg: rgba(255, 248, 230, 0.8);
-            --header-border: #d4ac79;
-            --header-shadow: rgba(85, 42, 0, 0.2);
-            --button-bg: #e6c593;
-            --button-border: #b88a51;
-            --button-text-color: #5d4037;
-            --button-shadow: rgba(0, 0, 0, 0.15);
-            --button-hover-bg: #d4ac79;
-            --button-hover-border: #8c6d46;
-            --button-hover-text-color: #ffffff;
-            --accent-color-bca: #c0392b; /* Red inspired by Luffy's shirt */
-            --accent-color-sem: #2980b9; /* Blue inspired by the sea */
-            --theme-toggle-bg: #e6c593;
-            --theme-toggle-icon: #5d4037;
-            --theme-toggle-hover-bg: #d4ac79;
-
-            /* --- Transition --- */
-            --theme-transition-duration: 0.5s;
+            /* --- Modern Classy Theme --- */
+            --bg-color: #1a1a1a;
+            --card-color: #2b2b2b;
+            --accent-gold: #c5a47e;
+            --text-primary: #f5f5f5;
+            --text-secondary: #a0a0a0;
+            --border-color: rgba(197, 164, 126, 0.2);
+            --font-primary: 'Poppins', sans-serif;
         }
 
-        .dark-theme {
-            /* --- Dark Theme (Laugh Tale) --- */
-            --bg-image: url('https://i.imgur.com/example-dark-bg.png'); /* Replace with a suitable dark theme image */
-            --bg-overlay: rgba(10, 25, 40, 0.9);
-            --text-color: #e0e7ef;
-            --header-bg: rgba(20, 35, 55, 0.85);
-            --header-border: #f1c40f; /* Gold border */
-            --header-shadow: rgba(241, 196, 15, 0.2);
-            --button-bg: #4a4a4a;
-            --button-border: #f1c40f;
-            --button-text-color: #f1c40f;
-            --button-shadow: rgba(241, 196, 15, 0.15);
-            --button-hover-bg: #f1c40f;
-            --button-hover-border: #f39c12;
-            --button-hover-text-color: #0a1928;
-            --accent-color-bca: #e74c3c;
-            --accent-color-sem: #3498db;
-            --theme-toggle-bg: #4a4a4a;
-            --theme-toggle-icon: #f1c40f;
-            --theme-toggle-hover-bg: #5a5a5a;
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            font-family: 'Noto Sans', sans-serif;
-            margin: 0;
-            padding: 20px;
+            font-family: var(--font-primary);
+            background-color: var(--bg-color);
+            background-image: url('https://www.transparenttextures.com/patterns/subtle-carbon.png');
+            color: var(--text-primary);
+            line-height: 1.7;
+            padding: 2rem;
+            overflow-x: hidden;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            overflow-x: hidden;
-            position: relative;
-            background-color: #f0e6d2; /* Fallback color */
-            color: var(--text-color);
-            transition: color var(--theme-transition-duration) ease;
         }
 
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
+        .container {
             width: 100%;
-            height: 100%;
-            z-index: -2;
-            background-image: var(--bg-image);
-            background-size: cover;
-            background-position: center center;
-            background-attachment: fixed;
-            animation: slowPan 60s linear infinite alternate;
+            max-width: 1000px;
+            margin: 0 auto;
         }
-
-        body::after {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
+        
+        .navigation-header {
             width: 100%;
-            height: 100%;
-            z-index: -1;
-            background-color: var(--bg-overlay);
-            transition: background-color var(--theme-transition-duration) ease;
+            margin-bottom: 3rem;
         }
 
-        @keyframes slowPan {
-            from { background-position: 0% 50%; }
-            to { background-position: 100% 50%; }
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.4s ease;
+        }
+        .back-button:hover {
+            transform: translateY(-3px);
+            color: var(--bg-color);
+            background-color: var(--accent-gold);
+            border-color: var(--accent-gold);
+            box-shadow: 0 10px 25px rgba(197, 164, 126, 0.2);
         }
 
         .header-container {
-            background-color: var(--header-bg);
-            backdrop-filter: blur(5px);
-            padding: 20px 40px;
-            border-radius: 5px;
-            border: 2px solid var(--header-border);
-            box-shadow: 0 5px 20px var(--header-shadow), inset 0 0 15px rgba(0,0,0,0.1);
-            margin-bottom: 50px;
             text-align: center;
-            animation: fadeInFromTop 1s ease-out forwards;
+            margin-bottom: 5rem;
             opacity: 0;
-            position: relative;
-            z-index: 1;
-            width: 90%;
-            max-width: 800px;
-            transition: all var(--theme-transition-duration) ease;
+            animation: fadeInDown 1s 0.2s ease-out forwards;
         }
 
         .main-heading {
-            font-family: 'IM Fell English SC', serif;
-            font-size: 3em;
+            font-size: clamp(2.8rem, 6vw, 4.5rem);
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -1px;
             margin: 0;
-            font-weight: 400;
-            letter-spacing: 2px;
+        }
+        .main-heading span {
+            color: var(--accent-gold);
         }
 
-        .main-heading .bca-text { color: var(--accent-color-bca); transition: color var(--theme-transition-duration) ease; }
-        .main-heading .sem-text { color: var(--accent-color-sem); transition: color var(--theme-transition-duration) ease; }
+        .sub-heading {
+            color: var(--text-secondary);
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            margin-top: 0.5rem;
+        }
 
         .subjects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-            gap: 30px;
-            width: 100%;
-            max-width: 1000px;
-            padding: 0 20px;
-            box-sizing: border-box;
-            position: relative;
-            z-index: 1;
+            gap: 2rem;
         }
 
         .subject-button {
-            background-color: var(--button-bg);
-            color: var(--button-text-color);
+            background-color: var(--card-color);
+            color: var(--text-primary);
             padding: 25px 20px;
-            border-radius: 8px;
+            border-radius: 12px;
             text-align: center;
             font-size: 1.25em;
-            font-weight: 700;
+            font-weight: 500;
             cursor: pointer;
-            border: 2px solid var(--button-border);
-            box-shadow: 0 4px 8px var(--button-shadow);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             min-height: 70px;
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+            /* Initial state for scroll animation */
             opacity: 0;
-            animation: fadeInUp 0.6s ease-out forwards;
-            position: relative;
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease,
-                        background-color var(--theme-transition-duration) ease,
-                        border-color var(--theme-transition-duration) ease,
-                        color var(--theme-transition-duration) ease;
+            transform: translateY(40px);
         }
-
-        .subject-button:nth-child(1) { animation-delay: 0.3s; }
-        .subject-button:nth-child(2) { animation-delay: 0.4s; }
-        .subject-button:nth-child(3) { animation-delay: 0.5s; }
-        .subject-button:nth-child(4) { animation-delay: 0.6s; }
+        .subject-button.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
         .subject-button:hover {
-            transform: translateY(-8px) rotate(-1deg);
-            background-color: var(--button-hover-bg);
-            border-color: var(--button-hover-border);
-            color: var(--button-hover-text-color);
-            box-shadow: 0 12px 25px var(--button-shadow);
+            transform: translateY(-8px);
+            border-color: var(--accent-gold);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
         }
 
-        .theme-toggle-button {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background-color: var(--theme-toggle-bg);
-            color: var(--theme-toggle-icon);
-            border: 2px solid var(--button-border);
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            font-size: 24px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-            z-index: 1000;
-            transition: all var(--theme-transition-duration) ease, transform 0.2s ease;
-        }
+        /* --- Animations --- */
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
 
-        .theme-toggle-button:hover {
-            background-color: var(--theme-toggle-hover-bg);
-            transform: scale(1.1) rotate(15deg);
-        }
-
-        .theme-toggle-button .icon-sun { display: none; }
-        .theme-toggle-button .icon-moon { display: inline; }
-
-        @keyframes fadeInFromTop {
-            from { opacity: 0; transform: translateY(-50px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(40px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* --- Responsive Adjustments --- */
-        @media (max-width: 768px) {
-            .main-heading { font-size: 2.2em; }
-            .header-container { padding: 15px 25px; margin-bottom: 40px; width: 95%; }
-            .subjects-grid { grid-template-columns: 1fr; gap: 20px; padding: 0 15px; }
-            .subject-button { font-size: 1.15em; padding: 22px 15px; }
-            .theme-toggle-button { width: 45px; height: 45px; font-size: 20px; }
-        }
-
-        @media (max-width: 480px) {
-            body { padding: 15px; padding-top: 80px; }
-            .main-heading { font-size: 1.8em; }
-            .header-container { padding: 12px 15px; margin-bottom: 30px; }
-            .subject-button { font-size: 1.1em; }
-            .subjects-grid { padding: 0 10px; }
-        }
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) { body { padding: 1.5rem; } }
+        @media (max-width: 480px) { body { padding: 1rem; } .subjects-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
-
-    <button id="theme-toggle" class="theme-toggle-button" aria-label="Toggle theme">
-        <span class="icon-sun">🏴‍☠️</span> <!-- Straw Hat Jolly Roger for Dark Theme -->
-        <span class="icon-moon">🧭</span> <!-- Compass for Light Theme -->
-    </button>
-
-    <div class="header-container">
-        <h1 class="main-heading">
-            <span class="bca-text">BCA</span> <span class="sem-text">6th Sem </span>
-        </h1>
-    </div>
-
-    <div class="subjects-grid">
-        <div class="subject-button" data-href="English Literary Skills -||.html">
-            English Literary Skills -||
+    <div class="container">
+        <div class="navigation-header">
+             <a href="../index.html" class="back-button"><span>&larr;</span> Back to Dashboard</a>
         </div>
-        <div class="subject-button" data-href="Software Engineering.html">
-            Software Engineering
+
+        <div class="header-container">
+            <h1 class="main-heading">
+                BCA <span>6th Semester</span>
+            </h1>
+            <p class="sub-heading">Final year subjects and resources.</p>
         </div>
-        <div class="subject-button" data-href="Operating Systems.html">
-            Operating Systems
-        </div>
-        <div class="subject-button" data-href="Python Programming.html">
-            Python Programming
+
+        <div class="subjects-grid">
+            <div class="subject-button" data-href="English Literary Skills -||.html">
+                English Literary Skills - II
+            </div>
+            <div class="subject-button" data-href="Software Engineering.html">
+                Software Engineering
+            </div>
+            <div class="subject-button" data-href="Operating Systems.html">
+                Operating Systems
+            </div>
+            <div class="subject-button" data-href="Python Programming.html">
+                Python Programming
+            </div>
         </div>
     </div>
 
@@ -270,70 +177,31 @@
             // --- Subject Button Navigation ---
             const subjectButtons = document.querySelectorAll('.subject-button');
             subjectButtons.forEach(button => {
-                button.setAttribute('role', 'link');
-                button.setAttribute('tabindex', '0');
-                
                 button.addEventListener('click', function() {
                     const targetFile = this.dataset.href;
-                    if (targetFile) {
-                        window.location.href = targetFile;
-                    } else {
-                        console.warn('No data-href attribute found for this button.');
-                    }
-                });
-
-                button.addEventListener('keydown', function(event) {
-                    if (event.key === 'Enter' || event.key === ' ') {
-                        event.preventDefault();
-                        this.click();
-                    }
+                    if (targetFile) window.location.href = targetFile;
                 });
             });
 
-            // --- Theme Toggle Functionality ---
-            const themeToggleButton = document.getElementById('theme-toggle');
-            const body = document.body;
-            const sunIcon = themeToggleButton.querySelector('.icon-sun');
-            const moonIcon = themeToggleButton.querySelector('.icon-moon');
-
-            function applyTheme(theme) {
-                if (theme === 'dark') {
-                    body.classList.add('dark-theme');
-                    sunIcon.style.display = 'inline';
-                    moonIcon.style.display = 'none';
-                    themeToggleButton.setAttribute('aria-label', 'Switch to light theme (Dawn Island)');
-                } else {
-                    body.classList.remove('dark-theme');
-                    sunIcon.style.display = 'none';
-                    moonIcon.style.display = 'inline';
-                    themeToggleButton.setAttribute('aria-label', 'Switch to dark theme (Laugh Tale)');
-                }
-            }
-
-            // Check for saved theme in localStorage, or default to system preference
-            let currentTheme = localStorage.getItem('theme');
-            if (!currentTheme) {
-                currentTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-            }
-            applyTheme(currentTheme);
-
-            // Button click listener
-            themeToggleButton.addEventListener('click', () => {
-                let newTheme = body.classList.contains('dark-theme') ? 'light' : 'dark';
-                applyTheme(newTheme);
-                localStorage.setItem('theme', newTheme);
+            // --- Scroll Animation Logic ---
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        // Apply a staggered delay for each button
+                        entry.target.style.transition = `opacity 0.6s ease-out ${index * 0.1}s, transform 0.6s ease-out ${index * 0.1}s`;
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target); // Animate only once
+                    }
+                });
+            }, {
+                threshold: 0.1 // Trigger when 10% of the element is visible
             });
 
-            // Listen for changes in system preference
-            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
-                // Only change if the user hasn't manually set a theme
-                if (!localStorage.getItem('theme')) {
-                    const newColorScheme = event.matches ? "dark" : "light";
-                    applyTheme(newColorScheme);
-                }
+            // Observe all subject buttons for the animation
+            document.querySelectorAll('.subject-button').forEach(button => {
+                observer.observe(button);
             });
         });
     </script>
-
 </body>
 </html>
