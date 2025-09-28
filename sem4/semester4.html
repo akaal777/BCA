@@ -3,38 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BCA 4th Sem - Grand Line Hub</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <title>BCA 4th Sem - Modern Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --straw-hat-red: #d93e2d;
-            --straw-hat-yellow: #f1c40f;
-            --ocean-blue-start: #005c97;
-            --ocean-blue-end: #363795;
-            --sky-blue: #87CEEB;
-            --wood-plank: #8B4513;
-            --wood-dark: #5a2d0c;
-            --text-color-light: #ecf0f1;
-            --text-color-dark: #2c3e50;
+            --primary-bg: #111827; /* Dark Slate Blue */
+            --secondary-bg: rgba(31, 41, 55, 0.5); /* Semi-transparent darker slate */
+            --accent-color: #38BDF8; /* Bright Sky Blue */
+            --accent-glow: rgba(56, 189, 248, 0.2);
+            --text-primary: #F9FAFB; /* Off-white */
+            --text-secondary: #9CA3AF; /* Light gray */
+            --border-color: rgba(56, 189, 248, 0.2);
+            --border-hover: rgba(56, 189, 248, 0.7);
         }
 
         body {
             margin: 0;
-            padding: 0;
-            background: linear-gradient(to bottom, var(--sky-blue) 0%, var(--ocean-blue-start) 50%, var(--ocean-blue-end) 100%);
-            background-attachment: fixed;
+            padding: 2rem;
+            background-color: var(--primary-bg);
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-primary);
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            font-family: 'Open Sans', sans-serif;
-            color: var(--text-color-light);
-            overflow: hidden; /* Prevent scrollbars from appearing due to animations */
+            overflow: hidden;
             position: relative;
+            box-sizing: border-box;
         }
 
-        /* Animated Background Elements */
+        /* Modern Animated Background */
         .background-container {
             position: fixed;
             top: 0;
@@ -45,278 +44,202 @@
             overflow: hidden;
         }
 
-        .cloud {
+        .shape {
             position: absolute;
-            background: white;
-            border-radius: 50%;
-            opacity: 0.3;
-            filter: blur(5px);
-            animation: moveClouds 80s linear infinite;
+            list-style: none;
+            display: block;
+            width: 40px;
+            height: 40px;
+            background-color: var(--secondary-bg);
+            border: 1px solid var(--border-color);
+            bottom: -150px;
+            animation: rise 25s infinite linear;
         }
-        .cloud.c1 { width: 200px; height: 60px; top: 10%; left: -250px; }
-        .cloud.c2 { width: 300px; height: 90px; top: 20%; left: -350px; animation-duration: 120s; }
-        .cloud.c3 { width: 150px; height: 45px; top: 15%; left: -200px; animation-duration: 90s; animation-delay: -20s; }
+        .shape:nth-child(1) { left: 10%; animation-duration: 15s; }
+        .shape:nth-child(2) { left: 20%; width: 80px; height: 80px; animation-duration: 12s; animation-delay: 2s; }
+        .shape:nth-child(3) { left: 35%; animation-duration: 20s; }
+        .shape:nth-child(4) { left: 50%; width: 60px; height: 60px; animation-duration: 18s; animation-delay: 5s; }
+        .shape:nth-child(5) { left: 65%; animation-duration: 14s; }
+        .shape:nth-child(6) { left: 80%; width: 100px; height: 100px; animation-duration: 22s; animation-delay: 7s; }
 
-        @keyframes moveClouds {
-            from { transform: translateX(0); }
-            to { transform: translateX(calc(100vw + 400px)); }
-        }
-
-        .waves {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 150px;
-            z-index: -1;
-        }
-
-        .wave {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 200%;
-            height: 100%;
-            background-size: 50% 100%;
-            background-repeat: repeat-x;
-            animation: moveWaves 15s linear infinite;
-        }
-
-        .wave1 {
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100"><path d="M0 50 C 250 100, 250 0, 500 50 S 750 100, 1000 50 L 1000 100 L 0 100 Z" fill="rgba(0,92,151,0.5)"></path></svg>');
-            animation-duration: 10s;
-            opacity: 0.7;
-        }
-        .wave2 {
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100"><path d="M0 60 C 200 120, 300 0, 500 60 S 700 120, 1000 60 L 1000 100 L 0 100 Z" fill="rgba(54,55,149,0.5)"></path></svg>');
-            animation-duration: 15s;
-            animation-direction: reverse;
-            opacity: 0.5;
-        }
-
-        @keyframes moveWaves {
-            from { transform: translateX(0); }
-            to { transform: translateX(-50%); }
+        @keyframes rise {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+                border-radius: 0;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(720deg);
+                opacity: 0;
+                border-radius: 50%;
+            }
         }
 
         header {
-            position: relative;
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
             text-align: center;
-            animation: stampIn 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.5s backwards;
-        }
-
-        .title-container {
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="200"><filter id="torn"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="5" result="noise" /><feDisplacementMap in="SourceGraphic" in2="noise" scale="15" xChannelSelector="R" yChannelSelector="G" /></filter><rect x="0" y="0" width="400" height="200" fill="%23F5DEB3" filter="url(%23torn)" /></svg>');
-            background-size: 100% 100%;
-            padding: 2rem 3rem;
+            opacity: 0;
+            animation: fadeInDown 1s forwards cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
         h1 {
-            font-family: 'Bangers', cursive;
-            color: var(--text-color-dark);
-            font-size: 3.2em;
-            letter-spacing: 3px;
-            text-shadow: 2px 2px 0 var(--straw-hat-yellow);
-            position: relative;
-            display: inline-block;
+            font-size: 3.5em;
+            font-weight: 700;
+            letter-spacing: -1px;
             margin: 0;
-            line-height: 1.1;
-            word-wrap: break-word;
+            line-height: 1.2;
+            color: var(--text-primary);
+            text-shadow: 0 0 15px var(--accent-glow);
+        }
+        
+        .subtitle {
+            font-size: 1.2em;
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
+            font-weight: 400;
         }
 
         main {
             width: 100%;
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 0 20px;
+            justify-content: center;
         }
 
         .button-container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 35px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
             max-width: 1200px;
             width: 100%;
         }
 
         .button-container button {
-            background: var(--wood-plank);
-            border: 3px solid var(--wood-dark);
-            color: var(--text-color-light);
-            padding: 15px 20px;
-            font-size: 1.5em;
-            font-family: 'Bangers', cursive;
+            background: var(--secondary-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 18px 25px;
+            font-size: 1.1em;
+            font-weight: 600;
             cursor: pointer;
-            transition: all 0.2s ease-out;
-            border-radius: 10px;
-            box-shadow: inset 0 -5px 0 var(--wood-dark), 0 5px 10px rgba(0,0,0,0.4);
+            border-radius: 12px;
             position: relative;
-            text-transform: uppercase;
-            letter-spacing: 2px;
             min-height: 80px;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            opacity: 0; /* Initially hidden for animation */
-            transform: translateX(-100vw); /* Start off-screen */
-            animation: slideIn 0.6s forwards cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            opacity: 0;
+            
+            /* Glassmorphism Effect */
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+
+            /* Transitions & Animation */
+            transition: all 0.3s ease;
+            animation: popIn 0.6s forwards cubic-bezier(0.25, 1, 0.5, 1);
         }
 
         .button-icon {
-            width: 30px;
-            height: 30px;
+            width: 28px;
+            height: 28px;
             margin-right: 15px;
-            fill: var(--text-color-light);
+            fill: var(--accent-color);
             transition: transform 0.3s ease;
         }
 
         .button-container button:hover {
-            background: #a0522d; /* Lighter wood */
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: inset 0 -3px 0 var(--wood-dark), 0 8px 15px rgba(0,0,0,0.5);
+            transform: translateY(-8px) scale(1.03);
+            background: rgba(31, 41, 55, 0.8);
+            border-color: var(--border-hover);
+            box-shadow: 0 0 25px var(--accent-glow);
         }
+
         .button-container button:hover .button-icon {
-            transform: scale(1.2) rotate(-10deg);
-        }
-
-        /* Haki Aura on Hover */
-        .button-container button::before {
-            content: '';
-            position: absolute;
-            top: -5px; left: -5px; right: -5px; bottom: -5px;
-            border-radius: 15px;
-            z-index: -1;
-            background: radial-gradient(circle, rgba(217,62,45,0.7) 0%, rgba(217,62,45,0) 70%);
-            opacity: 0;
-            transition: opacity 0.3s ease-out;
-            animation: hakiPulse 2s infinite;
-        }
-
-        .button-container button:hover::before {
-            opacity: 1;
-        }
-
-        .button-container button.clicked {
-            animation: gumGumPistol 0.4s ease-out;
-        }
-
-        @keyframes hakiPulse {
-            50% { transform: scale(1.05); }
-        }
-
-        @keyframes stampIn {
-            0% { transform: scale(2); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
+            transform: scale(1.15) rotate(-5deg);
         }
         
-        @keyframes slideIn {
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
+        .button-container button.clicked {
+            animation: clickEffect 0.4s ease;
         }
 
-        @keyframes gumGumPistol {
-            0% { transform: scale(1); }
-            50% { transform: scale(0.9, 1.1); }
-            100% { transform: scale(1); }
+        /* Keyframe Animations */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes popIn {
+            from { opacity: 0; transform: translateY(30px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        @keyframes clickEffect {
+            0% { transform: translateY(-8px) scale(1.03); }
+            50% { transform: translateY(0) scale(0.98); }
+            100% { transform: translateY(-8px) scale(1.03); }
         }
 
         /* Responsive adjustments */
+        @media (max-width: 1024px) {
+            h1 { font-size: 3em; }
+            .button-container { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+        }
+
         @media (max-width: 768px) {
-            body {
-                justify-content: flex-start;
-                padding-top: 3rem;
-                padding-bottom: 3rem;
-                overflow-y: auto;
-            }
-            .title-container {
-                padding: 1.5rem 2rem;
-            }
-            h1 {
-                font-size: 2.5em;
-            }
-            .button-container {
-                grid-template-columns: 1fr;
-                gap: 25px;
-                width: 90%;
-            }
-            .button-container button {
-                font-size: 1.3em;
-                padding: 15px;
-            }
+            body { padding: 3rem 1.5rem; overflow-y: auto; }
+            header { margin-bottom: 3rem; }
+            h1 { font-size: 2.5em; }
+            .subtitle { font-size: 1.1em; }
+            .button-container { grid-template-columns: 1fr; max-width: 450px; }
+            .button-container button { font-size: 1em; padding: 15px 20px; min-height: 70px; }
+            .button-icon { width: 24px; height: 24px; }
         }
 
         @media (max-width: 480px) {
-            body {
-                padding-top: 2rem;
-            }
-            header {
-                margin-bottom: 2rem;
-            }
-            .title-container {
-                padding: 1rem 1.5rem;
-            }
-            h1 {
-                font-size: 1.8em;
-                letter-spacing: 2px;
-            }
-            .button-container {
-                gap: 20px;
-                width: 95%;
-            }
-             .button-icon {
-                width: 25px;
-                height: 25px;
-                margin-right: 10px;
-            }
-            .button-container button {
-                font-size: 1.1em;
-            }
+            body { padding: 2rem 1rem; }
+            h1 { font-size: 2em; }
+            header { margin-bottom: 2.5rem; }
+            .button-container { gap: 20px; }
+            .button-icon { margin-right: 12px; }
         }
     </style>
 </head>
 <body>
 
     <div class="background-container">
-        <div class="cloud c1"></div>
-        <div class="cloud c2"></div>
-        <div class="cloud c3"></div>
-        <div class="waves">
-            <div class="wave wave1"></div>
-            <div class="wave wave2"></div>
-        </div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
     </div>
 
     <header>
-        <div class="title-container">
-            <h1>BCA 4th Sem<br>Grand Line Hub</h1>
-        </div>
+        <h1>BCA 4th Sem Hub</h1>
+        <p class="subtitle">Navigate Your Academic Journey</p>
     </header>
     <main>
         <div class="button-container">
             <button data-link="English">
                 <svg class="button-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>
-                 (English)
+                 English
             </button>
             <button data-link="ComputerNetworks">
                 <svg class="button-icon" viewBox="0 0 24 24"><path d="M20.2,15.2c-0.3-0.3-0.7-0.3-1,0L18,16.4V12c0-3.3-2.7-6-6-6s-6,2.7-6,6v4.4l-1.2-1.2c-0.3-0.3-0.7-0.3-1,0s-0.3,0.7,0,1l2.5,2.5c0.3,0.3,0.7,0.3,1,0l2.5-2.5c0.3-0.3,0.3-0.7,0-1s-0.7-0.3-1,0L14,16.4V12c0-2.2,1.8-4,4-4s4,1.8,4,4v4.4l-1.2-1.2c-0.3-0.3-0.7-0.3-1,0s-0.3,0.7,0,1l2.5,2.5c0.3,0.3,0.7,0.3,1,0l2.5-2.5c0.3-0.3,0.3-0.7,0-1C20.9,15.5,20.5,15.5,20.2,15.2z"/></svg>
-                ( Computer Networks)
+                Computer Networks
             </button>
             <button data-link="ComputerOrientedNumericalAndStatisticalMethods">
                  <svg class="button-icon" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 14H7v-2h10v2zm-4-4H7v-2h6v2zm4-4H7V7h10v2z"/></svg>
-                (Computer Oriented Numerical And Statistical Methods)
+                Numerical & Statistical Methods
             </button>
             <button data-link="RelationalDatabaseManagementSystems">
                 <svg class="button-icon" viewBox="0 0 24 24"><path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-3 9h-2.5v2.5h-3V11H8V9h2.5V6.5h3V9H16v2z"/></svg>
-                 (RDBMS)
+                 RDBMS
             </button>
             <button data-link="Punjabi">
-                <svg class="button-icon" viewBox="0 0 24 24"><path d="M14.5 9.5c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM7.5 9.5c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 14c-2.33 0-4.31-1.46-5.11-3.5h10.22c-.8 2.04-2.78 3.5-5.11 3.5z"/></svg>
-                 (Punjabi)
+                <svg class="button-icon" viewBox="0 0 24 24"><path d="M14.5 9.5c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM7.5 9.5c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9-2-2-.9-2-2-2zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 14c-2.33 0-4.31-1.46-5.11-3.5h10.22c-.8 2.04-2.78 3.5-5.11-3.5z"/></svg>
+                 Punjabi
             </button>
         </div>
     </main>
@@ -324,17 +247,12 @@
     <script>
         document.querySelectorAll('.button-container button').forEach((button, index) => {
             // Stagger the animation start time
-            button.style.animationDelay = `${1 + index * 0.15}s`;
+            button.style.animationDelay = `${0.8 + index * 0.1}s`;
 
             button.addEventListener('click', (e) => {
                 e.preventDefault(); // Prevent navigation until animation is done
                 
-                // Remove class if it's already there to replay animation
-                button.classList.remove('clicked');
-                // Use a tiny timeout to allow the browser to remove the class before adding it again
-                void button.offsetWidth; 
                 button.classList.add('clicked');
-
                 const pageName = button.dataset.link;
                 
                 // Wait for the click animation to finish before navigating
@@ -342,16 +260,17 @@
                     if (pageName) {
                          window.location.href = `${pageName}.html`;
                     }
-                }, 400); // Duration of the gumGumPistol animation
+                }, 400); // Duration of the clickEffect animation
             });
-
-            // Remove the animation class after it has finished to prevent re-triggering
-             button.addEventListener('animationend', (e) => {
-                if(e.animationName === 'gumGumPistol') {
+            
+            // Reset the animation class so it can be triggered again
+            button.addEventListener('animationend', (e) => {
+                if(e.animationName === 'clickEffect') {
                     button.classList.remove('clicked');
                 }
             });
         });
     </script>
+
 </body>
 </html>
