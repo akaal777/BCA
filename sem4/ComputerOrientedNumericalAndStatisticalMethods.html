@@ -3,17 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Wano Archives | Math Scrolls</title>
-  <link href="https://fonts.googleapis.com/css2?family=Yuji+Syuku&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+  <title>Math Learning Hub | Modern Archives</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <style>
     :root {
-      --wano-night: #1a182f; /* Deep indigo for night sky */
-      --wano-paper: #f3e9d2; /* Washi paper texture */
-      --wano-wood: #4a2c2a; /* Dark wood for frames */
-      --wano-text: #3a2d2d; /* Dark, earthy text color */
-      --wano-red: #ac1e23; /* Accent red for seals/titles */
-      --cherry-blossom: #ffb7c5; /* Sakura pink */
+      --primary-dark: #0f0c29;
+      --secondary-dark: #302b63;
+      --tertiary-dark: #24243e;
+      --text-light: #f0f0f0;
+      --glow-accent: #6a82fb; /* A vibrant blue for accents */
+      --glow-accent-secondary: #fc5c7d; /* A pinkish accent for gradients */
+      --glass-bg: rgba(255, 255, 255, 0.1);
+      --glass-border: rgba(255, 255, 255, 0.2);
     }
 
     *, *::before, *::after {
@@ -23,56 +25,20 @@
     }
 
     body {
-      font-family: 'Noto Sans JP', sans-serif;
-      background-color: var(--wano-night);
-      background-image: linear-gradient(to top, #1a182f, #312244);
-      background-attachment: fixed;
-      color: var(--wano-text);
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(45deg, var(--primary-dark), var(--secondary-dark), var(--tertiary-dark));
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      color: var(--text-light);
       min-height: 100vh;
       overflow-x: hidden;
       padding: 20px;
-      position: relative;
     }
-
-    /* Animated Sakura Petals Background */
-    .sakura-container {
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      z-index: 0; pointer-events: none;
-    }
-
-    .sakura {
-      position: absolute;
-      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23ffb7c5" d="M50 0 C 80 10, 90 40, 50 50 C 10 40, 20 10, 50 0 Z" transform="rotate(45 50 50)"/></svg>');
-      background-size: contain;
-      background-repeat: no-repeat;
-      width: 25px; height: 25px;
-      opacity: 0;
-      animation: fall linear infinite;
-    }
-
-    @keyframes fall {
-      0% { transform: translateY(-10vh) translateX(0) rotate(0deg); opacity: 0; }
-      10% { opacity: 0.9; }
-      90% { opacity: 0.9; }
-      100% { transform: translateY(110vh) translateX(15vw) rotate(720deg); opacity: 0; }
-    }
-    .sakura:nth-child(1) { left: 5%; animation-duration: 15s; animation-delay: -2s; }
-    .sakura:nth-child(2) { left: 15%; animation-duration: 12s; animation-delay: -8s; animation-name: fall2; }
-    .sakura:nth-child(3) { left: 25%; animation-duration: 18s; animation-delay: -5s; }
-    .sakura:nth-child(4) { left: 35%; animation-duration: 20s; animation-delay: -1s; animation-name: fall2; }
-    .sakura:nth-child(5) { left: 45%; animation-duration: 14s; animation-delay: -12s; }
-    .sakura:nth-child(6) { left: 55%; animation-duration: 16s; animation-delay: -4s; animation-name: fall2; }
-    .sakura:nth-child(7) { left: 65%; animation-duration: 11s; animation-delay: -9s; }
-    .sakura:nth-child(8) { left: 75%; animation-duration: 22s; animation-delay: -3s; animation-name: fall2; }
-    .sakura:nth-child(9) { left: 85%; animation-duration: 13s; animation-delay: -6s; }
-    .sakura:nth-child(10) { left: 95%; animation-duration: 17s; animation-delay: 0s; animation-name: fall2; }
-
-    @keyframes fall2 {
-        0% { transform: translateY(-10vh) translateX(0) rotate(0deg); opacity: 0; }
-        10% { opacity: 0.9; }
-        90% { opacity: 0.9; }
-        100% { transform: translateY(110vh) translateX(-15vw) rotate(720deg); opacity: 0; }
+    
+    @keyframes gradientBG {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
     }
 
     .container {
@@ -84,32 +50,38 @@
 
     h1 {
       text-align: center;
-      font-family: 'Yuji Syuku', serif;
-      font-size: 3.8rem;
-      color: var(--wano-paper);
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: clamp(2.5em, 8vw, 4em);
+      background: linear-gradient(90deg, var(--glow-accent), var(--glow-accent-secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
       margin: 50px 0 70px;
-      letter-spacing: 2px;
+      letter-spacing: 1px;
       animation: fadeInDown 1.5s ease-out forwards;
       opacity: 0;
-      text-shadow: 2px 2px 5px var(--wano-night), 0 0 10px var(--cherry-blossom);
     }
     
     @keyframes fadeInDown {
       from { opacity: 0; transform: translateY(-40px); }
       to { opacity: 1; transform: translateY(0); }
     }
+
     @keyframes fadeInUp {
       from { opacity: 0; transform: translateY(40px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
     .section {
-      margin: 60px auto;
+      margin: 50px auto;
       padding: 35px;
-      background: var(--wano-paper);
-      border-radius: 10px;
-      border: 4px solid var(--wano-wood);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      background: var(--glass-bg);
+      border-radius: 20px;
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+      backdrop-filter: blur(10px);
       animation: fadeInUp 0.8s ease-out forwards;
       opacity: 0;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -124,15 +96,20 @@
     }
 
     .section h2 {
-      font-family: 'Yuji Syuku', serif;
-      text-align: center;
-      color: var(--wano-red);
-      font-size: 2.5rem;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      color: var(--text-light);
+      font-size: 2.2rem;
       margin: 0 0 35px 0;
-      font-weight: 700;
-      letter-spacing: 1px;
-      border-bottom: 2px solid #d3c8aa;
       padding-bottom: 15px;
+      border-bottom: 2px solid var(--glow-accent);
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    
+    .section h2 i {
+        color: var(--glow-accent);
     }
 
     .buttons {
@@ -143,40 +120,56 @@
 
     .buttons button {
       padding: 15px 20px;
-      font-family: 'Noto Sans JP', sans-serif;
-      font-size: 1.1rem;
-      font-weight: 700;
-      border: 2px solid var(--wano-wood);
-      border-radius: 8px;
-      background: #d3c8aa; /* Darker paper tone */
-      color: var(--wano-text);
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.15);
+      color: var(--text-light);
       cursor: pointer;
       transition: all 0.3s ease;
       display: flex;
       align-items: center;
       gap: 12px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
       text-align: left;
+      position: relative;
+      overflow: hidden;
     }
 
     .buttons button i {
-      font-size: 1.4rem;
-      color: var(--wano-wood);
+      font-size: 1.3rem;
+      color: var(--text-light);
       width: 25px;
       text-align: center;
       transition: transform 0.3s ease;
     }
 
-    .buttons button:hover {
-      background: var(--wano-wood);
-      color: var(--wano-paper);
-      border-color: var(--wano-text);
+    .buttons button:hover, .buttons button:focus {
+      background-color: rgba(255, 255, 255, 0.25);
+      box-shadow: 0 0 15px var(--glow-accent);
+      border-color: var(--glow-accent);
       transform: translateY(-5px);
-      box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+      outline: none;
     }
+    
     .buttons button:hover i {
-      color: var(--wano-paper);
       transform: scale(1.1);
+    }
+    
+    .buttons button::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        transition: left 0.5s ease;
+    }
+
+    .buttons button:hover::before {
+        left: 100%;
     }
 
     /* Responsive Adjustments */
@@ -184,14 +177,14 @@
       h1 { font-size: 2.8rem; margin: 40px 0 50px; }
       .section { margin: 40px 15px; padding: 25px; }
       .section h2 { font-size: 2rem; }
-      .buttons button { font-size: 1rem; padding: 12px 18px; }
+      .buttons button { font-size: 0.95rem; padding: 12px 18px; }
     }
 
     @media (max-width: 480px) {
       body { padding: 10px; }
       h1 { font-size: 2.2rem; }
-      .section { margin: 30px 10px; padding: 20px; border-width: 3px; }
-      .section h2 { font-size: 1.8rem; }
+      .section { margin: 30px 10px; padding: 20px; }
+      .section h2 { font-size: 1.6rem; }
       .buttons { grid-template-columns: 1fr; gap: 15px; }
     }
 
@@ -199,43 +192,32 @@
 </head>
 <body>
 
-  <div class="sakura-container">
-    <div class="sakura"></div> <div class="sakura"></div>
-    <div class="sakura"></div> <div class="sakura"></div>
-    <div class="sakura"></div> <div class="sakura"></div>
-    <div class="sakura"></div> <div class="sakura"></div>
-    <div class="sakura"></div> <div class="sakura"></div>
-  </div>
-
   <div class="container">
-    <h1>Wano Math Archives</h1>
+    <h1>Math Archives</h1>
 
     <div class="section">
-      <h2><i class="fas fa-scroll"></i> Kuri Scrolls (Offline PDFs)</h2>
+      <h2><i class="fas fa-book-open"></i> Local Files (Offline PDFs)</h2>
       <div class="buttons" id="offline-pdf-buttons"></div>
     </div>
 
     <div class="section">
-      <h2><i class="fas fa-torii-gate"></i> Ringo Texts (Online PDFs)</h2>
+      <h2><i class="fas fa-cloud"></i> Online Resources (Cloud PDFs)</h2>
       <div class="buttons" id="online-pdf-buttons"></div>
     </div>
 
     <div class="section">
-      <h2><i class="fas fa-video"></i> Flower Capital Katas (YouTube)</h2>
+      <h2><i class="fab fa-youtube"></i> Video Lectures (YouTube)</h2>
       <div class="buttons" id="youtube-buttons"></div>
     </div>
   </div>
 
   <script>
+    // Data for buttons remains unchanged as it is well-structured and functional.
     const offlinePdfs = [
-      { name: "Ch 2: Transcendental Equations", path: "ch2.pdf" },
-      { name: "Ch 4: Interpolation", path: "ch4.pdf" },
-      { name: "Ch 7: Central Tendency", path: "ch7.pdf" },
-      { name: "Ch 8: Measures Of Dispersion", path: "ch8.pdf" },
-      { name: "Ch 9: Correlation Analysis", path: "ch9.pdf" },
-      { name: "Ch 10: Regression Analysis", path: "ch10.pdf" },
-      { name: "Math Program Scrolls", path: "math program.pdf" },
-      { name: "Math Program (w/ Output)", path: "MathProgram.pdf" }
+      { name: "Ch 2: Transcendental Equations", path: "ch2.pdf" }, { name: "Ch 4: Interpolation", path: "ch4.pdf" },
+      { name: "Ch 7: Central Tendency", path: "ch7.pdf" }, { name: "Ch 8: Measures Of Dispersion", path: "ch8.pdf" },
+      { name: "Ch 9: Correlation Analysis", path: "ch9.pdf" }, { name: "Ch 10: Regression Analysis", path: "ch10.pdf" },
+      { name: "Math Program Scrolls", path: "math program.pdf" }, { name: "Math Program (w/ Output)", path: "MathProgram.pdf" }
     ];
 
     const onlinePdfs = [
