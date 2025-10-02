@@ -3,24 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Grand Line Network | Learning Hub</title>
-  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <title>The Network Hub | Learning Center</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --parchment-bg: #f5e8c8;
-      --ocean-blue-dark: #0d2145;
-      --ocean-blue-light: #1a4a7d;
-      --wood-plank: #8B4513;
-      --wood-dark: #5a2d0c;
-      --text-dark: #3b2f2f;
-      --pirate-red: #c0392b;
+      --primary-dark: #0f0c29;
+      --secondary-dark: #302b63;
+      --tertiary-dark: #24243e;
+      --text-light: #f0f0f0;
+      --glow-accent: #6a82fb;
+      --glass-bg: rgba(255, 255, 255, 0.1);
+      --glass-border: rgba(255, 255, 255, 0.2);
     }
 
     body {
-      font-family: 'Open Sans', sans-serif;
-      background: linear-gradient(to top, var(--ocean-blue-dark), var(--ocean-blue-light));
-      background-attachment: fixed;
-      color: var(--text-dark);
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(45deg, var(--primary-dark), var(--secondary-dark), var(--tertiary-dark));
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      color: var(--text-light);
       margin: 0;
       padding: 30px 20px;
       display: flex;
@@ -28,95 +29,74 @@
       align-items: center;
       min-height: 100vh;
       overflow-x: hidden;
-      position: relative;
     }
     
-    .waves-container {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 150px;
-      z-index: 0;
-      pointer-events: none;
+    @keyframes gradientBG {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
     }
-    .wave {
-        position: absolute; bottom: 0; left: 0; width: 200%; height: 100%;
-        background-size: 50% 100%; background-repeat: repeat-x;
-        animation: moveWaves 15s linear infinite;
-    }
-    .wave1 {
-        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100"><path d="M0 50 C 250 100, 250 0, 500 50 S 750 100, 1000 50 L 1000 100 L 0 100 Z" fill="rgba(13,33,69,0.7)"></path></svg>');
-        animation-duration: 10s;
-    }
-    .wave2 {
-        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100"><path d="M0 60 C 200 120, 300 0, 500 60 S 700 120, 1000 60 L 1000 100 L 0 100 Z" fill="rgba(26,74,125,0.5)"></path></svg>');
-        animation-duration: 15s; animation-direction: reverse;
-    }
-
-    @keyframes moveWaves { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
     h1 {
-      font-family: 'Bangers', cursive;
-      font-size: clamp(3em, 8vw, 5em);
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: clamp(2.5em, 8vw, 4.5em);
       margin: 30px 0 50px;
-      color: var(--parchment-bg);
-      text-shadow: 4px 4px 0px var(--text-dark), 0 0 15px rgba(0,0,0,0.5);
-      letter-spacing: 3px;
-      animation: stampIn 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+      background: linear-gradient(90deg, #fc5c7d, var(--glow-accent));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: 2px;
       text-align: center;
-      line-height: 1.1;
-      position: relative;
-      z-index: 1;
+      line-height: 1.2;
+      animation: fadeInDown 1.2s ease-out;
     }
 
-    @keyframes stampIn {
-        from { opacity: 0; transform: scale(1.5) rotate(-10deg); }
-        to { opacity: 1; transform: scale(1) rotate(0deg); }
+    @keyframes fadeInDown {
+        from { opacity: 0; transform: translateY(-30px); }
+        to { opacity: 1; transform: translateY(0); }
     }
 
     .section {
-      background: var(--parchment-bg);
-      border-radius: 10px;
+      background: var(--glass-bg);
+      border-radius: 20px;
       padding: 30px;
-      margin: 25px;
+      margin: 20px;
       width: 90%;
       max-width: 900px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-      border: 3px solid #c8b796;
-      position: relative;
-      z-index: 1;
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
       opacity: 0;
-      transform: translateY(40px);
-      animation: bounceInUp 0.8s forwards cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      transform: translateY(30px);
+      animation: fadeInUp 0.8s forwards cubic-bezier(0.25, 0.46, 0.45, 0.94);
       transition: transform 0.3s ease;
     }
-
+    
     .section:hover {
         transform: translateY(-5px);
     }
 
     /* Staggered animation for sections */
-    .section:nth-of-type(1) { animation-delay: 0.2s; }
-    .section:nth-of-type(2) { animation-delay: 0.4s; }
-    .section:nth-of-type(3) { animation-delay: 0.6s; }
-    .section:nth-of-type(4) { animation-delay: 0.8s; }
+    .section:nth-of-type(1) { animation-delay: 0.3s; }
+    .section:nth-of-type(2) { animation-delay: 0.5s; }
+    .section:nth-of-type(3) { animation-delay: 0.7s; }
+    .section:nth-of-type(4) { animation-delay: 0.9s; }
 
-    @keyframes bounceInUp {
-        0% { opacity: 0; transform: translateY(40px); }
-        60% { opacity: 1; transform: translateY(-10px); }
-        100% { opacity: 1; transform: translateY(0); }
+    @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
     }
 
     .section h2 {
-      font-family: 'Bangers', cursive;
-      font-size: 2.5rem;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: 2.2rem;
       margin: 0 0 25px 0;
-      color: var(--pirate-red);
+      color: var(--text-light);
       position: relative;
       padding-bottom: 10px;
-      letter-spacing: 1.5px;
-      text-shadow: 1px 1px 0px var(--text-dark);
     }
 
     .section h2::before {
@@ -124,10 +104,9 @@
       position: absolute;
       left: 0;
       bottom: 0;
-      width: 100%;
-      max-width: 60px;
-      height: 4px;
-      background: var(--text-dark);
+      width: 50px;
+      height: 3px;
+      background: var(--glow-accent);
       border-radius: 2px;
     }
     
@@ -135,35 +114,45 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
       gap: 20px;
-      padding: 10px 0;
     }
 
     .buttons button {
-      background: var(--wood-plank);
-      border: 2px solid var(--wood-dark);
-      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 12px;
       color: #fff;
       padding: 18px 25px;
-      font-size: 1.2rem;
-      font-family: 'Bangers', cursive;
+      font-size: 1.1rem;
+      font-family: 'Poppins', sans-serif;
       font-weight: 400;
-      letter-spacing: 1px;
       cursor: pointer;
-      transition: all 0.2s ease-out;
-      min-height: 80px;
-      text-shadow: 1px 1px 1px rgba(0,0,0,0.4);
-      box-shadow: inset 0 -4px 0 var(--wood-dark), 0 4px 5px rgba(0,0,0,0.3);
+      transition: all 0.3s ease;
+      min-height: 70px;
+      position: relative;
+      overflow: hidden;
     }
     
-    .buttons button:hover {
-        background: #a0522d; /* Lighter wood */
+    .buttons button:hover, .buttons button:focus {
+        background-color: rgba(255, 255, 255, 0.25);
+        box-shadow: 0 0 15px var(--glow-accent);
+        border-color: var(--glow-accent);
         transform: translateY(-3px);
-        box-shadow: inset 0 -3px 0 var(--wood-dark), 0 6px 8px rgba(0,0,0,0.3);
+        outline: none;
+    }
+    
+    .buttons button::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        transition: left 0.5s ease;
     }
 
-    .buttons button:active {
-        transform: translateY(2px);
-        box-shadow: inset 0 -2px 0 var(--wood-dark), 0 2px 2px rgba(0,0,0,0.3);
+    .buttons button:hover::before {
+        left: 100%;
     }
 
     /* Responsive Design */
@@ -171,16 +160,16 @@
       .buttons {
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       }
-       h1 { font-size: 4rem; }
-      .section h2 { font-size: 2.2rem; }
+       h1 { font-size: 3.5rem; }
+      .section h2 { font-size: 2rem; }
     }
 
     @media (max-width: 600px) {
       body { padding: 20px 10px; }
-      h1 { font-size: 2.8rem; margin: 20px 0 30px; }
+      h1 { font-size: 2.5rem; margin: 20px 0 30px; }
       .section { padding: 20px; margin: 20px 10px; }
-      .section h2 { font-size: 2rem; }
-      .buttons button { font-size: 1.1rem; padding: 15px 20px; min-height: 70px; }
+      .section h2 { font-size: 1.8rem; }
+      .buttons button { font-size: 1rem; padding: 15px 20px; min-height: 60px; }
     }
     @media (max-width: 400px) {
         .buttons { grid-template-columns: 1fr; }
@@ -189,52 +178,42 @@
   </style>
 </head>
 <body>
-  <div class="waves-container">
-      <div class="wave wave1"></div>
-      <div class="wave wave2"></div>
-  </div>
 
-  <h1>The Grand Line Network</h1>
+  <h1>Computer Network </h1>
 
   <div class="section">
-    <h2>Log Poses from Afar (Online PDFs)</h2>
+    <h2>Online Resources (PDFs)</h2>
     <div class="buttons" id="online-pdf-buttons"></div>
   </div>
 
   <div class="section">
-    <h2>The Ship's Library (Local PDFs)</h2>
+    <h2>Local Files (PDFs)</h2>
     <div class="buttons" id="offline-pdf-buttons"></div>
   </div>
 
   <div class="section">
-    <h2>Ancient Poneglyphs (Core Theory)</h2>
+    <h2>Core Theory (Web Articles)</h2>
     <div class="buttons" id="theory-buttons"></div>
   </div>
 
   <div class="section">
-    <h2>Visual Den Den Mushi (YT Videos)</h2>
+    <h2>Video Lectures (YouTube)</h2>
     <div class="buttons" id="youtube-buttons"></div>
   </div>
 
   <script>
+    // Data for the buttons remains the same as it is functional and well-structured.
     const onlinePDFLinks = [
-      "https://drive.google.com/file/d/12H3QcEUdQjqlHS2pC_Rw_nq_1UZmQIz-/view?usp=drive_link",
-      "https://drive.google.com/file/d/1TRYUEcWISaTldpyHEElKPZBT4I3cJZJ8/view?usp=drive_link",
-      "https://drive.google.com/file/d/1-T-ETVBJJAqjwK9-FKhuCVbv24NI7guX/view?usp=drive_link",
-      "https://drive.google.com/file/d/1wUhun1kmOEXta0RtImuf1YD0EK8Awup2/view?usp=drive_link",
-      "https://drive.google.com/file/d/1nKi1gxibLfnmuRT23Ph88HFGxVhJdOJd/view?usp=drive_link",
-      "https://drive.google.com/file/d/16_cccbggucBAktRI2P2kA7ZefnEHXMjN/view?usp=drive_link",
-      "https://drive.google.com/file/d/1bXr_KyW4Ke7y7wHxjxdEIIBoIXdaAWRO/view?usp=drive_link",
-      "https://drive.google.com/file/d/1qyROLrVMbjO6W7tvRnCCZLVFmWktBoFV/view?usp=drive_link",
+      "https://drive.google.com/file/d/12H3QcEUdQjqlHS2pC_Rw_nq_1UZmQIz-/view?usp=drive_link", "https://drive.google.com/file/d/1TRYUEcWISaTldpyHEElKPZBT4I3cJZJ8/view?usp=drive_link",
+      "https://drive.google.com/file/d/1-T-ETVBJJAqjwK9-FKhuCVbv24NI7guX/view?usp=drive_link", "https://drive.google.com/file/d/1wUhun1kmOEXta0RtImuf1YD0EK8Awup2/view?usp=drive_link",
+      "https://drive.google.com/file/d/1nKi1gxibLfnmuRT23Ph88HFGxVhJdOJd/view?usp=drive_link", "https://drive.google.com/file/d/16_cccbggucBAktRI2P2kA7ZefnEHXMjN/view?usp=drive_link",
+      "https://drive.google.com/file/d/1bXr_KyW4Ke7y7wHxjxdEIIBoIXdaAWRO/view?usp=drive_link", "https://drive.google.com/file/d/1qyROLrVMbjO6W7tvRnCCZLVFmWktBoFV/view?usp=drive_link",
       "https://drive.google.com/file/d/19wb7ynUES-jvK1FtJDuMB2Mh5asePMdy/view?usp=drive_link"
     ];
-
     const offlinePDFPaths = [
-      "ch 2 refrence model of network.pdf", "ch 7 transport layer.pdf", "ch 8 application layer.pdf",
-      "ch 3 TCP-IP protocol suite.pdf", "ch 6 network layer.pdf", "ch 5 data link layer.pdf",
-      "ch 4 internet protocol.pdf", "ch 1 introduction to network.pdf", "ch 9 network security.pdf"
+      "ch 2 refrence model of network.pdf", "ch 7 transport layer.pdf", "ch 8 application layer.pdf", "ch 3 TCP-IP protocol suite.pdf", 
+      "ch 6 network layer.pdf", "ch 5 data link layer.pdf", "ch 4 internet protocol.pdf", "ch 1 introduction to network.pdf", "ch 9 network security.pdf"
     ];
-
     const theoryLinks = [
       "https://www.tutorialspoint.com/Reference-Models-in-Computer-Network", "https://www.geeksforgeeks.org/transport-layer-in-osi-model/",
       "https://www.geeksforgeeks.org/application-layer-in-osi-model/", "https://www.geeksforgeeks.org/tcp-ip-model/",
@@ -242,7 +221,6 @@
       "https://www.geeksforgeeks.org/types-of-internet-protocols/", "https://www.geeksforgeeks.org/what-is-computer-networking/",
       "https://www.geeksforgeeks.org/network-security/"
     ];
-
     const youtubeLinks = [
       "https://youtu.be/1msEo8PIcbw?si=vViE2qlEU04iTfBY", "https://youtube.com/playlist?list=PLHQAlOcTuuT3HbVd9XG42a0WtC1MRKRvO&si=u9lKRrr_lgK6Pent",
       "https://www.youtube.com/live/XJasQKX2fsY?si=hGjjSuI_10yAu4db", "https://youtu.be/TVr0RZ1-74g?si=o80Jrrr21RcBEbgS",
@@ -251,7 +229,6 @@
       "https://youtube.com/playlist?list=PLxCzCOWd7aiGFBD2-2joCpWOLUrDLvVV_&si=tszBCKCiuj2qPbm0", "https://youtu.be/1V9mhVgVH3A?si=d-y6hUfuXq_BuzAV",
       "https://youtu.be/q3Z3Qa1UNBA?si=VcTygbcOS4uKkc61"
     ];
-
     const buttonNames = {
       online: [ "Reference Models", "Transport Layer", "Application Layer", "TCP/IP Suite", "Network Layer", "Data Link Layer", "Internet Protocol", "Intro to Network", "Network Security" ],
       offline: [ "Reference Models", "Transport Layer", "Application Layer", "TCP/IP Suite", "Network Layer", "Data Link Layer", "Internet Protocol", "Intro to Network", "Network Security" ],
@@ -262,11 +239,10 @@
     function createButtons(containerId, links, names) {
         const container = document.getElementById(containerId);
         if (!container) return;
-
         links.forEach((link, index) => {
             const button = document.createElement("button");
             button.textContent = names[index] || `Link ${index + 1}`;
-            button.setAttribute('title', `Navigate to: ${names[index] || link}`);
+            button.setAttribute('title', `Open: ${names[index] || link}`);
             button.addEventListener("click", () => window.open(link, "_blank"));
             container.appendChild(button);
         });
@@ -276,7 +252,6 @@
     createButtons("offline-pdf-buttons", offlinePDFPaths, buttonNames.offline);
     createButtons("theory-buttons", theoryLinks, buttonNames.theory);
     createButtons("youtube-buttons", youtubeLinks, buttonNames.youtube);
-
   </script>
 </body>
 </html>
