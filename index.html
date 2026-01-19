@@ -1,318 +1,383 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>BCA - Modern Edition</title>
-  <link rel="icon" type="image/jpeg" href="bca_logo.jpg">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-  <style>
-    :root {
-      /* --- Modern Light Theme --- */
-      --bg-light-1: #f0f2f5;
-      --bg-light-2: #ffffff;
-      --accent-light-1: #007bff;
-      --accent-light-2: #6f42c1;
-      --text-color-light: #2a2a2a;
-      --heading-color-light: #111;
-      --card-bg-light: rgba(255, 255, 255, 0.5);
-      --card-border-light: rgba(255, 255, 255, 0.9);
-      --card-shadow-light-rgb: 100, 100, 100;
-      --footer-wave-light: rgba(0, 123, 255, 0.4);
-
-      /* --- Modern Dark Theme --- */
-      --bg-dark-1: #0a0c10;
-      --bg-dark-2: #161b22;
-      --accent-dark-1: #58a6ff;
-      --accent-dark-2: #a371f7;
-      --text-color-dark: #c9d1d9;
-      --heading-color-dark: #f0f6fc;
-      --card-bg-dark: rgba(22, 27, 34, 0.5);
-      --card-border-dark: rgba(255, 255, 255, 0.1);
-      --card-shadow-dark-rgb: 0, 0, 0;
-      --footer-wave-dark: rgba(88, 166, 255, 0.3);
-
-      /* --- Aliases (Default to Dark) --- */
-      --bg1: var(--bg-dark-1);
-      --bg2: var(--bg-dark-2);
-      --accent1: var(--accent-dark-1);
-      --accent2: var(--accent-dark-2);
-      --text-color: var(--text-color-dark);
-      --heading-color: var(--heading-color-dark);
-      --card-bg: var(--card-bg-dark);
-      --card-border: var(--card-border-dark);
-      --card-shadow-rgb: var(--card-shadow-dark-rgb);
-      --footer-wave-color: var(--footer-wave-dark);
-    }
-
-    body.light-theme {
-      --bg1: var(--bg-light-1);
-      --bg2: var(--bg-light-2);
-      --accent1: var(--accent-light-1);
-      --accent2: var(--accent-light-2);
-      --text-color: var(--text-color-light);
-      --heading-color: var(--heading-color-light);
-      --card-bg: var(--card-bg-light);
-      --card-border: var(--card-border-light);
-      --card-shadow-rgb: var(--card-shadow-light-rgb);
-      --footer-wave-color: var(--footer-wave-light);
-    }
-
-    *, *::before, *::after {
-        box-sizing: border-box;
-    }
-
-    body {
-      background: linear-gradient(315deg, var(--bg1), var(--bg2));
-      min-height: 100vh;
-      margin: 0;
-      padding-bottom: 120px; /* Space for footer */
-      font-family: 'Poppins', sans-serif;
-      color: var(--text-color);
-      overflow-x: hidden;
-      position: relative;
-      transition: background 0.5s ease, color 0.5s ease;
-    }
-
-    /* Animated Aurora Background */
-    body::before, body::after {
-        content: '';
-        position: fixed;
-        border-radius: 50%;
-        z-index: -1;
-        filter: blur(100px);
-        opacity: 0.6;
-    }
-    body::before {
-        top: 10vh; left: 10vw; width: 30vmax; height: 30vmax;
-        background: radial-gradient(circle, var(--accent2) 0%, rgba(0,0,0,0) 70%);
-        animation: move-blob-1 20s infinite alternate ease-in-out;
-    }
-    body::after {
-        bottom: 10vh; right: 10vw; width: 30vmax; height: 30vmax;
-        background: radial-gradient(circle, var(--accent1) 0%, rgba(0,0,0,0) 70%);
-        animation: move-blob-2 25s infinite alternate ease-in-out;
-    }
-    @keyframes move-blob-1 { from { transform: translate(0, 0) scale(1); } to { transform: translate(100px, 50px) scale(1.2); } }
-    @keyframes move-blob-2 { from { transform: translate(0, 0) scale(1.2); } to { transform: translate(-80px, -60px) scale(1); } }
-
-
-    header {
-      text-align: center;
-      padding: clamp(3rem, 8vh, 6rem) 2rem 2rem 2rem;
-      position: relative;
-      z-index: 2;
-    }
-
-    h1 {
-      color: var(--heading-color);
-      font-size: clamp(3rem, 10vw, 5.5rem);
-      font-weight: 700;
-      margin: 0;
-      letter-spacing: -2px;
-      background: -webkit-linear-gradient(45deg, var(--accent1), var(--accent2));
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: float 6s ease-in-out infinite, fadeIn 1s ease-out forwards;
-    }
-     @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-10px); } 100% { transform: translateY(0px); } }
-     @keyframes fadeIn { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
-
-    .sub-heading {
-        font-size: clamp(1rem, 2.5vw, 1.2rem);
-        color: var(--text-color);
-        margin-top: 0.5rem;
-        opacity: 0.8;
-        animation: fadeIn 1s 0.2s ease-out forwards;
-        opacity: 0;
-    }
-
-    main {
-      position: relative;
-      z-index: 2;
-      padding: 0 2rem;
-    }
-
-    .card-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .modern-card {
-      background: var(--card-bg);
-      backdrop-filter: blur(15px);
-      -webkit-backdrop-filter: blur(15px);
-      color: var(--text-color);
-      font-size: 1.15rem;
-      font-weight: 600;
-      padding: 2rem;
-      border: 1px solid var(--card-border);
-      border-radius: 16px;
-      cursor: pointer;
-      text-align: center;
-      transition: transform 0.2s ease, box-shadow 0.3s ease;
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 8px 32px rgba(var(--card-shadow-rgb), 0.1);
-      animation: popIn 0.5s ease-out forwards;
-      opacity: 0; /* Initially hidden */
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>BCA Dashboard | Premium Edition</title>
     
-    .card-container .modern-card:nth-child(1) { animation-delay: 0.2s; }
-    .card-container .modern-card:nth-child(2) { animation-delay: 0.3s; }
-    .card-container .modern-card:nth-child(3) { animation-delay: 0.4s; }
-    .card-container .modern-card:nth-child(4) { animation-delay: 0.5s; }
-    .card-container .modern-card:nth-child(5) { animation-delay: 0.6s; }
-    .card-container .modern-card:nth-child(6) { animation-delay: 0.7s; }
-    .card-container .modern-card:nth-child(7) { animation-delay: 0.8s; }
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
 
-
-    @keyframes popIn {
-      from { opacity: 0; transform: translateY(20px) scale(0.95); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
-    }
-
-    .modern-card:hover {
-        box-shadow: 0 12px 40px rgba(var(--card-shadow-rgb), 0.15), 0 0 20px 0px var(--accent1);
-    }
-     .modern-card:active {
-        transform: translateY(0) scale(0.98);
-        box-shadow: 0 8px 32px rgba(var(--card-shadow-rgb), 0.1);
-    }
-
-    .theme-switcher {
-        position: fixed; top: 20px; right: 20px; z-index: 1000;
-        background-color: var(--card-bg); backdrop-filter: blur(10px);
-        color: var(--text-color); border: 1px solid var(--card-border);
-        padding: 8px 15px; border-radius: 20px; cursor: pointer;
-        font-family: 'Poppins', sans-serif; font-size: 0.9rem;
-        transition: all 0.3s ease;
-        box-shadow: 0 2px 10px rgba(var(--card-shadow-rgb), 0.1);
-    }
-    .theme-switcher:hover { border-color: var(--accent2); transform: scale(1.05); }
-
-    .footer { position: absolute; bottom: 0; left: 0; width: 100%; height: 120px; overflow: hidden; z-index: 0; }
-    .waves { position: relative; width: 100%; height: 100%; }
-    .wave-path { fill: var(--footer-wave-color); transition: fill 0.5s ease; }
-    .parallax > use { animation: move-forever 25s cubic-bezier(.55,.5,.45,.5) infinite; }
-    .parallax > use:nth-child(1) { animation-delay: -2s; animation-duration: 10s; }
-    .parallax > use:nth-child(2) { animation-delay: -3s; animation-duration: 13s; }
-    .parallax > use:nth-child(3) { animation-delay: -4s; animation-duration: 16s; }
-    @keyframes move-forever { 0% { transform: translate3d(-90px,0,0); } 100% { transform: translate3d(85px,0,0); } }
-
-    /* --- Responsive Design --- */
-    @media (max-width: 768px) {
-        .card-container { grid-template-columns: 1fr; gap: 1rem; }
-        main { padding: 0 1.5rem; }
-    }
-
-    @media (max-width: 480px) {
-        h1 { letter-spacing: -1px; }
-        main { padding: 0 1rem; }
-        .modern-card { font-size: 1.05rem; padding: 1.5rem; }
-        .theme-switcher { top: 15px; right: 15px; padding: 6px 12px; font-size: 0.8rem; }
-    }
-  </style>
-</head>
-<body class="dark-theme"> <!-- Default to dark theme -->
-
-  <button class="theme-switcher" id="themeSwitcher" aria-label="Toggle theme">
-    ☀️ Light / 🌙 Dark
-  </button>
-
-  <header>
-    <h1>BCA Dashboard</h1>
-    <p class="sub-heading">Your central hub for all semester resources.</p>
-  </header>
-
-  <main>
-    <div class="card-container">
-      <div class="modern-card" id="semester3">Semester 3 📚</div>
-      <div class="modern-card" id="semester4">Semester 4 ✨</div>
-      <div class="modern-card" id="semester5">Semester 5 🧑‍💻</div>
-      <div class="modern-card" id="semester6">Semester 6 🚀</div>
-      <div class="modern-card" id="datesheet">Datesheet 📅</div>
-      <div class="modern-card" id="result">Result 🎉</div>
-      <div class="modern-card" id="syllabus">Syllabus 🗺️</div>
-    </div>
-  </main>
-  
-  <footer class="footer">
-    <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-    viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
-      <defs>
-        <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
-      </defs>
-      <g class="parallax">
-        <use xlink:href="#gentle-wave" x="48" y="0" class="wave-path" opacity="0.7" />
-        <use xlink:href="#gentle-wave" x="48" y="3" class="wave-path" opacity="0.5" />
-        <use xlink:href="#gentle-wave" x="48" y="5" class="wave-path" opacity="0.3" />
-      </g>
-    </svg>
-  </footer>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Button navigation
-      document.getElementById('semester3').addEventListener('click', () => window.location.href = "https://akaal777.github.io/B-C-A/");
-      document.getElementById('semester4').addEventListener('click', () => window.location.href = "sem4/semester4.html");
-      document.getElementById('semester5').addEventListener('click', () => window.location.href = "sem5/semester5.html");
-      document.getElementById('semester6').addEventListener('click', () => window.location.href = "sem6/semester6.html");
-      document.getElementById('datesheet').addEventListener('click', () => window.location.href = "https://ds19.pupexamination.ac.in/uploaddatesheet/view-datesheet.php");
-      document.getElementById('result').addEventListener('click', () => window.location.href = "https://results.pupexamination.ac.in/t8/results/results.php");
-      document.getElementById('syllabus').addEventListener('click', () => window.location.href = "http://www.punjabiuniversity.ac.in/indexSyllabi.aspx");
-
-      // --- Theme Switcher Logic ---
-      const themeSwitcher = document.getElementById('themeSwitcher');
-      const body = document.body;
-      const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
-
-      function applyTheme(theme) {
-        if (theme === 'dark') {
-          body.classList.remove('light-theme');
-          body.classList.add('dark-theme');
-          themeSwitcher.textContent = '☀️ Light Mode';
-        } else {
-          body.classList.remove('dark-theme');
-          body.classList.add('light-theme');
-          themeSwitcher.textContent = '🌙 Dark Mode';
+    <style>
+        :root {
+            /* --- Dark Theme (Default) --- */
+            --bg-base: #0a0a0c;
+            --bg-gradient: linear-gradient(135deg, #0a0a0c 0%, #16161d 100%);
+            --accent-primary: #e2b17a; /* Gold */
+            --accent-secondary: #a371f7;
+            --text-main: #ffffff;
+            --text-dim: #94a3b8;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --shadow: rgba(0, 0, 0, 0.4);
+            --glow: rgba(226, 177, 122, 0.15);
         }
-      }
 
-      let currentTheme = localStorage.getItem('theme') || (prefersDarkScheme.matches ? 'dark' : 'light');
-      applyTheme(currentTheme);
+        body.light-theme {
+            --bg-base: #f8fafc;
+            --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            --accent-primary: #2563eb; /* Royal Blue */
+            --accent-secondary: #7c3aed;
+            --text-main: #0f172a;
+            --text-dim: #475569;
+            --card-bg: rgba(255, 255, 255, 0.7);
+            --card-border: rgba(0, 0, 0, 0.05);
+            --shadow: rgba(0, 0, 0, 0.05);
+            --glow: rgba(37, 99, 235, 0.1);
+        }
 
-      themeSwitcher.addEventListener('click', () => {
-        let newTheme = body.classList.contains('dark-theme') ? 'light' : 'dark';
-        localStorage.setItem('theme', newTheme);
-        applyTheme(newTheme);
-      });
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-      // --- Interactive Card Tilt Effect ---
-      const cards = document.querySelectorAll('.modern-card');
-      cards.forEach(card => {
-        card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            const rotateX = (y / rect.height - 0.5) * -15;
-            const rotateY = (x / rect.width - 0.5) * 15;
-            card.style.transition = 'transform 0.1s linear';
-            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px)`;
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--bg-base);
+            background-image: var(--bg-gradient);
+            color: var(--text-main);
+            min-height: 100vh;
+            overflow-x: hidden;
+            transition: background 0.5s ease;
+            line-height: 1.6;
+        }
+
+        /* --- Animated Background Blobs --- */
+        .blob-container {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            filter: blur(80px);
+            opacity: 0.5;
+        }
+
+        .blob {
+            position: absolute;
+            width: 40vmax;
+            height: 40vmax;
+            border-radius: 50%;
+            background: var(--accent-primary);
+            animation: move 20s infinite alternate;
+        }
+
+        .blob-2 {
+            background: var(--accent-secondary);
+            right: -10%;
+            bottom: -10%;
+            animation-duration: 25s;
+        }
+
+        @keyframes move {
+            from { transform: translate(-10%, -10%) rotate(0deg); }
+            to { transform: translate(20%, 20%) rotate(90deg); }
+        }
+
+        /* --- Header Section --- */
+        header {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: clamp(4rem, 10vh, 8rem) 2rem 4rem;
+            text-align: center;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 6px 16px;
+            background: rgba(var(--accent-primary), 0.1);
+            color: var(--accent-primary);
+            border: 1px solid var(--card-border);
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+            backdrop-filter: blur(10px);
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-weight: 800;
+            letter-spacing: -2px;
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+
+        h1 span {
+            background: linear-gradient(to right, var(--text-main), var(--accent-primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .sub-heading {
+            color: var(--text-dim);
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* --- Dashboard Grid --- */
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem 10rem;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 40px 30px;
+            text-align: left;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .card:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px var(--shadow), 0 0 20px var(--glow);
+        }
+
+        .icon-box {
+            width: 60px;
+            height: 60px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--accent-primary);
+            transition: 0.3s;
+        }
+
+        .card:hover .icon-box {
+            background: var(--accent-primary);
+            color: var(--bg-base);
+            transform: rotate(-10deg) scale(1.1);
+        }
+
+        .card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .card p {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+        }
+
+        /* --- Theme Switcher --- */
+        .theme-btn {
+            position: fixed;
+            top: 25px;
+            right: 25px;
+            z-index: 1000;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            color: var(--text-main);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+            transition: 0.3s;
+        }
+
+        .theme-btn:hover {
+            transform: rotate(15deg);
+            border-color: var(--accent-primary);
+        }
+
+        /* --- Wave Footer --- */
+        .footer-waves {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            height: 100px;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* --- Mobile Adjustments --- */
+        @media (max-width: 768px) {
+            header { padding-top: 6rem; }
+            .main-container { padding: 0 1.5rem 5rem; }
+            .card-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body class="dark-theme">
+
+    <div class="blob-container">
+        <div class="blob"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <button class="theme-btn" id="themeToggle" title="Switch Theme">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <header>
+        <span class="badge">Academic Portal 2026</span>
+        <h1>BCA <span>Dashboard</span></h1>
+        <p class="sub-heading">Your premium gateway to academic success, semester resources, and results.</p>
+    </header>
+
+    <main class="main-container">
+        <div class="card-grid">
+            <div class="card" data-url="https://akaal777.github.io/B-C-A/">
+                <div class="icon-box"><i class="fas fa-layer-group"></i></div>
+                <div>
+                    <h3>Semester 3</h3>
+                    <p>Core Database & OS Concepts</p>
+                </div>
+            </div>
+
+            <div class="card" data-url="sem4/semester4.html">
+                <div class="icon-box"><i class="fas fa-code-branch"></i></div>
+                <div>
+                    <h3>Semester 4</h3>
+                    <p>Advanced Web & Software Engineering</p>
+                </div>
+            </div>
+
+            <div class="card" data-url="sem5/semester5.html">
+                <div class="icon-box"><i class="fas fa-terminal"></i></div>
+                <div>
+                    <h3>Semester 5</h3>
+                    <p>Java Programming & System Design</p>
+                </div>
+            </div>
+
+            <div class="card" data-url="sem6/semester6.html">
+                <div class="icon-box"><i class="fas fa-rocket"></i></div>
+                <div>
+                    <h3>Semester 6</h3>
+                    <p>Final Projects & Python Dev</p>
+                </div>
+            </div>
+
+            <div class="card" data-url="https://ds19.pupexamination.ac.in/uploaddatesheet/view-datesheet.php">
+                <div class="icon-box"><i class="fas fa-calendar-alt"></i></div>
+                <div>
+                    <h3>Datesheet</h3>
+                    <p>Official Examination Schedule</p>
+                </div>
+            </div>
+
+            <div class="card" data-url="https://results.pupexamination.ac.in/t8/results/results.php">
+                <div class="icon-box"><i class="fas fa-trophy"></i></div>
+                <div>
+                    <h3>Results</h3>
+                    <p>Performance & Scorecards</p>
+                </div>
+            </div>
+
+            <div class="card" data-url="http://www.punjabiuniversity.ac.in/indexSyllabi.aspx">
+                <div class="icon-box"><i class="fas fa-map"></i></div>
+                <div>
+                    <h3>Syllabus</h3>
+                    <p>Curriculum & Course Roadmap</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <svg class="footer-waves" xmlns="http://www.w3.org/2000/svg" viewBox="0 24 150 28" preserveAspectRatio="none">
+        <defs><path id="wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" /></defs>
+        <g opacity="0.1" fill="var(--accent-primary)">
+            <use href="#wave" x="48" y="0" />
+            <use href="#wave" x="48" y="5" opacity="0.5" />
+        </g>
+    </svg>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeBtn = document.getElementById('themeToggle');
+            const cards = document.querySelectorAll('.card');
+
+            // --- Theme Switcher ---
+            const toggleTheme = () => {
+                const isLight = document.body.classList.toggle('light-theme');
+                localStorage.setItem('theme', isLight ? 'light' : 'dark');
+                themeBtn.innerHTML = isLight ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+            };
+
+            themeBtn.addEventListener('click', toggleTheme);
+
+            if (localStorage.getItem('theme') === 'light') toggleTheme();
+
+            // --- Scroll Reveal Animation ---
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.classList.add('visible');
+                        }, index * 100);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            cards.forEach(card => {
+                observer.observe(card);
+                
+                // Click Action
+                card.addEventListener('click', () => {
+                    const url = card.dataset.url;
+                    card.style.transform = 'scale(0.95)';
+                    setTimeout(() => window.location.href = url, 150);
+                });
+
+                // 3D Tilt Effect
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = (e.clientX - rect.left) / rect.width - 0.5;
+                    const y = (e.clientY - rect.top) / rect.height - 0.5;
+                    card.style.transform = `perspective(1000px) rotateX(${y * -10}deg) rotateY(${x * 10}deg) translateY(-10px)`;
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = `perspective(1000px) rotateX(0) rotateY(0) translateY(0)`;
+                });
+            });
         });
-        card.addEventListener('mouseleave', () => {
-            card.style.transition = 'transform 0.5s ease';
-            card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
-        });
-      });
-    });
-  </script>
+    </script>
 </body>
 </html>
