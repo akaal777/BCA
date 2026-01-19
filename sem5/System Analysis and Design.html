@@ -1,189 +1,271 @@
-☺️<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>System Analysis and Design | Modern Resource Hub</title>
+    <title>SAD | Modern Architecture Resource Hub</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
         :root {
-            /* --- Modern Classy Theme --- */
-            --bg-color: #1a1a1a;
-            --card-color: #2b2b2b;
-            --accent-gold: #c5a47e;
-            --text-primary: #f5f5f5;
-            --text-secondary: #a0a0a0;
-            --border-color: rgba(197, 164, 126, 0.2);
-            --font-primary: 'Poppins', sans-serif;
+            --bg-deep: #0a0a0c;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --accent-gold: #d4af37;
+            --accent-glow: rgba(212, 175, 55, 0.3);
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
+            --font-main: 'Outfit', sans-serif;
+            --font-display: 'Playfair Display', serif;
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        *, *::before, *::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: var(--font-primary);
-            background-color: var(--bg-color);
-            background-image: url('https://www.transparenttextures.com/patterns/subtle-carbon.png'); /* Subtle, classy texture */
-            color: var(--text-primary);
-            line-height: 1.7;
-            padding: 2rem;
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            font-family: var(--font-main);
+            line-height: 1.6;
             overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(212, 175, 55, 0.05) 0%, transparent 40%);
+            min-height: 100vh;
         }
 
         .container {
-            width: 100%;
-            max-width: 900px;
+            max-width: 1100px;
             margin: 0 auto;
+            padding: 2rem 5vw 5rem;
+        }
+
+        /* --- Navigation --- */
+        .back-nav {
+            margin-bottom: 4rem;
+            animation: fadeIn 1s forwards;
         }
 
         .back-button {
+            text-decoration: none;
+            color: var(--text-dim);
+            font-weight: 600;
+            font-size: 0.9rem;
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            background: transparent;
-            border: 1px solid var(--border-color);
-            color: var(--text-secondary);
-            padding: 0.75rem 1.5rem;
+            gap: 12px;
+            padding: 10px 20px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
             border-radius: 50px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.4s ease;
-            margin-bottom: 3rem;
-        }
-        .back-button:hover {
-            transform: translateY(-3px);
-            color: var(--bg-color);
-            background-color: var(--accent-gold);
-            border-color: var(--accent-gold);
-            box-shadow: 0 10px 25px rgba(197, 164, 126, 0.2);
+            transition: var(--transition);
+            backdrop-filter: blur(5px);
         }
 
-        .header {
+        .back-button:hover {
+            color: var(--accent-gold);
+            border-color: var(--accent-gold);
+            background: rgba(212, 175, 55, 0.05);
+            transform: translateX(-5px);
+        }
+
+        /* --- Header --- */
+        header {
             text-align: center;
-            margin-bottom: 5rem;
+            margin-bottom: 6rem;
             opacity: 0;
-            animation: fadeInDown 1s 0.2s ease-out forwards;
+            transform: translateY(30px);
+            animation: slideUp 1s 0.2s forwards;
         }
 
         .main-heading {
-            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 8vw, 5rem);
             font-weight: 700;
-            color: var(--text-primary);
-            letter-spacing: -1px;
-        }
-        .main-heading span {
-            color: var(--accent-gold);
+            line-height: 1.1;
+            margin-bottom: 1rem;
         }
 
-        /* --- Section Styling with Scroll Animation --- */
+        .main-heading span {
+            color: var(--accent-gold);
+            font-style: italic;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .main-heading span::after {
+            content: '';
+            position: absolute;
+            bottom: 10px;
+            right: -10px;
+            width: 10px;
+            height: 10px;
+            background: var(--accent-gold);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--accent-gold);
+        }
+
+        /* --- Sections --- */
         .content-section {
-            margin-bottom: 3.5rem;
-            background: var(--card-color);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: clamp(2rem, 5vw, 3rem);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-            /* Initial state for animation */
+            margin-bottom: 5rem;
             opacity: 0;
             transform: translateY(50px);
             transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
+
         .content-section.is-visible {
             opacity: 1;
             transform: translateY(0);
         }
-        
-        .section-heading {
-            font-size: clamp(2rem, 4vw, 2.5rem);
-            font-weight: 700;
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
             margin-bottom: 2.5rem;
-            padding-bottom: 1rem;
-            position: relative;
-            color: var(--text-primary);
         }
-        .section-heading::after {
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-main);
+            letter-spacing: -0.5px;
+        }
+
+        .line {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, var(--glass-border), transparent);
+        }
+
+        /* --- Grid & Cards --- */
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .resource-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            padding: 25px;
+            border-radius: 20px;
+            cursor: pointer;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .resource-card::before {
             content: '';
             position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 60px;
-            height: 3px;
-            border-radius: 2px;
-            background: var(--accent-gold);
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), transparent);
+            opacity: 0;
+            transition: var(--transition);
         }
 
-        .links-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1rem;
-        }
-        
-        button.resource-link {
-            background-color: transparent;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            color: var(--text-secondary);
-            font-weight: 500;
-            font-size: 1rem;
-            padding: 12px 24px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.4s ease;
-            font-family: var(--font-primary);
-        }
-
-        button.resource-link:hover {
-            background-color: var(--accent-gold);
+        .resource-card:hover {
+            transform: translateY(-8px);
             border-color: var(--accent-gold);
-            color: #fff;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(197, 164, 126, 0.2);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .resource-card:hover::before {
+            opacity: 1;
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--accent-gold);
+            transition: var(--transition);
+        }
+
+        .resource-card:hover .card-icon {
+            background: var(--accent-gold);
+            color: var(--bg-deep);
+            transform: rotate(-10deg);
+        }
+
+        .card-text {
+            font-weight: 500;
+            color: var(--text-main);
+            font-size: 1rem;
+            z-index: 1;
         }
 
         /* --- Animations --- */
-        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
-        
-        /* --- Responsive Design --- */
-        @media (max-width: 768px) { body { padding: 1.5rem; } }
-        @media (max-width: 480px) { body { padding: 1rem; } .links-container { grid-template-columns: 1fr; } }
+        @keyframes fadeIn { to { opacity: 1; } }
+        @keyframes slideUp { to { opacity: 1; transform: translateY(0); } }
+
+        /* --- Responsive --- */
+        @media (max-width: 768px) {
+            .main-heading { font-size: 3.5rem; }
+            .links-grid { grid-template-columns: 1fr; }
+            .container { padding-top: 2rem; }
+        }
     </style>
 </head>
 <body>
+
     <div class="container">
-        <a href="../sem5/semester5.html" class="back-button"><span>&larr;</span> Back to Semester 5</a>
-        
-        <header class="header">
-            <h1 class="main-heading">System Analysis and <span>Design</span></h1>
+        <nav class="back-nav">
+            <a href="../sem5/semester5.html" class="back-button">
+                <i class="fas fa-chevron-left"></i> Back to Dashboard
+            </a>
+        </nav>
+
+        <header>
+            <h1 class="main-heading">System Analysis<br><span>& Design.</span></h1>
         </header>
 
-        <section id="theory-section" class="content-section">
-            <h2 class="section-heading">Theory Resources</h2>
-            <div class="links-container" id="theory-links"></div>
+        <section class="content-section">
+            <div class="section-header">
+                <div class="card-icon" style="width:40px; height:40px; font-size:1rem;"><i class="fas fa-book-open"></i></div>
+                <h2 class="section-title">Core Theory</h2>
+                <div class="line"></div>
+            </div>
+            <div class="links-grid" id="theory-links"></div>
         </section>
 
-        <section id="pdf-section" class="content-section">
-            <h2 class="section-heading">Downloadable PDFs</h2>
-            <div class="links-container" id="pdf-links"></div>
+        <section class="content-section">
+            <div class="section-header">
+                <div class="card-icon" style="width:40px; height:40px; font-size:1rem;"><i class="fas fa-file-pdf"></i></div>
+                <h2 class="section-title">Documentation</h2>
+                <div class="line"></div>
+            </div>
+            <div class="links-grid" id="pdf-links"></div>
         </section>
 
-        <section id="video-section" class="content-section">
-            <h2 class="section-heading">Video Guides</h2>
-            <div class="links-container" id="video-links"></div>
+        <section class="content-section">
+            <div class="section-header">
+                <div class="card-icon" style="width:40px; height:40px; font-size:1rem;"><i class="fas fa-play"></i></div>
+                <h2 class="section-title">Video Lectures</h2>
+                <div class="line"></div>
+            </div>
+            <div class="links-grid" id="video-links"></div>
         </section>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Data remains the same
+            
+            // --- Content Data ---
             const theoryLinks = [
                 { text: "Basics Of SAD", url: "https://www.codershelpline.com/courses/theorypapers/system-analysis-design/basics-of-sad/" },
                 { text: "GeeksForGeeks Guide", url: "https://www.geeksforgeeks.org/system-design/system-analysis-system-design/" },
@@ -191,50 +273,53 @@
             ];
 
             const pdfLinks = [
-                { text: "SAD 9th Edition", url: "https://ia600408.us.archive.org/31/items/system-analysis-and-design-9th-edition/System_Analysis_and_Design_9e_Shelly_Cas.pdf" },
-                { text: " SAD Notes", url: "https://www.nielit.gov.in/shimla/sites/default/files/Shimla/UNIT1.pdf" },
-                { text: "SAD Lecture Notes", url: "https://drive.google.com/file/d/1PccnshAn1CFpi-PQPSDT4rE_vC32xGfk/view"},
-                { text: "SAD Notes PDF", url: "https://www.bcanotes.com/Download/sad/System%20Analysis%20And%20Design/System%20Analysis%20and%20Design.pdf"},
-
-                { text: "System Analysis Book Full PDF", url: "System-Analysis-and-Design-Tutorial.pdf" }
+                { text: "SAD 9th Edition Textbook", url: "https://ia600408.us.archive.org/31/items/system-analysis-and-design-9th-edition/System_Analysis_and_Design_9e_Shelly_Cas.pdf" },
+                { text: "NIELIT Unit 1 Notes", url: "https://www.nielit.gov.in/shimla/sites/default/files/Shimla/UNIT1.pdf" },
+                { text: "Lecture Handouts", url: "https://drive.google.com/file/d/1PccnshAn1CFpi-PQPSDT4rE_vC32xGfk/view"},
+                { text: "BCA Notes Complete PDF", url: "https://www.bcanotes.com/Download/sad/System%20Analysis%20And%20Design/System%20Analysis%20and%20Design.pdf"},
+                { text: "Tutorial Book PDF", url: "System-Analysis-and-Design-Tutorial.pdf" }
             ];
 
             const videoLinks = [
-                { text: "Playlist in Hindi", url: "https://youtube.com/playlist?list=PLi81x6d2Os_8Sa8HifiFruWK6wmgG3Wrg&si=rI-aVsuqSpZOk7OE" },
-                { text: "One Shot Video Guide", url: "https://www.youtube.com/live/aZ33oo0l6xU?si=R-ClHe1G9NmCBrb_" }
+                { text: "Complete Hindi Playlist", url: "https://youtube.com/playlist?list=PLi81x6d2Os_8Sa8HifiFruWK6wmgG3Wrg&si=rI-aVsuqSpZOk7OE" },
+                { text: "One Shot Exam Guide", url: "https://www.youtube.com/live/aZ33oo0l6xU?si=R-ClHe1G9NmCBrb_" }
             ];
 
-            // Function to create and append buttons
-            function populateLinks(containerId, links) {
+            // --- Generator Function ---
+            function populateLinks(containerId, links, iconClass) {
                 const container = document.getElementById(containerId);
-                links.forEach(link => {
-                    const button = document.createElement("button");
-                    button.textContent = link.text;
-                    button.className = 'resource-link'; // Added class for styling
-                    button.onclick = () => window.open(link.url, "_blank");
-                    container.appendChild(button);
+                links.forEach((link, index) => {
+                    const card = document.createElement("div");
+                    card.className = 'resource-card';
+                    // Staggered Animation Delay
+                    card.style.animation = `slideUp 0.5s ease forwards ${index * 0.1}s`;
+                    card.style.opacity = '0'; // Initial state for animation
+                    
+                    card.innerHTML = `
+                        <div class="card-icon"><i class="fas ${iconClass}"></i></div>
+                        <span class="card-text">${link.text}</span>
+                        <i class="fas fa-arrow-right" style="margin-left:auto; opacity:0.5; font-size:0.8rem;"></i>
+                    `;
+                    
+                    card.onclick = () => window.open(link.url, "_blank");
+                    container.appendChild(card);
                 });
             }
 
-            // Populate all sections
-            populateLinks("theory-links", theoryLinks);
-            populateLinks("pdf-links", pdfLinks);
-            populateLinks("video-links", videoLinks);
+            // Populate Sections with Specific Icons
+            populateLinks("theory-links", theoryLinks, "fa-book");
+            populateLinks("pdf-links", pdfLinks, "fa-file-alt");
+            populateLinks("video-links", videoLinks, "fa-video");
 
-            // --- Scroll Animation Logic ---
+            // --- Scroll Animation ---
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('is-visible');
-                        // Optional: unobserve after first animation
-                        // observer.unobserve(entry.target);
                     }
                 });
-            }, {
-                threshold: 0.1 // Trigger when 10% of the element is visible
-            });
+            }, { threshold: 0.1 });
 
-            // Observe all content sections for the animation
             document.querySelectorAll('.content-section').forEach(section => {
                 observer.observe(section);
             });
