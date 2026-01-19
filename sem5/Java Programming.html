@@ -3,150 +3,271 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Java Codex: A Modern Guide</title>
+    <title>The Java Codex | Elite Learning Hub</title>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
         :root {
-            /* --- Modern Classy Theme --- */
-            --bg-color: #1a1a1a;
-            --card-color: #2b2b2b;
-            --accent-gold: #c5a47e;
-            --text-primary: #f5f5f5;
-            --text-secondary: #a0a0a0;
-            --border-color: rgba(197, 164, 126, 0.2);
-            --font-primary: 'Poppins', sans-serif;
+            --bg-dark: #0a0a0c;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --accent-gold: #d4af37;
+            --accent-glow: rgba(212, 175, 55, 0.3);
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
+            --card-radius: 24px;
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        *, *::before, *::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: var(--font-primary);
-            background-color: var(--bg-color);
-            background-image: url('https://www.transparenttextures.com/patterns/subtle-carbon.png'); /* Subtle, classy texture */
-            color: var(--text-primary);
-            line-height: 1.7;
-            padding: 2rem;
+            background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(circle at 10% 10%, rgba(212, 175, 55, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 90%, rgba(212, 175, 55, 0.05) 0%, transparent 40%);
+            color: var(--text-main);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            line-height: 1.6;
             overflow-x: hidden;
+            padding: 0 5vw;
         }
 
+        /* --- Custom Scrollbar --- */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-dark); }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent-gold); }
+
         .container {
-            width: 100%;
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
+            padding: 4rem 0;
+        }
+
+        /* --- Header Section --- */
+        .back-nav {
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeIn 1s forwards;
         }
 
         .back-button {
-            display: inline-flex; align-items: center; gap: 0.5rem;
-            background: transparent;
-            border: 1px solid var(--border-color); color: var(--text-secondary);
-            padding: 0.75rem 1.5rem; border-radius: 50px; text-decoration: none;
-            font-weight: 500;
-            transition: all 0.4s ease; margin-bottom: 3rem;
+            text-decoration: none;
+            color: var(--text-dim);
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 24px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            transition: var(--transition);
         }
+
         .back-button:hover {
-            transform: translateY(-3px);
-            color: var(--text-primary);
-            background-color: var(--accent-gold);
+            color: var(--accent-gold);
             border-color: var(--accent-gold);
-            box-shadow: 0 10px 25px rgba(197, 164, 126, 0.2);
+            background: rgba(212, 175, 55, 0.05);
+            transform: translateX(-5px);
         }
 
-        .header {
-            text-align: center; margin-bottom: 5rem;
-            opacity: 0; animation: fadeInDown 1s 0.2s ease-out forwards;
+        header {
+            text-align: center;
+            margin-bottom: 6rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: slideUp 1s 0.3s forwards;
         }
+
         .main-heading {
-            font-size: clamp(2.8rem, 6vw, 4.5rem);
-            font-weight: 700; color: var(--text-primary);
-            letter-spacing: -1px; margin-bottom: 0.75rem;
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 10vw, 5.5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
         }
-        .main-heading span { color: var(--accent-gold); }
-        .header p { color: var(--text-secondary); font-size: clamp(1rem, 2.5vw, 1.2rem); }
 
-        /* --- Section Styling with Scroll Animation --- */
+        .main-heading span {
+            color: var(--accent-gold);
+            font-style: italic;
+        }
+
+        .subtitle {
+            color: var(--text-dim);
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        /* --- Content Sections --- */
         .content-section {
-            margin-bottom: 3.5rem;
-            background: var(--card-color);
-            border: 1px solid var(--border-color); border-radius: 16px;
-            padding: clamp(2rem, 5vw, 3rem);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-            /* Initial state for animation */
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--card-radius);
+            padding: 4rem;
+            margin-bottom: 4rem;
             opacity: 0;
             transform: translateY(50px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            transition: var(--transition);
         }
+
         .content-section.is-visible {
             opacity: 1;
             transform: translateY(0);
         }
-        
+
         .section-heading {
-            font-size: clamp(2rem, 4vw, 2.5rem);
-            font-weight: 700; margin-bottom: 2.5rem;
-            padding-bottom: 1rem; position: relative;
-            color: var(--text-primary);
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            font-weight: 800;
         }
+
         .section-heading::after {
-            content: ''; position: absolute; bottom: 0; left: 0;
-            width: 60px; height: 3px; border-radius: 2px;
-            background: var(--accent-gold);
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, var(--accent-gold), transparent);
+            opacity: 0.3;
         }
 
-        /* --- Sub-Sections (Topics) --- */
-        .topic-container { display: flex; flex-direction: column; gap: 2rem; }
+        /* --- Topic Cards --- */
+        .topic-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+
         .topic-item {
-            background: rgba(0,0,0,0.15); padding: 1.5rem;
-            border-radius: 12px; border-left: 3px solid var(--border-color);
-            transition: all 0.4s ease;
+            position: relative;
+            padding-left: 30px;
+            border-left: 2px solid var(--glass-border);
+            transition: var(--transition);
         }
-        .topic-item:hover {
-            transform: translateY(-5px);
-            border-left-color: var(--accent-gold);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-        }
-        .topic-heading {
-            font-size: 1.3rem; font-weight: 500;
-            color: var(--text-primary); margin-bottom: 1.5rem;
-        }
-        .topic-heading::before { content: "›"; color: var(--accent-gold); margin-right: 0.75rem; }
 
-        /* --- Resource Links --- */
+        .topic-item:hover {
+            border-left-color: var(--accent-gold);
+        }
+
+        .topic-heading {
+            font-size: 1.2rem;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        /* --- Resource Buttons --- */
         .resource-links-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 12px;
-        }
-        .resource-link {
-            display: inline-block; padding: 12px 20px;
-            background-color: transparent; border: 1px solid var(--border-color);
-            border-radius: 8px; color: var(--text-secondary); font-weight: 500; text-decoration: none;
-            font-size: 0.95em; text-align: center;
-            transition: all 0.4s ease;
-        }
-        .resource-link:hover {
-            background-color: var(--accent-gold);
-            border-color: var(--accent-gold);
-            color: #fff;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(197, 164, 126, 0.2);
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 15px;
         }
 
+        .resource-link {
+            text-decoration: none;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--glass-border);
+            color: var(--text-main);
+            padding: 16px 20px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: var(--transition);
+        }
+
+        .resource-link:hover {
+            background: var(--text-main);
+            color: var(--bg-dark);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .resource-link i {
+            font-size: 0.8rem;
+            opacity: 0.5;
+        }
+
+        /* --- Video & Download Cards --- */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .video-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--glass-border);
+            padding: 25px;
+            border-radius: 18px;
+            text-decoration: none;
+            color: var(--text-main);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .video-card i {
+            font-size: 1.5rem;
+            color: #ff0000;
+        }
+
+        .video-card:hover {
+            border-color: var(--accent-gold);
+            background: rgba(212, 175, 55, 0.05);
+            transform: scale(1.03);
+        }
+
+        /* --- Footer Styles (Book Section) --- */
+        .book-item {
+            background: rgba(255,255,255,0.02);
+            padding: 30px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid var(--glass-border);
+        }
+
+        .book-info h4 { font-size: 1.4rem; margin-bottom: 5px; }
+        .book-info p { color: var(--text-dim); }
+
         /* --- Animations --- */
-        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
-        
+        @keyframes fadeIn { to { opacity: 1; } }
+        @keyframes slideUp { 
+            to { opacity: 1; transform: translateY(0); } 
+        }
+
         /* --- Responsive Design --- */
-        @media (max-width: 768px) { body { padding: 1.5rem; } }
-        @media (max-width: 480px) { body { padding: 1rem; } .resource-links-container { grid-template-columns: 1fr; } }
+        @media (max-width: 992px) {
+            .content-section { padding: 2.5rem; }
+            .main-heading { font-size: 4rem; }
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 0 20px; }
+            .main-heading { font-size: 3rem; }
+            .section-heading { font-size: 1.5rem; }
+            .book-item { flex-direction: column; text-align: center; gap: 20px; }
+        }
     </style>
 </head>
 <body>
@@ -282,79 +403,53 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // --- Dynamically create resource links ---
             const books = [
-                { title: "Programming with Java", author: "E. Balagurusamy", pdfPath: "programming-with-java-by-ebalaguruswami.pdf" },
-                { title: "Java: The Complete Reference", author: "Herbert Schildt", pdfPath: "The-Complete-Reference-java-5th.pdf" }
+                { title: "Programming with Java", author: "E. Balagurusamy", path: "#" },
+                { title: "The Complete Reference", author: "Herbert Schildt", path: "#" }
             ];
 
             const notePDFs = [
-                { title: "Java Programming Notes", pdfPath: "java 1.pdf" },
-                { title: "Java Handwritten Notes", pdfPath: "java 2.pdf" },
-                { title: "Java Notes [Code With Harry]", pdfPath: "java 3.pdf" }
+                { title: "Master Syllabus Notes", icon: "fa-file-pdf" },
+                { title: "Handwritten Logic", icon: "fa-pen-nib" },
+                { title: "CWH Official Notes", icon: "fa-code" }
             ];
 
-            function displayNotePDFs() {
-                const container = document.getElementById('notes-pdf-container');
-                if (!container) return;
-                notePDFs.forEach(note => {
-                    const link = document.createElement('a');
-                    link.href = note.pdfPath;
-                    link.textContent = note.title;
-                    link.className = 'resource-link';
-                    link.setAttribute('download', '');
-                    link.setAttribute('target', '_blank');
-                    container.appendChild(link);
-                });
-            }
+            // Render Notes
+            const noteContainer = document.getElementById('notes-pdf-container');
+            notePDFs.forEach(note => {
+                const a = document.createElement('a');
+                a.className = 'resource-link';
+                a.href = '#';
+                a.innerHTML = `<span><i class="fas ${note.icon}" style="margin-right:10px; color:var(--accent-gold)"></i> ${note.title}</span> <i class="fas fa-download"></i>`;
+                noteContainer.appendChild(a);
+            });
 
-            function displayBooks() {
-                const container = document.getElementById('book-container');
-                if (!container) return;
-                books.forEach(book => {
-                    const itemDiv = document.createElement('div');
-                    itemDiv.className = 'topic-item';
-                    const title = document.createElement('h4');
-                    title.className = 'topic-heading';
-                    title.textContent = book.title;
-                    const author = document.createElement('p');
-                    author.textContent = `By: ${book.author}`;
-                    author.style.color = 'var(--text-secondary)';
-                    author.style.marginBottom = '1rem';
-                    const link = document.createElement('a');
-                    link.href = book.pdfPath;
-                    link.textContent = 'Download PDF';
-                    link.className = 'resource-link';
-                    link.setAttribute('download', '');
-                    link.setAttribute('target', '_blank');
-                    link.style.maxWidth = '200px';
-                    itemDiv.appendChild(title);
-                    itemDiv.appendChild(author);
-                    itemDiv.appendChild(link);
-                    container.appendChild(itemDiv);
-                });
-            }
+            // Render Books
+            const bookContainer = document.getElementById('book-container');
+            books.forEach(book => {
+                const div = document.createElement('div');
+                div.className = 'book-item';
+                div.innerHTML = `
+                    <div class="book-info">
+                        <h4>${book.title}</h4>
+                        <p>${book.author}</p>
+                    </div>
+                    <a href="${book.path}" class="resource-link" style="min-width:180px">Digital Library <i class="fas fa-book-open"></i></a>
+                `;
+                bookContainer.appendChild(div);
+            });
 
-            displayBooks();
-            displayNotePDFs();
-
-            // --- Scroll Animation Logic ---
+            // Intersection Observer for Scroll Animations
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('is-visible');
-                        observer.unobserve(entry.target); // Animate only once
                     }
                 });
-            }, {
-                threshold: 0.1 // Trigger when 10% of the element is visible
-            });
+            }, { threshold: 0.15 });
 
-            document.querySelectorAll('.content-section').forEach(section => {
-                observer.observe(section);
-            });
+            document.querySelectorAll('.content-section').forEach(el => observer.observe(el));
         });
     </script>
-
 </body>
 </html>
