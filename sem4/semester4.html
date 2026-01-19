@@ -3,274 +3,309 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BCA 4th Sem - Modern Hub</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>BCA 4th Sem | Academic Hub</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
         :root {
-            --primary-bg: #111827; /* Dark Slate Blue */
-            --secondary-bg: rgba(31, 41, 55, 0.5); /* Semi-transparent darker slate */
-            --accent-color: #38BDF8; /* Bright Sky Blue */
-            --accent-glow: rgba(56, 189, 248, 0.2);
-            --text-primary: #F9FAFB; /* Off-white */
-            --text-secondary: #9CA3AF; /* Light gray */
-            --border-color: rgba(56, 189, 248, 0.2);
-            --border-hover: rgba(56, 189, 248, 0.7);
+            --bg-color: #05070a;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --accent-primary: #38bdf8;
+            --accent-secondary: #818cf8;
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
         }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            margin: 0;
-            padding: 2rem;
-            background-color: var(--primary-bg);
-            font-family: 'Poppins', sans-serif;
-            color: var(--text-primary);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            overflow: hidden;
-            position: relative;
-            box-sizing: border-box;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 0% 0%, rgba(56, 189, 248, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 100% 100%, rgba(129, 140, 248, 0.08) 0%, transparent 40%);
         }
 
-        /* Modern Animated Background */
-        .background-container {
-            position: fixed;
-            top: 0;
-            left: 0;
+        /* --- Floating Navigation --- */
+        .nav-header {
             width: 100%;
-            height: 100%;
-            z-index: -2;
-            overflow: hidden;
+            max-width: 1200px;
+            padding: 2rem;
+            display: flex;
+            justify-content: flex-start;
         }
 
-        .shape {
-            position: absolute;
-            list-style: none;
-            display: block;
-            width: 40px;
-            height: 40px;
-            background-color: var(--secondary-bg);
-            border: 1px solid var(--border-color);
-            bottom: -150px;
-            animation: rise 25s infinite linear;
-        }
-        .shape:nth-child(1) { left: 10%; animation-duration: 15s; }
-        .shape:nth-child(2) { left: 20%; width: 80px; height: 80px; animation-duration: 12s; animation-delay: 2s; }
-        .shape:nth-child(3) { left: 35%; animation-duration: 20s; }
-        .shape:nth-child(4) { left: 50%; width: 60px; height: 60px; animation-duration: 18s; animation-delay: 5s; }
-        .shape:nth-child(5) { left: 65%; animation-duration: 14s; }
-        .shape:nth-child(6) { left: 80%; width: 100px; height: 100px; animation-duration: 22s; animation-delay: 7s; }
-
-        @keyframes rise {
-            0% {
-                transform: translateY(0) rotate(0deg);
-                opacity: 1;
-                border-radius: 0;
-            }
-            100% {
-                transform: translateY(-100vh) rotate(720deg);
-                opacity: 0;
-                border-radius: 50%;
-            }
+        .back-btn {
+            text-decoration: none;
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: 0.3s;
+            padding: 8px 16px;
+            border-radius: 12px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
         }
 
+        .back-btn:hover {
+            color: var(--accent-primary);
+            border-color: var(--accent-primary);
+            transform: translateX(-5px);
+        }
+
+        /* --- Header Section --- */
         header {
-            margin-bottom: 4rem;
             text-align: center;
+            padding: 2rem 1rem 4rem;
             opacity: 0;
-            animation: fadeInDown 1s forwards cubic-bezier(0.165, 0.84, 0.44, 1);
+            transform: translateY(-20px);
+            animation: fadeInDown 0.8s forwards ease-out;
+        }
+
+        .badge {
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 0.8rem;
+            display: block;
+            margin-bottom: 10px;
         }
 
         h1 {
-            font-size: 3.5em;
-            font-weight: 700;
-            letter-spacing: -1px;
-            margin: 0;
-            line-height: 1.2;
-            color: var(--text-primary);
-            text-shadow: 0 0 15px var(--accent-glow);
-        }
-        
-        .subtitle {
-            font-size: 1.2em;
-            color: var(--text-secondary);
-            margin-top: 0.5rem;
-            font-weight: 400;
+            font-size: clamp(2rem, 8vw, 3.5rem);
+            font-weight: 800;
+            letter-spacing: -2px;
+            margin-bottom: 10px;
         }
 
+        .subtitle {
+            color: var(--text-dim);
+            font-size: 1.1rem;
+        }
+
+        /* --- Subject Grid --- */
         main {
             width: 100%;
-            display: flex;
-            justify-content: center;
+            max-width: 1100px;
+            padding: 0 2rem 5rem;
         }
 
-        .button-container {
+        .subject-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 25px;
-            max-width: 1200px;
-            width: 100%;
         }
 
-        .button-container button {
-            background: var(--secondary-bg);
-            border: 1px solid var(--border-color);
-            color: var(--text-primary);
-            padding: 18px 25px;
-            font-size: 1.1em;
-            font-weight: 600;
-            cursor: pointer;
-            border-radius: 12px;
+        .subject-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 35px;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            opacity: 0;
+            transform: translateY(30px);
             position: relative;
-            min-height: 80px;
+            overflow: hidden;
+        }
+
+        .subject-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, transparent, rgba(56, 189, 248, 0.05));
+            opacity: 0;
+            transition: 0.3s;
+        }
+
+        .subject-card:hover::before { opacity: 1; }
+
+        .subject-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .subject-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--accent-primary);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3), 0 0 20px rgba(56, 189, 248, 0.1);
+        }
+
+        .icon-wrapper {
+            width: 55px;
+            height: 55px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
-            text-align: center;
-            opacity: 0;
-            
-            /* Glassmorphism Effect */
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-
-            /* Transitions & Animation */
-            transition: all 0.3s ease;
-            animation: popIn 0.6s forwards cubic-bezier(0.25, 1, 0.5, 1);
+            font-size: 1.4rem;
+            color: var(--accent-primary);
+            transition: 0.3s;
         }
 
-        .button-icon {
-            width: 28px;
-            height: 28px;
-            margin-right: 15px;
-            fill: var(--accent-color);
-            transition: transform 0.3s ease;
+        .subject-card:hover .icon-wrapper {
+            background: var(--accent-primary);
+            color: var(--bg-color);
+            transform: rotate(-10deg);
         }
 
-        .button-container button:hover {
-            transform: translateY(-8px) scale(1.03);
-            background: rgba(31, 41, 55, 0.8);
-            border-color: var(--border-hover);
-            box-shadow: 0 0 25px var(--accent-glow);
+        .subject-card h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
         }
 
-        .button-container button:hover .button-icon {
-            transform: scale(1.15) rotate(-5deg);
-        }
-        
-        .button-container button.clicked {
-            animation: clickEffect 0.4s ease;
+        .subject-card p {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            line-height: 1.5;
         }
 
-        /* Keyframe Animations */
+        .subject-card .arrow {
+            margin-top: auto;
+            color: var(--accent-primary);
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            opacity: 0.6;
+            transition: 0.3s;
+        }
+
+        .subject-card:hover .arrow {
+            opacity: 1;
+            gap: 12px;
+        }
+
+        /* --- Animations --- */
         @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-30px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        
-        @keyframes popIn {
-            from { opacity: 0; transform: translateY(30px) scale(0.95); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
-        }
 
-        @keyframes clickEffect {
-            0% { transform: translateY(-8px) scale(1.03); }
-            50% { transform: translateY(0) scale(0.98); }
-            100% { transform: translateY(-8px) scale(1.03); }
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 1024px) {
-            h1 { font-size: 3em; }
-            .button-container { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
-        }
-
+        /* --- Responsive Design --- */
         @media (max-width: 768px) {
-            body { padding: 3rem 1.5rem; overflow-y: auto; }
-            header { margin-bottom: 3rem; }
-            h1 { font-size: 2.5em; }
-            .subtitle { font-size: 1.1em; }
-            .button-container { grid-template-columns: 1fr; max-width: 450px; }
-            .button-container button { font-size: 1em; padding: 15px 20px; min-height: 70px; }
-            .button-icon { width: 24px; height: 24px; }
-        }
-
-        @media (max-width: 480px) {
-            body { padding: 2rem 1rem; }
-            h1 { font-size: 2em; }
-            header { margin-bottom: 2.5rem; }
-            .button-container { gap: 20px; }
-            .button-icon { margin-right: 12px; }
+            body { padding: 1rem; }
+            .subject-grid { grid-template-columns: 1fr; }
+            header { padding-bottom: 2rem; }
+            h1 { font-size: 2.5rem; }
         }
     </style>
 </head>
 <body>
 
-    <div class="background-container">
-        <div class="shape"></div>
-        <div class="shape"></div>
-        <div class="shape"></div>
-        <div class="shape"></div>
-        <div class="shape"></div>
-        <div class="shape"></div>
-    </div>
+    <nav class="nav-header">
+        <a href="../index.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i> Main Dashboard
+        </a>
+    </nav>
 
     <header>
-        <h1>BCA 4th Sem Hub</h1>
-        <p class="subtitle">Navigate Your Academic Journey</p>
+        <span class="badge">Semester IV</span>
+        <h1>4th Sem <span>Hub</span></h1>
+        <p class="subtitle">Access notes, syllabus, and resources for your subjects.</p>
     </header>
+
     <main>
-        <div class="button-container">
-            <button data-link="English">
-                <svg class="button-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>
-                 English
-            </button>
-            <button data-link="ComputerNetworks">
-                <svg class="button-icon" viewBox="0 0 24 24"><path d="M20.2,15.2c-0.3-0.3-0.7-0.3-1,0L18,16.4V12c0-3.3-2.7-6-6-6s-6,2.7-6,6v4.4l-1.2-1.2c-0.3-0.3-0.7-0.3-1,0s-0.3,0.7,0,1l2.5,2.5c0.3,0.3,0.7,0.3,1,0l2.5-2.5c0.3-0.3,0.3-0.7,0-1s-0.7-0.3-1,0L14,16.4V12c0-2.2,1.8-4,4-4s4,1.8,4,4v4.4l-1.2-1.2c-0.3-0.3-0.7-0.3-1,0s-0.3,0.7,0,1l2.5,2.5c0.3,0.3,0.7,0.3,1,0l2.5-2.5c0.3-0.3,0.3-0.7,0-1C20.9,15.5,20.5,15.5,20.2,15.2z"/></svg>
-                Computer Networks
-            </button>
-            <button data-link="ComputerOrientedNumericalAndStatisticalMethods">
-                 <svg class="button-icon" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 14H7v-2h10v2zm-4-4H7v-2h6v2zm4-4H7V7h10v2z"/></svg>
-                Numerical & Statistical Methods
-            </button>
-            <button data-link="RelationalDatabaseManagementSystems">
-                <svg class="button-icon" viewBox="0 0 24 24"><path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-3 9h-2.5v2.5h-3V11H8V9h2.5V6.5h3V9H16v2z"/></svg>
-                 RDBMS
-            </button>
-            <button data-link="Punjabi">
-                <svg class="button-icon" viewBox="0 0 24 24"><path d="M14.5 9.5c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM7.5 9.5c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9-2-2-.9-2-2-2zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 14c-2.33 0-4.31-1.46-5.11-3.5h10.22c-.8 2.04-2.78 3.5-5.11-3.5z"/></svg>
-                 Punjabi
-            </button>
+        <div class="subject-grid">
+            <a href="English.html" class="subject-card" data-index="0">
+                <div class="icon-wrapper"><i class="fas fa-book"></i></div>
+                <div>
+                    <h3>English</h3>
+                    <p>Professional Communication & Literature</p>
+                </div>
+                <div class="arrow">View Content <i class="fas fa-chevron-right"></i></div>
+            </a>
+
+            <a href="ComputerNetworks.html" class="subject-card" data-index="1">
+                <div class="icon-wrapper"><i class="fas fa-network-wired"></i></div>
+                <div>
+                    <h3>Computer Networks</h3>
+                    <p>OSI Model, Protocols & TCP/IP Architecture</p>
+                </div>
+                <div class="arrow">View Content <i class="fas fa-chevron-right"></i></div>
+            </a>
+
+            <a href="ComputerOrientedNumericalAndStatisticalMethods.html" class="subject-card" data-index="2">
+                <div class="icon-wrapper"><i class="fas fa-calculator"></i></div>
+                <div>
+                    <h3>Numerical Methods</h3>
+                    <p>Computational Statistics & Algebraic Methods</p>
+                </div>
+                <div class="arrow">View Content <i class="fas fa-chevron-right"></i></div>
+            </a>
+
+            <a href="RelationalDatabaseManagementSystems.html" class="subject-card" data-index="3">
+                <div class="icon-wrapper"><i class="fas fa-database"></i></div>
+                <div>
+                    <h3>RDBMS</h3>
+                    <p>SQL, PL/SQL & Database Management Systems</p>
+                </div>
+                <div class="arrow">View Content <i class="fas fa-chevron-right"></i></div>
+            </a>
+
+            <a href="Punjabi.html" class="subject-card" data-index="4">
+                <div class="icon-wrapper"><i class="fas fa-language"></i></div>
+                <div>
+                    <h3>Punjabi</h3>
+                    <p>Language Skills & Cultural Literature</p>
+                </div>
+                <div class="arrow">View Content <i class="fas fa-chevron-right"></i></div>
+            </a>
         </div>
     </main>
 
     <script>
-        document.querySelectorAll('.button-container button').forEach((button, index) => {
-            // Stagger the animation start time
-            button.style.animationDelay = `${0.8 + index * 0.1}s`;
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.subject-card');
 
-            button.addEventListener('click', (e) => {
-                e.preventDefault(); // Prevent navigation until animation is done
-                
-                button.classList.add('clicked');
-                const pageName = button.dataset.link;
-                
-                // Wait for the click animation to finish before navigating
+            // --- Staggered Entrance ---
+            cards.forEach((card, index) => {
                 setTimeout(() => {
-                    if (pageName) {
-                         window.location.href = `${pageName}.html`;
-                    }
-                }, 400); // Duration of the clickEffect animation
+                    card.classList.add('visible');
+                }, 150 * index);
             });
-            
-            // Reset the animation class so it can be triggered again
-            button.addEventListener('animationend', (e) => {
-                if(e.animationName === 'clickEffect') {
-                    button.classList.remove('clicked');
-                }
+
+            // --- 3D Magnetic Tilt Effect ---
+            cards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = (e.clientX - rect.left) / rect.width - 0.5;
+                    const y = (e.clientY - rect.top) / rect.height - 0.5;
+                    
+                    // Tilt sensitivity
+                    card.style.transform = `perspective(1000px) rotateX(${y * -8}deg) rotateY(${x * 8}deg) translateY(-8px)`;
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = `perspective(1000px) rotateX(0) rotateY(0) translateY(0)`;
+                });
             });
         });
     </script>
-
 </body>
 </html>
