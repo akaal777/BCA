@@ -8,7 +8,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
 
     <style>
         :root {
@@ -23,6 +22,9 @@
             --card-border: rgba(255, 255, 255, 0.08);
             --shadow: rgba(0, 0, 0, 0.4);
             --glow: rgba(226, 177, 122, 0.15);
+            
+            /* Animation timing */
+            --ease-out-quart: cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
         body.light-theme {
@@ -32,7 +34,7 @@
             --accent-secondary: #7c3aed;
             --text-main: #0f172a;
             --text-dim: #475569;
-            --card-bg: rgba(255, 255, 255, 0.7);
+            --card-bg: rgba(255, 255, 255, 0.8);
             --card-border: rgba(0, 0, 0, 0.05);
             --shadow: rgba(0, 0, 0, 0.05);
             --glow: rgba(37, 99, 235, 0.1);
@@ -47,7 +49,7 @@
             color: var(--text-main);
             min-height: 100vh;
             overflow-x: hidden;
-            transition: background 0.5s ease;
+            transition: background 0.5s ease, color 0.5s ease;
             line-height: 1.6;
         }
 
@@ -59,6 +61,7 @@
             overflow: hidden;
             filter: blur(80px);
             opacity: 0.5;
+            pointer-events: none;
         }
 
         .blob {
@@ -67,7 +70,7 @@
             height: 40vmax;
             border-radius: 50%;
             background: var(--accent-primary);
-            animation: move 20s infinite alternate;
+            animation: move 20s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .blob-2 {
@@ -75,6 +78,7 @@
             right: -10%;
             bottom: -10%;
             animation-duration: 25s;
+            animation-direction: alternate-reverse;
         }
 
         @keyframes move {
@@ -86,8 +90,14 @@
         header {
             max-width: 1200px;
             margin: 0 auto;
-            padding: clamp(4rem, 10vh, 8rem) 2rem 4rem;
+            padding: clamp(4rem, 10vh, 6rem) 2rem 3rem;
             text-align: center;
+        }
+
+        .header-content {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s var(--ease-out-quart) forwards;
         }
 
         .badge {
@@ -109,7 +119,7 @@
             font-size: clamp(2.5rem, 8vw, 4.5rem);
             font-weight: 800;
             letter-spacing: -2px;
-            line-height: 1;
+            line-height: 1.1;
             margin-bottom: 1rem;
         }
 
@@ -130,7 +140,7 @@
         .main-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 2rem 10rem;
+            padding: 0 2rem 8rem;
         }
 
         .card-grid {
@@ -143,60 +153,66 @@
             background: var(--card-bg);
             border: 1px solid var(--card-border);
             border-radius: 24px;
-            padding: 40px 30px;
+            padding: 35px 30px;
             text-align: left;
             cursor: pointer;
             position: relative;
             overflow: hidden;
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 15px;
+            
+            /* Initial State for Animation */
             opacity: 0;
-            transform: translateY(30px);
+            transform: translateY(40px);
+            
+            /* Smooth Transition for Hover */
+            transition: transform 0.4s var(--ease-out-quart), 
+                        border-color 0.3s ease, 
+                        box-shadow 0.4s ease, 
+                        background-color 0.3s ease;
         }
 
-        .card.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
+        /* Hover Effect - No Tilt, just Lift */
         .card:hover {
             border-color: var(--accent-primary);
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 40px var(--shadow), 0 0 20px var(--glow);
+            transform: translateY(-8px); /* Pure vertical lift */
+            box-shadow: 0 15px 30px var(--shadow), 0 0 15px var(--glow);
+            background-color: rgba(255, 255, 255, 0.06);
         }
 
         .icon-box {
-            width: 60px;
-            height: 60px;
+            width: 55px;
+            height: 55px;
             background: rgba(255,255,255,0.05);
-            border-radius: 16px;
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             color: var(--accent-primary);
-            transition: 0.3s;
+            transition: all 0.4s var(--ease-out-quart);
         }
 
         .card:hover .icon-box {
             background: var(--accent-primary);
             color: var(--bg-base);
-            transform: rotate(-10deg) scale(1.1);
+            transform: scale(1.1) rotate(-5deg);
         }
 
         .card h3 {
             font-size: 1.25rem;
             font-weight: 700;
             color: var(--text-main);
+            margin-bottom: 4px;
         }
 
         .card p {
             font-size: 0.9rem;
             color: var(--text-dim);
+            line-height: 1.5;
         }
 
         /* --- Theme Switcher --- */
@@ -216,20 +232,31 @@
             align-items: center;
             justify-content: center;
             backdrop-filter: blur(10px);
-            transition: 0.3s;
+            transition: all 0.3s ease;
         }
 
         .theme-btn:hover {
-            transform: rotate(15deg);
+            transform: scale(1.1);
             border-color: var(--accent-primary);
+            color: var(--accent-primary);
         }
 
-        /* --- Wave Footer --- */
+        /* --- Animations --- */
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Staggered entrance class */
+        .card.is-visible {
+            animation: fadeInUp 0.8s var(--ease-out-quart) forwards;
+        }
+
+        /* --- Footer Wave --- */
         .footer-waves {
             position: fixed;
             bottom: 0;
             width: 100%;
-            height: 100px;
+            height: 120px;
             z-index: -1;
             pointer-events: none;
         }
@@ -254,9 +281,11 @@
     </button>
 
     <header>
-        <span class="badge">Academic Portal 2026</span>
-        <h1>BCA <span>Dashboard</span></h1>
-        <p class="sub-heading">Your premium gateway to academic success, semester resources, and results.</p>
+        <div class="header-content">
+            <span class="badge">Academic Portal 2026</span>
+            <h1>BCA <span>Dashboard</span></h1>
+            <p class="sub-heading">Your premium gateway to academic success, semester resources, and results.</p>
+        </div>
     </header>
 
     <main class="main-container">
@@ -337,44 +366,57 @@
                 const isLight = document.body.classList.toggle('light-theme');
                 localStorage.setItem('theme', isLight ? 'light' : 'dark');
                 themeBtn.innerHTML = isLight ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+                
+                // Animate button
+                themeBtn.animate([
+                    { transform: 'rotate(0deg) scale(1)' },
+                    { transform: 'rotate(180deg) scale(1.1)' },
+                    { transform: 'rotate(360deg) scale(1)' }
+                ], {
+                    duration: 500,
+                    easing: 'cubic-bezier(0.175, 0.885, 0.32, 1.275)'
+                });
             };
 
             themeBtn.addEventListener('click', toggleTheme);
 
             if (localStorage.getItem('theme') === 'light') toggleTheme();
 
-            // --- Scroll Reveal Animation ---
+            // --- Staggered Scroll Reveal Animation ---
             const observer = new IntersectionObserver((entries) => {
-                entries.forEach((entry, index) => {
+                entries.forEach((entry) => {
                     if (entry.isIntersecting) {
-                        setTimeout(() => {
-                            entry.target.classList.add('visible');
-                        }, index * 100);
+                        // Get the index from the NodeList to calculate delay
+                        const index = Array.from(cards).indexOf(entry.target);
+                        
+                        // Set specific delay on the element style
+                        entry.target.style.animationDelay = `${index * 100}ms`; 
+                        entry.target.classList.add('is-visible');
+                        
+                        // Stop observing once visible
                         observer.unobserve(entry.target);
                     }
                 });
-            }, { threshold: 0.1 });
+            }, { 
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px" // Trigger slightly before element is fully in view
+            });
 
             cards.forEach(card => {
                 observer.observe(card);
-                
-                // Click Action
-                card.addEventListener('click', () => {
+
+                // --- Click Ripple/Scale Animation ---
+                card.addEventListener('click', (e) => {
                     const url = card.dataset.url;
-                    card.style.transform = 'scale(0.95)';
-                    setTimeout(() => window.location.href = url, 150);
-                });
+                    
+                    // Subtle scale down on click
+                    card.style.transform = 'scale(0.96)';
+                    card.style.transition = 'transform 0.1s ease';
 
-                // 3D Tilt Effect
-                card.addEventListener('mousemove', (e) => {
-                    const rect = card.getBoundingClientRect();
-                    const x = (e.clientX - rect.left) / rect.width - 0.5;
-                    const y = (e.clientY - rect.top) / rect.height - 0.5;
-                    card.style.transform = `perspective(1000px) rotateX(${y * -10}deg) rotateY(${x * 10}deg) translateY(-10px)`;
-                });
-
-                card.addEventListener('mouseleave', () => {
-                    card.style.transform = `perspective(1000px) rotateX(0) rotateY(0) translateY(0)`;
+                    // Navigate after short delay
+                    setTimeout(() => {
+                        window.location.href = url;
+                    }, 150);
                 });
             });
         });
