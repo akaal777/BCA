@@ -3,16 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All My Sons - Arthur Miller | Grand Line Archives</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <title>All My Sons | Arthur Miller - Literary Archive</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
         :root {
-            --parchment-bg: #f5e8c8; /* Aged paper background */
-            --wood-plank: #8B4513; /* SaddleBrown for buttons */
-            --wood-dark: #5a2d0c; /* Darker wood for borders/shadows */
-            --text-dark: #3b2f2f; /* Dark brown for text */
-            --pirate-red: #c0392b; /* A deep red accent */
-            --pirate-gold: #f1c40f; /* Accent gold */
+            --bg-color: #0f172a; /* Midnight Blue */
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --accent-gold: #e2b87e;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --glass-border: rgba(255, 255, 255, 0.1);
         }
 
         * {
@@ -21,223 +24,225 @@
             box-sizing: border-box;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
         body {
-            font-family: 'Open Sans', sans-serif;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><g fill="%23d2b48c" fill-opacity="0.1"><rect x="50" width="50" height="50"/><rect y="50" width="50" height="50"/></g></svg>'), linear-gradient(to bottom, #e6b88a, #d2a67d);
-            background-color: #d2b48c; /* Tan color similar to a map */
-            color: var(--text-dark);
-            min-height: 100vh;
-            padding: 20px;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(226, 184, 126, 0.05) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(51, 65, 85, 0.3) 0px, transparent 50%);
+            color: var(--text-primary);
+            line-height: 1.6;
             overflow-x: hidden;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            min-height: 100vh;
         }
-        
+
         .container {
-            width: 100%;
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto;
+            padding: 60px 20px;
         }
 
-        .heading {
+        /* --- Elegant Header --- */
+        .header {
             text-align: center;
-            margin: 40px 0 60px;
-            font-family: 'Bangers', cursive;
-            font-size: clamp(3em, 8vw, 6em);
-            color: var(--text-dark);
-            text-shadow: 3px 3px 0px rgba(245, 232, 200, 0.7);
-            letter-spacing: 3px;
-            animation: stampIn 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-            line-height: 1.1;
-        }
-
-        .heading span {
-            font-size: 0.4em;
-            font-weight: 400;
-            color: var(--text-dark);
-            text-shadow: 1px 1px 0px rgba(245, 232, 200, 0.7);
-            display: block;
-            margin-top: 5px;
-            letter-spacing: 2px;
-        }
-
-        @keyframes stampIn {
-            from {
-                opacity: 0;
-                transform: scale(1.5);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        .section {
-            background: var(--parchment-bg);
-            padding: 30px;
-            border-radius: 5px;
-            margin-bottom: 40px;
-            border: 2px solid #c8b796;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), inset 0 0 25px rgba(0,0,0,0.1);
+            margin-bottom: 80px;
             opacity: 0;
+            transform: translateY(-20px);
+            animation: fadeInDown 1s ease forwards;
+        }
+
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-weight: 700;
+            letter-spacing: -1px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--accent-gold);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* --- Aesthetic Sections --- */
+        .section {
+            margin-bottom: 60px;
+            opacity: 0; /* Hidden by default for scroll animation */
             transform: translateY(30px);
-            /* JS will handle the animation */
+            transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
 
-        .section-title {
-            margin-bottom: 25px;
-            color: var(--pirate-red);
-            font-family: 'Bangers', cursive;
-            font-size: clamp(1.8em, 4vw, 2.5em);
-            text-shadow: 1px 1px 0 var(--parchment-bg);
-            position: relative;
-            padding-bottom: 10px;
-            letter-spacing: 1.5px;
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 60px;
-            height: 4px;
-            background: var(--pirate-red);
-            border-radius: 2px;
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
         }
 
-        .button-container {
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            white-space: nowrap;
+        }
+
+        .section-header .line {
+            height: 1px;
+            background: linear-gradient(90deg, var(--accent-gold), transparent);
+            flex-grow: 1;
+        }
+
+        /* --- Modern Grid & Buttons --- */
+        .button-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
         }
 
-        .btn {
-            padding: 15px 25px;
-            border: 2px solid var(--wood-dark);
-            border-radius: 8px;
+        .modern-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            padding: 20px 25px;
+            border-radius: 12px;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             cursor: pointer;
-            transition: all 0.2s ease-out;
-            background: var(--wood-plank);
-            color: #fff;
-            font-family: 'Bangers', cursive;
-            font-weight: 400;
-            font-size: 1.2em;
-            letter-spacing: 1.5px;
-            text-align: center;
-            text-shadow: 1px 1px 1px rgba(0,0,0,0.4);
-            box-shadow: inset 0 -4px 0 var(--wood-dark), 0 4px 5px rgba(0,0,0,0.3);
-        }
-        
-        .btn:hover {
-            background: #a0522d; /* Lighter wood */
-            transform: translateY(-2px);
-            box-shadow: inset 0 -3px 0 var(--wood-dark), 0 6px 8px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            text-align: left;
         }
 
-        .btn:active {
-            transform: translateY(2px);
-            box-shadow: inset 0 -2px 0 var(--wood-dark), 0 2px 2px rgba(0,0,0,0.3);
+        .modern-btn i {
+            color: var(--accent-gold);
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
         }
 
-        .footer-message {
-            font-size: clamp(1em, 2.5vw, 1.2em);
-            text-align: center;
-            font-family: 'Open Sans', sans-serif;
-            font-weight: 600;
-            color: var(--text-dark);
-            padding: 20px;
-            background: rgba(245, 232, 200, 0.8); /* Slightly transparent parchment */
-            border-radius: 10px;
-            border: 2px solid #c8b796;
+        .modern-btn span {
+            font-weight: 500;
+            font-size: 1.05rem;
+            letter-spacing: 0.5px;
         }
-        
-        /* Responsive adjustments */
+
+        .modern-btn:hover {
+            border-color: var(--accent-gold);
+            background: rgba(226, 184, 126, 0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .modern-btn:hover i {
+            transform: translateX(5px);
+        }
+
+        /* --- Footer --- */
+        .footer-card {
+            background: linear-gradient(135deg, rgba(226, 184, 126, 0.1), transparent);
+            border: 1px solid var(--accent-gold);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .footer-card p {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-style: italic;
+        }
+
+        /* --- Animations --- */
+        @keyframes fadeInDown {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive Design */
         @media (max-width: 768px) {
-            body {
-                padding: 15px;
-            }
-            .heading {
-                margin: 30px 0 40px;
-            }
-            .section {
-                padding: 20px;
-                margin-bottom: 30px;
-            }
-            .button-container {
-                grid-template-columns: 1fr;
-                gap: 15px;
-            }
-            .btn {
-                padding: 12px 20px;
-                font-size: 1.1em;
-            }
+            .container { padding: 40px 15px; }
+            .header h1 { font-size: 2.5rem; }
+            .button-grid { grid-template-columns: 1fr; }
+            .modern-btn { padding: 18px; }
         }
-
-        @media (max-width: 480px) {
-            .btn {
-                font-size: 1em;
-            }
-             .section-title::after {
-                width: 50px;
-                height: 3px;
-            }
-        }
-
     </style>
 </head>
 <body>
+
     <div class="container">
-        <h1 class="heading">All My Sons<br><span>by Arthur Miller</span></h1>
-        
+        <header class="header">
+            <h1>All My Sons</h1>
+            <p>A Tragedy by Arthur Miller</p>
+        </header>
+
         <section class="section">
-            <h2 class="section-title">The Treasure Logs { PDFs }</h2>
-            <div class="button-container">
-                <button class="btn" id="storyBtn">The Full Tale</button>
-                <button class="btn" id="scriptBtn">The Script Scroll</button>
-                <button class="btn" id="summaryBtn">The Captain's Summary</button>
+            <div class="section-header">
+                <h2>The Archive</h2>
+                <div class="line"></div>
+            </div>
+            <div class="button-grid">
+                <button class="modern-btn" id="storyBtn">
+                    <span>The Full Narrative</span>
+                    <i class="fa-solid fa-file-pdf"></i>
+                </button>
+                <button class="modern-btn" id="scriptBtn">
+                    <span>Performance Script</span>
+                    <i class="fa-solid fa-scroll"></i>
+                </button>
+                <button class="modern-btn" id="summaryBtn">
+                    <span>Executive Summary</span>
+                    <i class="fa-solid fa-clipboard-list"></i>
+                </button>
             </div>
         </section>
 
         <section class="section">
-            <h2 class="section-title">The Crew's Bounties { Character Sketches }</h2>
-            <div class="button-container">
-                <button class="btn" id="character1Btn">Joe Keller</button>
-                <button class="btn" id="character2Btn">Kate Keller</button>
-                <button class="btn" id="character3Btn">Chris Keller</button>
-                <button class="btn" id="character4Btn">Ann Deever</button>
-                <button class="btn" id="character5Btn">George Deever</button>
+            <div class="section-header">
+                <h2>Persona Analysis</h2>
+                <div class="line"></div>
+            </div>
+            <div class="button-grid">
+                <button class="modern-btn" id="character1Btn"><span>Joe Keller</span><i class="fa-solid fa-user"></i></button>
+                <button class="modern-btn" id="character2Btn"><span>Kate Keller</span><i class="fa-solid fa-user"></i></button>
+                <button class="modern-btn" id="character3Btn"><span>Chris Keller</span><i class="fa-solid fa-user"></i></button>
+                <button class="modern-btn" id="character4Btn"><span>Ann Deever</span><i class="fa-solid fa-user"></i></button>
+                <button class="modern-btn" id="character5Btn"><span>George Deever</span><i class="fa-solid fa-user"></i></button>
             </div>
         </section>
-        
+
         <section class="section">
-            <h2 class="section-title">Video Sea Chanteys</h2>
-            <div class="button-container">
-                <button class="btn" id="video1Btn">Summary [in Hindi]</button>
-                <button class="btn" id="video2Btn">Summary [in Punjabi]</button>
-                <button class="btn" id="video3Btn">Full Play [in Hindi]</button>
+            <div class="section-header">
+                <h2>Visual Lectures</h2>
+                <div class="line"></div>
+            </div>
+            <div class="button-grid">
+                <button class="modern-btn" id="video1Btn"><span>Hindi Summary</span><i class="fa-solid fa-play"></i></button>
+                <button class="modern-btn" id="video2Btn"><span>Punjabi Summary</span><i class="fa-solid fa-play"></i></button>
+                <button class="modern-btn" id="video3Btn"><span>Full Play Analysis</span><i class="fa-solid fa-clapperboard"></i></button>
             </div>
         </section>
-        
-        <footer class="section">
-            <p class="footer-message">Get ready to level up your grammar skills for our next literary adventure in Semester 3!</p>
+
+        <footer class="section footer-card">
+            <p>Elevate your literary understanding as we transition into Semester 3.</p>
         </footer>
     </div>
 
     <script>
-        // PDF Paths
+        // Data and Event Listeners (Logic kept intact)
         const pdfPaths = {
             story: "englishstory.pdf",
             script: "englishscript.pdf",
             summary: "Englishsummary.pdf"
         };
 
-        // YouTube Links for Character Sketches
         const characterLinks = {
             char1: "https://youtu.be/APk_bXUSdC0?si=aeWV4490hIX7_HAw",
             char2: "https://youtu.be/8tFDfb3I3A4?si=9PVqH3HEWNPtbcfd",
@@ -246,50 +251,36 @@
             char5: "https://youtu.be/Pqk3_J_JPHJQ?si=sERgg4YH38E5WsuC"
         };
 
-        // --- Event Listeners (Functionality remains the same) ---
-
         const openLink = (url) => window.open(url, '_blank');
 
-        document.getElementById('storyBtn').addEventListener('click', () => openLink(pdfPaths.story));
-        document.getElementById('scriptBtn').addEventListener('click', () => openLink(pdfPaths.script));
-        document.getElementById('summaryBtn').addEventListener('click', () => openLink(pdfPaths.summary));
+        // Mapping listeners
+        const bind = (id, url) => document.getElementById(id).addEventListener('click', () => openLink(url));
 
-        document.getElementById('character1Btn').addEventListener('click', () => openLink(characterLinks.char1));
-        document.getElementById('character2Btn').addEventListener('click', () => openLink(characterLinks.char2));
-        document.getElementById('character3Btn').addEventListener('click', () => openLink(characterLinks.char3));
-        document.getElementById('character4Btn').addEventListener('click', () => openLink(characterLinks.char4));
-        document.getElementById('character5Btn').addEventListener('click', () => openLink(characterLinks.char5));
+        bind('storyBtn', pdfPaths.story);
+        bind('scriptBtn', pdfPaths.script);
+        bind('summaryBtn', pdfPaths.summary);
+        
+        bind('character1Btn', characterLinks.char1);
+        bind('character2Btn', characterLinks.char2);
+        bind('character3Btn', characterLinks.char3);
+        bind('character4Btn', characterLinks.char4);
+        bind('character5Btn', characterLinks.char5);
 
-        document.getElementById('video1Btn').addEventListener('click', () => openLink('https://youtu.be/m0Pbjodj6mk?si=HNivmcJa3VLAWX0-'));
-        document.getElementById('video2Btn').addEventListener('click', () => openLink('https://youtu.be/B5pF4ffW2DI?si=xvWYdIKDSkTxnh9p'));
-        document.getElementById('video3Btn').addEventListener('click', () => openLink('https://youtu.be/Sh1IhIfTHFk?si=Nanrl8pby8Npef-l'));
+        bind('video1Btn', 'https://youtu.be/m0Pbjodj6mk?si=HNivmcJa3VLAWX0-');
+        bind('video2Btn', 'https://youtu.be/B5pF4ffW2DI?si=xvWYdIKDSkTxnh9p');
+        bind('video3Btn', 'https://youtu.be/Sh1IhIfTHFk?si=Nanrl8pby8Npef-l');
 
-        // --- Intersection Observer for scroll animations ---
-        const sections = document.querySelectorAll('.section');
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.1
-        };
-
-        const observerCallback = (entries, observer) => {
-            entries.forEach((entry, index) => {
+        // --- Smooth Intersection Observer for Scroll Animations ---
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.transitionDelay = `${index * 0.15}s`; // Stagger animation
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                    observer.unobserve(entry.target);
+                    entry.target.classList.add('visible');
                 }
             });
-        };
+        }, observerOptions);
 
-        const sectionObserver = new IntersectionObserver(observerCallback, observerOptions);
-        sections.forEach(section => {
-            section.style.opacity = '0';
-            section.style.transform = 'translateY(30px)';
-            section.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
-            sectionObserver.observe(section);
-        });
+        document.querySelectorAll('.section').forEach(section => observer.observe(section));
     </script>
 </body>
 </html>
