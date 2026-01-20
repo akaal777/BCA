@@ -1,247 +1,285 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Baratie Learning Galley</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <title>Baratie Learning Galley | Modern Punjabi Hub</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
         :root {
-            --ocean-blue: #1b263b;
-            --wood-dark: #4a2c2a;
-            --menu-cream: #f3e9d2;
-            --text-dark: #3a2d2d;
-            --gold-accent: #daa520;
+            --bg-deep: #0a1118;
+            --accent-gold: #c5a059;
+            --glass-white: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --text-primary: #f8f9fa;
+            --text-muted: #94a3b8;
+            --serif-font: 'Playfair Display', serif;
+            --sans-font: 'Inter', sans-serif;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
-            background: linear-gradient(to top, var(--ocean-blue) 0%, #304352 100%);
-            min-height: 100vh;
-            padding: 20px;
-            font-family: 'Open Sans', sans-serif;
-            color: var(--menu-cream);
+            background-color: var(--bg-deep);
+            background-image: 
+                radial-gradient(circle at 0% 0%, rgba(197, 160, 89, 0.05) 0%, transparent 30%),
+                radial-gradient(circle at 100% 100%, rgba(27, 38, 59, 0.3) 0%, transparent 30%);
+            color: var(--text-primary);
+            font-family: var(--sans-font);
+            line-height: 1.6;
             overflow-x: hidden;
-            position: relative;
+            min-height: 100vh;
         }
 
-        .ocean-waves {
+        /* Subtler Animated Waves */
+        .waves-container {
             position: fixed;
             bottom: 0;
-            left: 0;
             width: 100%;
-            height: 100px;
+            height: 15vh;
             z-index: -1;
-            pointer-events: none;
-            overflow: hidden;
+            opacity: 0.4;
         }
-        .wave {
-            position: absolute; bottom: 0; left: 0; width: 200%; height: 100%;
-            background-size: 50% 100%; background-repeat: repeat-x;
-            animation: moveWaves 25s linear infinite;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100"><path d="M0 50 C 250 100, 250 0, 500 50 S 750 100, 1000 50 L 1000 100 L 0 100 Z" fill="rgba(27,38,59,0.5)"></path></svg>');
-        }
-        .wave.w2 { animation-duration: 35s; animation-direction: reverse; opacity: 0.7; }
-
-        @keyframes moveWaves { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
         .container {
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto;
-            padding: 0 15px;
+            padding: 4rem 1.5rem;
         }
 
+        /* --- Elegant Header --- */
         header {
             text-align: center;
-            padding: 40px 0;
-            margin-bottom: 40px;
-            animation: fadeInDown 1s ease-out;
+            margin-bottom: 5rem;
+            opacity: 0;
+            transform: translateY(-20px);
+            animation: fadeInDown 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        header span {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            color: var(--accent-gold);
+            font-weight: 600;
         }
 
         h1 {
-            font-family: 'Cinzel', serif;
-            color: var(--menu-cream);
-            font-size: 3.5em;
-            text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
-            letter-spacing: 1px;
+            font-family: var(--serif-font);
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            margin-top: 1rem;
+            font-style: italic;
         }
 
+        /* --- Modern Card Grid --- */
         .main-buttons {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
         }
 
-        .category-btn {
-            background: var(--wood-dark);
-            color: var(--menu-cream);
-            padding: 20px 25px;
-            border: 2px solid #3a2d2d;
-            border-radius: 8px;
-            font-size: 1.3em;
-            font-weight: 600;
-            font-family: 'Open Sans', sans-serif;
+        .category-card {
+            background: var(--glass-white);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            text-align: center;
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            animation: fadeInUp 0.5s ease-out forwards;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: hidden;
             opacity: 0;
+            transform: translateY(30px);
         }
 
-        .category-btn:nth-child(1) { animation-delay: 0.2s; }
-        .category-btn:nth-child(2) { animation-delay: 0.4s; }
-        .category-btn:nth-child(3) { animation-delay: 0.6s; }
-
-        .category-btn:hover {
-            background-color: #61413f;
-            border-color: var(--gold-accent);
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-        }
-         .category-btn:active {
+        .category-card.show {
+            opacity: 1;
             transform: translateY(0);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.4);
         }
 
+        .category-card:hover {
+            border-color: var(--accent-gold);
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            color: var(--accent-gold);
+            margin-bottom: 1.5rem;
+            transition: transform 0.5s ease;
+        }
+
+        .category-card:hover .card-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .category-card h2 {
+            font-family: var(--serif-font);
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .category-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 300;
+        }
+
+        /* --- Modern Modal --- */
         .modal {
             display: none;
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(10, 15, 20, 0.7);
-            backdrop-filter: blur(5px);
+            background: rgba(5, 8, 12, 0.9);
+            backdrop-filter: blur(15px);
+            z-index: 1000;
             justify-content: center;
             align-items: center;
-            z-index: 1000;
             opacity: 0;
-            transition: opacity 0.3s ease-in-out;
+            transition: opacity 0.4s ease;
         }
 
         .modal.active { display: flex; opacity: 1; }
 
         .modal-content {
-            background: var(--menu-cream);
-            color: var(--text-dark);
-            padding: 35px;
-            border-radius: 8px;
-            border: 4px solid var(--wood-dark);
-            text-align: center;
+            background: #121921;
+            border: 1px solid var(--glass-border);
+            padding: 3rem;
+            border-radius: 24px;
             width: 90%;
-            max-width: 450px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            transform: scale(0.95);
-            transition: transform 0.3s ease-in-out;
+            max-width: 500px;
+            text-align: center;
+            transform: scale(0.9);
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
         .modal.active .modal-content { transform: scale(1); }
 
         .modal-content h2 {
-            color: var(--wood-dark);
-            font-family: 'Cinzel', serif;
-            margin-bottom: 25px;
-            font-size: 1.8em;
+            font-family: var(--serif-font);
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .option-group {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
         }
 
         .option-btn {
-            padding: 12px 25px;
-            margin: 10px 5px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1.1em;
+            padding: 1.2rem;
+            border-radius: 12px;
+            font-family: var(--sans-font);
             font-weight: 600;
-            font-family: 'Open Sans', sans-serif;
-            transition: all 0.3s ease;
+            font-size: 0.9rem;
             text-transform: uppercase;
-            min-width: 120px;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: 0.3s;
+            border: 1px solid var(--glass-border);
         }
 
         .online-btn {
-            background: transparent;
-            border: 2px solid var(--ocean-blue);
-            color: var(--ocean-blue);
+            background: var(--accent-gold);
+            color: #000;
+            border: none;
         }
-        .online-btn:hover {
-            background: var(--ocean-blue);
-            color: var(--menu-cream);
-        }
+
+        .online-btn:hover { background: #e0b970; transform: scale(1.02); }
 
         .offline-btn {
             background: transparent;
-            border: 2px solid var(--wood-dark);
-            color: var(--wood-dark);
-        }
-        .offline-btn:hover {
-            background: var(--wood-dark);
-            color: var(--menu-cream);
+            color: var(--text-primary);
         }
 
-        .close-btn {
-            background: #a9a9a9;
-            border: 2px solid #a9a9a9;
-            color: white;
-            padding: 10px 20px;
-            margin-top: 25px;
-        }
-        .close-btn:hover {
-            background: #808080;
-            border-color: #808080;
+        .offline-btn:hover { background: var(--glass-white); border-color: var(--accent-gold); }
+
+        .close-link {
+            display: inline-block;
+            margin-top: 2rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.8rem;
+            border-bottom: 1px solid transparent;
+            transition: 0.3s;
+            cursor: pointer;
         }
 
+        .close-link:hover { color: var(--text-primary); border-color: var(--accent-gold); }
+
+        /* --- Animations & Responsive --- */
         @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(-30px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         @media (max-width: 768px) {
-            h1 { font-size: 2.8em; }
-            .main-buttons { gap: 20px; }
-            .category-btn { padding: 18px; font-size: 1.1em; }
-            .modal-content { padding: 25px; }
-            .modal-content h2 { font-size: 1.5em; }
-            .option-btn { font-size: 1em; padding: 10px 20px; display: block; width: 100%; margin: 10px 0; }
-        }
-        @media (max-width: 480px) {
-            h1 { font-size: 2.2em; }
+            h1 { font-size: 2.8rem; }
+            .main-buttons { grid-template-columns: 1fr; }
+            .modal-content { padding: 2rem; }
         }
     </style>
 </head>
 <body>
-    <div class="ocean-waves">
-        <div class="wave w1"></div>
-        <div class="wave w2"></div>
+
+    <div class="waves-container">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" style="height:100%; width:100%">
+            <path fill="#c5a059" fill-opacity="0.05" d="M0,160L48,176C96,192,192,224,288,213.3C384,203,480,149,576,149.3C672,149,768,203,864,213.3C960,224,1056,192,1152,165.3C1248,139,1344,117,1392,106.7L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+        </svg>
     </div>
+
     <div class="container">
         <header>
-            <h1>Baratie's Galley {Punjabi}</h1>
+            <span>Poems, Sample Paper And Grammar</span>
+            <h1>Punjabi Galley</h1>
         </header>
 
         <div class="main-buttons">
-            <button class="category-btn" onclick="showOptions('poems')">Poems</button>
-            <button class="category-btn" onclick="showOptions('sample')">Sample Paper</button>
-            <button class="category-btn" onclick="showOptions('grammar')">Punjabi Grammar</button>
+            <div class="category-card" onclick="showOptions('poems')">
+                <i class="fa-solid fa-feather-pointed card-icon"></i>
+                <h2>Poems</h2>
+                <p>Punjabi Poetry & Lyrical Wisdom</p>
+            </div>
+
+            <div class="category-card" onclick="showOptions('sample')">
+                <i class="fa-solid fa-scroll card-icon"></i>
+                <h2>Sample Papers</h2>
+                <p>Examination Blueprints & Charts</p>
+            </div>
+
+            <div class="category-card" onclick="showOptions('grammar')">
+                <i class="fa-solid fa-compass card-icon"></i>
+                <h2>Grammar</h2>
+                <p>Language Rules & Structural Guides</p>
+            </div>
         </div>
 
-        <!-- Modal -->
         <div id="optionsModal" class="modal">
             <div class="modal-content">
-                <h2 id="modalTitle"></h2>
-                <button class="option-btn online-btn" onclick="handleOption('online')">Read from Sea Chart {Online}</button>
-                <button class="option-btn offline-btn" onclick="handleOption('offline')">Store in Logbook {Offline}</button>
-                <br>
-                <button class="option-btn close-btn" onclick="closeModal()">Cancel Order</button>
+                <p style="color:var(--accent-gold); letter-spacing: 2px; font-size: 0.7rem; font-weight: 600; margin-bottom: 0.5rem;">CHOOSE YOUR CHART</p>
+                <h2 id="modalTitle">Category</h2>
+                <div class="option-group">
+                    <button class="option-btn online-btn" onclick="handleOption('online')">
+                        <i class="fa-solid fa-satellite-dish" style="margin-right: 8px;"></i> Online View
+                    </button>
+                    <button class="option-btn offline-btn" onclick="handleOption('offline')">
+                        <i class="fa-solid fa-book-bookmark" style="margin-right: 8px;"></i>Offline Download
+                    </button>
+                </div>
+                <a class="close-link" onclick="closeModal()">Return to Galley</a>
             </div>
         </div>
     </div>
@@ -268,51 +306,43 @@
         function showOptions(category) {
             currentCategory = category;
             const title = document.getElementById('modalTitle');
-            
-            let friendlyCategoryName = category.charAt(0).toUpperCase() + category.slice(1);
-            if (category === 'sample') friendlyCategoryName = "Sample Paper";
-            
-            title.textContent = `${friendlyCategoryName}`;
+            let friendlyName = category === 'sample' ? "Sample Papers" : category.charAt(0).toUpperCase() + category.slice(1);
+            title.textContent = friendlyName;
             modal.classList.add('active');
         }
 
-        function closeModal() {
-            modal.classList.remove('active');
-        }
+        function closeModal() { modal.classList.remove('active'); }
 
         function handleOption(type) {
-            const pdfPath = pdfPaths[currentCategory] ? pdfPaths[currentCategory][type] : null;
-            
-            if(pdfPath) {
-                if(type === 'online') {
-                    window.open(pdfPath, '_blank');
+            const path = pdfPaths[currentCategory]?.[type];
+            if (path) {
+                if (type === 'online') {
+                    window.open(path, '_blank');
                 } else {
                     const link = document.createElement('a');
-                    link.href = pdfPath;
-                    link.download = pdfPath.split('/').pop();
-                    document.body.appendChild(link);
+                    link.href = path;
+                    link.download = path;
                     link.click();
-                    document.body.removeChild(link);
                 }
-            } else {
-                alert('This item is currently off the menu. Please try again later.');
             }
-            
             closeModal();
         }
 
-        modal.addEventListener('click', function(event) {
-            if (event.target === modal) {
-                closeModal();
-            }
-        });
+        // Scroll Reveal Animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('show');
+                    }, index * 150);
+                }
+            });
+        }, { threshold: 0.1 });
 
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape' && modal.classList.contains('active')) {
-                closeModal();
-            }
-        });
+        document.querySelectorAll('.category-card').forEach(card => observer.observe(card));
 
+        // Close on outside click
+        window.onclick = (e) => { if (e.target == modal) closeModal(); }
     </script>
 </body>
 </html>
