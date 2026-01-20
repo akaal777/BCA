@@ -3,213 +3,321 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arms And the Man | A Modern Study Hub</title>
+    <title>Arms And the Man | Aesthetic Study Hub</title>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
         :root {
-            /* --- Modern Classy Theme --- */
-            --bg-color: #1a1a1a;
-            --card-color: #2b2b2b;
-            --accent-gold: #c5a47e;
-            --text-primary: #f5f5f5;
-            --text-secondary: #a0a0a0;
-            --border-color: rgba(197, 164, 126, 0.2);
-            --font-primary: 'Poppins', sans-serif;
+            --bg-dark: #0f1113;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --accent-gold: #d4af37;
+            --accent-gold-dim: #c5a47e;
+            --text-primary: #f8f9fa;
+            --text-secondary: #94a3b8;
+            --serif-font: 'Playfair Display', serif;
+            --sans-font: 'Inter', sans-serif;
         }
 
-        *, *::before, *::after {
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
-            font-family: var(--font-primary);
-            background-color: var(--bg-color);
-            background-image: url('https://www.transparenttextures.com/patterns/subtle-carbon.png');
+            background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(148, 163, 184, 0.05) 0%, transparent 20%);
             color: var(--text-primary);
-            line-height: 1.7;
-            padding: 2rem;
+            font-family: var(--sans-font);
+            line-height: 1.6;
             overflow-x: hidden;
+            min-height: 100vh;
         }
 
         .container {
-            width: 100%;
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
+            padding: 4rem 1.5rem;
         }
 
+        /* --- Elegant Header --- */
         .header {
             text-align: center;
-            margin-bottom: 5rem;
+            margin-bottom: 6rem;
             opacity: 0;
-            animation: fadeInDown 1s 0.2s ease-out forwards;
+            transform: translateY(-20px);
+            animation: fadeInDown 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        .header p {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+            font-weight: 600;
         }
 
         .main-heading {
-            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-family: var(--serif-font);
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
             font-weight: 700;
-            color: var(--text-primary);
-            letter-spacing: -1px;
-        }
-        .main-heading span {
-            color: var(--accent-gold);
+            font-style: italic;
+            position: relative;
+            display: inline-block;
         }
 
-        /* --- Section Styling with Scroll Animation --- */
-        .content-section {
-            margin-bottom: 3.5rem;
-            background: var(--card-color);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: clamp(2rem, 5vw, 3rem);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-            /* Initial state for animation */
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        .main-heading::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 25%;
+            width: 50%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
         }
+
+        /* --- Content Sections --- */
+        .content-section {
+            margin-bottom: 5rem;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
         .content-section.is-visible {
             opacity: 1;
             transform: translateY(0);
         }
-        
-        .section-heading {
-            font-size: clamp(2rem, 4vw, 2.5rem);
-            font-weight: 700;
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
             margin-bottom: 2.5rem;
-            padding-bottom: 1rem;
-            position: relative;
-            color: var(--text-primary);
-        }
-        .section-heading::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 60px;
-            height: 3px;
-            border-radius: 2px;
-            background: var(--accent-gold);
         }
 
+        .section-header i {
+            color: var(--accent-gold);
+            font-size: 1.2rem;
+        }
+
+        .section-heading {
+            font-family: var(--serif-font);
+            font-size: 1.8rem;
+            letter-spacing: 0.5px;
+        }
+
+        .section-line {
+            flex-grow: 1;
+            height: 1px;
+            background: var(--glass-border);
+        }
+
+        /* --- Dynamic Grid & Buttons --- */
         .links-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
         }
-        
-        .resource-link {
-            background-color: transparent;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            color: var(--text-secondary);
-            font-weight: 500;
-            font-size: 1rem;
-            padding: 12px 24px;
-            text-align: center;
-            cursor: pointer;
+
+        .resource-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-decoration: none;
+            color: inherit;
             transition: all 0.4s ease;
-            font-family: var(--font-primary);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
         }
 
-        .resource-link:hover {
-            background-color: var(--accent-gold);
-            border-color: var(--accent-gold);
-            color: #fff;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(197, 164, 126, 0.2);
+        .resource-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+            transition: 0.5s;
         }
 
-        .resource-link.primary {
-            background-color: var(--accent-gold);
-            border-color: var(--accent-gold);
-            color: #fff;
+        .resource-card:hover::before {
+            left: 100%;
         }
-        .resource-link.primary:hover {
-            background-color: transparent;
+
+        .resource-card:hover {
+            border-color: var(--accent-gold-dim);
+            background: rgba(255, 255, 255, 0.06);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+        }
+
+        .card-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .card-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent-gold-dim);
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .card-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(212, 175, 55, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-gold);
+            transition: all 0.3s ease;
+        }
+
+        .resource-card:hover .card-icon {
+            background: var(--accent-gold);
+            color: var(--bg-dark);
+            transform: rotate(15deg);
+        }
+
+        /* Primary variant for the "Read PDF" button */
+        .resource-card.primary {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, transparent 100%);
+            border-color: rgba(212, 175, 55, 0.3);
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            margin-top: 4rem;
+            padding: 2rem;
+            font-size: 0.8rem;
             color: var(--text-secondary);
+            border-top: 1px solid var(--glass-border);
         }
 
+        /* --- Keyframes --- */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-        /* --- Animations --- */
-        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
-        
-        /* --- Responsive Design --- */
-        @media (max-width: 768px) { body { padding: 1.5rem; } }
-        @media (max-width: 480px) { body { padding: 1rem; } .links-container { grid-template-columns: 1fr; } }
+        /* --- Mobile Responsiveness --- */
+        @media (max-width: 600px) {
+            .container { padding: 2rem 1rem; }
+            .header { margin-bottom: 4rem; }
+            .section-header { margin-bottom: 1.5rem; }
+            .links-container { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
+
     <div class="container">
         <header class="header">
-            <h1 class="main-heading">Arms And the <span>Man</span></h1>
+            <p>G.B. Shaw's Masterpiece</p>
+            <h1 class="main-heading">Arms and the Man</h1>
         </header>
 
         <section class="content-section">
-            <h2 class="section-heading">Reading Materials</h2>
+            <div class="section-header">
+                <i class="fa-solid fa-book-open"></i>
+                <h2 class="section-heading">Library</h2>
+                <div class="section-line"></div>
+            </div>
             <div class="links-container" id="reading-links"></div>
         </section>
 
         <section class="content-section">
-            <h2 class="section-heading">Video Guides</h2>
+            <div class="section-header">
+                <i class="fa-solid fa-play"></i>
+                <h2 class="section-heading">Screenings</h2>
+                <div class="section-line"></div>
+            </div>
             <div class="links-container" id="video-links"></div>
         </section>
+
+        <footer>
+            &copy; <span id="year"></span> | Literature Study Portal
+        </footer>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('year').textContent = new Date().getFullYear();
+
             const readingLinks = [
-                { text: "Read the PDF", url: "http://182.160.97.198:8080/xmlui/bitstream/handle/123456789/102/Arms%20and%20the%20Man-%20%20George%20Bernard%20Shaw.pdf", type: 'primary' },
-                { text: "Read on Gutenberg", url: "https://www.gutenberg.org/files/3618/3618-h/3618-h.htm", type: 'secondary' }
+                { text: "Original Manuscript", sub: "Digital PDF", url: "http://182.160.97.198:8080/xmlui/bitstream/handle/123456789/102/Arms%20and%20the%20Man-%20%20George%20Bernard%20Shaw.pdf", icon: "fa-file-pdf", type: 'primary' },
+                { text: "Project Gutenberg", sub: "Web Edition", url: "https://www.gutenberg.org/files/3618/3618-h/3618-h.htm", icon: "fa-globe", type: 'secondary' }
             ];
 
             const videoLinks = [
-                { text: "Watch Full Play", url: "https://youtu.be/Nn8tj0XGsMg?si=ZcL60i3HSldY6Nkx", type: 'secondary' },
-                { text: "Summary & Analysis", url: "https://youtu.be/HRiH5d7dtiw?si=j-fVFj2oP3BKTjH9", type: 'secondary' },
-                { text: "In-Depth Playlist", url: "https://youtube.com/playlist?list=PLzs_CEeiwWn_UxJ_oFOTQAmBxqZd6gkzf&si=HhDhl7csJPeMZO5a", type: 'secondary' }
+                { text: "Full Performance", sub: "Theatrical Play", url: "https://youtu.be/Nn8tj0XGsMg?si=ZcL60i3HSldY6Nkx", icon: "fa-film", type: 'secondary' },
+                { text: "Analysis & Summary", sub: "Literature Guide", url: "https://youtu.be/HRiH5d7dtiw?si=j-fVFj2oP3BKTjH9", icon: "fa-lightbulb", type: 'secondary' },
+                { text: "Study Playlist", sub: "In-depth Lectures", url: "https://youtube.com/playlist?list=PLzs_CEeiwWn_UxJ_oFOTQAmBxqZd6gkzf&si=HhDhl7csJPeMZO5a", icon: "fa-layer-group", type: 'secondary' }
             ];
 
             function populateLinks(containerId, links) {
                 const container = document.getElementById(containerId);
                 if (!container) return;
-                
+
                 links.forEach(link => {
-                    const button = document.createElement("button");
-                    button.textContent = link.text;
-                    button.className = 'resource-link';
-                    if (link.type === 'primary') {
-                        button.classList.add('primary');
-                    }
-                    button.onclick = () => window.open(link.url, "_blank");
-                    container.appendChild(button);
+                    const card = document.createElement("a");
+                    card.href = link.url;
+                    card.target = "_blank";
+                    card.className = `resource-card ${link.type}`;
+                    
+                    card.innerHTML = `
+                        <div class="card-info">
+                            <span class="card-label">${link.sub}</span>
+                            <span class="card-title">${link.text}</span>
+                        </div>
+                        <div class="card-icon">
+                            <i class="fa-solid ${link.icon}"></i>
+                        </div>
+                    `;
+                    container.appendChild(card);
                 });
             }
 
             populateLinks("reading-links", readingLinks);
             populateLinks("video-links", videoLinks);
 
-            // --- Scroll Animation Logic ---
+            // --- Enhanced Intersection Observer ---
+            const observerOptions = { threshold: 0.15, rootMargin: "0px 0px -50px 0px" };
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('is-visible');
-                        observer.unobserve(entry.target); // Animate only once
                     }
                 });
-            }, {
-                threshold: 0.1 // Trigger when 10% of the element is visible
-            });
+            }, observerOptions);
 
-            document.querySelectorAll('.content-section').forEach(section => {
-                observer.observe(section);
-            });
+            document.querySelectorAll('.content-section').forEach(section => observer.observe(section));
         });
     </script>
 </body>
