@@ -2,151 +2,270 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- MODIFIED VIEWPORT TAG TO PREVENT ZOOMING -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>ASP.NET Learning Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
-
         :root {
-            --primary-color: #007bff;
-            --primary-hover-color: #0056b3;
-            --background-color: #f0f2f5;
-            --text-color: #333;
-            --card-background: #ffffff;
-            --shadow-color: rgba(0, 0, 0, 0.1);
-            --border-radius: 12px;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --accent-gold: #c5a059;
+            --text-main: #ffffff;
+            --text-dim: #b0b0b0;
+            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: var(--background-color);
-            color: var(--text-color);
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-gradient);
+            background-attachment: fixed;
+            color: var(--text-main);
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            min-height: 100vh;
+            padding: 40px 20px;
+            overflow-x: hidden;
+        }
+
+        /* Ambient Background Blur Circles */
+        .bg-blur {
+            position: fixed;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: var(--accent-gold);
+            filter: blur(150px);
+            opacity: 0.1;
+            z-index: -1;
+            animation: float 10s infinite alternate;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+            opacity: 0;
+            animation: fadeInDown 0.8s ease forwards;
         }
 
         h1 {
-            color: var(--primary-color);
-            margin-bottom: 40px;
-            font-size: 3em;
-            text-align: center;
-            letter-spacing: 1px;
-            font-weight: 600;
-            animation: fadeInDown 1s ease-out;
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            margin-bottom: 10px;
+            background: linear-gradient(to right, #fff, var(--accent-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        p.subtitle {
+            color: var(--text-dim);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            font-weight: 300;
         }
 
         .button-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
             width: 100%;
-            max-width: 1200px;
-            animation: fadeInUp 1s ease-out 0.5s;
-            animation-fill-mode: backwards;
+            max-width: 1100px;
         }
 
         .modern-button {
-            background-color: var(--card-background);
-            color: var(--primary-color);
-            border: 2px solid var(--primary-color);
-            padding: 20px 30px;
-            font-size: 1.1em;
-            font-weight: 400;
-            border-radius: var(--border-radius);
+            position: relative;
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            padding: 30px 25px;
+            border-radius: 20px;
+            color: var(--text-main);
+            text-align: left;
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px var(--shadow-color);
-            text-align: center;
-            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: space-between;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(30px);
         }
+
+        /* Staggered Animation for buttons */
+        .modern-button:nth-child(1) { animation: fadeInUp 0.6s ease forwards 0.2s; }
+        .modern-button:nth-child(2) { animation: fadeInUp 0.6s ease forwards 0.3s; }
+        .modern-button:nth-child(3) { animation: fadeInUp 0.6s ease forwards 0.4s; }
+        .modern-button:nth-child(4) { animation: fadeInUp 0.6s ease forwards 0.5s; }
+        .modern-button:nth-child(5) { animation: fadeInUp 0.6s ease forwards 0.6s; }
+        .modern-button:nth-child(6) { animation: fadeInUp 0.6s ease forwards 0.7s; }
+        .modern-button:nth-child(7) { animation: fadeInUp 0.6s ease forwards 0.8s; }
+        .modern-button:nth-child(8) { animation: fadeInUp 0.6s ease forwards 0.9s; }
 
         .modern-button:hover {
-            background-color: var(--primary-color);
-            color: white;
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 123, 255, 0.3);
+            border-color: var(--accent-gold);
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
         }
 
-        .modern-button:active {
-            transform: translateY(0);
-            box-shadow: 0 4px 15px var(--shadow-color);
+        .btn-content {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
         }
 
-        /* Animations */
+        .btn-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .btn-desc {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+        }
+
+        .modern-button i {
+            font-size: 1.5rem;
+            color: var(--accent-gold);
+            transition: transform 0.3s ease;
+        }
+
+        .modern-button:hover i {
+            transform: translateX(5px);
+        }
+
+        /* Decorative line on hover */
+        .modern-button::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-gold);
+            transition: width 0.4s ease;
+        }
+
+        .modern-button:hover::after {
+            width: 100%;
+        }
+
+        /* Keyframes */
         @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5em;
-                margin-bottom: 30px;
-            }
-            .button-container {
-                grid-template-columns: 1fr;
-            }
+        @keyframes float {
+            from { transform: translate(0, 0); }
+            to { transform: translate(50px, 50px); }
         }
 
-        @media (max-width: 480px) {
-            body {
-                padding: 15px;
-            }
-            h1 {
-                font-size: 2em;
-            }
-            .modern-button {
-                padding: 15px 20px;
-                font-size: 1em;
-            }
+        /* Responsive */
+        @media (max-width: 600px) {
+            body { padding: 20px 15px; }
+            h1 { font-size: 2.2rem; }
+            .button-container { grid-template-columns: 1fr; }
+            .modern-button { padding: 20px; }
         }
     </style>
 </head>
 <body>
 
-    <h1>ASP.NET Learning Portal</h1>
+    <div class="bg-blur" style="top: 10%; left: 10%;"></div>
+    <div class="bg-blur" style="bottom: 10%; right: 10%; background: #007bff;"></div>
+
+    <header>
+        <p class="subtitle">Curated Learning Journey</p>
+        <h1>ASP.NET Portal</h1>
+    </header>
 
     <div class="button-container">
-        <button class="modern-button" id="btnIndex">Index</button>
-        <button class="modern-button" id="btnChapter1">Chapter 1: Introduction to .NET Framework</button>
-        <button class="modern-button" id="btnChapter2">Chapter 2: C# Basics</button>
-        <button class="modern-button" id="btnOOP">OOPs in C#</button>
-        <button class="modern-button" id="btnIntroNet">Introduction to .NET Framework</button>
-        <button class="modern-button" id="btnAdvancedASP">Advanced ASP.NET</button>
-        <button class="modern-button" id="btnWebServices">Building Web Services</button>
-        <button class="modern-button" id="btnADONET">ADO.NET</button>
+        <div class="modern-button" id="btnIndex">
+            <div class="btn-content">
+                <span class="btn-title">Resource Index</span>
+                <span class="btn-desc">Complete roadmap & contents</span>
+            </div>
+            <i class="fa-solid fa-list-ul"></i>
+        </div>
+
+        <div class="modern-button" id="btnChapter1">
+            <div class="btn-content">
+                <span class="btn-title">The .NET Framework</span>
+                <span class="btn-desc"> CLR, Origins , Namespaces, CTS</span>
+            </div>
+            <i class="fa-solid fa-layer-group"></i>
+        </div>
+
+        <div class="modern-button" id="btnChapter2">
+            <div class="btn-content">
+                <span class="btn-title">C# Foundations</span>
+                <span class="btn-desc"> Introduction to C#, Creating A Console Application in C#, Language Fundamentals of C#.</span>
+            </div>
+            <i class="fa-solid fa-code"></i>
+        </div>
+
+        <div class="modern-button" id="btnOOP">
+            <div class="btn-content">
+                <span class="btn-title">OOP Principles</span>
+                <span class="btn-desc">Introduction, Introduction To Classes, Introduction To Objects, Constructor, Destructors, Inheritance, Exception Handling.</span>
+            </div>
+            <i class="fa-solid fa-cubes"></i>
+        </div>
+
+        <div class="modern-button" id="btnIntroNet">
+            <div class="btn-content">
+                <span class="btn-title">Advanced Core</span>
+                <span class="btn-desc">Introduction, Setting Up The Development Environment, Elements Of An ASP.NET Page, The Visual Studio IDE, Creating An ASP.NET Application, Deploying An ASP.NET Web Application, Web Forms, Web Controls, Working with Events In ASP.NET, Rich Web Controls, Custom Web Controls, Validation Controls, Debugging ASP.NET Pages</span>
+            </div>
+            <i class="fa-solid fa-microchip"></i>
+        </div>
+
+        <div class="modern-button" id="btnAdvancedASP">
+            <div class="btn-content">
+                <span class="btn-title">Advanced ASP.NET</span>
+                <span class="btn-desc">HTTP Handlers, ASP.NET Configuration, Caching In ASP.NET, ASP.NET SECURITY, LOCALIZING ASP.NET APPLICATIONS, DEPLOYING ASP.NET APPLICCATIONS </span>
+            </div>
+            <i class="fa-solid fa-gears"></i>
+        </div>
+
+        <div class="modern-button" id="btnWebServices">
+            <div class="btn-content">
+                <span class="btn-title">Web Services</span>
+                <span class="btn-desc">Introduction To Web Services, Elements Of Web Services, Web Service Infrastructure, Simple Object Access Protocol(SOAP), Building A Web Service , Deploying Web Service,  Publishing Web Services, Finding Web Services, Consuming Web Services.</span>
+            </div>
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+        </div>
+
+        <div class="modern-button" id="btnADONET">
+            <div class="btn-content">
+                <span class="btn-title">ADO.NET Data</span>
+                <span class="btn-desc">INTRODUCTION, BASICS OF ADO.NET, ARCHITECTURE OF ADO.NET (OBJECT MODEL)</span>
+            </div>
+            <i class="fa-solid fa-database"></i>
+        </div>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const pdfLinks = {
-                btnIndex: 'https://drive.google.com/file/d/1KkewEv_kQBagFUuc9qWfUsvQPiMdN6rM/view?usp=drive_link', // Replace with actual PDF links
+                btnIndex: 'https://drive.google.com/file/d/1KkewEv_kQBagFUuc9qWfUsvQPiMdN6rM/view?usp=drive_link',
                 btnChapter1: 'chapter1_intro_dotnet.pdf',
                 btnChapter2: 'chapter2_csharp_basics.pdf',
                 btnOOP: 'oops_csharp.pdf',
@@ -155,21 +274,21 @@
                 btnWebServices: 'building_web_services.pdf',
                 btnADONET: 'https://drive.google.com/file/d/1ap_mr0QCn48izLZwsLsq3hcdMcxvoZc3/view?usp=drive_link'
             };
+
             document.querySelectorAll('.modern-button').forEach(button => {
-                button.addEventListener('click', (event) => {
-                    const buttonId = event.currentTarget.id;
+                button.addEventListener('click', (e) => {
+                    const buttonId = e.currentTarget.id;
                     const pdfUrl = pdfLinks[buttonId];
 
-                    if (pdfUrl && !pdfUrl.includes('example.com')) { // A simple check if the link has been updated
-                        window.open(pdfUrl, '_blank');
+                    if (pdfUrl && !pdfUrl.includes('.pdf') && !pdfUrl.includes('drive.google')) {
+                         alert('Content is being prepared. Please check back soon!');
                     } else {
-                        alert('PDF link not available for this chapter yet. Please check back later!');
-                        console.warn(`PDF link missing or placeholder for button: ${buttonId}`);
+                        // Smoothly open in new tab
+                        window.open(pdfUrl, '_blank');
                     }
                 });
             });
         });
     </script>
-
 </body>
 </html>
