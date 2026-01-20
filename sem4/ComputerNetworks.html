@@ -1,257 +1,338 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Network Hub | Learning Center</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --primary-dark: #0f0c29;
-      --secondary-dark: #302b63;
-      --tertiary-dark: #24243e;
-      --text-light: #f0f0f0;
-      --glow-accent: #6a82fb;
-      --glass-bg: rgba(255, 255, 255, 0.1);
-      --glass-border: rgba(255, 255, 255, 0.2);
-    }
-
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(45deg, var(--primary-dark), var(--secondary-dark), var(--tertiary-dark));
-      background-size: 400% 400%;
-      animation: gradientBG 15s ease infinite;
-      color: var(--text-light);
-      margin: 0;
-      padding: 30px 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Network Hub | Premium Learning</title>
     
-    @keyframes gradientBG {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
-    }
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    h1 {
-      font-family: 'Poppins', sans-serif;
-      font-weight: 700;
-      font-size: clamp(2.5em, 8vw, 4.5em);
-      margin: 30px 0 50px;
-      background: linear-gradient(90deg, #fc5c7d, var(--glow-accent));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      -webkit-text-fill-color: transparent;
-      letter-spacing: 2px;
-      text-align: center;
-      line-height: 1.2;
-      animation: fadeInDown 1.2s ease-out;
-    }
+    <style>
+        :root {
+            --bg-deep: #05070a;
+            --accent-blue: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.5);
+            --glass-bg: rgba(15, 23, 42, 0.6);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
+            --font-serif: 'Playfair Display', serif;
+            --font-sans: 'Inter', sans-serif;
+        }
 
-    @keyframes fadeInDown {
-        from { opacity: 0; transform: translateY(-30px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
 
-    .section {
-      background: var(--glass-bg);
-      border-radius: 20px;
-      padding: 30px;
-      margin: 20px;
-      width: 90%;
-      max-width: 900px;
-      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-      backdrop-filter: blur(10px);
-      border: 1px solid var(--glass-border);
-      opacity: 0;
-      transform: translateY(30px);
-      animation: fadeInUp 0.8s forwards cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      transition: transform 0.3s ease;
-    }
-    
-    .section:hover {
-        transform: translateY(-5px);
-    }
+        body {
+            background-color: var(--bg-deep);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(59, 130, 246, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(99, 102, 241, 0.05) 0%, transparent 20%);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
 
-    /* Staggered animation for sections */
-    .section:nth-of-type(1) { animation-delay: 0.3s; }
-    .section:nth-of-type(2) { animation-delay: 0.5s; }
-    .section:nth-of-type(3) { animation-delay: 0.7s; }
-    .section:nth-of-type(4) { animation-delay: 0.9s; }
+        /* --- Scroll Animation Classes --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        }
 
-    @keyframes fadeInUp {
-        from { opacity: 0; transform: translateY(30px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-    .section h2 {
-      font-family: 'Poppins', sans-serif;
-      font-weight: 600;
-      font-size: 2.2rem;
-      margin: 0 0 25px 0;
-      color: var(--text-light);
-      position: relative;
-      padding-bottom: 10px;
-    }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 4rem 1.5rem;
+        }
 
-    .section h2::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 50px;
-      height: 3px;
-      background: var(--glow-accent);
-      border-radius: 2px;
-    }
-    
-    .buttons {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: 20px;
-    }
+        /* --- Header --- */
+        header {
+            text-align: center;
+            margin-bottom: 6rem;
+        }
 
-    .buttons button {
-      background: rgba(255, 255, 255, 0.15);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      border-radius: 12px;
-      color: #fff;
-      padding: 18px 25px;
-      font-size: 1.1rem;
-      font-family: 'Poppins', sans-serif;
-      font-weight: 400;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      min-height: 70px;
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .buttons button:hover, .buttons button:focus {
-        background-color: rgba(255, 255, 255, 0.25);
-        box-shadow: 0 0 15px var(--glow-accent);
-        border-color: var(--glow-accent);
-        transform: translateY(-3px);
-        outline: none;
-    }
-    
-    .buttons button::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-        transition: left 0.5s ease;
-    }
+        header span {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            color: var(--accent-blue);
+            font-weight: 600;
+            display: block;
+            margin-bottom: 1rem;
+        }
 
-    .buttons button:hover::before {
-        left: 100%;
-    }
+        h1 {
+            font-family: var(--font-serif);
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-weight: 700;
+            font-style: italic;
+            background: linear-gradient(to bottom, #fff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-    /* Responsive Design */
-    @media (max-width: 960px) {
-      .buttons {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      }
-       h1 { font-size: 3.5rem; }
-      .section h2 { font-size: 2rem; }
-    }
+        /* --- Sections --- */
+        .section {
+            margin-bottom: 5rem;
+        }
 
-    @media (max-width: 600px) {
-      body { padding: 20px 10px; }
-      h1 { font-size: 2.5rem; margin: 20px 0 30px; }
-      .section { padding: 20px; margin: 20px 10px; }
-      .section h2 { font-size: 1.8rem; }
-      .buttons button { font-size: 1rem; padding: 15px 20px; min-height: 60px; }
-    }
-    @media (max-width: 400px) {
-        .buttons { grid-template-columns: 1fr; }
-    }
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
 
-  </style>
+        .section-header i {
+            font-size: 1.2rem;
+            color: var(--accent-blue);
+        }
+
+        .section h2 {
+            font-family: var(--font-serif);
+            font-size: 1.8rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .line {
+            flex-grow: 1;
+            height: 1px;
+            background: linear-gradient(90deg, var(--glass-border), transparent);
+        }
+
+        /* --- Grid & Buttons --- */
+        .buttons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.2rem;
+        }
+
+        .resource-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            padding: 1.5rem;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .resource-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.03), transparent);
+            transition: 0.6s;
+        }
+
+        .resource-card:hover {
+            border-color: var(--accent-blue);
+            background: rgba(59, 130, 246, 0.08);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
+        }
+
+        .resource-card:hover::before {
+            left: 100%;
+        }
+
+        .card-content {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .card-title {
+            font-weight: 500;
+            font-size: 1.05rem;
+            color: var(--text-main);
+        }
+
+        .card-meta {
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .card-icon-wrapper {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-blue);
+            transition: 0.3s;
+        }
+
+        .resource-card:hover .card-icon-wrapper {
+            background: var(--accent-blue);
+            color: #fff;
+            transform: rotate(10deg);
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 4rem 0;
+            color: var(--text-dim);
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        /* --- Mobile Optimizations --- */
+        @media (max-width: 768px) {
+            .container { padding: 2rem 1rem; }
+            header { margin-bottom: 4rem; }
+            .buttons-grid { grid-template-columns: 1fr; }
+            .section-header h2 { font-size: 1.4rem; }
+        }
+    </style>
 </head>
 <body>
 
-  <h1>Computer Network </h1>
+    <div class="container">
+        <header class="reveal">
+            <span>The Learning Directory</span>
+            <h1>Computer Network</h1>
+        </header>
 
-  <div class="section">
-    <h2>Online Resources (PDFs)</h2>
-    <div class="buttons" id="online-pdf-buttons"></div>
-  </div>
+        <div class="section reveal">
+            <div class="section-header">
+                <i class="fa-solid fa-cloud"></i>
+                <h2>Online Resources</h2>
+                <div class="line"></div>
+            </div>
+            <div class="buttons-grid" id="online-grid"></div>
+        </div>
 
-  <div class="section">
-    <h2>Local Files (PDFs)</h2>
-    <div class="buttons" id="offline-pdf-buttons"></div>
-  </div>
+        <div class="section reveal">
+            <div class="section-header">
+                <i class="fa-solid fa-hard-drive"></i>
+                <h2>Local Knowledge</h2>
+                <div class="line"></div>
+            </div>
+            <div class="buttons-grid" id="offline-grid"></div>
+        </div>
 
-  <div class="section">
-    <h2>Core Theory (Web Articles)</h2>
-    <div class="buttons" id="theory-buttons"></div>
-  </div>
+        <div class="section reveal">
+            <div class="section-header">
+                <i class="fa-solid fa-book"></i>
+                <h2>Core Theory</h2>
+                <div class="line"></div>
+            </div>
+            <div class="buttons-grid" id="theory-grid"></div>
+        </div>
 
-  <div class="section">
-    <h2>Video Lectures (YouTube)</h2>
-    <div class="buttons" id="youtube-buttons"></div>
-  </div>
+        <div class="section reveal">
+            <div class="section-header">
+                <i class="fa-solid fa-play"></i>
+                <h2>Video Lectures</h2>
+                <div class="line"></div>
+            </div>
+            <div class="buttons-grid" id="video-grid"></div>
+        </div>
 
-  <script>
-    // Data for the buttons remains the same as it is functional and well-structured.
-    const onlinePDFLinks = [
-      "https://drive.google.com/file/d/12H3QcEUdQjqlHS2pC_Rw_nq_1UZmQIz-/view?usp=drive_link", "https://drive.google.com/file/d/1TRYUEcWISaTldpyHEElKPZBT4I3cJZJ8/view?usp=drive_link",
-      "https://drive.google.com/file/d/1-T-ETVBJJAqjwK9-FKhuCVbv24NI7guX/view?usp=drive_link", "https://drive.google.com/file/d/1wUhun1kmOEXta0RtImuf1YD0EK8Awup2/view?usp=drive_link",
-      "https://drive.google.com/file/d/1nKi1gxibLfnmuRT23Ph88HFGxVhJdOJd/view?usp=drive_link", "https://drive.google.com/file/d/16_cccbggucBAktRI2P2kA7ZefnEHXMjN/view?usp=drive_link",
-      "https://drive.google.com/file/d/1bXr_KyW4Ke7y7wHxjxdEIIBoIXdaAWRO/view?usp=drive_link", "https://drive.google.com/file/d/1qyROLrVMbjO6W7tvRnCCZLVFmWktBoFV/view?usp=drive_link",
-      "https://drive.google.com/file/d/19wb7ynUES-jvK1FtJDuMB2Mh5asePMdy/view?usp=drive_link"
-    ];
-    const offlinePDFPaths = [
-      "ch 2 refrence model of network.pdf", "ch 7 transport layer.pdf", "ch 8 application layer.pdf", "ch 3 TCP-IP protocol suite.pdf", 
-      "ch 6 network layer.pdf", "ch 5 data link layer.pdf", "ch 4 internet protocol.pdf", "ch 1 introduction to network.pdf", "ch 9 network security.pdf"
-    ];
-    const theoryLinks = [
-      "https://www.tutorialspoint.com/Reference-Models-in-Computer-Network", "https://www.geeksforgeeks.org/transport-layer-in-osi-model/",
-      "https://www.geeksforgeeks.org/application-layer-in-osi-model/", "https://www.geeksforgeeks.org/tcp-ip-model/",
-      "https://www.geeksforgeeks.org/network-layer-in-osi-model/", "https://www.geeksforgeeks.org/data-link-layer/",
-      "https://www.geeksforgeeks.org/types-of-internet-protocols/", "https://www.geeksforgeeks.org/what-is-computer-networking/",
-      "https://www.geeksforgeeks.org/network-security/"
-    ];
-    const youtubeLinks = [
-      "https://youtu.be/1msEo8PIcbw?si=vViE2qlEU04iTfBY", "https://youtube.com/playlist?list=PLHQAlOcTuuT3HbVd9XG42a0WtC1MRKRvO&si=u9lKRrr_lgK6Pent",
-      "https://www.youtube.com/live/XJasQKX2fsY?si=hGjjSuI_10yAu4db", "https://youtu.be/TVr0RZ1-74g?si=o80Jrrr21RcBEbgS",
-      "https://youtube.com/playlist?list=PL1KcDRI9303dr0YaWBF_ngoOrBwJjhWFI&si=ZG_UivAxnv2crus_", "https://youtu.be/yY0NtpmVB_A?si=smPhQQ6NfLfh27JK",
-      "https://youtube.com/playlist?list=PLqleLpAMfxGCUpDRFUnLKeDrgBsPOwTQK&si=AEm-fEek7bO-vj-B", "https://youtu.be/BdDd_Ez4iZs?si=dE2fi_K6G6DSR_yr",
-      "https://youtube.com/playlist?list=PLxCzCOWd7aiGFBD2-2joCpWOLUrDLvVV_&si=tszBCKCiuj2qPbm0", "https://youtu.be/1V9mhVgVH3A?si=d-y6hUfuXq_BuzAV",
-      "https://youtu.be/q3Z3Qa1UNBA?si=VcTygbcOS4uKkc61"
-    ];
-    const buttonNames = {
-      online: [ "Reference Models", "Transport Layer", "Application Layer", "TCP/IP Suite", "Network Layer", "Data Link Layer", "Internet Protocol", "Intro to Network", "Network Security" ],
-      offline: [ "Reference Models", "Transport Layer", "Application Layer", "TCP/IP Suite", "Network Layer", "Data Link Layer", "Internet Protocol", "Intro to Network", "Network Security" ],
-      theory: [ "Reference Models", "Transport Layer", "Application Layer", "TCP/IP Suite", "Network Layer", "Data Link Layer", "Internet Protocol", "Intro to Network", "Network Security" ],
-      youtube: [ "Reference Models", "Transport Layer [PL]", "Application Layer", "TCP/IP Suite", "Network Layer [PL]", "Data Link Layer", "Intro to Network", "Network Security", "Comp. Networks [PL]", "Comp. Networks [OS]", "CN [OS GATE]" ]
-    };
+        <footer>
+            &copy; <span id="year"></span> THE NETWORK HUB | CRAFTED FOR EXCELLENCE
+        </footer>
+    </div>
 
-    function createButtons(containerId, links, names) {
-        const container = document.getElementById(containerId);
-        if (!container) return;
-        links.forEach((link, index) => {
-            const button = document.createElement("button");
-            button.textContent = names[index] || `Link ${index + 1}`;
-            button.setAttribute('title', `Open: ${names[index] || link}`);
-            button.addEventListener("click", () => window.open(link, "_blank"));
-            container.appendChild(button);
-        });
-    }
+    <script>
+        // Data remain unchanged
+        const data = {
+            online: {
+                links: ["https://drive.google.com/file/d/12H3QcEUdQjqlHS2pC_Rw_nq_1UZmQIz-/view?usp=drive_link", "https://drive.google.com/file/d/1TRYUEcWISaTldpyHEElKPZBT4I3cJZJ8/view?usp=drive_link", "https://drive.google.com/file/d/1-T-ETVBJJAqjwK9-FKhuCVbv24NI7guX/view?usp=drive_link", "https://drive.google.com/file/d/1wUhun1kmOEXta0RtImuf1YD0EK8Awup2/view?usp=drive_link", "https://drive.google.com/file/d/1nKi1gxibLfnmuRT23Ph88HFGxVhJdOJd/view?usp=drive_link", "https://drive.google.com/file/d/16_cccbggucBAktRI2P2kA7ZefnEHXMjN/view?usp=drive_link", "https://drive.google.com/file/d/1bXr_KyW4Ke7y7wHxjxdEIIBoIXdaAWRO/view?usp=drive_link", "https://drive.google.com/file/d/1qyROLrVMbjO6W7tvRnCCZLVFmWktBoFV/view?usp=drive_link", "https://drive.google.com/file/d/19wb7ynUES-jvK1FtJDuMB2Mh5asePMdy/view?usp=drive_link"],
+                names: ["Reference Models", "Transport Layer", "Application Layer", "TCP/IP Suite", "Network Layer", "Data Link Layer", "Internet Protocol", "Intro to Network", "Network Security"],
+                meta: "Cloud PDF",
+                icon: "fa-file-pdf"
+            },
+            offline: {
+                links: ["ch 2 refrence model of network.pdf", "ch 7 transport layer.pdf", "ch 8 application layer.pdf", "ch 3 TCP-IP protocol suite.pdf", "ch 6 network layer.pdf", "ch 5 data link layer.pdf", "ch 4 internet protocol.pdf", "ch 1 introduction to network.pdf", "ch 9 network security.pdf"],
+                names: ["Reference Models", "Transport Layer", "Application Layer", "TCP/IP Suite", "Network Layer", "Data Link Layer", "Internet Protocol", "Intro to Network", "Network Security"],
+                meta: "Local Archive",
+                icon: "fa-file-lines"
+            },
+            theory: {
+                links: ["https://www.tutorialspoint.com/Reference-Models-in-Computer-Network", "https://www.geeksforgeeks.org/transport-layer-in-osi-model/", "https://www.geeksforgeeks.org/application-layer-in-osi-model/", "https://www.geeksforgeeks.org/tcp-ip-model/", "https://www.geeksforgeeks.org/network-layer-in-osi-model/", "https://www.geeksforgeeks.org/data-link-layer/", "https://www.geeksforgeeks.org/types-of-internet-protocols/", "https://www.geeksforgeeks.org/what-is-computer-networking/", "https://www.geeksforgeeks.org/network-security/"],
+                names: ["Reference Models", "Transport Layer", "Application Layer", "TCP/IP Suite", "Network Layer", "Data Link Layer", "Internet Protocol", "Intro to Network", "Network Security"],
+                meta: "Web Article",
+                icon: "fa-arrow-up-right-from-square"
+            },
+            video: {
+                links: ["https://youtu.be/1msEo8PIcbw?si=vViE2qlEU04iTfBY", "https://youtube.com/playlist?list=PLHQAlOcTuuT3HbVd9XG42a0WtC1MRKRvO&si=u9lKRrr_lgK6Pent", "https://www.youtube.com/live/XJasQKX2fsY?si=hGjjSuI_10yAu4db", "https://youtu.be/TVr0RZ1-74g?si=o80Jrrr21RcBEbgS", "https://youtube.com/playlist?list=PL1KcDRI9303dr0YaWBF_ngoOrBwJjhWFI&si=ZG_UivAxnv2crus_", "https://youtu.be/yY0NtpmVB_A?si=smPhQQ6NfLfh27JK", "https://youtube.com/playlist?list=PLqleLpAMfxGCUpDRFUnLKeDrgBsPOwTQK&si=AEm-fEek7bO-vj-B", "https://youtu.be/BdDd_Ez4iZs?si=dE2fi_K6G6DSR_yr", "https://youtube.com/playlist?list=PLxCzCOWd7aiGFBD2-2joCpWOLUrDLvVV_&si=tszBCKCiuj2qPbm0", "https://youtu.be/1V9mhVgVH3A?si=d-y6hUfuXq_BuzAV", "https://youtu.be/q3Z3Qa1UNBA?si=VcTygbcOS4uKkc61"],
+                names: ["Reference Models", "Transport Layer [PL]", "Application Layer", "TCP/IP Suite", "Network Layer [PL]", "Data Link Layer", "Intro to Network", "Network Security", "Comp. Networks [PL]", "Comp. Networks [OS]", "CN [OS GATE]"],
+                meta: "YouTube Lecture",
+                icon: "fa-play"
+            }
+        };
 
-    createButtons("online-pdf-buttons", onlinePDFLinks, buttonNames.online);
-    createButtons("offline-pdf-buttons", offlinePDFPaths, buttonNames.offline);
-    createButtons("theory-buttons", theoryLinks, buttonNames.theory);
-    createButtons("youtube-buttons", youtubeLinks, buttonNames.youtube);
-  </script>
+        function renderGrid(containerId, category) {
+            const container = document.getElementById(containerId);
+            const { links, names, meta, icon } = data[category];
+            
+            links.forEach((link, i) => {
+                const card = document.createElement("a");
+                card.className = "resource-card";
+                card.href = link;
+                card.target = "_blank";
+                
+                card.innerHTML = `
+                    <div class="card-content">
+                        <span class="card-meta">${meta}</span>
+                        <span class="card-title">${names[i]}</span>
+                    </div>
+                    <div class="card-icon-wrapper">
+                        <i class="fa-solid ${icon}"></i>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        renderGrid("online-grid", "online");
+        renderGrid("offline-grid", "offline");
+        renderGrid("theory-grid", "theory");
+        renderGrid("video-grid", "video");
+
+        // Intersection Observer for Reveal Animations
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
 </body>
 </html>
