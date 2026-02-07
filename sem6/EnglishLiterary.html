@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Literary Skills | Zero to Hero</title>
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --bg-color: #020617;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent-color: #38bdf8; /* Sky Blue Accent */
+            --accent-glow: rgba(56, 189, 248, 0.5);
+            --gradient-1: linear-gradient(135deg, #0ea5e9 0%, #6366f1 100%); /* Blue to Indigo */
+            --glass: rgba(2, 6, 23, 0.8);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(14, 165, 233, 0.15) 0, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(99, 102, 241, 0.15) 0, transparent 50%);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- MODERN NAVBAR --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--glass);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        nav {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1.5px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            margin-top: 60px;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 10vw, 5rem);
+            margin-bottom: 1.5rem;
+            font-weight: 900;
+            letter-spacing: -3px;
+            line-height: 1.1;
+            background: linear-gradient(to bottom, #fff 30%, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: clamp(1.1rem, 4vw, 1.4rem);
+            color: var(--text-secondary);
+            max-width: 650px;
+            margin-bottom: 2rem;
+        }
+
+        /* --- CONTAINER & GRID --- */
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        section {
+            margin-bottom: 8rem;
+            scroll-margin-top: 120px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-weight: 800;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 6px;
+            height: 35px;
+            background: var(--gradient-1);
+            border-radius: 10px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+
+        /* --- MODERN CARDS --- */
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(8px);
+            border-radius: 24px;
+            padding: 2.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-12px);
+            background: rgba(30, 41, 59, 0.9);
+            border-color: var(--accent-color);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(56, 189, 248, 0.1);
+        }
+
+        .card-tag {
+            align-self: flex-start;
+            background: var(--gradient-1);
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .card h3 {
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            color: #fff;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .card p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            margin-bottom: 2.5rem;
+            flex-grow: 1;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 1.8rem;
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: 0.3s;
+        }
+
+        .card:hover .btn {
+            background: var(--gradient-1);
+            border-color: transparent;
+            box-shadow: 0 10px 20px var(--accent-glow);
+        }
+
+        /* --- MOBILE MENU --- */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            z-index: 1001;
+            padding: 5px;
+        }
+
+        .hamburger span {
+            width: 28px;
+            height: 3px;
+            background: var(--text-primary);
+            border-radius: 10px;
+            transition: all 0.4s;
+        }
+
+        .hamburger.active span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+        .hamburger.active span:nth-child(2) { opacity: 0; transform: translateX(10px); }
+        .hamburger.active span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+
+        @media (max-width: 768px) {
+            .hamburger { display: flex; }
+            .nav-links {
+                position: fixed;
+                left: 0;
+                top: -100%;
+                flex-direction: column;
+                background: var(--bg-color);
+                width: 100%;
+                height: 100vh;
+                justify-content: center;
+                transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+                opacity: 0;
+                visibility: hidden;
+            }
+            .nav-links.active { 
+                top: 0; 
+                opacity: 1; 
+                visibility: visible; 
+            }
+            .nav-links a { font-size: 2rem; width: 100%; text-align: center; padding: 15px 0; }
+            .grid { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 3rem; }
+        }
+
+        footer {
+            text-align: center;
+            padding: 6rem 2rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo" onclick="window.scrollTo(0,0)">ENG.LIT</div>
+            <div class="hamburger" id="hamburger">
+                <span></span><span></span><span></span>
+            </div>
+            <ul class="nav-links" id="nav-menu">
+                <li><a href="#novel">Novels</a></li>
+                <li><a href="#business">Business Skills</a></li>
+                <li><a href="#writing">Writing</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Master English<br>Literary Skills</h1>
+        <p>Comprehensive resources for Novels, Business Correspondence, Job Applications, and CV Writing.</p>
+    </section>
+
+    <div class="container">
+        <section id="novel">
+            <h2 class="section-title">📖 Novel Section</h2>
+            <div class="grid" id="novel-container"></div>
+        </section>
+
+        <section id="business">
+            <h2 class="section-title">💼 Business, Job Application & CV</h2>
+            <div class="grid" id="business-container"></div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 English Study Hub. Crafted for Learners.</p>
+    </footer>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+        const navLinks = document.querySelectorAll('.nav-links a');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // --- Content Data ---
+        const studyResources = {
+            novel: [
+                { 
+                    title: "The Guide by R.K. Narayan", 
+                    desc: "A complete Hindi summary, explanation, and analysis of the famous novel 'The Guide'.", 
+                    link: "https://youtu.be/XJNb1EJCKYc?si=7FVHGZ3OsehPIYIY", 
+                    tag: "Summary" 
+                },
+                { 
+                    title: "The Guide - Chapter-wise Analysis", 
+                    desc: "Detailed guide on format and examples for formal business letter writing.", 
+                    link: "https://youtu.be/Zsese4STT2c?si=xtoBr7H3yxAHa_ic", 
+                    tag: "Writing Skills" 
+                },
+                { 
+                    title: "Complete Novel Playlist", 
+                    desc: "A curated collection of videos covering English literary novels and analysis.", 
+                    link: "https://youtube.com/playlist?list=PLvibG7BdCDHEe3kAzpxTez6j7Iubs9LGL&si=D3WMAuCsRLeHcp4V", 
+                    tag: "Playlist" 
+                }
+            ],
+            business: [
+                { 
+                    title: "Job Application Format (Class 12)", 
+                    desc: "Learn the correct format for Job Applications, Bio-data, and Resumes.", 
+                    link: "https://youtu.be/oJystcpW6UI?si=TIQdokSwkAoILuF2", 
+                    tag: "Format" 
+                },
+                { 
+                    title: "Cover Letter Masterclass", 
+                    desc: "How to write a cover letter for job applications with the best examples to get hired.", 
+                    link: "https://youtu.be/3Dz4Ey4ZXb4?si=EMV1cg9YHBYE7Lm7", 
+                    tag: "Get Hired" 
+                },
+                { 
+                    title: "CV for Freshers", 
+                    desc: "How to write a perfect CV with no prior experience. Tips and templates included.", 
+                    link: "https://youtu.be/jyoFvSPFDIo?si=J_atL7KtpkgefkFX", 
+                    tag: "Freshers" 
+                },
+                { 
+                    title: "Modern CV/Resume Guide (2025)", 
+                    desc: "Updated tips for writing CVs and Resumes in 2025 to stand out.", 
+                    link: "https://youtu.be/sqwK4Q4yfWU?si=sLqajBMoXDb9RzV4", 
+                    tag: "2025 Update" 
+                },
+                { 
+                    title: " CV or RESUME IN 2025! ", 
+                    desc: "Advanced business communication and professional development skills.", 
+                    link: "https://youtu.be/Y9Pyv-GWbmg?si=Hk21HOWJNSwD9xWH", 
+                    tag: "Pro Skills" 
+                }
+            ]
+        };
+
+        function createCard(item, btnText = "Watch Now") {
+            const card = document.createElement('div');
+            card.className = 'card';
+            const tagHTML = item.tag ? `<span class="card-tag">${item.tag}</span>` : '';
+            card.innerHTML = `
+                ${tagHTML}
+                <h3>${item.title}</h3>
+                <p>${item.desc}</p>
+                <a href="${item.link}" target="_blank" class="btn">${btnText}</a>
+            `;
+            return card;
+        }
+
+        document.getElementById('novel-container').append(...studyResources.novel.map(i => createCard(i)));
+        document.getElementById('business-container').append(...studyResources.business.map(i => createCard(i)));
+    </script>
+</body>
+</html>
