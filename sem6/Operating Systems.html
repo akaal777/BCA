@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OS Study Hub | Zero to Hero</title>
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --bg-color: #020617;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent-color: #818cf8;
+            --accent-glow: rgba(129, 140, 248, 0.5);
+            --gradient-1: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+            --glass: rgba(2, 6, 23, 0.8);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.15) 0, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(168, 85, 247, 0.15) 0, transparent 50%);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- MODERN NAVBAR --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--glass);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        nav {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1.5px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            margin-top: 60px;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 10vw, 5rem);
+            margin-bottom: 1.5rem;
+            font-weight: 900;
+            letter-spacing: -3px;
+            line-height: 1.1;
+            background: linear-gradient(to bottom, #fff 30%, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: clamp(1.1rem, 4vw, 1.4rem);
+            color: var(--text-secondary);
+            max-width: 650px;
+            margin-bottom: 2rem;
+        }
+
+        /* --- CONTAINER & GRID --- */
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        section {
+            margin-bottom: 8rem;
+            scroll-margin-top: 120px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-weight: 800;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 6px;
+            height: 35px;
+            background: var(--gradient-1);
+            border-radius: 10px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+
+        /* --- MODERN CARDS --- */
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(8px);
+            border-radius: 24px;
+            padding: 2.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-12px);
+            background: rgba(30, 41, 59, 0.9);
+            border-color: var(--accent-color);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(129, 140, 248, 0.1);
+        }
+
+        .card-tag {
+            align-self: flex-start;
+            background: var(--gradient-1);
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .card h3 {
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            color: #fff;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .card p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            margin-bottom: 2.5rem;
+            flex-grow: 1;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 1.8rem;
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: 0.3s;
+        }
+
+        .card:hover .btn {
+            background: var(--gradient-1);
+            border-color: transparent;
+            box-shadow: 0 10px 20px var(--accent-glow);
+        }
+
+        /* --- MOBILE MENU --- */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            z-index: 1001;
+            padding: 5px;
+        }
+
+        .hamburger span {
+            width: 28px;
+            height: 3px;
+            background: var(--text-primary);
+            border-radius: 10px;
+            transition: all 0.4s;
+        }
+
+        .hamburger.active span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+        .hamburger.active span:nth-child(2) { opacity: 0; transform: translateX(10px); }
+        .hamburger.active span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+
+        @media (max-width: 768px) {
+            .hamburger { display: flex; }
+            .nav-links {
+                position: fixed;
+                left: 0;
+                top: -100%;
+                flex-direction: column;
+                background: var(--bg-color);
+                width: 100%;
+                height: 100vh;
+                justify-content: center;
+                transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+                opacity: 0;
+                visibility: hidden;
+            }
+            .nav-links.active { 
+                top: 0; 
+                opacity: 1; 
+                visibility: visible; 
+            }
+            .nav-links a { font-size: 2rem; width: 100%; text-align: center; padding: 15px 0; }
+            .grid { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 3rem; }
+        }
+
+        footer {
+            text-align: center;
+            padding: 6rem 2rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo" onclick="window.scrollTo(0,0)">OS.HUB</div>
+            <div class="hamburger" id="hamburger">
+                <span></span><span></span><span></span>
+            </div>
+            <ul class="nav-links" id="nav-menu">
+                <li><a href="#videos">Videos</a></li>
+                <li><a href="#theory">Theory</a></li>
+                <li><a href="#notes">Notes</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Master Operating Systems<br>The Core of Computing</h1>
+        <p>Your essential resource for OS concepts, detailed video lectures, theory documentation, and handwritten notes.</p>
+    </section>
+
+    <div class="container">
+        <section id="videos">
+            <h2 class="section-title">📺 Video Lectures & Playlists</h2>
+            <div class="grid" id="video-container"></div>
+        </section>
+
+        <section id="theory">
+            <h2 class="section-title">🧠 Core Theory & Documentation</h2>
+            <div class="grid" id="theory-container"></div>
+        </section>
+
+        <section id="notes">
+            <h2 class="section-title">📝 Download Notes</h2>
+            <div class="grid" id="notes-container"></div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 OS Study Hub. Crafted for Engineers.</p>
+    </footer>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+        const navLinks = document.querySelectorAll('.nav-links a');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // --- Content Data ---
+        const studyResources = {
+            videos: [
+                { 
+                    title: "OS in One Shot (KnowledgeGATE)", 
+                    desc: "Complete Operating System course in a single 12-hour video. Perfect for exams like GATE.", 
+                    link: "https://youtu.be/009FHqBo87Q?si=ul6hVwy3YDy9OjFw", 
+                    tag: "Mega One Shot" 
+                },
+                { 
+                    title: "KnowledgeGATE OS Playlist", 
+                    desc: "Deep dive into OS concepts with detailed chapter-wise videos by Sanchit Sir.", 
+                    link: "https://youtube.com/playlist?list=PLmXKhU9FNesSFvj6gASuWmQd23Ul5omtD&si=fV2r-s8iIvbNK8LS", 
+                    tag: "Full Course" 
+                },
+                { 
+                    title: "Gate Smashers OS Playlist", 
+                    desc: "Highly popular and easy-to-understand OS playlist covering all university topics.", 
+                    link: "https://youtube.com/playlist?list=PLxCzCOWd7aiGz9donHRrE9I3Mwn6XdP8p&si=-J2XlU1M8-ue7XhE", 
+                    tag: "Student Favorite" 
+                }
+            ],
+            theory: [
+                { 
+                    title: "Geeks for Geeks - OS", 
+                    desc: "Comprehensive articles covering Process Management, Deadlocks, Memory, and more.", 
+                    link: "https://www.geeksforgeeks.org/operating-systems/operating-systems/", 
+                    tag: "Reference" 
+                },
+                { 
+                    title: "TutorialsPoint - OS Overview", 
+                    desc: "A structured text-based tutorial for quick revision and understanding basics.", 
+                    link: "https://www.tutorialspoint.com/operating_system/os_overview.htm", 
+                    tag: "Tutorial" 
+                }
+            ],
+            notes: [
+                { 
+                    title: "Handwritten OS Notes", 
+                    desc: "Download complete handwritten notes (PDF) for quick revision and exam prep.", 
+                    link: "https://drive.google.com/file/d/1vUvClBEtjg9KxzdjHWfIIbvxCTvuYiLZ/view?usp=drive_link", 
+                    tag: "PDF Download" 
+                }
+            ]
+        };
+
+        function createCard(item, btnText = "Explore Now") {
+            const card = document.createElement('div');
+            card.className = 'card';
+            const tagHTML = item.tag ? `<span class="card-tag">${item.tag}</span>` : '';
+            card.innerHTML = `
+                ${tagHTML}
+                <h3>${item.title}</h3>
+                <p>${item.desc}</p>
+                <a href="${item.link}" target="_blank" class="btn">${btnText}</a>
+            `;
+            return card;
+        }
+
+        document.getElementById('video-container').append(...studyResources.videos.map(i => createCard(i, "Watch Video")));
+        document.getElementById('theory-container').append(...studyResources.theory.map(i => createCard(i, "Read Article")));
+        document.getElementById('notes-container').append(...studyResources.notes.map(i => createCard(i, "Download PDF")));
+    </script>
+</body>
+</html>
