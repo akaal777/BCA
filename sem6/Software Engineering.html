@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software Engineering Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #a855f7;
+            --bg: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --text: #f8fafc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Navbar */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 10%;
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        header {
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: radial-gradient(circle at top, #1e293b 0%, #0f172a 100%);
+            padding: 0 1rem;
+        }
+
+        header h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: fadeIn 1s ease-out;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: #94a3b8;
+            max-width: 600px;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 10%;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        /* Grid Layouts */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 1.5rem;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            backdrop-filter: blur(5px);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+            border-color: var(--primary);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 180px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3rem;
+            color: white;
+            opacity: 0.8;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .card-text {
+            color: #94a3b8;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            text-align: center;
+            transition: 0.3s;
+            font-weight: 600;
+        }
+
+        .btn:hover {
+            background: var(--secondary);
+            transform: scale(1.05);
+        }
+
+        /* Theory & Book Section */
+        .link-card {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            padding: 3rem;
+            border-radius: 2rem;
+            text-align: center;
+            margin-top: 2rem;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .link-card i {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem;
+            text-align: center;
+            background: #020617;
+            color: #64748b;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 { font-size: 2.5rem; }
+            .nav-links { display: none; }
+            section { padding: 4rem 5%; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">SE Portal</div>
+        <ul class="nav-links">
+            <li><a href="#videos">Videos</a></li>
+            <li><a href="#theory">Theory</a></li>
+            <li><a href="#notes">Notes</a></li>
+            <li><a href="#books">Books</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <h1>Master Software Engineering</h1>
+        <p>Your comprehensive resource hub for learning Software Engineering from the best creators and platforms.</p>
+    </header>
+
+    <section id="videos">
+        <h2 class="section-title reveal">Video Lectures</h2>
+        <div class="grid-container">
+            <div class="card reveal">
+                <div class="card-img" style="background-image: url('https://img.youtube.com/vi/NlLM3sVF8wY/hqdefault.jpg')">
+                    <i class="fas fa-play-circle play-icon"></i>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Knowledge GATE (One Shot)</h3>
+                    <a href="https://youtu.be/NlLM3sVF8wY?si=3s85jLI5FFAeXsOi" target="_blank" class="btn">Watch Video</a>
+                </div>
+            </div>
+
+            <div class="card reveal">
+                <div class="card-img" style="background-image: url('https://img.youtube.com/vi/b7hmU72GRaE/hqdefault.jpg')">
+                    <i class="fas fa-list play-icon"></i>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Software Engineering by Learn Coding</h3>
+                    <a href="https://youtube.com/playlist?list=PLqleLpAMfxGB1g0xlYj2H6lyY2Q2ku7p9&si=_Hj117eDlHFVRino" target="_blank" class="btn">View Playlist</a>
+                </div>
+            </div>
+
+            <div class="card reveal">
+                <div class="card-img" style="background-image: url('https://img.youtube.com/vi/uJpQlyT_CK4/hqdefault.jpg')">
+                    <i class="fas fa-list play-icon"></i>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Software Engineering by GATE Smasher</h3>
+                    <a href="https://youtube.com/playlist?list=PLxCzCOWd7aiEed7SKZBnC6ypFDWYLRvB2&si=EHHPjYXBuxLrsiiV" target="_blank" class="btn">View Playlist</a>
+                </div>
+            </div>
+
+            <div class="card reveal">
+                <div class="card-img" style="background-image: url('https://img.youtube.com/vi/Wnk_pArBylM/hqdefault.jpg')">
+                    <i class="fas fa-play-circle play-icon"></i>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">5 Minute Engineering (One Shot)</h3>
+                    <a href="https://youtu.be/Wnk_pArBylM?si=zyXTlN0k_-l5p4SC" target="_blank" class="btn">Watch Video</a>
+                </div>
+            </div>
+
+            <div class="card reveal">
+                <div class="card-img" style="background-image: url('https://img.youtube.com/vi/NlLM3sVF8wY/hqdefault.jpg')">
+                    <i class="fas fa-list play-icon"></i>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Knowledge GATE (Complete Playlist)</h3>
+                    <a href="https://youtube.com/playlist?list=PLmXKhU9FNesTrw7n8ouPsSLEcduRlENHr&si=6Cc7bY8RTp5vIA2k" target="_blank" class="btn">View Playlist</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="theory">
+        <h2 class="section-title reveal">Theoretical Knowledge</h2>
+        <div class="link-card reveal">
+            <i class="fas fa-book-open"></i>
+            <h3>GeeksforGeeks Documentation</h3>
+            <p style="margin: 1rem 0 2rem; color: #94a3b8;">Detailed articles and documentation covering every concept of Software Engineering.</p>
+            <a href="https://www.geeksforgeeks.org/software-engineering/software-engineering/" target="_blank" class="btn">Explore Theory</a>
+        </div>
+    </section>
+
+    <section id="notes">
+        <h2 class="section-title reveal">Study Notes</h2>
+        <div class="grid-container">
+            <div class="card reveal">
+                <div class="card-content">
+                    <i class="fas fa-file-signature" style="font-size: 2.5rem; color: var(--primary); margin-bottom: 1rem;"></i>
+                    <h3 class="card-title">SE Comprehensive Notes - Part 1</h3>
+                    <p class="card-text">Detailed study material covering initial modules and fundamental engineering principles.</p>
+                    <a href="https://drive.google.com/file/d/1cIxYtMl9EtjbGawoDzHqQmONsFfH37z3/view?usp=drive_link" target="_blank" class="btn">View Notes 1</a>
+                </div>
+            </div>
+
+            <div class="card reveal">
+                <div class="card-content">
+                    <i class="fas fa-file-lines" style="font-size: 2.5rem; color: var(--secondary); margin-bottom: 1rem;"></i>
+                    <h3 class="card-title">SE Comprehensive Notes - Part 2</h3>
+                    <p class="card-text">Advanced concepts, testing methodologies, and project management documentation.</p>
+                    <a href="https://drive.google.com/file/d/1BGhUQ3f7E3JP0loPjC3L-1bZ5K91VY4-/view?usp=drive_link" target="_blank" class="btn">View Notes 2</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="books">
+        <h2 class="section-title reveal">Reference Material</h2>
+        <div class="link-card reveal" style="background: linear-gradient(135deg, #4338ca 0%, #6d28d9 100%);">
+            <i class="fas fa-file-pdf" style="color: white;"></i>
+            <h3>Software Engineering Book (PDF)</h3>
+            <p style="margin: 1rem 0 2rem; color: #e2e8f0;">Access the recommended textbook for in-depth study and exam preparation.</p>
+            <a href="https://drive.google.com/file/d/1CbTp64InzMnprvUQZZ5-6kL7U19Vau0I/view" target="_blank" class="btn" style="background: white; color: var(--primary);">Download / View Book</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Software Engineering Portal. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Reveal animation on scroll
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+
+        window.addEventListener("scroll", reveal);
+        // Initial check
+        reveal();
+    </script>
+</body>
+</html>
